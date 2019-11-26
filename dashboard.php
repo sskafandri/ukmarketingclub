@@ -395,27 +395,27 @@ desired effect
 
 	                <?php if($account_details['type'] == 'admin') { ?>
                 		<li class="header">ADMIN NAVIGATION</li>
-	                    <?php if(get('c') == 'my_network'){ ?>
+	                    <?php if(get('c') == 'customers'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
 	                    <?php } ?>
 							<a href="#">
-								<i class="fa fa-network-wired"></i> <span>Network Management</span>
+								<i class="fa fa-users"></i> <span>Customer Management</span>
 								<span class="pull-right-container">
 									<i class="fa fa-angle-left pull-right"></i>
 								</span>
 							</a>
 							<ul class="treeview-menu">
 								<!-- <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
-								<?php if(get('c') == 'my_network'){ ?>
+								<?php if(get('c') == 'customers'){ ?>
 			                    	<li class="active">
 			                    <?php }else{ ?>
 			                    	<li>
 			                    <?php } ?>
-			                    	<a href="dashboard.php?c=my_network">
+			                    	<a href="dashboard.php?c=customers">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>My Network</span>
+			                        	<span>Customers</span>
 			                        </a>
 			                    </li>
 							</ul>
