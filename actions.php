@@ -4979,6 +4979,8 @@ function ajax_customers()
 
 				$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
 
+				$output[$count]['skype_contact'] 				= stripslashes($customer['skype_contact']);
+
 				if($customer['expire_date'] == '1970-01-01'){
 					$output[$count]['expire_date']				= 'Never';
 				}else{
