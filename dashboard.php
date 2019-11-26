@@ -719,11 +719,11 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Payment History
+		              					Purchase History
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-									<table id="servers" class="table table-bordered table-striped">
+									<table id="purchase_history" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th class="no-sort" width="1px">Tx ID</th>
@@ -735,7 +735,7 @@ desired effect
 										</thead>
 										<tbody>
 											<?php
-												$query = $conn->query("SELECT * FROM `transactions` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
+												$query = $conn->query("SELECT * FROM `transactions` WHERE `user_id` = '".$_SESSION['account']['id']."' ORDER BY `id` DESC");
 												if($query !== FALSE) {
 													$transactions = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -2183,6 +2183,29 @@ desired effect
 					$('#status').fadeOut('fast');
 				}, 10000);
 			}
+
+			$(function () {
+				$('#purchase_history').DataTable({
+					"columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No data found."
+					},
+			  		"paging": false,
+			  		"processing": true,
+			  		"lengthChange": false,
+			  		"searching": false,
+			  		"ordering": true,
+			  		"info": false,
+			  		"autoWidth": false,
+					"iDisplayLength": 100,
+					search: {
+					   search: '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>'
+					}
+				});
+		  	});
 		</script>
     <?php } ?>
 
