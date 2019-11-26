@@ -4963,7 +4963,7 @@ function ajax_customers()
 		$count = 0;
 
 		foreach($customers as $customer) {
-			if($customer['upline_id'] == $user_id){
+			// if($customer['upline_id'] == $user_id){
 				$output[$count] 								= $customer;
 				$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
 				
@@ -5000,7 +5000,7 @@ function ajax_customers()
 				$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
 
 				$count++;
-			}
+			// }
 		}
 
 		if(isset($output)) {
