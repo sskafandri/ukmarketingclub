@@ -607,34 +607,11 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Profile Details
+		              					Login Details
 		              				</h3>
 		            			</div>
 								<div class="box-body">
 									<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
-	                                    <div class="form-group">
-	                                        <label for="firstname" class="col-sm-3 control-label">First name</label>
-	                                        <div class="col-sm-9">
-	                                            <input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo $account_details['first_name']; ?>">
-	                                        </div>
-	                                    </div>
-	                                    
-	                                    <div class="form-group">
-	                                        <label for="lastname" class="col-sm-3 control-label">Last name</label>
-	                                        <div class="col-sm-9">
-	                                            <input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo $account_details['last_name']; ?>">
-	                                        </div>
-	                                    </div>
-	                                    	                                    
-	                                    <div class="form-group">
-	                                        <label for="email" class="col-sm-3 control-label">Email</label>
-	                                        <div class="col-sm-9">
-	                                            <input type="text" name="email" id="email" class="form-control" value="<?php echo $account_details['email']; ?>">
-	                                        </div>
-	                                    </div>
-
-	                                    <hr>
-
 	                                    <div class="form-group">
 	                                        <label for="email" class="col-sm-3 control-label">Username</label>
 	                                        <div class="col-sm-9">
@@ -666,80 +643,140 @@ desired effect
 	                                </form>
 	                            </div>
 	                        </div>
+
+	                        <div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Your Details
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
+	                                    <div class="form-group">
+	                                        <label for="first_name" class="col-sm-3 control-label">First Name</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="first_name" id="first_name" class="form-control" value="<?php echo $account_details['first_name']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="last_name" class="col-sm-3 control-label">Last Name</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="last_name" id="last_name" class="form-control" value="<?php echo $account_details['last_name']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="address_1" class="col-sm-3 control-label">Address 1</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="address_1" id="address_1" class="form-control" value="<?php echo $account_details['address_1']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="address_2" class="col-sm-3 control-label">Address 2</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="address_2" id="address_2" class="form-control" value="<?php echo $account_details['address_2']; ?>">
+	                                            <small>This field is optional.</small>
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="address_city" class="col-sm-3 control-label">City</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="address_city" id="address_city" class="form-control" value="<?php echo $account_details['address_city']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="address_state" class="col-sm-3 control-label">State</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="address_state" id="address_state" class="form-control" value="<?php echo $account_details['address_state']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="address_country" class="col-sm-3 control-label">Country</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="address_country" id="address_country" class="form-control" value="<?php echo $account_details['address_country']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="address_zip" class="col-sm-3 control-label">Post Code</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="address_zip" id="address_zip" class="form-control" value="<?php echo $account_details['address_zip']; ?>">
+	                                        </div>
+	                                    </div>
+	                                </form>
+	                            </div>
+	                            <div class="box-footer">
+	                            	<div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success pull-right">Save Changes</button>
+                                    </div>
+	                            </div>
+	                        </div>
 	                    </div>
 
 	                    <div class="col-lg-6">
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Reset Account Sections
+		              					Payment History
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-									<table class="table table-striped mb-none">
+									<table id="servers" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th class="text-center">Entire Account</th>
-												<th class="text-center">Packages</th>
-												<th class="text-center">Bouquets</th>
-												<th class="text-center">Streams</th>
-												<th class="text-center">Customers</th>
-												<th class="text-center">MAG Devices</th>
-												<th class="text-center">Resellers</th>
+												<th class="no-sort" width="1px">Tx ID</th>
+												<th class="no-sort">Status</th>
+												<th class="no-sort" width="50px">Date</th>
+												<th class="no-sort">Amount</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>
-													<center>
-														<a title="Reset Account" class="btn btn-danger btn-flat btn-xl" onclick="return confirm('This action cannot be reversed. Are you sure?')" href="actions.php?a=reset_account&type=account">
-															<i class="fa fa-exclamation-circle"> Go</i>
-														</a>
-													</center>
-												</td>
-												<td>
-													<center>
-														<a title="Reset Account" class="btn btn-danger btn-flat btn-xl" onclick="return confirm('This action cannot be reversed. Are you sure?')" href="actions.php?a=reset_account&type=packages">
-															<i class="fa fa-exclamation-circle"> Go</i>
-														</a>
-													</center>
-												</td>
-												<td>
-													<center>
-														<a title="Reset Account" class="btn btn-danger btn-flat btn-xl" onclick="return confirm('This action cannot be reversed. Are you sure?')" href="actions.php?a=reset_account&type=bouquets">
-															<i class="fa fa-exclamation-circle"> Go</i>
-														</a>
-													</center>
-												</td>
-												<td>
-													<center>
-														<a title="Reset Account" class="btn btn-danger btn-flat btn-xl" onclick="return confirm('This action cannot be reversed. Are you sure?')" href="actions.php?a=reset_account&type=streams">
-															<i class="fa fa-exclamation-circle"> Go</i>
-														</a>
-													</center>
-												</td>
-												<td>
-													<center>
-														<a title="Reset Account" class="btn btn-danger btn-flat btn-xl" onclick="return confirm('This action cannot be reversed. Are you sure?')" href="actions.php?a=reset_account&type=customers">
-															<i class="fa fa-exclamation-circle"> Go</i>
-														</a>
-													</center>
-												</td>
-												<td>
-													<center>
-														<a title="Reset Account" class="btn btn-danger btn-flat btn-xl" onclick="return confirm('This action cannot be reversed. Are you sure?')" href="actions.php?a=reset_account&type=resellers">
-															<i class="fa fa-exclamation-circle"> Go</i>
-														</a>
-													</center>
-												</td>
-												<td>
-													<center>
-														<a title="Reset Account" class="btn btn-danger btn-flat btn-xl" onclick="return confirm('This action cannot be reversed. Are you sure?')" href="actions.php?a=reset_account&type=mag_devices">
-															<i class="fa fa-exclamation-circle"> Go</i>
-														</a>
-													</center>
-												</td>
-											</tr>
+											<?php
+												$query = $conn->query("SELECT * FROM `transactions` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
+												if($query !== FALSE) {
+													$transactions = $query->fetchAll(PDO::FETCH_ASSOC);
+
+													foreach($transactions as $transaction) {
+														if($transaction['status'] == 'approved') {
+															$status = '<span class="label label-success full-width" style="width: 100%;">Approved</span>';
+														}elseif($transaction['status'] == 'pending') {
+															$status = '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
+														}elseif($transaction['status'] == 'declined') {
+															$status = '<span class="label label-danger full-width" style="width: 100%;">Declined</span>';
+														}elseif($transaction['status'] == 'fraud_check') {
+															$status = '<span class="label label-info full-width" style="width: 100%;">Fraud Check</span>';
+														}else{
+															$status = '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($transaction['status']).'</span>';
+														}
+
+														$transaction['amount']		= '£'.number_format($transaction['amount'], 2);
+
+														$transaction['date'] 		= date("Y-m-d h:i:s", $transaction['date']);
+
+														echo '
+															<tr>
+																<td>
+																	'.$transaction['transaction_id'].'
+																</td>
+																<td>
+																	'.$transaction['status'].'
+																</td>
+																<td>
+																	'.$transaction['date'].'
+																</td>
+																<td>
+																	'.$transaction['amount'].'
+																</td>
+															</tr>
+														';
+													}
+												}
+											?>
 										</tbody>
 									</table>
 	                            </div>
