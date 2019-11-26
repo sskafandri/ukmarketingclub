@@ -539,9 +539,9 @@ switch ($a)
 		ajax_customer_line();
 		break;
 
-	// get customer lines
-	case "ajax_customer_lines":
-		ajax_customer_lines();
+	// get customer
+	case "ajax_customers":
+		ajax_customers();
 		break;
 
 	// ajax_http_proxy
@@ -4929,7 +4929,7 @@ function ajax_customer_line()
 	echo $content;
 }
 
-function ajax_customer_lines()
+function ajax_customers()
 {
 	global $conn, $global_settings;
 
@@ -4955,25 +4955,13 @@ function ajax_customer_lines()
 	    return $results;
 	}
 
+	// get customers for upline
+	$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel` ");
+	$customers_upline 	= $query->fetchAll(PDO::FETCH_ASSOC);
+
 	// get customers
-	$query = $conn->query("SELECT `id`,`status`,`username`,`password`,`first_name`,`last_name`,`notes`,`email`,`expire_date`,`max_connections`,`reseller_id`,`notes` FROM `customers` WHERE `user_id` = '".$user_id."' ");
-	$customers = $query->fetchAll(PDO::FETCH_ASSOC);
-
-	// get all connection logs
-	$query 							= $conn->query("SELECT `id`,`customer_id` FROM `streams_connection_logs` WHERE `timestamp` > '".$time_shift."' ");
-	$temp_connections_streams 		= $query->fetchAll(PDO::FETCH_ASSOC);
-	$query 							= $conn->query("SELECT `id`,`customer_id` FROM `channel_connection_logs` WHERE `timestamp` > '".$time_shift."' ");
-	$temp_connections_channels 		= $query->fetchAll(PDO::FETCH_ASSOC);
-	$query 							= $conn->query("SELECT `id`,`customer_id` FROM `vod_connection_logs` WHERE `timestamp` > '".$time_shift."' ");
-	$temp_connections_vod 			= $query->fetchAll(PDO::FETCH_ASSOC);
-	$query 							= $conn->query("SELECT `id`,`customer_id` FROM `series_connection_logs` WHERE `timestamp` > '".$time_shift."' ");
-	$temp_connections_series 		= $query->fetchAll(PDO::FETCH_ASSOC);
-
-	$connections = array_merge($temp_connections_streams, $temp_connections_channels, $temp_connections_vod, $temp_connections_series);
-
-	// get resellers
-	$query = $conn->query("SELECT `id`,`email`,`username`,`first_name`,`last_name` FROM `resellers` WHERE `user_id` = '".$user_id."' ");
-	$resellers = $query->fetchAll(PDO::FETCH_ASSOC);
+	$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel`,`address_country`,`expire_date`,`internal_notes` FROM `users` WHERE `upline_id` = '".$user_id."' ");
+	$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	if($query !== FALSE) {
 		$count = 0;
@@ -4982,76 +4970,45 @@ function ajax_customer_lines()
 			$output[$count] 								= $customer;
 			$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
 			
-			if($customer['status'] == 'enabled') {
+			if($customer['status'] == 'active') {
 				$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
 			}elseif($customer['status'] == 'disabled') {
 				$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
-			}elseif($customer['status'] == 'expired') {
-				$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Expired</span>';
+			}elseif($customer['status'] == 'suspended') {
+				$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
 			}else{
 				$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
 			}
 
-
-			$output[$count]['username'] 					= stripslashes($customer['username']) . ' <span class="hidden"><br>'.stripslashes($customer['notes']).'</span>';
+			$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
 
 			if($customer['expire_date'] == '1970-01-01'){
-				$output[$count]['expire_date']				= 'Unlimited';
+				$output[$count]['expire_date']				= 'Never';
 			}else{
 				$output[$count]['expire_date'] 				= $customer['expire_date'];
 			}
 
-			$used_connections = 0;
-			foreach($connections as $connection){
-				if($connection['customer_id'] == $customer['id']){
-					$used_connections++;
+			// get upline info
+			$output[$count]['upline'] 						= 'Master Account';
+			foreach($customers_upline as $customer_upline) {
+				if($customer_upline['id'] == $customer['upline_id']) {
+					$output[$count]['upline'] 				= stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']);
+					break;
 				}
 			}
 
-			$output[$count]['connections'] 					= $used_connections . ' / ' . $customer['max_connections'];
+			$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
 
-			// get reseller info
-			$output[$count]['owner'] 						= 'Main Account';
-			foreach($resellers as $reseller) {
-				if($reseller['id'] == $customer['reseller_id']) {
-					if(!empty($reseller['first_name'])){
-						$output[$count]['owner']				= stripslashes($reseller['first_name']).' '.stripslashes($reseller['last_name']);
-					}elseif(!empty($reseller['email'])){
-						$output[$count]['owner']				= stripslashes($reseller['email']);
-					}else{
-						$output[$count]['owner']				= stripslashes($reseller['username']);
-					}
-				}
-			}
-
-			$output[$count]['actions'] 						= '<button title="Customer Line / Playlist Download" type="button" class="btn btn-primary btn-flat btn-xs" data-toggle="modal" data-target="#customer_line" onclick="get_customer_line('.$customer['id'].')"><i class="fa fa-download" aria-hidden="true"></i></button> <a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-gears"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
-
-			$output[$count]['admin_notes']					= '<span class="">'.stripslashes($customer['notes']).'</span>';
-			$output[$count]['admin_notes_hidden']			= '<span class="hidden">'.stripslashes($customer['notes']).'</span>';
-
-			// $output[$count]['source_m3u'] 		= 'http://'.$global_settings['cms_access_url_raw'].':'.$global_settings['cms_port'].'/get.php?username='.$customer['username'].'&password='.$customer['password'].'&type=m3u&output=ts';
-			// $output[$count]['source_m3u8'] 		= 'http://'.$global_settings['cms_access_url_raw'].':'.$global_settings['cms_port'].'/get.php?username='.$customer['username'].'&password='.$customer['password'].'&type=m3u_plus&output=ts';
-			// $output[$count]['source_dreambox'] 	= 'http://'.$global_settings['cms_access_url_raw'].':'.$global_settings['cms_port'].'/get.php?username='.$customer['username'].'&password='.$customer['password'].'&type=dreambox&output=ts';
-			// $output[$count]['source_webtv'] 	= 'http://'.$global_settings['cms_access_url_raw'].':'.$global_settings['cms_port'].'/get.php?username='.$customer['username'].'&password='.$customer['password'].'&type=webtv&output=ts';
-			// $output[$count]['source_octagon'] 	= 'http://'.$global_settings['cms_access_url_raw'].':'.$global_settings['cms_port'].'/get.php?username='.$customer['username'].'&password='.$customer['password'].'&type=octagan&output=ts';
-			// $output[$count]['source_enigma_autoscript'] 	= "wget -O /etc/enigma2/iptv.sh 'http://".$global_settings['cms_access_url_raw'].":".$global_settings['cms_port']."/get.php?username=".$customer['username']."&password=".$customer['password']."&type=enigma22_script&output=ts' && chmod 777 /etc/enigma2/iptv.sh && ";
+			$output[$count]['internal_notes']					= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
+			$output[$count]['internal_notes_hidden']			= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
 
 			$count++;
 		}
-
-		// $json_out = json_encode(array_values($your_array_here));
-
-		// $output = array_values($output);
-		// $data['data'] = $output;
 
 		if(isset($output)) {
 			$data['data'] = array_values($output);
 		}else{
 			$data['data'] = array();
-		}
-
-		if(get('dev') == 'yes'){
-			$data['dev'] = $dev;
 		}
 
 		json_output($data);

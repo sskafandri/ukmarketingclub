@@ -469,21 +469,21 @@ desired effect
                     	<li class="treeview">
                     <?php } ?>
 						<a href="#">
-							<i class="fa fa-network-wired"></i> <span>Network Management</span>
+							<i class="fa fa-network-wired"></i> <span>Business Manager</span>
 							<span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
 							</span>
 						</a>
 						<ul class="treeview-menu">
 							<!-- <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
-							<?php if(get('c') == 'my_network'){ ?>
+							<?php if(get('c') == 'downline'){ ?>
 		                    	<li class="active">
 		                    <?php }else{ ?>
 		                    	<li>
 		                    <?php } ?>
-		                    	<a href="dashboard.php?c=my_network">
+		                    	<a href="dashboard.php?c=downline">
 		                        	<i class="fa fa-circle"></i> 
-		                        	<span>My Network</span>
+		                        	<span>My Downline</span>
 		                        </a>
 		                    </li>
 						</ul>
@@ -516,15 +516,27 @@ desired effect
 					break;
 
 
+				// staff
+				case "customers":
+					if($account_details['type'] == 'admin'){
+						customers();
+					}else{
+						home();
+					}
+					break;
+
+
 				// my_account
 				case "my_account":
 					my_account();
 					break;
 
-				// network management
-				case "my_network":
-					my_network();
+				// business manager
+				case "downline":
+					downline();
 					break;
+
+
 
 				// home
 				default:
@@ -810,13 +822,6 @@ desired effect
         <?php function customers(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
-            
-
-        		$query = $conn->query("SELECT `id`,`name` FROM `bouquets` WHERE `user_id` = '".$_SESSION['account']['id']."' ORDER BY `name` ");
-				$bouquets = $query->fetchAll(PDO::FETCH_ASSOC);
-
-				$query = $conn->query("SELECT `id`,`name` FROM `packages` ORDER BY `name` ");
-				$packages = $query->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
 			<style>
@@ -843,27 +848,6 @@ desired effect
 
                 <!-- Main content -->
 				<section class="content">
-					<!-- customer line -->
-					<div class="modal fade" id="customer_line" role="dialog">
-					    <div class="modal-dialog modal-lg">
-					        <div class="modal-content">
-					            <div class="modal-header">
-					                <button type="button" class="close" data-dismiss="modal">&times;</button>
-					                <h4 class="modal-title">Customer Line / Playlist Download</h4>
-					            </div>
-					            <div class="modal-body">
-					                <div class="row">
-								    	<div class="col-lg-12">
-								    		<iframe id="customer_line_iframe" src="" width="100%" height="150px" frameborder="0"></iframe>
-										</div>
-									</div>
-					            </div>
-					            <div class="modal-footer">
-					                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					            </div>
-					        </div>
-					    </div>
-					</div>
 
 					<!-- customer_add -->
 					<form action="actions.php?a=customer_add" class="form-horizontal form-bordered" method="post">
@@ -934,44 +918,7 @@ desired effect
 															<optgroup label="Delete">
 																<option value="delete">Delete Selected Customers</option>
 															</optgroup>
-															<optgroup label="Modify">
-																<option value="change_package">Assign New Package</option>
-																<option value="change_expire_date">Change Expire Date</option>
-															</optgroup>
 														</select>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="row hidden" id="multi_options_change_package">
-											<hr>
-											<div class="col-lg-12">
-												<div class="form-group">
-													<label class="col-sm-3 control-label">New Package</label>
-													<div class="col-sm-9">
-														<select id="package_id" name="package_id" class="form-control">
-															<?php
-																foreach($packages as $package) {
-																	echo '<option value="'.$package['id'].'">'.stripslashes($package['name']).'</option>';
-																}
-															?>
-														</select>
-														<small>This will override any existing bouquets assigned to this customer.</small>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row hidden" id="multi_options_change_expire_date">
-											<hr>
-											<div class="col-lg-12">
-												<div class="form-group">
-													<label class="col-sm-3 control-label">New Expire Date</label>
-													<div class="col-sm-9">
-														<div class="col-md-9">
-															<input type="date" class="form-control pull-right datepicker" id="expire_date" name="expire_date">
-														</div>
-														<small>This will override the existing expiration date assigned to this customer.</small>
 													</div>
 												</div>
 											</div>
@@ -1005,10 +952,10 @@ desired effect
 									                <th class="no-sort" width="1px">Expand</th>
 									                <th class="no-sort" width="1px">ID</th>
 									                <th style="white-space: nowrap;" width="1px">Status</th>
-									                <th style="white-space: nowrap;" width="100px">Username</th>
+									                <th style="white-space: nowrap;" width="100px">Name</th>
+									                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
+									                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="1px">Connections</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="100px">Owner</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </thead>
@@ -1020,10 +967,10 @@ desired effect
 									                <th class="no-sort" width="1px">Expand</th>
 									                <th class="no-sort" width="1px">ID</th>
 									                <th style="white-space: nowrap;" width="1px">Status</th>
-									                <th style="white-space: nowrap;" width="100px">Username</th>
+									                <th style="white-space: nowrap;" width="100px">Name</th>
+									                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
+									                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="1px">Connections</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="100px">Owner</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </tfoot>
@@ -1861,8 +1808,8 @@ desired effect
 			    // `d` is the original data object for the row
 			    return '<table cellpadding="5" cellspacing="0" border="0" width="100%">'+
 			        '<tr>'+
-			            '<td width="150px">Admin Notes</td>'+
-			            '<td>'+d.admin_notes+'</td>'+
+			            '<td width="150px">Internal Notes</td>'+
+			            '<td>'+d.internal_notes+'</td>'+
 			        '</tr>'+
 			    '</table>';
 			}
@@ -1882,7 +1829,7 @@ desired effect
 			 
 			$(document).ready(function() {
 			    var table = $('#example').DataTable( {
-			        "ajax": "actions.php?a=ajax_customer_lines",
+			        "ajax": "actions.php?a=ajax_customers",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
@@ -1902,10 +1849,10 @@ desired effect
 			            },
 			            { "data": "id"},
 			            { "data": "status"},
-			            { "data": "username" },
+			            { "data": "full_name" },
+			            { "data": "total_downline" },
+			            { "data": "upline" },
 			            { "data": "expire_date" },
-			            { "data": "connections" },
-			            { "data": "owner" },
 			            { "data": "actions" }
 			        ],
 			        "order": [[2, 'desc']]
