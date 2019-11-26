@@ -1570,6 +1570,87 @@ desired effect
 			</script>
         <?php } ?>
 
+        <?php function table_downline(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+			?>
+
+			<style>
+				td.details-control {
+				    background: url('img/details_open.png') no-repeat center center;
+				    cursor: pointer;
+				}
+				tr.shown td.details-control {
+				    background: url('img/details_close.png') no-repeat center center;
+				}
+			</style>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>   
+                            	
+                <section class="content-header">
+                    <h1>Table Downline <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">Table Downline</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Table Downline
+		              				</h3>
+		              				<div class="pull-right">
+		              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button>
+									</div>
+		            			</div>
+								<div class="box-body">
+									<table id="example" class="display" style="width:100%">
+								        <thead>
+								            <tr>
+								                <th class="no-sort" width="1px">
+								                	<input type="checkbox" id="checkAll" />
+								                </th>
+								                <th class="no-sort" width="1px">Expand</th>
+								                <th class="no-sort" width="1px">ID</th>
+								                <th style="white-space: nowrap;" width="1px">Status</th>
+								                <th style="white-space: nowrap;" width="100px">Name</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+								            </tr>
+								        </thead>
+								        <tfoot>
+								            <tr>
+								                <th class="no-sort" width="1px">
+								                	<input type="checkbox" id="checkAll" />
+								                </th>
+								                <th class="no-sort" width="1px">Expand</th>
+								                <th class="no-sort" width="1px">ID</th>
+								                <th style="white-space: nowrap;" width="1px">Status</th>
+								                <th style="white-space: nowrap;" width="100px">Name</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+								            </tr>
+								        </tfoot>
+								    </table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+            </div>
+        <?php } ?>
+
         <?php function staging(){ ?>
         	<?php 
         		global $conn, $global_settings, $account_details, $site;
@@ -2103,6 +2184,86 @@ desired effect
 			$(document).ready(function() {
 			    var table = $('#example').DataTable( {
 			        "ajax": "actions.php?a=ajax_customers",
+			        "iDisplayLength": 100,
+			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
+			        "columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No customers found."
+					},
+			        "columns": [
+			        	{ "data": "checkbox"},
+			            {
+			                "className":      'details-control',
+			                "orderable":      false,
+			                "data":           null,
+			                "defaultContent": ''
+			            },
+			            { "data": "id"},
+			            { "data": "status"},
+			            { "data": "full_name" },
+			            { "data": "total_downline" },
+			            { "data": "upline" },
+			            { "data": "expire_date" },
+			            { "data": "actions" }
+			        ],
+			        "order": [[4, 'asc']]
+			    } );
+			     
+			    // Add event listener for opening and closing details
+			    $('#example tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
+			        }
+			    } );
+			} );
+    	</script>
+    <?php } ?>
+
+    <?php if(get('c') == 'table_downline') { ?>
+    	<script>
+			/* Formatting function for row details - modify as you need */
+			function format ( d ) {
+			    // `d` is the original data object for the row
+			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
+			        '<tr>'+
+			            '<td width="150px" valign="top">Contact Details</td>'+
+			            '<td valign="top">'+
+			            	'<strong>Email:</strong> '+d.email+' <br>'+
+			            	'<strong>Tel:</strong> '+d.tel+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			    '</table>';
+			}
+
+			$('#checkAll').change(function () {
+			    $('.chk').prop('checked', this.checked);
+			    $('#multi_options_show').removeClass("hidden");
+			});
+
+			$(".chk").change(function () {
+			    if ($(".chk:checked").length == $(".chk").length) {
+			        $('#checkAll').prop('checked', 'checked');
+			    } else {
+			        $('#checkAll').prop('checked', false);
+			    }
+			});
+			 
+			$(document).ready(function() {
+			    var table = $('#example').DataTable( {
+			        "ajax": "actions.php?a=ajax_downline",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{

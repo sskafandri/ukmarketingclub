@@ -544,84 +544,9 @@ switch ($a)
 		ajax_customers();
 		break;
 
-	// ajax_http_proxy
-	case "ajax_http_proxy":
-		ajax_http_proxy();
-		break;
-
-	case "license_add":
-		license_add();
-		break;
-
-	case "license_delete":
-		license_delete();
-		break;
-	
-
-	// backup manager
-	case "backup_now":
-		backup_now();
-		break;
-
-	case "backup_restore":
-		backup_restore();
-		break;
-
-	case "backup_delete":
-		backup_delete();
-		break;
-
-	case "backup_download":
-		backup_download();
-		break;
-
-	// packages
-	case "package_add":
-		package_add();
-		break;
-
-	case "package_update":
-		package_update();
-		break;
-
-	case "package_delete":
-		package_delete();
-		break;
-
-
-	// vod categories
-	case "vod_category_add":
-		vod_category_add();
-		break;
-
-	case "vod_category_update":
-		vod_category_update();
-		break;
-
-	case "vod_category_delete":
-		vod_category_delete();
-		break;
-
-
-	// customer ips
-	case "customer_ip_add":
-		customer_ip_add();
-		break;
-
-	case "customer_ip_delete":
-		customer_ip_delete();
-		break;
-
-
-	// grab_metadata
-	case "grab_metadata":
-		grab_metadata();
-		break;
-
-
-	// delete_all
-	case "delete_all":
-		delete_all();
+	// get downline table_downline
+	case "ajax_downline":
+		ajax_downline();
 		break;
 
 // default		
@@ -4930,6 +4855,90 @@ function ajax_customer_line()
 }
 
 function ajax_customers()
+{
+	global $conn, $global_settings;
+
+	$time_shift 	= time() - 20;
+
+	$user_id 		= $_SESSION['account']['id'];
+
+	header("Content-Type:application/json; charset=utf-8");
+
+	function find_outputs($array, $key, $value){
+	    $results = array();
+
+	    if (is_array($array)) {
+	        if (isset($array[$key]) && $array[$key] == $value) {
+	            $results[] = $array;
+	        }
+
+	        foreach ($array as $subarray) {
+	            $results = array_merge($results, find_outputs($subarray, $key, $value));
+	        }
+	    }
+
+	    return $results;
+	}
+
+	// get customers
+	$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+	$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
+
+	if($query !== FALSE) {
+		$count = 0;
+
+		foreach($customers as $customer) {
+			// if($customer['upline_id'] == $user_id){
+				$output[$count] 								= $customer;
+				$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
+				
+				if($customer['status'] == 'active') {
+					$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
+				}elseif($customer['status'] == 'disabled') {
+					$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
+				}elseif($customer['status'] == 'suspended') {
+					$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
+				}else{
+					$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
+				}
+
+				$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
+
+				if($customer['expire_date'] == '1970-01-01'){
+					$output[$count]['expire_date']				= 'Never';
+				}else{
+					$output[$count]['expire_date'] 				= $customer['expire_date'];
+				}
+
+				// get upline info
+				$output[$count]['upline'] 						= 'Master Account';
+				foreach($customers as $customer_upline) {
+					if($customer_upline['id'] == $customer['upline_id']) {
+						$output[$count]['upline'] 				= stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']);
+						break;
+					}
+				}
+
+				$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
+
+				$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
+				$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
+
+				$count++;
+			// }
+		}
+
+		if(isset($output)) {
+			$data['data'] = array_values($output);
+		}else{
+			$data['data'] = array();
+		}
+
+		json_output($data);
+	}
+}
+
+function ajax_downline()
 {
 	global $conn, $global_settings;
 
