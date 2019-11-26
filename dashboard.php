@@ -1812,7 +1812,6 @@ desired effect
 			            '<td>'+
 			            	'<strong>Email:</strong> '+d.email+' <br>'+
 			            	'<strong>Tel:</strong> '+d.tel+' <br>'+
-			            	'<strong>Skype:</strong> '+d.skype_contact+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+

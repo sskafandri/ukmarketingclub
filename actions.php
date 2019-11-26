@@ -4956,7 +4956,7 @@ function ajax_customers()
 	}
 
 	// get customers
-	$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel`,`address_country`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+	$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
 	$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	if($query !== FALSE) {
@@ -4978,8 +4978,6 @@ function ajax_customers()
 				}
 
 				$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
-
-				$output[$count]['skype_contact'] 				= stripslashes($customer['skype_contact']);
 
 				if($customer['expire_date'] == '1970-01-01'){
 					$output[$count]['expire_date']				= 'Never';
