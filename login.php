@@ -21,13 +21,14 @@ $user_agent     				= $_SERVER['HTTP_USER_AGENT'];
 
 $now 							= time();
 
-$username 						= post('username');
+$login 							= post('login');
 $password 						= post('password');
 
 $username 						= addslashes($username);
 $password 						= addslashes($password);
 
-$query = $conn->query("SELECT * FROM `users` WHERE `username` = '".$username."' AND `password` = '".$password."' ");
+// check login
+$query = $conn->query("SELECT * FROM `users` WHERE `email` = '".$login."' AND `password` = '".$password."' OR `username` = '".$login."' AND `password` = '".$password."' ");
 $user = $query->fetch(PDO::FETCH_ASSOC);
 
 if(isset($user['id'])) {
