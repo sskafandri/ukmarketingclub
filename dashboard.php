@@ -1307,7 +1307,7 @@ desired effect
         		global $conn, $globals, $global_settings, $account_details, $site;
 
         		// get customers
-				$query 				= $conn->query("SELECT `id`,`status`,`avatar`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+				$query 				= $conn->query("SELECT `id`,`status`,`avatar`,`first_name`,`last_name`,`upline_id` FROM `users` ");
 				$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
@@ -1333,7 +1333,7 @@ desired effect
 					<div class="row">
 						<div class="col-md-12">
 							<div class="chart-container">
-							    <div id="your-chart-name">
+							    <div id="downline_chart">
 							        <div class="stiff-chart-inner">
 
 							            <!-- downline level 1 -->
@@ -1540,8 +1540,6 @@ desired effect
 							        </div>
 							    </div>
 							</div>
-
-							<?php debug($downline); ?>
 						</div>
 					</div>
 				</section>
@@ -1550,7 +1548,7 @@ desired effect
             <script src="js/stiffChart.js"></script>
 			<script>
 				$(document).ready(function() {
-				  $('#your-chart-name').stiffChart({
+				  $('#downline_chart').stiffChart({
 				    
 				  });
 				});
