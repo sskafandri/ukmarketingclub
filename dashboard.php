@@ -664,6 +664,20 @@ desired effect
 	                                    </div>
 
 	                                    <div class="form-group">
+	                                        <label for="email" class="col-sm-3 control-label">Email</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="email" id="email" class="form-control" value="<?php echo $account_details['email']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="tel" class="col-sm-3 control-label">Phone</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="tel" id="tel" class="form-control" value="<?php echo $account_details['tel']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
 	                                        <label for="address_1" class="col-sm-3 control-label">Address 1</label>
 	                                        <div class="col-sm-9">
 	                                            <input type="text" name="address_1" id="address_1" class="form-control" value="<?php echo $account_details['address_1']; ?>">

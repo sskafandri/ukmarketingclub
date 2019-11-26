@@ -2598,14 +2598,17 @@ function my_account_update()
 {
 	global $conn, $global_settings;
 
-	$firstname 				= addslashes($_POST['firstname']);
-	$firstname 				= trim($firstname);
+	$first_name 			= addslashes($_POST['first_name']);
+	$first_name 			= trim($first_name);
 
-	$lastname 				= addslashes($_POST['lastname']);
-	$lastname 				= trim($lastname);
+	$last_name 				= addslashes($_POST['last_name']);
+	$last_name 				= trim($last_name);
 
 	$email 					= addslashes($_POST['email']);
 	$email 					= trim($email);
+
+	$tel 					= addslashes($_POST['tel']);
+	$tel 					= trim($tel);
 
 	$username 				= addslashes($_POST['username']);
 	$username 				= trim($username);
@@ -2616,17 +2619,42 @@ function my_account_update()
 	$password2 				= addslashes($_POST['password2']);
 	$password2 				= trim($password2);
 
-	$update = $conn->exec("UPDATE `users` SET `first_name` = '".$firstname."' WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `last_name` = '".$lastname."' WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `email` = '".$email."' WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$address_1 				= post('address_1');
+	$address_1 				= addslashes($address_1);
 
-	$update = $conn->exec("UPDATE `users` SET `username` = '".$username."' WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$address_2 				= post('address_2');
+	$address_2 				= addslashes($address_2);
+
+	$address_city 			= post('address_city');
+	$address_city 			= addslashes($address_city);
+
+	$address_state 			= post('address_state');
+	$address_state 			= addslashes($address_state);
+
+	$address_country 		= post('address_country');
+	$address_country 		= addslashes($address_country);
+
+	$address_zip 			= post('address_zip');
+	$address_zip 			= addslashes($address_zip);
+
+	$update = $conn->exec("UPDATE `users` SET `first_name` = '".$firstname."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `last_name` = '".$lastname."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `email` = '".$email."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
+
+	$update = $conn->exec("UPDATE `users` SET `username` = '".$username."' 					WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `tel` = '".$tel."' 							WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_1` = '".$address_1."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_2` = '".$address_2."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_city` = '".$address_city."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_state` = '".$address_state."' 		WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_country` = '".$address_country."' 	WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_zip` = '".$address_zip."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
 
 	status_message('success', "Your changes have been saved.");
 
 	if(!empty($password) && !empty($password2)){
 		if($password == $password2){
-			$update = $conn->exec("UPDATE `users` SET `password` = '".$password."' WHERE `id` = '".$_SESSION['account']['id']."' ");
+			$update = $conn->exec("UPDATE `users` SET `password` = '".$password."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
 		}else{
 			status_message('danger', "Passwords do not match, please try again.");
 		}
