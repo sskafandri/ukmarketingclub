@@ -735,7 +735,7 @@ desired effect
 										</thead>
 										<tbody>
 											<?php
-												$query = $conn->query("SELECT * FROM `transactions` WHERE `user_id` = '".$_SESSION['account']['id']."' ORDER BY `id` DESC");
+												$query = $conn->query("SELECT * FROM `transactions` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
 												if($query !== FALSE) {
 													$transactions = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -2186,6 +2186,7 @@ desired effect
 
 			$(function () {
 				$('#purchase_history').DataTable({
+					"order": [[ 2, "desc" ]],
 					"columnDefs": [{
 						"targets"  : 'no-sort',
 						"orderable": false,
