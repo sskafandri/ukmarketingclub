@@ -108,6 +108,19 @@ if($task == 'total_downlines'){
 	$working_customers 	= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	foreach($working_customers as $working_customer){
+		// set defaults
+		$downline[1] 	= array();
+		$downline[2] 	= array();
+		$downline[3] 	= array();
+		$downline[4] 	= array();
+		$downline[5] 	= array();
+		$downline[6] 	= array();
+		$downline[7] 	= array();
+		$downline[8] 	= array();
+		$downline[9] 	= array();
+		$downline[10] 	= array();
+
+
 		// find level 1
 		foreach($working_customers as $customer){
 			// count downline for this customer
@@ -125,12 +138,10 @@ if($task == 'total_downlines'){
 	    			}
 	    		}
 	    	}
-	    }else{
-	    	$downline[1] = array();
 	    }
 
 	    // merge arrays for counting
-	    $downline_total = array_merge($downline[1], $downline[2]);
+	    $downline_total = array_merge($downline[1], $downline[2], $downline[3], $downline[4], $downline[5], $downline[6], $downline[7], $downline[8], $downline[9], $downline[10]);
 	    $downline_total = count($downline_total);
 
 	    console_output("Member: ".$working_customer['first_name'].' '.$working_customer['last_name'].' | '.$downline_total.' in downline.');
