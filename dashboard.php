@@ -1740,7 +1740,7 @@ desired effect
 								                <th class="no-sort" width="1px">ID</th>
 								                <th style="white-space: nowrap;" width="1px">Status</th>
 								                <th style="white-space: nowrap;" width="1px">Level</th>
-								                <th style="white-space: nowrap;" width="100px">Name</th>
+								                <th style="white-space: nowrap;">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
@@ -1756,7 +1756,7 @@ desired effect
 								                <th class="no-sort" width="1px">ID</th>
 								                <th style="white-space: nowrap;" width="1px">Status</th>
 								                <th style="white-space: nowrap;" width="1px">Level</th>
-								                <th style="white-space: nowrap;" width="100px">Name</th>
+								                <th style="white-space: nowrap;">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
