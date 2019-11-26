@@ -1364,8 +1364,8 @@ desired effect
 							            </div>
 
 							            <!-- downline level 2 -->
-							            <div class="stiff-chart-level" data-level="02">
-							            	<?php foreach($downline[1] as $level_1){ ?>
+							            <?php foreach($downline[1] as $level_1){ ?>
+							            	<div class="stiff-chart-level" data-level="02">
 								                <div class="stiff-child" data-child-from="1_<?php echo $level_1; ?>">
 								                	<ul>
 									                    <?php 
@@ -1388,58 +1388,9 @@ desired effect
 								                    	?>
 								                    </ul>
 								                </div>
-								            <?php } ?>
-							            </div>
-
-							            <div class="stiff-chart-level" data-level="02">
-							                <div class="stiff-child" data-child-from="1_2">
-							                    <ul>
-							                        <li data-parent="b01">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="b02">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="b03">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="b04">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="b05">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="b06">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="b07">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-
-							                    </ul>
-							                </div>
-							            </div>
+								            </div>
+								        <?php } ?>
+							            
 
 							            <div class="stiff-chart-level" data-level="02">
 							                <div class="stiff-child" data-child-from="c">
