@@ -1383,6 +1383,36 @@ desired effect
 												                            </div>
 												                        </li>
 								                    				';
+								                    				$downline[2][] = $customer['id'];
+								                    			}
+								                    		}
+								                    	?>
+								                    </ul>
+								                </div>
+								            </div>
+								        <?php } ?>
+
+								        <!-- downline level 3 -->
+							            <?php foreach($downline[2] as $level_1){ ?>
+							            	<div class="stiff-chart-level" data-level="03">
+								                <div class="stiff-child" data-child-from="2_<?php echo $level_1; ?>">
+								                	<ul>
+									                    <?php 
+								                    		foreach($customers as $customer){
+								                    			if($customer['upline_id'] == $level_1){
+								                    				echo '
+												                        <li data-parent="2_'.$customer['id'].'">
+												                            <div class="the-chart">
+												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
+												                                <p>
+												                                	<strong>Level 2</strong><br>
+												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	'.stripslashes($customer['email']).'
+												                                </p>
+												                            </div>
+												                        </li>
+								                    				';
+								                    				$downline[3][] = $customer['id'];
 								                    			}
 								                    		}
 								                    	?>
@@ -1391,21 +1421,6 @@ desired effect
 								            </div>
 								        <?php } ?>
 							            
-
-							            <div class="stiff-chart-level" data-level="02">
-							                <div class="stiff-child" data-child-from="c">
-							                    <ul>
-
-							                        <li data-parent="c01">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-
-							                    </ul>
-							                </div>
-							            </div>
 
 							            <div class="stiff-chart-level" data-level="03">
 							                <div class="stiff-child" data-child-from="c07">
