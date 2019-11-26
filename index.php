@@ -61,7 +61,7 @@ include('inc/functions.php');
             <div id="login_form">
                 <div class="login-box-body">
                     <center>
-                        <h3>Affiliate Login</h3>
+                        <h3>Member Login</h3>
                     </center>
 
                     <p class="login-box-msg">Sign in</p>

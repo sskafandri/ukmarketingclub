@@ -539,9 +539,9 @@ switch ($a)
 		ajax_customer_line();
 		break;
 
-	// get customer
-	case "ajax_customers":
-		ajax_customers();
+	// get members
+	case "ajax_members":
+		ajax_members();
 		break;
 
 	// get downline table_downline
@@ -4854,7 +4854,7 @@ function ajax_customer_line()
 	echo $content;
 }
 
-function ajax_customers()
+function ajax_members()
 {
 	global $conn, $global_settings;
 

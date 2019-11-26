@@ -395,27 +395,27 @@ desired effect
 
 	                <?php if($account_details['type'] == 'admin') { ?>
                 		<li class="header">ADMIN NAVIGATION</li>
-	                    <?php if(get('c') == 'customers'){ ?>
+	                    <?php if(get('c') == 'members'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
 	                    <?php } ?>
 							<a href="#">
-								<i class="fa fa-users"></i> <span>Customer Management</span>
+								<i class="fa fa-users"></i> <span>Member Management</span>
 								<span class="pull-right-container">
 									<i class="fa fa-angle-left pull-right"></i>
 								</span>
 							</a>
 							<ul class="treeview-menu">
 								<!-- <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
-								<?php if(get('c') == 'customers'){ ?>
+								<?php if(get('c') == 'members'){ ?>
 			                    	<li class="active">
 			                    <?php }else{ ?>
 			                    	<li>
 			                    <?php } ?>
-			                    	<a href="dashboard.php?c=customers">
+			                    	<a href="dashboard.php?c=members">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>Customers</span>
+			                        	<span>View All Members</span>
 			                        </a>
 			                    </li>
 							</ul>
@@ -528,9 +528,9 @@ desired effect
 
 
 				// staff
-				case "customers":
+				case "members":
 					if($account_details['type'] == 'admin'){
-						customers();
+						members();
 					}else{
 						home();
 					}
@@ -832,7 +832,7 @@ desired effect
             </div>
         <?php } ?>
 
-        <?php function customers(){ ?>
+        <?php function members(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
 			?>
@@ -852,10 +852,10 @@ desired effect
                 <div id="status_message"></div>   
                             	
                 <section class="content-header">
-                    <h1>Customers <!-- <small>Optional description</small> --></h1>
+                    <h1>View All Members <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">Customers</li>
+                        <li class="active">View All Members</li>
                     </ol>
                 </section>
 
@@ -869,7 +869,7 @@ desired effect
 						        <div class="modal-content">
 						            <div class="modal-header">
 						                <button type="button" class="close" data-dismiss="modal">&times;</button>
-						                <h4 class="modal-title">Add New Customer</h4>
+						                <h4 class="modal-title">Add New Member</h4>
 						            </div>
 						            <div class="modal-body">
 						                <div class="row">
@@ -895,7 +895,7 @@ desired effect
 						            </div>
 						            <div class="modal-footer">
 						                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						                <button type="submit" class="btn btn-success">Add Customer</button>
+						                <button type="submit" class="btn btn-success">Add Member</button>
 						            </div>
 						        </div>
 						    </div>
@@ -909,7 +909,7 @@ desired effect
 								<div class="box box-default">
 									<div class="box-header with-border">
 										<h3 class="box-title">
-											Multi Customer Options / Update
+											Multi Member Options / Update
 										</h3>
 
 										<div class="box-tools pull-right">
@@ -925,11 +925,11 @@ desired effect
 													<div class="col-sm-9">
 														<select id="multi_options_action" name="multi_options_action" class="form-control" onchange="multi_options_select_customer(this.value);">
 															<optgroup label="Enable / Disable">
-																<option value="enable">Enabled Selected Customers</option>
-																<option value="disable">Disable Selected Customers</option>
+																<option value="enable">Enabled Selected Members</option>
+																<option value="disable">Disable Selected Members</option>
 															</optgroup>
 															<optgroup label="Delete">
-																<option value="delete">Delete Selected Customers</option>
+																<option value="delete">Delete Selected Members</option>
 															</optgroup>
 														</select>
 													</div>
@@ -949,7 +949,7 @@ desired effect
 								<div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
-			              					Customers
+			              					View All Members
 			              				</h3>
 			              				<div class="pull-right">
 			              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button>
@@ -997,7 +997,7 @@ desired effect
             </div>
         <?php } ?>
 
-        <?php function customer(){ ?>
+        <?php function member(){ ?>
         	<?php 
         		global $conn, $wp, $global_settings, $account_details, $site, $whmcs, $product_ids;
             
@@ -1365,7 +1365,7 @@ desired effect
 											                                <p>
 											                                	<strong>Level 1</strong><br>
 											                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-											                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+											                                	<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 											                                </p>
 											                            </div>
 											                        </li>
@@ -1393,7 +1393,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 2</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -1422,7 +1422,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 3</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -1451,7 +1451,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 4</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -1480,7 +1480,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 5</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -1509,7 +1509,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 6</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -1538,7 +1538,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 7</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -2148,7 +2148,7 @@ desired effect
 		</script>
     <?php } ?>
 
-    <?php if(get('c') == 'customers') { ?>
+    <?php if(get('c') == 'members') { ?>
     	<script>
 			/* Formatting function for row details - modify as you need */
 			function format ( d ) {
@@ -2183,7 +2183,7 @@ desired effect
 			 
 			$(document).ready(function() {
 			    var table = $('#example').DataTable( {
-			        "ajax": "actions.php?a=ajax_customers",
+			        "ajax": "actions.php?a=ajax_members",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
@@ -2191,7 +2191,7 @@ desired effect
 						"orderable": false,
 					}],
 					"language": {
-						"emptyTable": "No customers found."
+						"emptyTable": "No members found."
 					},
 			        "columns": [
 			        	{ "data": "checkbox"},
