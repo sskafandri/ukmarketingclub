@@ -199,6 +199,9 @@ if($task == 'total_downlines'){
 	    $downline_total = array_merge($downline[1], $downline[2], $downline[3], $downline[4], $downline[5], $downline[6], $downline[7], $downline[8], $downline[9], $downline[10]);
 	    $downline_total = count($downline_total);
 
+	    $update = $conn->exec("UPDATE `users` SET `total_downline` = '".$downline_total."' WHERE `id` = '".$working_customer['id']."' ");
+
+
 	    console_output("Member: ".$working_customer['first_name'].' '.$working_customer['last_name'].' | '.$downline_total.' in downline.');
 
 	    unset($downline);
