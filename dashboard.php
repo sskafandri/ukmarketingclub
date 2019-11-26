@@ -1350,7 +1350,7 @@ desired effect
 											                                <p>
 											                                	<strong>Level 1</strong><br>
 											                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-											                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'">View Profile</a>
+											                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
 											                                </p>
 											                            </div>
 											                        </li>
