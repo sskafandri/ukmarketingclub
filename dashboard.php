@@ -727,9 +727,10 @@ desired effect
 										<thead>
 											<tr>
 												<th class="no-sort" width="1px">Tx ID</th>
-												<th class="no-sort">Status</th>
-												<th class="no-sort" width="50px">Date</th>
-												<th class="no-sort">Amount</th>
+												<th class="no-sort" style="white-space: nowrap;">Status</th>
+												<th class="no-sort" style="white-space: nowrap;" width="1px">Date</th>
+												<th class="no-sort" style="white-space: nowrap;">Item</th>
+												<th class="no-sort" style="white-space: nowrap;" width="1px">Amount</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -761,10 +762,13 @@ desired effect
 																	'.$transaction['transaction_id'].'
 																</td>
 																<td>
-																	'.$transaction['status'].'
+																	'.$status.'
 																</td>
 																<td>
 																	'.$transaction['date'].'
+																</td>
+																<td>
+																	'.stripslashes($transaction['item']).'
 																</td>
 																<td>
 																	'.$transaction['amount'].'
