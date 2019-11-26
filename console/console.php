@@ -100,7 +100,7 @@ if($task == 'cron'){
 	console_output("Finished.");
 }
 
-if($task == 'totals'){
+if($task == 'total_downlines'){
 	console_output("Count totals for various tables.");
 	
 	// downline totals
