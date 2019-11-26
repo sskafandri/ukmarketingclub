@@ -1808,15 +1808,15 @@ desired effect
 			    // `d` is the original data object for the row
 			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
 			        '<tr>'+
-			            '<td width="150px">Contact Details</td>'+
-			            '<td>'+
+			            '<td width="150px" valign="top">Contact Details</td>'+
+			            '<td valign="top">'+
 			            	'<strong>Email:</strong> '+d.email+' <br>'+
 			            	'<strong>Tel:</strong> '+d.tel+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+
-			            '<td width="150px">Internal Notes</td>'+
-			            '<td>'+d.internal_notes+'</td>'+
+			            '<td width="150px" valign="top">Internal Notes</td>'+
+			            '<td valign="top">'+d.internal_notes+'</td>'+
 			        '</tr>'+
 			    '</table>';
 			}
