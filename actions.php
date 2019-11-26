@@ -5085,7 +5085,7 @@ function ajax_downline()
 
 	foreach($downline[1] as $customer) {
 		$output[$count] 								= $customer;
-		$output[$count]['level']						= 1;
+		$output[$count]['level']						= '1';
 		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
 		
 		if($customer['status'] == 'active') {
