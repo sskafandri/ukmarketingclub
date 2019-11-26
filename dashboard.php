@@ -979,9 +979,9 @@ desired effect
 									                </th>
 									                <th class="no-sort" width="1px">Expand</th>
 									                <th class="no-sort" width="1px">ID</th>
-									                <th style="white-space: nowrap;" width="1px">Status</th>
+									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;" width="100px">Name</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
+									                <th style="white-space: nowrap;" width="1px">Downline</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
