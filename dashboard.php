@@ -1307,7 +1307,7 @@ desired effect
         		global $conn, $globals, $global_settings, $account_details, $site;
 
         		// get customers
-				$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+				$query 				= $conn->query("SELECT `id`,`status`,`avatar`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
 				$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
@@ -1339,7 +1339,24 @@ desired effect
 							            <div class="stiff-chart-level" data-level="01">
 							                <div class="stiff-main-parent">
 							                    <ul>
-
+							                    	<!-- downline 1 -->
+							                    	<?php 
+							                    		foreach($customers as $customer){
+							                    			if($customer['upline_id'] == $_SESSION['account']['id']){
+							                    				echo '
+								                    				<li data-parent="a">
+											                            <div class="the-chart">
+											                                <img src="'.$customer['avatar'].'" alt="">
+											                                <p>
+											                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+											                                	'.stripslashes($customer['email']).'
+											                                </p>
+											                            </div>
+											                        </li>
+							                    				';
+							                    			}
+							                    		}
+							                    	?>
 							                        <li data-parent="a">
 							                            <div class="the-chart">
 							                                <img src="https://placeimg.com/100/100/animals" alt="">
