@@ -536,8 +536,6 @@ desired effect
 					downline();
 					break;
 
-
-
 				// home
 				default:
 					home();
@@ -1302,6 +1300,244 @@ desired effect
 					</section>
 				<?php } ?>
             </div>
+        <?php } ?>
+
+        <?php function downline(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+
+        		// get customers
+				$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+				$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
+			?>
+
+			<link href="css/reset-html5.css" rel="stylesheet" media="screen" />
+			<link href="css/micro-clearfix.css" rel="stylesheet" media="screen" />
+			<link href="css/stiff-chart.css" rel="stylesheet" media="screen" />
+			<link href="css/custom.css" rel="stylesheet" media="screen" />
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>   
+                            	
+                <section class="content-header">
+                    <h1>Downline <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">Downline</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="chart-container">
+							    <div id="your-chart-name">
+							        <div class="stiff-chart-inner">
+
+							            <div class="stiff-chart-level" data-level="01">
+							                <div class="stiff-main-parent">
+							                    <ul>
+
+							                        <li data-parent="a">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="b">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="c">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+
+							                    </ul>
+							                </div>
+							            </div>
+
+							            <div class="stiff-chart-level" data-level="02">
+							                <div class="stiff-child" data-child-from="a">
+							                    <ul>
+
+							                        <li data-parent="a01">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="a02">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="a03">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+
+							                    </ul>
+							                </div>
+							            </div>
+
+							            <div class="stiff-chart-level" data-level="02">
+							                <div class="stiff-child" data-child-from="b">
+							                    <ul>
+
+							                        <li data-parent="b01">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="b02">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="b03">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="b04">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="b05">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="b06">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="b07">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+
+							                    </ul>
+							                </div>
+							            </div>
+
+							            <div class="stiff-chart-level" data-level="02">
+							                <div class="stiff-child" data-child-from="c">
+							                    <ul>
+
+							                        <li data-parent="c01">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+
+							                    </ul>
+							                </div>
+							            </div>
+
+							            <div class="stiff-chart-level" data-level="03">
+							                <div class="stiff-child" data-child-from="c07">
+							                    <ul>
+
+							                        <li data-parent="c0701">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="c0702">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="c0703">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="c0704">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="c0705">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="c0706">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+							                        <li data-parent="c0707">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+
+							                    </ul>
+							                </div>
+							            </div>
+
+							            <div class="stiff-chart-level" data-level="03">
+							                <div class="stiff-child" data-child-from="b01">
+							                    <ul>
+
+							                        <li data-parent="b0101">
+							                            <div class="the-chart">
+							                                <img src="https://placeimg.com/100/100/animals" alt="">
+							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+							                            </div>
+							                        </li>
+
+							                    </ul>
+							                </div>
+							            </div>
+
+							        </div>
+							    </div>
+							</div>
+						</div>
+					</div>
+				</section>
+            </div>
+
+            <script src="js/stiffChart.js"></script>
+			<script>
+				$(document).ready(function() {
+				  $('#your-chart-name').stiffChart({
+				    
+				  });
+				});
+			</script>
         <?php } ?>
 
         <?php function staging(){ ?>
