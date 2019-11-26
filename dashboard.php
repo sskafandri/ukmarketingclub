@@ -1806,7 +1806,15 @@ desired effect
 			/* Formatting function for row details - modify as you need */
 			function format ( d ) {
 			    // `d` is the original data object for the row
-			    return '<table cellpadding="5" cellspacing="0" border="0" width="100%">'+
+			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
+			        '<tr>'+
+			            '<td width="150px">Contact Details</td>'+
+			            '<td>'+
+			            	'<strong>Email:</strong> '+d.email+' <br>'+
+			            	'<strong>Tel:</strong> '+d.tel+' <br>'+
+			            	'<strong>Skype:</strong> '+d.skype_contact+' <br>'+
+			            '</td>'+
+			        '</tr>'+
 			        '<tr>'+
 			            '<td width="150px">Internal Notes</td>'+
 			            '<td>'+d.internal_notes+'</td>'+
