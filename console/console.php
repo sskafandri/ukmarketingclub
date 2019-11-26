@@ -104,7 +104,7 @@ if($task == 'total_downlines'){
 	console_output("Count totals for various tables.");
 	
 	// downline totals
-	$query 				= $conn->query("SELECT `id`,`upline_id`,`first_name`,`last_name` FROM `customers`; ");
+	$query 				= $conn->query("SELECT `id`,`upline_id`,`first_name`,`last_name` FROM `users`; ");
 	$working_customers 	= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	foreach($working_customers as $working_customer){
