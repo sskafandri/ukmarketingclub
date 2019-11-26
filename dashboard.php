@@ -1350,7 +1350,7 @@ desired effect
 											                                <p>
 											                                	<strong>Level 1</strong><br>
 											                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-											                                	'.stripslashes($customer['email']).'
+											                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'">View Profile</a>
 											                                </p>
 											                            </div>
 											                        </li>
@@ -1364,13 +1364,13 @@ desired effect
 							            </div>
 
 							            <!-- downline level 2 -->
-							            <?php foreach($downline[1] as $level_1){ ?>
+							            <?php foreach($downline[1] as $level_2){ ?>
 							            	<div class="stiff-chart-level" data-level="02">
-								                <div class="stiff-child" data-child-from="1_<?php echo $level_1; ?>">
+								                <div class="stiff-child" data-child-from="1_<?php echo $level_2; ?>">
 								                	<ul>
 									                    <?php 
 								                    		foreach($customers as $customer){
-								                    			if($customer['upline_id'] == $level_1){
+								                    			if($customer['upline_id'] == $level_2){
 								                    				echo '
 												                        <li data-parent="2_'.$customer['id'].'">
 												                            <div class="the-chart">
@@ -1378,7 +1378,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 2</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	'.stripslashes($customer['email']).'
+												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -1393,26 +1393,55 @@ desired effect
 								        <?php } ?>
 
 								        <!-- downline level 3 -->
-							            <?php foreach($downline[2] as $level_1){ ?>
+							            <?php foreach($downline[2] as $level_3){ ?>
 							            	<div class="stiff-chart-level" data-level="03">
-								                <div class="stiff-child" data-child-from="2_<?php echo $level_1; ?>">
+								                <div class="stiff-child" data-child-from="2_<?php echo $level_3; ?>">
 								                	<ul>
 									                    <?php 
 								                    		foreach($customers as $customer){
-								                    			if($customer['upline_id'] == $level_1){
+								                    			if($customer['upline_id'] == $level_3){
 								                    				echo '
 												                        <li data-parent="2_'.$customer['id'].'">
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 2</strong><br>
+												                                	<strong>Level 3</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	'.stripslashes($customer['email']).'
+												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
 								                    				';
 								                    				$downline[3][] = $customer['id'];
+								                    			}
+								                    		}
+								                    	?>
+								                    </ul>
+								                </div>
+								            </div>
+								        <?php } ?>
+
+								        <!-- downline level 4 -->
+							            <?php foreach($downline[3] as $level_4){ ?>
+							            	<div class="stiff-chart-level" data-level="04">
+								                <div class="stiff-child" data-child-from="3_<?php echo $level_4; ?>">
+								                	<ul>
+									                    <?php 
+								                    		foreach($customers as $customer){
+								                    			if($customer['upline_id'] == $level_4){
+								                    				echo '
+												                        <li data-parent="2_'.$customer['id'].'">
+												                            <div class="the-chart">
+												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
+												                                <p>
+												                                	<strong>Level 4</strong><br>
+												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'">View Profile</a>
+												                                </p>
+												                            </div>
+												                        </li>
+								                    				';
+								                    				$downline[4][] = $customer['id'];
 								                    			}
 								                    		}
 								                    	?>
