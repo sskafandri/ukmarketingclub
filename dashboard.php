@@ -1401,7 +1401,7 @@ desired effect
 								                    		foreach($customers as $customer){
 								                    			if($customer['upline_id'] == $level_3){
 								                    				echo '
-												                        <li data-parent="2_'.$customer['id'].'">
+												                        <li data-parent="3_'.$customer['id'].'">
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
@@ -1430,7 +1430,7 @@ desired effect
 								                    		foreach($customers as $customer){
 								                    			if($customer['upline_id'] == $level_4){
 								                    				echo '
-												                        <li data-parent="2_'.$customer['id'].'">
+												                        <li data-parent="4_'.$customer['id'].'">
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
