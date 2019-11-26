@@ -2,7 +2,7 @@
 
 $host			= '64.62.133.56';
 $db 			= 'ubloclub_dashboard';
-$username 		= 'ubloclub_dashboard';
+$username 		= 'ubloclub';
 $password 		= 'admin1372admin1372';
 
 $dsn			= "mysql:host=$host;dbname=$db";
