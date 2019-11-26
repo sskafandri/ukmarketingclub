@@ -1317,7 +1317,7 @@ desired effect
             </div>
         <?php } ?>
 
-        <?php function downline(){ ?>
+        <?php function visual_downline(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
 
