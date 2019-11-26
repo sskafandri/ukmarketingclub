@@ -132,6 +132,8 @@ if($task == 'total_downlines'){
 
 	    console_output("Member: ".$working_customer['first_name'].' '.$working_customer['last_name'].' | '.$downline_total.' in downline.');
 
+	    unset($downline);
+	    unset($downline_total);
 	}
 
 	console_output("Finished.");
