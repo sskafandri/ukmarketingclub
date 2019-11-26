@@ -1336,81 +1336,64 @@ desired effect
 							    <div id="your-chart-name">
 							        <div class="stiff-chart-inner">
 
+							            <!-- downline level 1 -->
 							            <div class="stiff-chart-level" data-level="01">
 							                <div class="stiff-main-parent">
 							                    <ul>
-							                    	<!-- downline 1 -->
 							                    	<?php 
 							                    		foreach($customers as $customer){
 							                    			if($customer['upline_id'] == $_SESSION['account']['id']){
 							                    				echo '
-								                    				<li data-parent="a">
+								                    				<li data-parent="1_'.$customer['id'].'">
 											                            <div class="the-chart">
-											                                <img src="'.$customer['avatar'].'" alt="">
+											                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 											                                <p>
+											                                	<strong>Level 1</strong><br>
 											                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
 											                                	'.stripslashes($customer['email']).'
 											                                </p>
 											                            </div>
 											                        </li>
 							                    				';
+							                    				$downline[1][] = $customer['id'];
 							                    			}
 							                    		}
 							                    	?>
-							                        <li data-parent="a">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="b">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="c">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-
 							                    </ul>
 							                </div>
 							            </div>
 
+							            <!-- downline level 2 -->
 							            <div class="stiff-chart-level" data-level="02">
-							                <div class="stiff-child" data-child-from="a">
-							                    <ul>
-
-							                        <li data-parent="a01">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="a02">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="a03">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-
-							                    </ul>
-							                </div>
+							            	<?php foreach($downline[1] as $level_1){ ?>
+								                <div class="stiff-child" data-child-from="1_<?php echo $level_1; ?>">
+								                    <?php 
+							                    		foreach($customers as $customer){
+							                    			if($customer['upline_id'] == $level_1){
+							                    				echo '
+							                    					<ul>
+												                        <li data-parent="2_'.$customer['id'].'">
+												                            <div class="the-chart">
+												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
+												                                <p>
+												                                	<strong>Level 2</strong><br>
+												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	'.stripslashes($customer['email']).'
+												                                </p>
+												                            </div>
+												                        </li>
+												                    </ul>
+							                    				';
+							                    			}
+							                    		}
+							                    	?>
+								                </div>
+								            <?php } ?>
 							            </div>
 
 							            <div class="stiff-chart-level" data-level="02">
 							                <div class="stiff-child" data-child-from="b">
 							                    <ul>
-
 							                        <li data-parent="b01">
 							                            <div class="the-chart">
 							                                <img src="https://placeimg.com/100/100/animals" alt="">
