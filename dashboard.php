@@ -728,7 +728,7 @@ desired effect
 											<tr>
 												<th class="no-sort" width="1px">Tx ID</th>
 												<th class="no-sort" style="white-space: nowrap;" width="1px">Status</th>
-												<th class="no-sort" style="white-space: nowrap;" width="1px">Date</th>
+												<th class="no-sort" style="white-space: nowrap;" width="100px">Date</th>
 												<th class="no-sort" style="white-space: nowrap;">Item</th>
 												<th class="no-sort" style="white-space: nowrap;" width="1px">Amount</th>
 											</tr>
