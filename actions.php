@@ -4993,7 +4993,7 @@ function ajax_downline()
 	}
 
 	// get customers
-	$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+	$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` WHERE `id` != '".$user_id."' ");
 	$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	if($query !== FALSE) {
