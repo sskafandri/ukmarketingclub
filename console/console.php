@@ -125,8 +125,11 @@ if($task == 'total_downlines'){
 	    			}
 	    		}
 	    	}
+	    }else{
+	    	$downline[1] = array();
 	    }
 
+	    // merge arrays for counting
 	    $downline_total = array_merge($downline[1], $downline[2]);
 	    $downline_total = count($downline_total);
 
