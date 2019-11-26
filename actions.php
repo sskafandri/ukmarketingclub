@@ -4914,7 +4914,7 @@ function ajax_customers()
 				$output[$count]['upline'] 						= 'Master Account';
 				foreach($customers as $customer_upline) {
 					if($customer_upline['id'] == $customer['upline_id']) {
-						$output[$count]['upline'] 				= stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']);
+						$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
 						break;
 					}
 				}
