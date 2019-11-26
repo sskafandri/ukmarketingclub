@@ -463,7 +463,7 @@ desired effect
 		                </ul>
 		            </li>
 
-                    <?php if(get('c') == 'my_network'){ ?>
+                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline'){ ?>
                     	<li class="active treeview menu-open">
                     <?php }else{ ?>
                     	<li class="treeview">
@@ -476,14 +476,25 @@ desired effect
 						</a>
 						<ul class="treeview-menu">
 							<!-- <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
-							<?php if(get('c') == 'downline'){ ?>
+							<?php if(get('c') == 'visual_downline'){ ?>
 		                    	<li class="active">
 		                    <?php }else{ ?>
 		                    	<li>
 		                    <?php } ?>
-		                    	<a href="dashboard.php?c=downline">
+		                    	<a href="dashboard.php?c=visual_downline">
 		                        	<i class="fa fa-circle"></i> 
-		                        	<span>My Downline</span>
+		                        	<span>Visual Downline</span>
+		                        </a>
+		                    </li>
+
+		                    <?php if(get('c') == 'table_downline'){ ?>
+		                    	<li class="active">
+		                    <?php }else{ ?>
+		                    	<li>
+		                    <?php } ?>
+		                    	<a href="dashboard.php?c=table_downline">
+		                        	<i class="fa fa-circle"></i> 
+		                        	<span>Table Downline</span>
 		                        </a>
 		                    </li>
 						</ul>
@@ -532,8 +543,12 @@ desired effect
 					break;
 
 				// business manager
-				case "downline":
-					downline();
+				case "visual_downline":
+					visual_downline();
+					break;
+
+				case "table_downline":
+					table_downline();
 					break;
 
 				// home
