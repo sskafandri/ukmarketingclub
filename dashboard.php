@@ -1364,7 +1364,7 @@ desired effect
 							            </div>
 
 							            <!-- downline level 2 -->
-							            <?php is_array($downline[1]){foreach($downline[1] as $level_2){ ?>
+							            <?php if(is_array($downline[1])) {foreach($downline[1] as $level_2){ ?>
 							            	<div class="stiff-chart-level" data-level="02">
 								                <div class="stiff-child" data-child-from="1_<?php echo $level_2; ?>">
 								                	<ul>
@@ -1393,7 +1393,7 @@ desired effect
 								        <?php } } ?>
 
 								        <!-- downline level 3 -->
-							            <?php is_array($downline[2]){foreach($downline[2] as $level_3){ ?>
+							            <?php if(is_array($downline[2])) {foreach($downline[2] as $level_3){ ?>
 							            	<div class="stiff-chart-level" data-level="03">
 								                <div class="stiff-child" data-child-from="2_<?php echo $level_3; ?>">
 								                	<ul>
@@ -1422,7 +1422,7 @@ desired effect
 								        <?php } } ?>
 
 								        <!-- downline level 4 -->
-							            <?php is_array($downline[3]){foreach($downline[3] as $level_4){ ?>
+							            <?php if(is_array($downline[3])) {foreach($downline[3] as $level_4){ ?>
 							            	<div class="stiff-chart-level" data-level="04">
 								                <div class="stiff-child" data-child-from="3_<?php echo $level_4; ?>">
 								                	<ul>
@@ -1451,7 +1451,7 @@ desired effect
 								        <?php } } ?>
 
 								        <!-- downline level 5 -->
-							            <?php is_array($downline[4]){foreach($downline[4] as $level_5){ ?>
+							            <?php if(is_array($downline[4])) {foreach($downline[4] as $level_5){ ?>
 							            	<div class="stiff-chart-level" data-level="05">
 								                <div class="stiff-child" data-child-from="4_<?php echo $level_5; ?>">
 								                	<ul>
@@ -1480,7 +1480,7 @@ desired effect
 								        <?php } } ?>
 
 								        <!-- downline level 6 -->
-							            <?php is_array($downline[5]){foreach($downline[5] as $level_6){ ?>
+							            <?php if(is_array($downline[5])) {foreach($downline[5] as $level_6){ ?>
 							            	<div class="stiff-chart-level" data-level="06">
 								                <div class="stiff-child" data-child-from="5_<?php echo $level_6; ?>">
 								                	<ul>
@@ -1509,7 +1509,7 @@ desired effect
 								        <?php } } ?>
 
 								        <!-- downline level 7 -->
-							            <?php is_array($downline[6]){foreach($downline[6] as $level_7){ ?>
+							            <?php if(is_array($downline[6])) {foreach($downline[6] as $level_7){ ?>
 							            	<div class="stiff-chart-level" data-level="07">
 								                <div class="stiff-child" data-child-from="6_<?php echo $level_7; ?>">
 								                	<ul>
