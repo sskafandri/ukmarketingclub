@@ -2637,8 +2637,8 @@ function my_account_update()
 	$address_zip 			= post('address_zip');
 	$address_zip 			= addslashes($address_zip);
 
-	$update = $conn->exec("UPDATE `users` SET `first_name` = '".$firstname."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `last_name` = '".$lastname."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `first_name` = '".$first_name."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `last_name` = '".$last_name."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `email` = '".$email."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
 
 	$update = $conn->exec("UPDATE `users` SET `username` = '".$username."' 					WHERE `id` = '".$_SESSION['account']['id']."' ");
