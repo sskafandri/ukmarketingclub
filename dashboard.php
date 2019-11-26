@@ -603,15 +603,15 @@ desired effect
 
                 <section class="content">
                 	<div class="row">
-						<div class="col-lg-6">
-							<div class="box box-primary">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Login Details
-		              				</h3>
-		            			</div>
-								<div class="box-body">
-									<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
+                		<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
+							<div class="col-lg-6">
+								<div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
+			              					Login Details
+			              				</h3>
+			            			</div>
+									<div class="box-body">
 	                                    <div class="form-group">
 	                                        <label for="email" class="col-sm-3 control-label">Username</label>
 	                                        <div class="col-sm-9">
@@ -634,24 +634,21 @@ desired effect
 	                                            <small>Leave blank to keep the same password.</small>
 	                                        </div>
 	                                    </div>
-	                                    
-	                                    <div class="form-group">
-	                                        <div class="col-sm-12">
-	                                            <button type="submit" class="btn btn-success pull-right">Save Changes</button>
-	                                        </div>
+		                            </div>
+		                            <div class="box-footer">
+		                            	<div class="col-sm-12">
+	                                        <button type="submit" class="btn btn-success pull-right">Save Changes</button>
 	                                    </div>
-	                                </form>
-	                            </div>
-	                        </div>
+		                            </div>
+		                        </div>
 
-	                        <div class="box box-primary">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Your Details
-		              				</h3>
-		            			</div>
-								<div class="box-body">
-									<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
+		                        <div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
+			              					Your Details
+			              				</h3>
+			            			</div>
+									<div class="box-body">
 	                                    <div class="form-group">
 	                                        <label for="first_name" class="col-sm-3 control-label">First Name</label>
 	                                        <div class="col-sm-9">
@@ -708,15 +705,15 @@ desired effect
 	                                            <input type="text" name="address_zip" id="address_zip" class="form-control" value="<?php echo $account_details['address_zip']; ?>">
 	                                        </div>
 	                                    </div>
-	                                </form>
-	                            </div>
-	                            <div class="box-footer">
-	                            	<div class="col-sm-12">
-                                        <button type="submit" class="btn btn-success pull-right">Save Changes</button>
-                                    </div>
-	                            </div>
-	                        </div>
-	                    </div>
+		                            </div>
+		                            <div class="box-footer">
+		                            	<div class="col-sm-12">
+	                                        <button type="submit" class="btn btn-success pull-right">Save Changes</button>
+	                                    </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </form>
 
 	                    <div class="col-lg-6">
 							<div class="box box-primary">
