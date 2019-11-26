@@ -1863,7 +1863,7 @@ desired effect
 			            { "data": "expire_date" },
 			            { "data": "actions" }
 			        ],
-			        "order": [[2, 'desc']]
+			        "order": [[4, 'asc']]
 			    } );
 			     
 			    // Add event listener for opening and closing details
