@@ -768,7 +768,7 @@ desired effect
 																	'.$transaction['date'].'
 																</td>
 																<td>
-																	'.stripslashes($transaction['item']).'
+																	'.stripslashes($transaction['items']).'
 																</td>
 																<td>
 																	'.$transaction['amount'].'
