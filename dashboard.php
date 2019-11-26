@@ -1392,7 +1392,7 @@ desired effect
 							            </div>
 
 							            <div class="stiff-chart-level" data-level="02">
-							                <div class="stiff-child" data-child-from="b">
+							                <div class="stiff-child" data-child-from="1_2">
 							                    <ul>
 							                        <li data-parent="b01">
 							                            <div class="the-chart">
