@@ -140,6 +140,61 @@ if($task == 'total_downlines'){
 	    	}
 	    }
 
+	    // find level 3
+		if(is_array($downline[2])){
+			foreach($downline[2] as $level_3){
+	        	foreach($working_customers as $customer){
+	    			if($customer['upline_id'] == $level_3){
+	    				$downline[3][] = $customer['id'];
+	    			}
+	    		}
+	    	}
+	    }
+
+	    // find level 4
+		if(is_array($downline[3])){
+			foreach($downline[3] as $level_4){
+	        	foreach($working_customers as $customer){
+	    			if($customer['upline_id'] == $level_4){
+	    				$downline[4][] = $customer['id'];
+	    			}
+	    		}
+	    	}
+	    }
+
+	    // find level 5
+		if(is_array($downline[4])){
+			foreach($downline[4] as $level_5){
+	        	foreach($working_customers as $customer){
+	    			if($customer['upline_id'] == $level_5){
+	    				$downline[5][] = $customer['id'];
+	    			}
+	    		}
+	    	}
+	    }
+
+	    // find level 6
+		if(is_array($downline[5])){
+			foreach($downline[5] as $level_6){
+	        	foreach($working_customers as $customer){
+	    			if($customer['upline_id'] == $level_6){
+	    				$downline[6][] = $customer['id'];
+	    			}
+	    		}
+	    	}
+	    }
+
+	    // find level 7
+		if(is_array($downline[6])){
+			foreach($downline[6] as $level_7){
+	        	foreach($working_customers as $customer){
+	    			if($customer['upline_id'] == $level_7){
+	    				$downline[7][] = $customer['id'];
+	    			}
+	    		}
+	    	}
+	    }
+
 	    // merge arrays for counting
 	    $downline_total = array_merge($downline[1], $downline[2], $downline[3], $downline[4], $downline[5], $downline[6], $downline[7], $downline[8], $downline[9], $downline[10]);
 	    $downline_total = count($downline_total);
