@@ -4997,6 +4997,7 @@ function ajax_downline()
 	$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	// set defaults
+	$runs 			= array(1, 2, 3, 4 ,5 ,6 ,7);
 	$downline[1] 	= array();
 	$downline[2] 	= array();
 	$downline[3] 	= array();
@@ -5083,285 +5084,55 @@ function ajax_downline()
     	}
     }
 
-	foreach($downline[1] as $customer) {
-		$output[$count] 								= $customer;
-		$output[$count]['level']						= '1';
-		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
-		
-		if($customer['status'] == 'active') {
-			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
-		}elseif($customer['status'] == 'disabled') {
-			$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
-		}elseif($customer['status'] == 'suspended') {
-			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
-		}else{
-			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
-		}
+    foreach($runs as $key => $value){
+		foreach($downline[$value] as $customer_id) {
+			foreach($customers as $customer){
+				if($customer_id == $customer['id']){
+					$output[$count] 								= $customer;
+					$output[$count]['level']						= $value;
+					$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
+					
+					if($customer['status'] == 'active') {
+						$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
+					}elseif($customer['status'] == 'disabled') {
+						$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
+					}elseif($customer['status'] == 'suspended') {
+						$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
+					}else{
+						$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
+					}
 
-		$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
+					$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
 
-		if($customer['expire_date'] == '1970-01-01'){
-			$output[$count]['expire_date']				= 'Never';
-		}else{
-			$output[$count]['expire_date'] 				= $customer['expire_date'];
-		}
+					if($customer['expire_date'] == '1970-01-01'){
+						$output[$count]['expire_date']				= 'Never';
+					}else{
+						$output[$count]['expire_date'] 				= $customer['expire_date'];
+					}
 
-		// get upline info
-		$output[$count]['upline'] 						= 'You';
-		foreach($customers as $customer_upline) {
-			if($customer_upline['id'] == $customer['upline_id']) {
-				$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
-				break;
+					// get upline info
+					$output[$count]['upline'] 						= 'You';
+					foreach($customers as $customer_upline) {
+						if($customer_upline['id'] == $customer['upline_id']) {
+							$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
+							break;
+						}
+					}
+
+					$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
+
+					$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
+					$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
+
+					$count++;
+
+					break;
+				}
 			}
 		}
-
-		$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
-
-		$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
-		$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
-
-		$count++;
 	}
 
-	foreach($downline[2] as $customer) {
-		$output[$count] 								= $customer;
-		$output[$count]['level']						= 2;
-		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
-		
-		if($customer['status'] == 'active') {
-			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
-		}elseif($customer['status'] == 'disabled') {
-			$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
-		}elseif($customer['status'] == 'suspended') {
-			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
-		}else{
-			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
-		}
 
-		$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
-
-		if($customer['expire_date'] == '1970-01-01'){
-			$output[$count]['expire_date']				= 'Never';
-		}else{
-			$output[$count]['expire_date'] 				= $customer['expire_date'];
-		}
-
-		// get upline info
-		$output[$count]['upline'] 						= 'You';
-		foreach($customers as $customer_upline) {
-			if($customer_upline['id'] == $customer['upline_id']) {
-				$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
-				break;
-			}
-		}
-
-		$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
-
-		$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
-		$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
-
-		$count++;
-	}
-
-	foreach($downline[3] as $customer) {
-		$output[$count] 								= $customer;
-		$output[$count]['level']						= 3;
-		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
-		
-		if($customer['status'] == 'active') {
-			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
-		}elseif($customer['status'] == 'disabled') {
-			$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
-		}elseif($customer['status'] == 'suspended') {
-			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
-		}else{
-			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
-		}
-
-		$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
-
-		if($customer['expire_date'] == '1970-01-01'){
-			$output[$count]['expire_date']				= 'Never';
-		}else{
-			$output[$count]['expire_date'] 				= $customer['expire_date'];
-		}
-
-		// get upline info
-		$output[$count]['upline'] 						= 'You';
-		foreach($customers as $customer_upline) {
-			if($customer_upline['id'] == $customer['upline_id']) {
-				$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
-				break;
-			}
-		}
-
-		$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
-
-		$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
-		$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
-
-		$count++;
-	}
-
-	foreach($downline[4] as $customer) {
-		$output[$count] 								= $customer;
-		$output[$count]['level']						= 4;
-		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
-		
-		if($customer['status'] == 'active') {
-			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
-		}elseif($customer['status'] == 'disabled') {
-			$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
-		}elseif($customer['status'] == 'suspended') {
-			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
-		}else{
-			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
-		}
-
-		$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
-
-		if($customer['expire_date'] == '1970-01-01'){
-			$output[$count]['expire_date']				= 'Never';
-		}else{
-			$output[$count]['expire_date'] 				= $customer['expire_date'];
-		}
-
-		// get upline info
-		$output[$count]['upline'] 						= 'You';
-		foreach($customers as $customer_upline) {
-			if($customer_upline['id'] == $customer['upline_id']) {
-				$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
-				break;
-			}
-		}
-
-		$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
-
-		$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
-		$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
-
-		$count++;
-	}
-
-	foreach($downline[5] as $customer) {
-		$output[$count] 								= $customer;
-		$output[$count]['level']						= 5;
-		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
-		
-		if($customer['status'] == 'active') {
-			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
-		}elseif($customer['status'] == 'disabled') {
-			$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
-		}elseif($customer['status'] == 'suspended') {
-			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
-		}else{
-			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
-		}
-
-		$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
-
-		if($customer['expire_date'] == '1970-01-01'){
-			$output[$count]['expire_date']				= 'Never';
-		}else{
-			$output[$count]['expire_date'] 				= $customer['expire_date'];
-		}
-
-		// get upline info
-		$output[$count]['upline'] 						= 'You';
-		foreach($customers as $customer_upline) {
-			if($customer_upline['id'] == $customer['upline_id']) {
-				$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
-				break;
-			}
-		}
-
-		$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
-
-		$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
-		$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
-
-		$count++;
-	}
-
-	foreach($downline[6] as $customer) {
-		$output[$count] 								= $customer;
-		$output[$count]['level']						= 6;
-		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
-		
-		if($customer['status'] == 'active') {
-			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
-		}elseif($customer['status'] == 'disabled') {
-			$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
-		}elseif($customer['status'] == 'suspended') {
-			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
-		}else{
-			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
-		}
-
-		$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
-
-		if($customer['expire_date'] == '1970-01-01'){
-			$output[$count]['expire_date']				= 'Never';
-		}else{
-			$output[$count]['expire_date'] 				= $customer['expire_date'];
-		}
-
-		// get upline info
-		$output[$count]['upline'] 						= 'You';
-		foreach($customers as $customer_upline) {
-			if($customer_upline['id'] == $customer['upline_id']) {
-				$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
-				break;
-			}
-		}
-
-		$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
-
-		$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
-		$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
-
-		$count++;
-	}
-
-	foreach($downline[7] as $customer) {
-		$output[$count] 								= $customer;
-		$output[$count]['level']						= 7;
-		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
-		
-		if($customer['status'] == 'active') {
-			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
-		}elseif($customer['status'] == 'disabled') {
-			$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
-		}elseif($customer['status'] == 'suspended') {
-			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
-		}else{
-			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
-		}
-
-		$output[$count]['full_name'] 					= stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']);
-
-		if($customer['expire_date'] == '1970-01-01'){
-			$output[$count]['expire_date']				= 'Never';
-		}else{
-			$output[$count]['expire_date'] 				= $customer['expire_date'];
-		}
-
-		// get upline info
-		$output[$count]['upline'] 						= 'You';
-		foreach($customers as $customer_upline) {
-			if($customer_upline['id'] == $customer['upline_id']) {
-				$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
-				break;
-			}
-		}
-
-		$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
-
-		$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
-		$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
-
-		$count++;
-	}
 
 	if(isset($output)) {
 		$data['data'] = array_values($output);
