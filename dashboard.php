@@ -1525,6 +1525,8 @@ desired effect
 							        </div>
 							    </div>
 							</div>
+
+							<?php debug($downline); ?>
 						</div>
 					</div>
 				</section>
