@@ -1478,7 +1478,7 @@ desired effect
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 4</strong><br>
+												                                	<strong>Level 5</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
 												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
@@ -1507,7 +1507,7 @@ desired effect
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 4</strong><br>
+												                                	<strong>Level 6</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
 												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
@@ -1536,7 +1536,7 @@ desired effect
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 4</strong><br>
+												                                	<strong>Level 7</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
 												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
