@@ -2194,10 +2194,10 @@ desired effect
 					"language": {
 						"emptyTable": "No data found."
 					},
-			  		"paging": false,
+			  		"paging": true,
 			  		"processing": true,
 			  		"lengthChange": false,
-			  		"searching": false,
+			  		"searching": true,
 			  		"ordering": true,
 			  		"info": false,
 			  		"autoWidth": false,
