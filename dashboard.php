@@ -1378,7 +1378,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 2</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'">View Profile</a>
+												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -1407,7 +1407,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 3</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'">View Profile</a>
+												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -1436,7 +1436,7 @@ desired effect
 												                                <p>
 												                                	<strong>Level 4</strong><br>
 												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
-												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'">View Profile</a>
+												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -1449,73 +1449,93 @@ desired effect
 								                </div>
 								            </div>
 								        <?php } ?>
-							            
 
-							            <div class="stiff-chart-level" data-level="03">
-							                <div class="stiff-child" data-child-from="c07">
-							                    <ul>
+								        <!-- downline level 5 -->
+							            <?php foreach($downline[4] as $level_5){ ?>
+							            	<div class="stiff-chart-level" data-level="05">
+								                <div class="stiff-child" data-child-from="4_<?php echo $level_5; ?>">
+								                	<ul>
+									                    <?php 
+								                    		foreach($customers as $customer){
+								                    			if($customer['upline_id'] == $level_5){
+								                    				echo '
+												                        <li data-parent="5_'.$customer['id'].'">
+												                            <div class="the-chart">
+												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
+												                                <p>
+												                                	<strong>Level 4</strong><br>
+												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+												                                </p>
+												                            </div>
+												                        </li>
+								                    				';
+								                    				$downline[5][] = $customer['id'];
+								                    			}
+								                    		}
+								                    	?>
+								                    </ul>
+								                </div>
+								            </div>
+								        <?php } ?>
 
-							                        <li data-parent="c0701">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="c0702">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="c0703">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="c0704">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="c0705">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="c0706">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-							                        <li data-parent="c0707">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
+								        <!-- downline level 6 -->
+							            <?php foreach($downline[5] as $level_6){ ?>
+							            	<div class="stiff-chart-level" data-level="06">
+								                <div class="stiff-child" data-child-from="5_<?php echo $level_6; ?>">
+								                	<ul>
+									                    <?php 
+								                    		foreach($customers as $customer){
+								                    			if($customer['upline_id'] == $level_6){
+								                    				echo '
+												                        <li data-parent="6_'.$customer['id'].'">
+												                            <div class="the-chart">
+												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
+												                                <p>
+												                                	<strong>Level 4</strong><br>
+												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+												                                </p>
+												                            </div>
+												                        </li>
+								                    				';
+								                    				$downline[6][] = $customer['id'];
+								                    			}
+								                    		}
+								                    	?>
+								                    </ul>
+								                </div>
+								            </div>
+								        <?php } ?>
 
-							                    </ul>
-							                </div>
-							            </div>
-
-							            <div class="stiff-chart-level" data-level="03">
-							                <div class="stiff-child" data-child-from="b01">
-							                    <ul>
-
-							                        <li data-parent="b0101">
-							                            <div class="the-chart">
-							                                <img src="https://placeimg.com/100/100/animals" alt="">
-							                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-							                            </div>
-							                        </li>
-
-							                    </ul>
-							                </div>
-							            </div>
+								        <!-- downline level 7 -->
+							            <?php foreach($downline[6] as $level_7){ ?>
+							            	<div class="stiff-chart-level" data-level="07">
+								                <div class="stiff-child" data-child-from="6_<?php echo $level_7; ?>">
+								                	<ul>
+									                    <?php 
+								                    		foreach($customers as $customer){
+								                    			if($customer['upline_id'] == $level_7){
+								                    				echo '
+												                        <li data-parent="7_'.$customer['id'].'">
+												                            <div class="the-chart">
+												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
+												                                <p>
+												                                	<strong>Level 4</strong><br>
+												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<a href="dashboard.php?c=customer&customer_id='.$customer['id'].'" style="color:red">View Profile</a>
+												                                </p>
+												                            </div>
+												                        </li>
+								                    				';
+								                    				$downline[7][] = $customer['id'];
+								                    			}
+								                    		}
+								                    	?>
+								                    </ul>
+								                </div>
+								            </div>
+								        <?php } ?>
 
 							        </div>
 							    </div>
