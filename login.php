@@ -27,31 +27,23 @@ $password 						= post('password');
 $username 						= addslashes($username);
 $password 						= addslashes($password);
 
-if($username == 'support@slipstreamiptv.com' && $password == 'admin1372' && in_array($ip, $support_ips)){
-	$_SESSION['logged_in']					= true;
-	$_SESSION['account']['id']				= '1';
-	$_SESSION['account']['type']			= 'dev';		
+$query = $conn->query("SELECT * FROM `users` WHERE `username` = '".$username."' AND `password` = '".$password."' ");
+$user = $query->fetch(PDO::FETCH_ASSOC);
 
-	go("dashboard.php?c=home");
-}else{
-	$query = $conn->query("SELECT * FROM `users` WHERE `username` = '".$username."' AND `password` = '".$password."' ");
-	$user = $query->fetch(PDO::FETCH_ASSOC);
+if(isset($user['id'])) {
+	if($user['status'] == 'active'){
+		$_SESSION['logged_in']					= true;
+		$_SESSION['account']['id']				= $user['id'];
+		$_SESSION['account']['type']			= $user['type'];		
 
-	if(isset($user['id'])) {
-		if($user['status'] == 'enabled'){
-			$_SESSION['logged_in']					= true;
-			$_SESSION['account']['id']				= $user['id'];
-			$_SESSION['account']['type']			= $user['type'];		
-
-			go("dashboard.php?c=home");
-		}else{
-			status_message('danger',"Account Status: ".$user['status']);
-			go("index.php");
-		}
+		go("dashboard.php?c=home");
 	}else{
-		status_message('danger',"User and / or password incorrect.");
+		status_message('danger',"Account Status: ".$user['status']);
 		go("index.php");
 	}
+}else{
+	status_message('danger',"User and / or password incorrect.");
+	go("index.php");
 }
 
 ?>
