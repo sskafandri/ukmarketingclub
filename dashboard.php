@@ -1739,6 +1739,7 @@ desired effect
 								                <th class="no-sort" width="1px">Expand</th>
 								                <th class="no-sort" width="1px">ID</th>
 								                <th style="white-space: nowrap;" width="1px">Status</th>
+								                <th style="white-space: nowrap;" width="1px">Level</th>
 								                <th style="white-space: nowrap;" width="100px">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
@@ -1754,6 +1755,7 @@ desired effect
 								                <th class="no-sort" width="1px">Expand</th>
 								                <th class="no-sort" width="1px">ID</th>
 								                <th style="white-space: nowrap;" width="1px">Status</th>
+								                <th style="white-space: nowrap;" width="1px">Level</th>
 								                <th style="white-space: nowrap;" width="100px">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
@@ -2438,7 +2440,7 @@ desired effect
 						"orderable": false,
 					}],
 					"language": {
-						"emptyTable": "No customers found."
+						"emptyTable": "No members found."
 					},
 			        "columns": [
 			        	{ "data": "checkbox"},
@@ -2450,13 +2452,14 @@ desired effect
 			            },
 			            { "data": "id"},
 			            { "data": "status"},
+			            { "data": "level"},
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
 			            { "data": "upline" },
 			            { "data": "expire_date" },
 			            { "data": "actions" }
 			        ],
-			        "order": [[4, 'asc']]
+			        "order": [[4, "asc" ], [ 5, "asc" ]]
 			    } );
 			     
 			    // Add event listener for opening and closing details
