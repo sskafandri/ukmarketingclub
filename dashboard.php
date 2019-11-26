@@ -1367,11 +1367,11 @@ desired effect
 							            <div class="stiff-chart-level" data-level="02">
 							            	<?php foreach($downline[1] as $level_1){ ?>
 								                <div class="stiff-child" data-child-from="1_<?php echo $level_1; ?>">
-								                    <?php 
-							                    		foreach($customers as $customer){
-							                    			if($customer['upline_id'] == $level_1){
-							                    				echo '
-							                    					<ul>
+								                	<ul>
+									                    <?php 
+								                    		foreach($customers as $customer){
+								                    			if($customer['upline_id'] == $level_1){
+								                    				echo '
 												                        <li data-parent="2_'.$customer['id'].'">
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
@@ -1382,11 +1382,11 @@ desired effect
 												                                </p>
 												                            </div>
 												                        </li>
-												                    </ul>
-							                    				';
-							                    			}
-							                    		}
-							                    	?>
+								                    				';
+								                    			}
+								                    		}
+								                    	?>
+								                    </ul>
 								                </div>
 								            <?php } ?>
 							            </div>
