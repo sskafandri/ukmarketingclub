@@ -726,6 +726,50 @@ desired effect
 	                                    </div>
 		                            </div>
 		                        </div>
+
+		                        <div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
+			              					Bank / Payout Details
+			              				</h3>
+			            			</div>
+									<div class="box-body">
+										<div class="form-group">
+	                                        <label for="bank_name" class="col-sm-3 control-label">Bank Name</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="bank_name" id="bank_name" class="form-control" value="<?php echo $account_details['bank_name']; ?>">
+	                                        </div>
+	                                    </div>
+
+										<div class="form-group">
+	                                        <label for="bank_account_name" class="col-sm-3 control-label">Account Name</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="bank_account_name" id="bank_account_name" class="form-control" value="<?php echo $account_details['bank_account_name']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="bank_account_number" class="col-sm-3 control-label">Account Number</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="bank_account_number" id="bank_account_number" class="form-control" value="<?php echo $account_details['bank_account_number']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="bank_sort_code" class="col-sm-3 control-label">Sort Code</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="bank_sort_code" id="bank_sort_code" class="form-control" value="<?php echo $account_details['bank_sort_code']; ?>">
+	                                        </div>
+	                                    </div>
+
+
+		                            </div>
+		                            <div class="box-footer">
+		                            	<div class="col-sm-12">
+	                                        <button type="submit" class="btn btn-success pull-right">Save Changes</button>
+	                                    </div>
+		                            </div>
+		                        </div>
 		                    </div>
 		                </form>
 

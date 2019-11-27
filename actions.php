@@ -2637,18 +2637,37 @@ function my_account_update()
 	$address_zip 			= post('address_zip');
 	$address_zip 			= addslashes($address_zip);
 
-	$update = $conn->exec("UPDATE `users` SET `first_name` = '".$first_name."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `last_name` = '".$last_name."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `email` = '".$email."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
 
-	$update = $conn->exec("UPDATE `users` SET `username` = '".$username."' 					WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `tel` = '".$tel."' 							WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `address_1` = '".$address_1."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `address_2` = '".$address_2."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `address_city` = '".$address_city."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `address_state` = '".$address_state."' 		WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `address_country` = '".$address_country."' 	WHERE `id` = '".$_SESSION['account']['id']."' ");
-	$update = $conn->exec("UPDATE `users` SET `address_zip` = '".$address_zip."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
+
+	$bank_name 				= post('bank_name');
+	$bank_name 				= addslashes($bank_name);
+
+	$bank_account_name 		= post('bank_account_name');
+	$bank_account_name 		= addslashes($bank_account_name);
+
+	$bank_account_number 	= post('bank_account_number');
+	$bank_account_number 	= addslashes($bank_account_number);
+
+	$bank_sort_code 		= post('bank_sort_code');
+	$bank_sort_code 		= addslashes($bank_sort_code);
+
+	$update = $conn->exec("UPDATE `users` SET `first_name` = '".$first_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `last_name` = '".$last_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `email` = '".$email."' 								WHERE `id` = '".$_SESSION['account']['id']."' ");
+
+	$update = $conn->exec("UPDATE `users` SET `username` = '".$username."' 							WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `tel` = '".$tel."' 									WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_1` = '".$address_1."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_2` = '".$address_2."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_city` = '".$address_city."' 					WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_state` = '".$address_state."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_country` = '".$address_country."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `address_zip` = '".$address_zip."' 					WHERE `id` = '".$_SESSION['account']['id']."' ");
+
+	$update = $conn->exec("UPDATE `users` SET `bank_name` = '".$bank_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `bank_account_name` = '".$bank_account_name."' 		WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `bank_account_number` = '".$bank_account_number."' 	WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `bank_sort_code` = '".$bank_sort_code."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
 
 	status_message('success', "Your changes have been saved.");
 
