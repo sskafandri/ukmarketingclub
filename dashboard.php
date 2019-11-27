@@ -955,7 +955,11 @@ desired effect
 												$badge_count++;
 
 												if($badge_count == 6){
-													echo "<hr>";
+													echo '
+														<div class="row">
+
+														</div>
+													';
 													$badge_count = 0;
 												}
 											}
