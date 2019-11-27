@@ -952,8 +952,6 @@ desired effect
 													</div>
 												';
 
-												$badge_count++;
-
 												if($badge_count == 6){
 													echo '
 														<div class="row">
@@ -961,6 +959,8 @@ desired effect
 														</div>
 													';
 													$badge_count = 0;
+												}else{
+													$badge_count++;
 												}
 											}
 										}else{
