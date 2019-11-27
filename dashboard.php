@@ -943,7 +943,7 @@ desired effect
 												$badge 		= $query->fetch(PDO::FETCH_ASSOC);
 												
 												echo '
-													<div class="col-sm-3">
+													<div class="col-sm-2">
 														<center>
 															<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'"> <br>
 															'.stripslashes($badge['name']).'
