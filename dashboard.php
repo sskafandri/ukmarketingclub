@@ -932,9 +932,10 @@ desired effect
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-									<?php 
-										$query 		= $conn->query("SELECT * FROM `user_badges` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
-										$badges 	= $query->fetchAll(PDO::FETCH_ASSOC);
+									<?php
+										$badge_count 	= 1;
+										$query 			= $conn->query("SELECT * FROM `user_badges` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
+										$badges 		= $query->fetchAll(PDO::FETCH_ASSOC);
 
 										if(isset($badges[0]['id'])){
 											foreach($badges as $badge_bits){
@@ -950,6 +951,13 @@ desired effect
 														</center>
 													</div>
 												';
+
+												$badge_count++;
+
+												if($badge_count == 6){
+													echo "<hr>";
+													$badge_count = 0;
+												}
 											}
 										}else{
 											echo '<center><h3>:( No Badges Yet</h3></center>';
