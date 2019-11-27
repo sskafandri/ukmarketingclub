@@ -602,7 +602,7 @@ desired effect
         		$query 					= $conn->query("SELECT * FROM `bank_details` WHERE `sort_code` = '".$account_details['bank_sort_code']."' ");
 				$bank_details 			= $query->fetch(PDO::FETCH_ASSOC);
 				if(isset($bank_details['id'])){
-					$account_details['bank_name'] 			= $bank_details['name'];
+					$account_details['bank_name'] 			= $bank_details['name'].', '.$bank_details['branch'];
 				}
             ?>
 
