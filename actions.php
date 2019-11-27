@@ -2637,8 +2637,6 @@ function my_account_update()
 	$address_zip 			= post('address_zip');
 	$address_zip 			= addslashes($address_zip);
 
-
-
 	$bank_name 				= post('bank_name');
 	$bank_name 				= addslashes($bank_name);
 
@@ -2647,9 +2645,11 @@ function my_account_update()
 
 	$bank_account_number 	= post('bank_account_number');
 	$bank_account_number 	= addslashes($bank_account_number);
+	$bank_account_number 	= preg_replace("/[^0-9]/", "", $bank_account_number);
 
 	$bank_sort_code 		= post('bank_sort_code');
 	$bank_sort_code 		= addslashes($bank_sort_code);
+	$bank_sort_code 		= preg_replace("/[^0-9]/", "", $bank_sort_code);
 
 	$update = $conn->exec("UPDATE `users` SET `first_name` = '".$first_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `last_name` = '".$last_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");

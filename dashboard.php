@@ -598,6 +598,12 @@ desired effect
         <?php function my_account(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
+
+        		$query 					= $conn->query("SELECT * FROM `band_details` WHERE `sort_code` = '".$bank_sort_code."' ");
+				$bank_details 			= $query->fetch(PDO::FETCH_ASSOC);
+				if($bank_details){
+					$account_details['bank_name'] 			= $bank_details['name'];
+				}
             ?>
 
             <div class="content-wrapper">
@@ -762,14 +768,14 @@ desired effect
 	                                    <div class="form-group">
 	                                        <label for="bank_account_number" class="col-sm-3 control-label">Account Number</label>
 	                                        <div class="col-sm-9">
-	                                            <input type="text" name="bank_account_number" id="bank_account_number" class="form-control" value="<?php echo $account_details['bank_account_number']; ?>">
+	                                            <input type="number" name="bank_account_number" id="bank_account_number" class="form-control" value="<?php echo $account_details['bank_account_number']; ?>">
 	                                        </div>
 	                                    </div>
 
 	                                    <div class="form-group">
 	                                        <label for="bank_sort_code" class="col-sm-3 control-label">Sort Code</label>
 	                                        <div class="col-sm-9">
-	                                            <input type="text" name="bank_sort_code" id="bank_sort_code" class="form-control" value="<?php echo $account_details['bank_sort_code']; ?>">
+	                                            <input type="number" name="bank_sort_code" id="bank_sort_code" class="form-control" value="<?php echo $account_details['bank_sort_code']; ?>">
 	                                        </div>
 	                                    </div>
 
