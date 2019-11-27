@@ -946,8 +946,8 @@ desired effect
 												echo '
 													<div class="col-sm-2">
 														<center>
-															<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'"> <br>
-															'.stripslashes($badge['name']).'
+															<img src="badges/'.$badge['image'].'" alt="'.$badge['description'].'"> <br>
+															<h4><strong>'.stripslashes($badge['name']).'</strong></h4>
 														</center>
 													</div>
 												';
@@ -955,6 +955,7 @@ desired effect
 												if($badge_count == 6){
 													echo '
 														<div class="row">
+															<br>
 															<hr>
 														</div>
 													';
