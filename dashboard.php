@@ -938,10 +938,10 @@ desired effect
 
 										debug($badges);
 
-										if(isset($badges['id'])){
+										if(isset($badges[0]['id'])){
 											foreach($badges as $badge_bits){
 												echo "SELECT * FROM `badges` WHERE `id` = '".$badge_bits['badge_id']."' ";
-												
+
 												$query 		= $conn->query("SELECT * FROM `badges` WHERE `id` = '".$badge_bits['badge_id']."' ");
 												$badge 		= $query->fetch(PDO::FETCH_ASSOC);
 												
