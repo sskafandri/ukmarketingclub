@@ -955,7 +955,7 @@ desired effect
 												if($badge_count == 6){
 													echo '
 														<div class="row">
-
+															<hr>
 														</div>
 													';
 													$badge_count = 0;
