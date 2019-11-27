@@ -622,7 +622,6 @@ desired effect
                 	<div class="row">
                 		<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
 							<div class="col-lg-6">
-								<?php debug($bank_details); ?>
 								<div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
@@ -951,6 +950,8 @@ desired effect
 													</div>
 												';
 											}
+										}else{
+											echo '<center><h3>:( No Badges Yet</h3></center>';
 										}
 									?>
 	                            </div>
