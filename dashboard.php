@@ -940,7 +940,7 @@ desired effect
 
 										if(isset($badges['id'])){
 											foreach($badges as $badge_bits){
-												$query 		= $conn->query("SELECT * FROM `badges` WHERE `id` = '".$badge_bits['id']."' ");
+												$query 		= $conn->query("SELECT * FROM `badges` WHERE `id` = '".$badge_bits['badge_id']."' ");
 												$badge 		= $query->fetchAll(PDO::FETCH_ASSOC);
 												
 												echo '
