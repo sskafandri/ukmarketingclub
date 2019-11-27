@@ -601,7 +601,7 @@ desired effect
 
         		$query 					= $conn->query("SELECT * FROM `band_details` WHERE `sort_code` = '".$bank_sort_code."' ");
 				$bank_details 			= $query->fetch(PDO::FETCH_ASSOC);
-				if($bank_details){
+				if(isset($bank_details['id'])){
 					$account_details['bank_name'] 			= $bank_details['name'];
 				}
             ?>
@@ -622,6 +622,7 @@ desired effect
                 	<div class="row">
                 		<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
 							<div class="col-lg-6">
+								<?php debug($bank_details); ?>
 								<div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
