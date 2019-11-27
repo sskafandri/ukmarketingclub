@@ -434,6 +434,17 @@ desired effect
                         </a>
                     </li>
 
+                    <?php if(get('c') == 'my_account'){ ?>
+                    	<li class="active">
+                    <?php }else{ ?>
+                    	<li>
+                    <?php } ?>
+                    	<a href="dashboard.php?c=my_account">
+                        	<i class="fa fa-user"></i> 
+                        	<span>My Account</span>
+                        </a>
+                    </li>
+
                 	<li class="treeview">
 						<a href="#">
 							<i class="fa fa-question-circle"></i> <span>Support &amp; Billing</span>
