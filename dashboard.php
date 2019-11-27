@@ -936,8 +936,6 @@ desired effect
 										$query 		= $conn->query("SELECT * FROM `user_badges` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
 										$badges 	= $query->fetchAll(PDO::FETCH_ASSOC);
 
-										debug($badges);
-
 										if(isset($badges[0]['id'])){
 											foreach($badges as $badge_bits){
 												echo "SELECT * FROM `badges` WHERE `id` = '".$badge_bits['badge_id']."' ";
@@ -945,10 +943,8 @@ desired effect
 												$query 		= $conn->query("SELECT * FROM `badges` WHERE `id` = '".$badge_bits['badge_id']."' ");
 												$badge 		= $query->fetch(PDO::FETCH_ASSOC);
 												
-												debug($badge);
-
 												echo '
-													<div class="col-sm-1">
+													<div class="col-sm-3">
 														<center>
 															<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'"> <br>
 															'.stripslashes($badge['name']).'
