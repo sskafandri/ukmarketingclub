@@ -753,7 +753,7 @@ desired effect
 			            			</div>
 									<div class="box-body">
 										<div class="form-group">
-	                                        <label for="bank_name" class="col-sm-3 control-label">Bank Name</label>
+	                                        <label for="bank_name" class="col-sm-3 control-label">Bank</label>
 	                                        <div class="col-sm-9">
 	                                            <input type="text" name="bank_name" id="bank_name" class="form-control" value="<?php echo $account_details['bank_name']; ?>">
 	                                        </div>
@@ -769,14 +769,14 @@ desired effect
 	                                    <div class="form-group">
 	                                        <label for="bank_account_number" class="col-sm-3 control-label">Account Number</label>
 	                                        <div class="col-sm-9">
-	                                            <input type="number" name="bank_account_number" id="bank_account_number" class="form-control" value="<?php echo $account_details['bank_account_number']; ?>">
+	                                            <input type="number" name="bank_account_number" id="bank_account_number" class="form-control" maxlength="8" value="<?php echo $account_details['bank_account_number']; ?>">
 	                                        </div>
 	                                    </div>
 
 	                                    <div class="form-group">
 	                                        <label for="bank_sort_code" class="col-sm-3 control-label">Sort Code</label>
 	                                        <div class="col-sm-9">
-	                                            <input type="number" name="bank_sort_code" id="bank_sort_code" class="form-control" value="<?php echo $account_details['bank_sort_code']; ?>">
+	                                            <input type="number" name="bank_sort_code" id="bank_sort_code" class="form-control" maxlength="6" value="<?php echo $account_details['bank_sort_code']; ?>">
 	                                        </div>
 	                                    </div>
 
@@ -923,6 +923,36 @@ desired effect
 											?>
 										</tbody>
 									</table>
+	                            </div>
+	                        </div>
+
+	                        <div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Badges
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<?php 
+										$query 		= $conn->query("SELECT * FROM `user_badges` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
+										$badges 	= $query->fetchAll(PDO::FETCH_ASSOC);
+
+										if(isset($badges['id'])){
+											foreach($badges as $badge_bits){
+												$query 		= $conn->query("SELECT * FROM `badges` WHERE `id` = '".$badge_bits['id']."' ");
+												$badge 		= $query->fetchAll(PDO::FETCH_ASSOC);
+												
+												echo '
+													<div class="col-sm-1">
+														<center>
+															<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'"> <br>
+															'.stripslashes($badge['name']).'
+														</center>
+													</div>
+												';
+											}
+										}
+									?>
 	                            </div>
 	                        </div>
 	                    </div>
