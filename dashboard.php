@@ -940,11 +940,13 @@ desired effect
 
 										if(isset($badges['id'])){
 											foreach($badges as $badge_bits){
+												echo "SELECT * FROM `badges` WHERE `id` = '".$badge_bits['badge_id']."' ";
+												
 												$query 		= $conn->query("SELECT * FROM `badges` WHERE `id` = '".$badge_bits['badge_id']."' ");
 												$badge 		= $query->fetch(PDO::FETCH_ASSOC);
 												
 												debug($badge);
-												
+
 												echo '
 													<div class="col-sm-1">
 														<center>
