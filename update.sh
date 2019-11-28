@@ -1,10 +1,10 @@
 #!/bin/bash
 
-LOG=/home2/ukmarketingclub/public_html/ukmarketingclub.log
+LOG=/tmp/ubloclub_dashboard.log
 
 VERSION=$(cat /home2/ukmarketingclub/public_html/version.txt)
 
-echo "UK Marketing Club - Update Script v"$VERSION
+echo "UBLO Club Affiliate Network - Update Script v"$VERSION
 
 # set git repo
 # git remote set-url origin https://github.com/whittinghamj/slistream_cms_production.git
