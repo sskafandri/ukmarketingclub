@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG=/tmp/ubloclub_dashboard.log
+LOG=/home2/ukmarketingclub/public_html/ukmarketingclub.log
 
 VERSION=$(cat /home2/ukmarketingclub/public_html/version.txt)
 
