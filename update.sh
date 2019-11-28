@@ -13,6 +13,8 @@ echo "UK Marketing Club - Update Script v"$VERSION
 cd /home2/ukmarketingclub/public_html >> $LOG
 git reset --hard -q origin/master >> $LOG
 
+git pull >> $LOG
+
 find . -type d -print0 | xargs -0 chmod 0755
 find . -type f -print0 | xargs -0 chmod 0644
 
