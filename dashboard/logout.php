@@ -5,4 +5,4 @@ include("inc/db.php");
 include("inc/global_vars.php");
 include("inc/functions.php");
 
-go("index.php");
+go("https://ukmarketingclub.com/");
