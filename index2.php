@@ -1,1 +1,0 @@
-<img src="img/site_blocked.png" width="100%" height="100%" alt="">
