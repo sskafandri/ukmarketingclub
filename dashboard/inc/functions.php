@@ -1,5 +1,17 @@
 <?php
 
+function get_affiliate($id)
+{
+    global $conn, $global_settings;
+
+    $query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$id."'");
+    $affiliate  = $query->fetch(PDO::FETCH_ASSOC);
+
+    $affiliate['avatar'] = get_gravatar($affiliate['email']);
+
+    return $affiliate;
+}
+
 function ip_in_range($ip, $range)
 {
     if (strpos($range, '/') == false) {
