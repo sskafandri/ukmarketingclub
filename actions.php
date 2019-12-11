@@ -120,8 +120,10 @@ function register(){
 
 	$upline_id 			= post('upline_id');
 
+	$ip_address 		= $_SERVER['REMOTE_ADDR'];
+
 	$insert = $conn->exec("INSERT INTO `users` 
-		(`type`, `added`, `updated`, `status`, `upline_id`, `username`, `password`, `avatar`, `email`, `tel`, `company_name`, `first_name`, `last_name`, `address_1`, `address_2`, `address_city`, `address_state`, `address_country`, `address_zip`) VALUES
+		(`type`, `added`, `updated`, `status`, `upline_id`, `username`, `password`, `avatar`, `email`, `tel`, `company_name`, `first_name`, `last_name`, `address_1`, `address_2`, `address_city`, `address_state`, `address_country`, `address_zip`,`signup_ip`) VALUES
 		
 		('".$account_type."',
 		'".time()."',
@@ -141,7 +143,8 @@ function register(){
 		'".$address_city."',
 		'".$address_state."',
 		'".$address_country."',
-		'".$address_zip."'
+		'".$address_zip."',
+		'".$ip_address."'
 		);
 	");
     
