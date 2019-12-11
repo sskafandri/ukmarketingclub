@@ -1,10 +1,10 @@
 <?php
 
-function get_affiliate($id)
+function get_affiliate($affiliate_username)
 {
     global $conn, $global_settings;
 
-    $query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$id."'");
+    $query      = $conn->query("SELECT * FROM `users` WHERE `affiliate_username` = '".$affiliate_username."' ");
     $affiliate  = $query->fetch(PDO::FETCH_ASSOC);
 
     $affiliate['avatar'] = get_gravatar($affiliate['email']);
