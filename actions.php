@@ -147,8 +147,7 @@ function register(){
     
     $user_id = $conn->lastInsertId();
 
-    $_SESSION['registration'] 	= '1';
-
+    $_SESSION['registration'] 				= '1';
     $_SESSION['logged_in']					= true;
 	$_SESSION['account']['id']				= $user_id;
 	$_SESSION['account']['type']			= $account_type;
