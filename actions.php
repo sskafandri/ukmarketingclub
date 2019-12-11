@@ -58,6 +58,19 @@ function test(){
 function register(){
 	global $conn, $global_settings;
 
+	$order_promoter_pack 				= post('order_promoter_pack');
+	$order_network_customer_pack 		= post('order_network_customer_pack');
+	$affiliate_only 					= post('affiliate_only');
+
+	$account_type 						= 'customer';
+	if($affiliate_only == 'yes' && $order_promoter_pack == 'no' && $order_network_customer_pack == 'no'){
+		$account_type 					= 'affiliate';
+	}
+
+	if($order_promoter_pack == 'yes'){
+		$account_type					= 'promoter';
+	}
+
 	$company_name 		= post('company_name');
 	$company_name 		= preg_replace("/[^a-zA-Z0-9]+/", "", $company_name);
 
@@ -105,12 +118,16 @@ function register(){
     	go($_SERVER['HTTP_REFERER']);
 	}
 
+	$upline_id 			= post('upline_id');
+
 	$insert = $conn->exec("INSERT INTO `users` 
-		(`type`, `status`, `upline_id`, `username`, `password`, `avatar`, `email`, `tel`, `company_name`, `first_name`, `last_name`, `address_1`, `address_2`, `address_city`, `address_state`, `address_country`, `address_zip`) VALUES
+		(`type`, `added`, `updated`, `status`, `upline_id`, `username`, `password`, `avatar`, `email`, `tel`, `company_name`, `first_name`, `last_name`, `address_1`, `address_2`, `address_city`, `address_state`, `address_country`, `address_zip`) VALUES
 		
-		('members',
+		('".$account_type."',
+		'".time()."',
+		'".time()."',
 		'pending',
-		1,
+		'".$upline_id."',
 		'".$username."',
 		'".$password."',
 		'img/avatar.png',
@@ -128,7 +145,16 @@ function register(){
 		);
 	");
     
-    $member_id = $conn->lastInsertId();
+    $user_id = $conn->lastInsertId();
+
+    $_SESSION['registration'] 	= '1';
+
+    $_SESSION['logged_in']					= true;
+	$_SESSION['account']['id']				= $user_id;
+	$_SESSION['account']['type']			= $account_type;
+
+	status_message('success',"Registration stage complete.");
+    go('index.php?c=process_payment');
 }
 
 function global_settings()
