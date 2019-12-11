@@ -141,7 +141,7 @@ function register(){
 		'".$address_city."',
 		'".$address_state."',
 		'".$address_country."',
-		'".$address_zip."',
+		'".$address_zip."'
 		);
 	");
     
