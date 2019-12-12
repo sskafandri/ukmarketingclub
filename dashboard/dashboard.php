@@ -620,7 +620,7 @@ desired effect
 
                 <section class="content">
                 	<div class="row">
-                		<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
+                		<form action="?c=staging" method="post" class="form-horizontal">
 							<div class="col-lg-6">
 								<div class="box box-primary">
 			            			<div class="box-header">
