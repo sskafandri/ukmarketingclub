@@ -2667,10 +2667,18 @@ function my_account_update()
 	$affiliate_username 	= addslashes($affiliate_username);
 
 	// check username availability
+	$query 					= $conn->query("SELECT `id` FROM `users` WHERE `username` = '".$username."' AND `id` != '".$_SESSION['account']['id']."' ");
+	$username_check 		= $query->fetch(PDO::FETCH_ASSOC);
+	if(isset($username_check['id'])){
+		status_message('danger', "Unable to use '".$username."' as your username as its already in use.");
+		go($_SERVER['HTTP_REFERER']);
+	}
+
+	// check affiliate_username availability
 	$query 					= $conn->query("SELECT `id` FROM `users` WHERE `affiliate_username` = '".$affiliate_username."' AND `id` != '".$_SESSION['account']['id']."' ");
 	$username_check 		= $query->fetch(PDO::FETCH_ASSOC);
 	if(isset($username_check['id'])){
-		status_message('danger', "Username is already taken, please try something else.");
+		status_message('danger', "Unable to use '".$affiliate_username."' as your affiliate username as its already in use.");
 		go($_SERVER['HTTP_REFERER']);
 	}
 
