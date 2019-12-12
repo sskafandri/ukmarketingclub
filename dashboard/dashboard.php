@@ -747,6 +747,49 @@ desired effect
 		                        <div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
+			              					Public Details
+			              				</h3>
+			            			</div>
+			            			<span>This data will be showed to your potential and existing downline members. This information is optional and you can leave each field blank if you wish.</span>
+									<div class="box-body">
+	                                    <div class="form-group">
+	                                        <label for="affiliate_first_name" class="col-sm-3 control-label">First Name</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="affiliate_first_name" id="affiliate_first_name" class="form-control" value="<?php echo $account_details['affiliate_first_name']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="affiliate_last_name" class="col-sm-3 control-label">Last Name</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="affiliate_last_name" id="affiliate_last_name" class="form-control" value="<?php echo $account_details['affiliate_last_name']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="affiliate_email" class="col-sm-3 control-label">Email</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="affiliate_email" id="affiliate_email" class="form-control" value="<?php echo $account_details['affiliate_email']; ?>">
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="form-group">
+	                                        <label for="affiliate_tel" class="col-sm-3 control-label">Phone</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="affiliate_tel" id="affiliate_tel" class="form-control" value="<?php echo $account_details['affiliate_tel']; ?>">
+	                                        </div>
+	                                    </div>
+		                            </div>
+		                            <div class="box-footer">
+		                            	<div class="col-sm-12">
+	                                        <button type="submit" class="btn btn-success pull-right">Save Changes</button>
+	                                    </div>
+		                            </div>
+		                        </div>
+
+		                        <div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
 			              					Bank / Payout Details
 			              				</h3>
 			            			</div>
