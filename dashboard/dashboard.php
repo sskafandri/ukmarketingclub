@@ -752,7 +752,7 @@ desired effect
 			            			</div>
 									<div class="box-body">
 										<div class="form-group">
-			            					This data will be showed to your potential and existing downline members. This information is optional and you can leave each field blank if you wish.
+			            					1 This data will be showed to your potential and existing downline members. This information is optional and you can leave each field blank if you wish.
 			            				</div>
 
 	                                    <div class="form-group">
