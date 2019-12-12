@@ -2657,17 +2657,28 @@ function my_account_update()
 	$affiliate_last_name 	= post('affiliate_last_name');
 	$affiliate_last_name 	= addslashes($affiliate_last_name);
 
-	$affiliate_tel_name 	= post('affiliate_tel_name');
-	$affiliate_tel_name 	= addslashes($affiliate_tel_name);
+	$affiliate_tel 		 	= post('affiliate_tel');
+	$affiliate_tel 		 	= addslashes($affiliate_tel);
+
+	$affiliate_email 		= post('affiliate_email');
+	$affiliate_email 		= addslashes($affiliate_email);
 
 	$affiliate_username 	= post('affiliate_username');
 	$affiliate_username 	= addslashes($affiliate_username);
 
-	// check username availability
-	$query 					= $conn->query("SELECT `id` FROM `users` WHERE `affiliate_username` = '".$affiliate_username."' ");
+	// check affiliate_username availability
+	$query 					= $conn->query("SELECT `id` FROM `users` WHERE `affiliate_username` = '".$affiliate_username."' AND `id` != '".$_SESSION['account']['id']."' ");
 	$username_check 		= $query->fetch(PDO::FETCH_ASSOC);
 	if(!isset($username_check['id'])){
 		status_message('danger', "The affiliate username '".$affiliate_username."' you want is already taken, please try something different.");
+		go($_SERVER['HTTP_REFERER']);
+	}
+
+	// check username availability
+	$query 					= $conn->query("SELECT `id` FROM `users` WHERE `username` = '".$username."' AND `id` != '".$_SESSION['account']['id']."' ");
+	$username_check 		= $query->fetch(PDO::FETCH_ASSOC);
+	if(!isset($username_check['id'])){
+		status_message('danger', "The username '".$username."' you want is already taken, please try something different.");
 		go($_SERVER['HTTP_REFERER']);
 	}
 
@@ -2702,6 +2713,7 @@ function my_account_update()
 	$update = $conn->exec("UPDATE `users` SET `affiliate_username` = '".$affiliate_username."' 		WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `affiliate_first_name` = '".$affiliate_first_name."' 	WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `affiliate_last_name` = '".$affiliate_last_name."' 	WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `affiliate_email` = '".$affiliate_email."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `affiliate_tel` = '".$affiliate_tel."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
 
 	status_message('success', "Your changes have been saved.");
