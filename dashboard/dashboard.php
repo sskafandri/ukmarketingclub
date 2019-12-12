@@ -750,8 +750,11 @@ desired effect
 			              					Public Details
 			              				</h3>
 			            			</div>
-			            			<span>This data will be showed to your potential and existing downline members. This information is optional and you can leave each field blank if you wish.</span>
 									<div class="box-body">
+										<div class="form-group">
+			            					This data will be showed to your potential and existing downline members. This information is optional and you can leave each field blank if you wish.
+			            				</div>
+
 	                                    <div class="form-group">
 	                                        <label for="affiliate_first_name" class="col-sm-3 control-label">First Name</label>
 	                                        <div class="col-sm-9">
