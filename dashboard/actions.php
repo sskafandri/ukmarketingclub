@@ -2666,7 +2666,13 @@ function my_account_update()
 	$affiliate_username 	= post('affiliate_username');
 	$affiliate_username 	= addslashes($affiliate_username);
 
-	
+	// check username availability
+	$query 					= $conn->query("SELECT `id` FROM `users` WHERE `username` = '".$username."' AND `id` != '".$_SESSION['account']['id']."' ");
+	$username_check 		= $query->fetch(PDO::FETCH_ASSOC);
+	if(!isset($username_check['id'])){
+		status_message('danger', "The username '".$username."' you want is already taken, please try something different.");
+		go($_SERVER['HTTP_REFERER']);
+	}
 
 	// password sanity check
 	if(!empty($password) && !empty($password2)){
