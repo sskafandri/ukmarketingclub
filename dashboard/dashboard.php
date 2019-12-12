@@ -747,10 +747,17 @@ desired effect
 		                        <div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
-			              					Public Details
+			              					Public / Affiliate Details
 			              				</h3>
 			            			</div>
 									<div class="box-body">
+	                                    <div class="form-group">
+	                                        <label for="affiliate_username" class="col-sm-3 control-label">Affiliate Username</label>
+	                                        <div class="col-sm-9">
+	                                            <input type="text" name="affiliate_username" id="affiliate_username" class="form-control" value="<?php echo $account_details['affiliate_username']; ?>">
+	                                        </div>
+	                                    </div>
+
 	                                    <div class="form-group">
 	                                        <label for="affiliate_first_name" class="col-sm-3 control-label">First Name</label>
 	                                        <div class="col-sm-9">

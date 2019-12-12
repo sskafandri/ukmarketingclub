@@ -2651,6 +2651,36 @@ function my_account_update()
 	$bank_sort_code 		= addslashes($bank_sort_code);
 	$bank_sort_code 		= preg_replace("/[^0-9]/", "", $bank_sort_code);
 
+	$affiliate_first_name 	= post('affiliate_first_name');
+	$affiliate_first_name 	= addslashes($affiliate_first_name);
+
+	$affiliate_last_name 	= post('affiliate_last_name');
+	$affiliate_last_name 	= addslashes($affiliate_last_name);
+
+	$affiliate_tel_name 	= post('affiliate_tel_name');
+	$affiliate_tel_name 	= addslashes($affiliate_tel_name);
+
+	$affiliate_username 	= post('affiliate_username');
+	$affiliate_username 	= addslashes($affiliate_username);
+
+	// check username availability
+	$query 					= $conn->query("SELECT `id` FROM `users` WHERE `affiliate_username` = '".$affiliate_username."' ");
+	$username_check 		= $query->fetch(PDO::FETCH_ASSOC);
+	if(!isset($username_check['id'])){
+		status_message('danger', "The affiliate username '".$affiliate_username."' you want is already taken, please try something different.");
+		go($_SERVER['HTTP_REFERER']);
+	}
+
+	// password sanity check
+	if(!empty($password) && !empty($password2)){
+		if($password == $password2){
+			$update = $conn->exec("UPDATE `users` SET `password` = '".$password."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
+		}else{
+			status_message('danger', "Passwords do not match, please try again.");
+			go($_SERVER['HTTP_REFERER']);
+		}
+	}
+
 	$update = $conn->exec("UPDATE `users` SET `first_name` = '".$first_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `last_name` = '".$last_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `email` = '".$email."' 								WHERE `id` = '".$_SESSION['account']['id']."' ");
@@ -2669,16 +2699,12 @@ function my_account_update()
 	$update = $conn->exec("UPDATE `users` SET `bank_account_number` = '".$bank_account_number."' 	WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `bank_sort_code` = '".$bank_sort_code."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
 
+	$update = $conn->exec("UPDATE `users` SET `affiliate_username` = '".$affiliate_username."' 		WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `affiliate_first_name` = '".$affiliate_first_name."' 	WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `affiliate_last_name` = '".$affiliate_last_name."' 	WHERE `id` = '".$_SESSION['account']['id']."' ");
+	$update = $conn->exec("UPDATE `users` SET `affiliate_tel` = '".$affiliate_tel."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
+
 	status_message('success', "Your changes have been saved.");
-
-	if(!empty($password) && !empty($password2)){
-		if($password == $password2){
-			$update = $conn->exec("UPDATE `users` SET `password` = '".$password."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
-		}else{
-			status_message('danger', "Passwords do not match, please try again.");
-		}
-	}
-
     go($_SERVER['HTTP_REFERER']);
 }
 
