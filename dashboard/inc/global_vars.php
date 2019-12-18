@@ -25,3 +25,14 @@ $site['url']									= $global_settings['site_url'];
 $site['title']									= $global_settings['site_title'];
 $site['name_long']								= $global_settings['site_name'];
 $site['name_short']								= $global_settings['site_name_short'];
+
+// whmcs vars
+$whmcs['url'] 									= "https://ublo.club/billing/includes/api.php"; # URL to WHMCS API file
+$whmcs["username"] 								= "api_user"; # Admin username goes here
+$whmcs["password"] 								= md5("admin1372Dextor!#&@Mimi!#&@"); # Admin password goes here  
+
+// product details
+$product_ids = array(
+					1, // network customer pack - 10 x 10ml pack
+					2, // business builder pack - 1 year
+					);

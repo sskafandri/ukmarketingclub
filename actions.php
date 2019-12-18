@@ -122,6 +122,7 @@ function register(){
 
 	$ip_address 		= $_SERVER['REMOTE_ADDR'];
 
+	/*
 	$insert = $conn->exec("INSERT INTO `users` 
 		(`type`, `added`, `updated`, `status`, `upline_id`, `username`, `password`, `avatar`, `email`, `tel`, `company_name`, `first_name`, `last_name`, `address_1`, `address_2`, `address_city`, `address_state`, `address_country`, `address_zip`,`signup_ip`) VALUES
 		
@@ -157,6 +158,48 @@ function register(){
 
 	status_message('success',"Registration stage complete.");
     go('index.php?c=process_payment');
+    */
+
+	// register account with whmcs
+	$postfields["username"] 		= $whmcs['username']; 
+	$postfields["password"] 		= $whmcs['password'];
+	$postfields["action"] 			= "AddClient";
+	$postfields["responsetype"] 	= 'json';
+	$postfields['accesskey']		= $whmcs['accesskey'];
+
+	$postfields['firstname' 		= $first_name,
+    $postfields['lastname' 			= $last_name,
+    $postfields['email'				= $email,
+    $postfields['address1'			= $address_1,
+    $postfields['city' 				= $address_city,
+    $postfields['state' 			= $address_state,
+    $postfields['postcode'			= $address_zip,
+    $postfields['country' 			= $address_country,
+    $postfields['phonenumber' 		= $tel,
+    $postfields['password2'			= $password,
+    $postfields['clientip' 			= $ip_address,
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $whmcs['url']);
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 300);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_SSLVERSION,3);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
+	$data = curl_exec($ch);
+	curl_close($ch);
+
+	$results = json_decode($data, true);
+
+	// debug($whmcs);
+
+	debug($results);
+
+	if($results["result"]=="success"){
+	}
+    
 }
 
 function global_settings()
