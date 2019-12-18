@@ -56,7 +56,7 @@ function test(){
 }
 
 function register(){
-	global $conn, $global_settings;
+	global $conn, $global_settings, $whmcs;
 
 	$order_promoter_pack 				= post('order_promoter_pack');
 	$order_network_customer_pack 		= post('order_network_customer_pack');
