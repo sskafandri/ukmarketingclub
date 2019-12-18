@@ -1,9 +1,9 @@
 <?php
 
-$host			= '64.62.133.56';
-$db 			= 'ubloclub_dashboard';
-$username 		= 'ubloclub';
-$password 		= 'admin1372admin1372';
+$host			= '167.172.60.74';
+$db 			= 'dashboard';
+$username 		= 'ublo';
+$password 		= 'admin1372Dextor!#&@Mimi!#&@';
 
 $dsn			= "mysql:host=$host;dbname=$db";
 
