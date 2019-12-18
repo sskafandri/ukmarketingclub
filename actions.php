@@ -179,6 +179,9 @@ function register(){
     $postfields['password2']		= $password;
     $postfields['clientip'] 		= $ip_address;
 
+    debug($whmcs);
+    debug($postfields);
+
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $whmcs['url']);
 	curl_setopt($ch, CURLOPT_POST, 1);
@@ -193,8 +196,7 @@ function register(){
 
 	$results = json_decode($data, true);
 
-	// debug($whmcs);
-
+	debug($data);
 	debug($results);
 
 	if($results["result"]=="success"){
