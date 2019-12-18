@@ -167,17 +167,17 @@ function register(){
 	$postfields["responsetype"] 	= 'json';
 	$postfields['accesskey']		= $whmcs['accesskey'];
 
-	$postfields['firstname' 		= $first_name,
-    $postfields['lastname' 			= $last_name,
-    $postfields['email'				= $email,
-    $postfields['address1'			= $address_1,
-    $postfields['city' 				= $address_city,
-    $postfields['state' 			= $address_state,
-    $postfields['postcode'			= $address_zip,
-    $postfields['country' 			= $address_country,
-    $postfields['phonenumber' 		= $tel,
-    $postfields['password2'			= $password,
-    $postfields['clientip' 			= $ip_address,
+	$postfields['firstname'] 		= $first_name;
+    $postfields['lastname'] 		= $last_name;
+    $postfields['email']			= $email;
+    $postfields['address1']			= $address_1;
+    $postfields['city'] 			= $address_city;
+    $postfields['state'] 			= $address_state;
+    $postfields['postcode']			= $address_zip;
+    $postfields['country'] 			= $address_country;
+    $postfields['phonenumber'] 		= $tel;
+    $postfields['password2']		= $password;
+    $postfields['clientip'] 		= $ip_address;
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $whmcs['url']);
