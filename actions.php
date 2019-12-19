@@ -180,7 +180,7 @@ function register(){
     $postfields['clientip'] 		= $ip_address;
 
     debug($whmcs);
-    var_dump($postfields);
+    debug($postfields);
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $whmcs['url']);
@@ -200,10 +200,16 @@ function register(){
 
 	$results = json_decode($data, true);
 
-	var_dump($data);
-	var_dump($results);
+	debug($data);
+	debug($results);
 
 	if($results["result"]=="success"){
+		$new_client_id = $results['clientid'];
+
+
+	}else{
+		status_message('danger',"Unable to register account with billing platform.");
+    	go($_SERVER['HTTP_REFERER']);
 	}
     
 }
