@@ -1020,12 +1020,44 @@ function code_to_isoa3($code)
 function account_details($id)
 {
 	global $conn, $wp, $whmcs, $product_ids;
-	$query = $conn->query("SELECT * FROM `users` WHERE `id` = '".$id."' ");
-	$user = $query->fetch(PDO::FETCH_ASSOC);
-
-	$user['avatar'] = get_gravatar($user['email']);
-
-	return $user;
+    
+    $postfields["username"]             = $whmcs['username'];
+    $postfields["password"]             = $whmcs['password'];
+    $postfields["action"]               = "getclientsdetails";
+    $postfields["clientid"]             = $id;  
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $whmcs['url']);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 100);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    
+    $data = explode(";",$data);
+    foreach ($data AS $temp) {
+        $temp = explode("=",$temp);
+        $results[$temp[0]] = $temp[1];
+    }
+    
+    // $results['product_ids']         = get_product_ids($id);
+    
+    // $results['products']            = check_products($id);
+    
+    if($results["result"] == "success") {       
+        // get local account data 
+        $query = "SELECT * FROM user_data WHERE user_id = '".$id."' " ;
+        $result = mysql_query($query) or die(mysql_error());
+        while($row = mysql_fetch_array($result)){   
+            $results['account_type']            = $row['account_type'];
+            $results['avatar']                  = get_gravatar($user['email']);
+        }
+        
+        return $results;
+    } else {
+        // error
+        die("billing API error: unable to access your account data, please contact support");
+    }   
 }
 
 function console_output($data)

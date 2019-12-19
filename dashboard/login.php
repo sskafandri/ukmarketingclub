@@ -127,40 +127,12 @@ if($results["result"]=="success"){
 				$url 				= $whmcsurl."?email=$email&timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
 				go($url);
 			}else{
-				$query = $conn->query("SELECT * FROM `users` WHERE `id` = '".$user_id."' ");
-				if($query !== FALSE) {
-					$user = $query->fetch(PDO::FETCH_ASSOC);
+				$_SESSION['logged_in']					= true;
+				$_SESSION['account']['id']				= $client_data['userid'];
+				$_SESSION['account']['type']			= $user['type'];	
 
-					if(!$user){
-						$dt2 = new DateTime("+1 month");
-						$expires_in_one_month = $dt2->format("Y-m-d");
-
-						$insert = $conn->exec("INSERT INTO `users` 
-					        (`id`,`first_name`,`last_name`,`email`,`username`,`password`)
-					        VALUE
-					        ('".$client_data['userid']."',
-					        '".addslashes($client_data['firstname'])."',
-					        '".addslashes($client_data['lastname'])."',
-					        '".$email."',
-					        'user".rand(000000000,999999999)."',
-					        '".$password."'
-					    )");
-
-					    $user['type'] = 'customer';
-
-					    $customer_id = $conn->lastInsertId();
-					}else{
-						$update = $conn->exec("UPDATE `users` SET `first_name` = '".addslashes($client_data['firstname'])."' WHERE `id` = '".$client_data['userid']."' ");
-						$update = $conn->exec("UPDATE `users` SET `last_name` = '".addslashes($client_data['lastname'])."' WHERE `id` = '".$client_data['userid']."' ");
-					}
-
-					$_SESSION['logged_in']					= true;
-					$_SESSION['account']['id']				= $client_data['userid'];
-					$_SESSION['account']['type']			= $user['type'];	
-
-					status_message('success', 'Login successful');
-					go($site['url'].'dashboard.php?c=home');
-				}
+				status_message('success', 'Login successful');
+				go($site['url'].'dashboard.php?c=home');
 			}
 		}
 	}
