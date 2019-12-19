@@ -225,7 +225,7 @@ function register(){
 		$postfields["action"] 			= "AddOrder";
 		$postfields["responsetype"] 	= 'json';
 
-		$postfields['paymentmethod']	= 'mailin';
+		$postfields['paymentmethod']	= 'worldpay';
 
 		$postfields['clientid'] 		= $client_id;
 	    $postfields['pid'] 				= $order_pids;
