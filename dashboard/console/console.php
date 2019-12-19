@@ -201,7 +201,6 @@ if($task == 'total_downlines'){
 
 	    $update = $conn->exec("UPDATE `users` SET `total_downline` = '".$downline_total."' WHERE `id` = '".$working_customer['id']."' ");
 
-
 	    console_output("Member: ".$working_customer['first_name'].' '.$working_customer['last_name'].' | '.$downline_total.' in downline.');
 
 	    unset($downline);
@@ -248,7 +247,12 @@ if($task == 'sync_databases'){
 	// Dump array structure for inspection
 	print_r($results);
 	
-	
+	foreach($results['clients']['client'] as $user){
+		console_output("ID: ".$user['id']."| ".$user['firstname'].' '.$user['lastname']." - Updated");
+		$update = $conn->exec("UPDATE `users` SET `first_name` = '".addslashes($user['firstname'])."' WHERE `id` = '".$user['id']."' ");
+		$update = $conn->exec("UPDATE `users` SET `last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
+		$update = $conn->exec("UPDATE `users` SET `status` = '".strtolower($user['status'])."' WHERE `id` = '".$user['id']."' ");
+	}
 
 	console_output("Finished.");
 }
