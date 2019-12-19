@@ -1046,7 +1046,7 @@ function account_details($id)
     
     if($results["result"] == "success") {       
         // get local account data 
-        $query              = $conn->query("SELECT * FROM users WHERE user_id = '".$id."' ");
+        $query              = $conn->query("SELECT * FROM `users` WHERE `id` = '".$id."' ");
         $results            = $query->fetch(PDO::FETCH_ASSOC);
         $results['account_type']            = $results['type'];
         $results['avatar']                  = get_gravatar($results['email']);
