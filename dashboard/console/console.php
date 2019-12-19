@@ -243,9 +243,6 @@ if($task == 'sync_databases'){
 
 	// Decode response
 	$results = json_decode($response, true);
-
-	// Dump array structure for inspection
-	print_r($results);
 	
 	foreach($results['clients']['client'] as $user){
 		console_output("ID: ".$user['id']."| ".$user['firstname'].' '.$user['lastname']." - Updated");
