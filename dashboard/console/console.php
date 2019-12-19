@@ -1,9 +1,9 @@
 <?php
 
-include('../inc/db.php');
-include('../inc/global_vars.php');
-include('../inc/functions.php');
-include('../inc/php_colors.php');
+include('/home/ukmarketingclub/public_html/dashboard/inc/db.php');
+include('/home/ukmarketingclub/public_html/dashboard/inc/global_vars.php');
+include('/home/ukmarketingclub/public_html/dashboard/inc/functions.php');
+include('/home/ukmarketingclub/public_html/dashboard/inc/php_colors.php');
 
 date_default_timezone_set('UTC');
 
