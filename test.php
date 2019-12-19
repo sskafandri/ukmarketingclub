@@ -17,7 +17,7 @@ $whmcsUrl = "https://ublo.club/billing/";
 // Learn more at http://docs.whmcs.com/API_Authentication_Credentials
 // Prior to WHMCS 7.2, an admin username and md5 hash of the admin password may be used.
 $username = "api_user";
-$password = "admin1372";
+$password = md5("admin1372");
 
 // Set post values
 $postfields = array(
