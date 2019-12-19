@@ -174,6 +174,7 @@ function register(){
 	$postfields["action"] 			= "AddClient";
 	$postfields["responsetype"] 	= 'json';
 	$postfields['noemail']			= true;
+	$postfields['skipvalidation']	= true;
 
 	$postfields['firstname'] 		= $first_name;
     $postfields['lastname'] 		= $last_name;
