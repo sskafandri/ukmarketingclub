@@ -139,11 +139,11 @@ if($results["result"]=="success"){
 	
 	// login rejected due to now having the right product
 	status_message('danger', 'You do not have a valid license.');
-	go($site['url'].'login_form.php');
+	go($site['url'].'/?c=login');
 } else {
 	// login rejected
 	status_message('danger', 'Incorrect Login details');
-	go($site['url'].'index.php');
+	go($site['url'].'/?c=login');
 }
 
 
