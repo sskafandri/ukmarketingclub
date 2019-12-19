@@ -179,7 +179,7 @@ function register(){
     $postfields['password2']		= $password;
     $postfields['clientip'] 		= $ip_address;
 
-    var_dump($whmcs);
+    debug($whmcs);
     var_dump($postfields);
 
 	$ch = curl_init();
