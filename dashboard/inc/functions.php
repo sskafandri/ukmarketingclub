@@ -1046,13 +1046,11 @@ function account_details($id)
     
     if($results["result"] == "success") {       
         // get local account data 
-        $query = "SELECT * FROM user_data WHERE user_id = '".$id."' " ;
-        $result = mysql_query($query) or die(mysql_error());
-        while($row = mysql_fetch_array($result)){   
-            $results['account_type']            = $row['account_type'];
-            $results['avatar']                  = get_gravatar($user['email']);
-        }
-        
+        $query              = $conn->query("SELECT * FROM user_data WHERE user_id = '".$id."' ");
+        $results            = $query->fetch(PDO::FETCH_ASSOC);
+        $results['account_type']            = $results['type'];
+        $results['avatar']                  = get_gravatar($results['email']);
+
         return $results;
     } else {
         // error
