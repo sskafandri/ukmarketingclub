@@ -135,7 +135,7 @@ if($results["result"]=="success"){
 			}else{
 				$_SESSION['logged_in']					= true;
 				$_SESSION['account']['id']				= $client_data['userid'];
-				$_SESSION['account']['type']			= $user['type'];	
+				// $_SESSION['account']['type']			= $user['type'];	
 
 				status_message('success', 'Login successful');
 				go($site['url'].'dashboard.php?c=home');
