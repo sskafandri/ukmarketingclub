@@ -47,13 +47,16 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
 $data = curl_exec($ch);
+if (curl_error($ch)) {
+    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+}
 curl_close($ch);
 
 $results = json_decode($data, true);
 
 // debug($whmcs);
 
-// debug($results);
+debug($results);
 
 if($results["result"]=="success"){
     // login confirmed
@@ -140,7 +143,7 @@ if($results["result"]=="success"){
 	// login rejected due to now having the right product
 	status_message('danger', 'You do not have a valid license.');
 	go($site['url'].'/?c=login');
-} else {
+}else{
 	// login rejected
 	status_message('danger', 'Incorrect Login details');
 	go($site['url'].'/?c=login');
