@@ -216,6 +216,7 @@ function register(){
 	debug($results);
 
 	if($results["result"]=="success"){
+		// account registered
 		$client_id = $results['clientid'];
 
 		// place order with whmcs
@@ -254,11 +255,32 @@ function register(){
 
 		debug($data);
 		debug($results);
+
+		if($results["result"]=="success"){
+			// order placed
+			$order_id 				= $results['orderid'];
+			$invoice_id 			= $results['invoiceid'];
+
+			// redirect to invoice for payment
+			$whmcsurl 			= "https://ublo.club/billing/dologin.php";
+			$autoauthkey 		= "admin1372";
+			$email 				= $email;
+			
+			$timestamp 			= time(); 
+			$goto 				= "viewinvoice.php?id=".$invoice_id;
+			
+			$hash 				= sha1($email.$timestamp.$autoauthkey);
+			
+			$url 				= $whmcsurl."?email=$email&timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
+			go($url);
+		}else{
+			status_message('danger',"Unable to place order with billing platform.");
+    		go($_SERVER['HTTP_REFERER']);
+		}
 	}else{
 		status_message('danger',"Unable to register account with billing platform.");
     	go($_SERVER['HTTP_REFERER']);
 	}
-    
 }
 
 function global_settings()
