@@ -138,18 +138,18 @@ if($results["result"]=="success"){
 				// $_SESSION['account']['type']			= $user['type'];	
 
 				status_message('success', 'Login successful');
-				go($site['url'].'dashboard.php?c=home');
+				go($site['url'].'dashboard/dashboard.php?c=home');
 			}
 		}
 	}
 	
 	// login rejected due to now having the right product
 	status_message('danger', 'You do not have a valid license.');
-	go($site['url'].'/?c=login');
+	go($site['url'].'?c=login');
 }else{
 	// login rejected
 	status_message('danger', 'Incorrect Login details');
-	go($site['url'].'/?c=login');
+	go($site['url'].'?c=login');
 }
 
 
