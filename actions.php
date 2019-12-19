@@ -58,8 +58,18 @@ function test(){
 function register(){
 	global $conn, $global_settings, $whmcs;
 
+	$order_pids 						= array();
+
 	$order_promoter_pack 				= post('order_promoter_pack');
+	if($order_promoter_pack == 'yes'){
+		$order_pids[] 					= 2;
+	}
+
 	$order_network_customer_pack 		= post('order_network_customer_pack');
+	if($order_network_customer_pack == 'yes'){
+		$order_pids[] 					= 1;
+	}
+
 	$affiliate_only 					= post('affiliate_only');
 
 	$account_type 						= 'customer';
@@ -163,14 +173,16 @@ function register(){
 	// register account with whmcs
 	$postfields["username"] 		= $whmcs['username']; 
 	$postfields["password"] 		= $whmcs['password'];
+	$postfields['accesskey']		= $whmcs['accesskey'];
 	$postfields["action"] 			= "AddClient";
 	$postfields["responsetype"] 	= 'json';
-	$postfields['accesskey']		= $whmcs['accesskey'];
+	$postfields['noemail']			= true;
 
 	$postfields['firstname'] 		= $first_name;
     $postfields['lastname'] 		= $last_name;
     $postfields['email']			= $email;
     $postfields['address1']			= $address_1;
+    $postfields['address2']			= $address_2;
     $postfields['city'] 			= $address_city;
     $postfields['state'] 			= $address_state;
     $postfields['postcode']			= $address_zip;
@@ -204,9 +216,44 @@ function register(){
 	debug($results);
 
 	if($results["result"]=="success"){
-		$new_client_id = $results['clientid'];
+		$client_id = $results['clientid'];
 
+		// place order with whmcs
+		$postfields["username"] 		= $whmcs['username']; 
+		$postfields["password"] 		= $whmcs['password'];
+		$postfields['accesskey']		= $whmcs['accesskey'];
+		$postfields["action"] 			= "AddOrder";
+		$postfields["responsetype"] 	= 'json';
 
+		$postfields['paymentmethod']	= 'mailin';
+
+		$postfields['clientid'] 		= $client_id;
+	    $postfields['pid'] 				= $order_pids;
+	    $postfields['affid']			= $upline_id;
+
+	    debug($whmcs);
+	    debug($postfields);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $whmcs['url']);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+		$data = curl_exec($ch);
+
+		if (curl_error($ch)) {
+		    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+		}
+
+		curl_close($ch);
+
+		$results = json_decode($data, true);
+
+		debug($data);
+		debug($results);
 	}else{
 		status_message('danger',"Unable to register account with billing platform.");
     	go($_SERVER['HTTP_REFERER']);
