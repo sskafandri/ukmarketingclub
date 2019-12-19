@@ -191,8 +191,8 @@ function register(){
     $postfields['password2']		= $password;
     $postfields['clientip'] 		= $ip_address;
 
-    debug($whmcs);
-    debug($postfields);
+    # debug($whmcs);
+    # debug($postfields);
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $whmcs['url']);
@@ -212,8 +212,8 @@ function register(){
 
 	$results = json_decode($data, true);
 
-	debug($data);
-	debug($results);
+	# debug($data);
+	# debug($results);
 
 	if($results["result"]=="success"){
 		// account registered
@@ -232,8 +232,8 @@ function register(){
 	    $postfields['pid'] 				= $order_pids;
 	    $postfields['affid']			= $upline_id;
 
-	    debug($whmcs);
-	    debug($postfields);
+	    # debug($whmcs);
+	    # debug($postfields);
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $whmcs['url']);
@@ -253,8 +253,8 @@ function register(){
 
 		$results = json_decode($data, true);
 
-		debug($data);
-		debug($results);
+		# debug($data);
+		# debug($results);
 
 		if($results["result"]=="success"){
 			// order placed
