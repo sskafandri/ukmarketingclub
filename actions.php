@@ -96,9 +96,6 @@ function register(){
 	$tel 				= post('tel');
 	$tel 				= trim($tel);
 
-	$username 			= post('username');
-	$username 			= trim($username);
-
 	$password 			= post('password');
 	$password 			= trim($password);
 
@@ -218,6 +215,19 @@ function register(){
 	if($results["result"]=="success"){
 		// account registered
 		$client_id = $results['clientid'];
+
+		// create record in dashboard
+		$insert = $conn->exec("INSERT INTO `users` 
+			(`id`,`type`, `added`, `updated`, `status`, `upline_id`) VALUES
+			
+			('".$client_id."',
+			'".$account_type."',
+			'".time()."',
+			'".time()."',
+			'pending',
+			'".$upline_id."'
+			);
+		");
 
 		// place order with whmcs
 		$postfields["username"] 		= $whmcs['username']; 
