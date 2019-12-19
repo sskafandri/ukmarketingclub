@@ -236,7 +236,6 @@ function register(){
 		$postfields['accesskey']		= $whmcs['accesskey'];
 		$postfields["action"] 			= "AddOrder";
 		$postfields["responsetype"] 	= 'json';
-
 		$postfields['paymentmethod']	= 'worldpay';
 
 		$postfields['clientid'] 		= $client_id;
