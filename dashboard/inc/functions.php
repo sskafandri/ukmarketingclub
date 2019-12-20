@@ -44,10 +44,23 @@ function get_whmcs_orders($user_id = '')
 
     // if($results["result"]=="success"){
 
-    $count = 0;
+    $order_count        = 0;
+    $lineitem_count     = 0;
     foreach($results['orders']['order'] as $order) {
-        $orders[$count]         = $order;
-        $count++;
+        // loop over line items to get product id
+        foreach($order['lineitems']['lineitem'] as $line_item){
+            $line_item['product_id'] = whmcs_order_to_product($line_item['relid']);
+
+            $items[$lineitem_count] = $line_item;
+            
+            $lineitem_count++;
+        }
+
+        $order['lineitems']['lineitem'] = $items;
+
+        $orders[$order_count]         = $order;
+        
+        $order_count++;
     }
 
     return $orders;
