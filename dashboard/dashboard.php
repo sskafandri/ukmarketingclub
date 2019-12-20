@@ -886,25 +886,13 @@ desired effect
 														$status = '<span class="label label-info full-width" style="width: 100%;">'.ucfirst($order['status']).'</span>';
 													}
 
-													foreach($order['lineitems']['lineitem'] as $line_item){
-														if($line_item['status'] == 'Active') {
-															$item_status = '<span class="label label-success full-width" style="width: 100%;">Active</span>';
-														}elseif($line_item['status'] == 'Pending') {
-															$item_status = '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
-														}elseif($line_item['status'] == 'Completed') {
-															$item_status = '<span class="label label-success full-width" style="width: 100%;">Completed</span>';
-														}elseif($line_item['status'] == 'Suspended') {
-															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
-														}elseif($line_item['status'] == 'Terminated') {
-															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Terminated</span>';
-														}elseif($line_item['status'] == 'Cancelled') {
-															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Cancelled</span>';
-														}elseif($line_item['status'] == 'Fraud') {
-															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Fraud</span>';
-														}else{
-															$item_status = '<span class="label label-info full-width" style="width: 100%;">'.ucfirst($line_item['status']).'</span>';
-														}
+													if($order['paymentstatus'] == 'Paid') {
+														$payment_status = '<span class="label label-success full-width" style="width: 100%;">Paid</span>';
+													}else{
+														$payment_status = '<span class="label label-danger full-width" style="width: 100%;">Unpaid</span>';
+													}
 
+													foreach($order['lineitems']['lineitem'] as $line_item){
 														$order_details[] = $line_item['product'];
 													}
 
@@ -925,7 +913,7 @@ desired effect
 																£'.number_format($order['amount'], 2).'
 															</td>
 															<td>
-																'.$item_status.'
+																'.$payment_status.'
 															</td>
 														</tr>
 													';
