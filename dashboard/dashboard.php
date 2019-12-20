@@ -601,6 +601,8 @@ desired effect
 				if(isset($bank_details['id'])){
 					$account_details['bank_name'] 			= $bank_details['name'].', '.$bank_details['branch'];
 				}
+
+				$orders = get_whmcs_orders($_SESSION['account']['id']);
             ?>
 
             <div class="content-wrapper">
@@ -859,47 +861,38 @@ desired effect
 										</thead>
 										<tbody>
 											<?php
-												$query = $conn->query("SELECT * FROM `transactions` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
-												if($query !== FALSE) {
-													$transactions = $query->fetchAll(PDO::FETCH_ASSOC);
-
-													foreach($transactions as $transaction) {
-														if($transaction['status'] == 'approved') {
-															$status = '<span class="label label-success full-width" style="width: 100%;">Approved</span>';
-														}elseif($transaction['status'] == 'pending') {
-															$status = '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
-														}elseif($transaction['status'] == 'declined') {
-															$status = '<span class="label label-danger full-width" style="width: 100%;">Declined</span>';
-														}elseif($transaction['status'] == 'fraud_check') {
-															$status = '<span class="label label-info full-width" style="width: 100%;">Fraud Check</span>';
-														}else{
-															$status = '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($transaction['status']).'</span>';
-														}
-
-														$transaction['amount']		= '£'.number_format($transaction['amount'], 2);
-
-														$transaction['date'] 		= date("Y-m-d h:i:s", $transaction['date']);
-
-														echo '
-															<tr>
-																<td>
-																	'.$transaction['transaction_id'].'
-																</td>
-																<td>
-																	'.$status.'
-																</td>
-																<td>
-																	'.$transaction['date'].'
-																</td>
-																<td>
-																	'.stripslashes($transaction['items']).'
-																</td>
-																<td>
-																	'.$transaction['amount'].'
-																</td>
-															</tr>
-														';
+												foreach($orders['order'] as $order) {
+													if($order['status'] == 'Active') {
+														$status = '<span class="label label-success full-width" style="width: 100%;">Active</span>';
+													}elseif($order['status'] == 'pending') {
+														$status = '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
+													}elseif($order['status'] == 'declined') {
+														$status = '<span class="label label-danger full-width" style="width: 100%;">Declined</span>';
+													}elseif($order['status'] == 'fraud_check') {
+														$status = '<span class="label label-info full-width" style="width: 100%;">Fraud Check</span>';
+													}else{
+														$status = '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($order['status']).'</span>';
 													}
+
+													echo '
+														<tr>
+															<td>
+																'.$order['transaction_id'].'
+															</td>
+															<td>
+																'.$status.'
+															</td>
+															<td>
+																'.$order['date'].'
+															</td>
+															<td>
+																'.stripslashes($order['lineitems']['lineitem'][0]['product']).'
+															</td>
+															<td>
+																£'.number_format($order['amount'], 2).'
+															</td>
+														</tr>
+													';
 												}
 											?>
 										</tbody>
