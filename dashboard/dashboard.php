@@ -862,6 +862,8 @@ desired effect
 										<tbody>
 											<?php
 												foreach($orders['order'] as $order) {
+													$order_details = array();
+
 													if($order['status'] == 'Active') {
 														$status = '<span class="label label-success full-width" style="width: 100%;">Active</span>';
 													}elseif($order['status'] == 'pending') {
@@ -873,6 +875,12 @@ desired effect
 													}else{
 														$status = '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($order['status']).'</span>';
 													}
+
+													foreach($order['lineitems']['lineitem'] as $line_item){
+														$order_details[] = $line_item['product'];
+													}
+
+													$order_details = implode('<br>', $order_details);
 
 													echo '
 														<tr>
@@ -886,7 +894,7 @@ desired effect
 																'.$order['date'].'
 															</td>
 															<td>
-																'.stripslashes($order['lineitems']['lineitem'][0]['product']).'
+																'.$order_details.'
 															</td>
 															<td>
 																£'.number_format($order['amount'], 2).'
