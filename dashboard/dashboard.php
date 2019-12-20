@@ -1638,8 +1638,8 @@ desired effect
 											                            <div class="the-chart">
 											                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 											                                <p>
-											                                	<strong>Level 1</strong><br>
-											                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+											                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
+											                                	Level 1<br>
 											                                	<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 											                                </p>
 											                            </div>
@@ -1666,8 +1666,8 @@ desired effect
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 2</strong><br>
-												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
+											                                		Level 2<br>
 											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
@@ -1695,8 +1695,8 @@ desired effect
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 3</strong><br>
-												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
+											                                		Level 3<br>
 											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
@@ -1724,8 +1724,8 @@ desired effect
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 4</strong><br>
-												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
+											                                		Level 4<br>
 											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
@@ -1753,8 +1753,8 @@ desired effect
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 5</strong><br>
-												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
+											                                		Level 5<br>
 											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
@@ -1782,8 +1782,8 @@ desired effect
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 6</strong><br>
-												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
+											                                		Level 6<br>
 											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
@@ -1811,8 +1811,8 @@ desired effect
 												                            <div class="the-chart">
 												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 												                                <p>
-												                                	<strong>Level 7</strong><br>
-												                                	'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).' <br>
+												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
+											                                		Level 7<br>
 											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
