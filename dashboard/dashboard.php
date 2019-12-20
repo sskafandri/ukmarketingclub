@@ -855,7 +855,7 @@ desired effect
 											<tr>
 												<th class="no-sort" style="white-space: nowrap;" width="1px">Status</th>
 												<th class="no-sort" style="white-space: nowrap;" width="150px">Date</th>
-												<th class="no-sort" style="white-space: nowrap;">Item</th>
+												<th class="no-sort" style="white-space: nowrap;">Item(s)</th>
 												<th class="no-sort" style="white-space: nowrap;" width="1px">Amount</th>
 												<th class="no-sort" width="1px">Payment</th>
 											</tr>
@@ -863,7 +863,10 @@ desired effect
 										<tbody>
 											<?php
 												foreach($orders['orders']['order'] as $order) {
-													$order_details = array();
+													$order_details 		= array();
+
+													$date_bits 			= explode(" ", $order['date']);
+													$order['date']		= $date_bits[0];
 
 													if($order['status'] == 'Active') {
 														$status = '<span class="label label-success full-width" style="width: 100%;">Active</span>';
