@@ -47,6 +47,7 @@ function get_whmcs_orders($user_id = '')
     $count = 0;
     foreach($results['orders']['order'] as $order) {
         $orders[$count]         = $order;
+        $count++;
     }
 
     return $orders;
