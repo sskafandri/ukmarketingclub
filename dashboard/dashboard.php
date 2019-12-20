@@ -885,21 +885,21 @@ desired effect
 
 													foreach($order['lineitems']['lineitem'] as $line_item){
 														if($line_item['status'] == 'Active') {
-															$item_status = '<span class="label label-success full-width" style="width: 100%;">Active</span>';
+															$item_status = '<span class="label label-success full-width" style="width: 10%;">Active</span>';
 														}elseif($line_item['status'] == 'Pending') {
-															$item_status = '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
+															$item_status = '<span class="label label-info full-width" style="width: 10%;">Pending</span>';
 														}elseif($line_item['status'] == 'Completed') {
-															$item_status = '<span class="label label-success full-width" style="width: 100%;">Completed</span>';
+															$item_status = '<span class="label label-success full-width" style="width: 10%;">Completed</span>';
 														}elseif($line_item['status'] == 'Suspended') {
-															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
+															$item_status = '<span class="label label-danger full-width" style="width: 10%;">Suspended</span>';
 														}elseif($line_item['status'] == 'Terminated') {
-															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Terminated</span>';
+															$item_status = '<span class="label label-danger full-width" style="width: 10%;">Terminated</span>';
 														}elseif($line_item['status'] == 'Cancelled') {
-															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Cancelled</span>';
+															$item_status = '<span class="label label-danger full-width" style="width: 10%;">Cancelled</span>';
 														}elseif($line_item['status'] == 'Fraud') {
-															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Fraud</span>';
+															$item_status = '<span class="label label-danger full-width" style="width: 10%;">Fraud</span>';
 														}else{
-															$item_status = '<span class="label label-info full-width" style="width: 100%;">'.ucfirst($line_item['status']).'</span>';
+															$item_status = '<span class="label label-info full-width" style="width: 10%;">'.ucfirst($line_item['status']).'</span>';
 														}
 
 														$order_details[] = $item_status.' '.$line_item['product'];
