@@ -861,7 +861,7 @@ desired effect
 										</thead>
 										<tbody>
 											<?php
-												foreach($orders['orders']['order'] as $order) {
+												foreach($orders as $order) {
 													$order_details 		= array();
 
 													$date_bits 			= explode(" ", $order['date']);
