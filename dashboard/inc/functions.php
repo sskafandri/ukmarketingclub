@@ -44,7 +44,12 @@ function get_whmcs_orders($user_id = '')
 
     // if($results["result"]=="success"){
 
-    return $results;
+    $count = 0;
+    foreach($results['orders']['order'] as $order) {
+        $orders[$count]         = $order;
+    }
+
+    return $orders;
 }
 
 function whmcs_order_to_product($id)
