@@ -68,6 +68,8 @@ function get_whmcs_orders($user_id = '')
 
 function whmcs_order_to_product($id)
 {
+    global $conn, $global_settings, $whmcs;
+    
     $query      = $conn->query("SELECT * FROM `whmcs`.`tblhosting` WHERE `id` = '".$id."' ");
     $data       = $query->fetch(PDO::FETCH_ASSOC);
 
