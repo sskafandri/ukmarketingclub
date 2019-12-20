@@ -1964,6 +1964,9 @@ desired effect
                     <h4><strong>$globals</strong></h4>
                         <?php debug($globals); ?>
 
+                    <h4><strong>whmcs orders</strong></h4>
+                        <?php debug(get_whmcs_orders($_SESSION['account']['id'])); ?>
+
                 </section>
             </div>
         <?php } ?>

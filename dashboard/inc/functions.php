@@ -1,5 +1,45 @@
 <?php
 
+function get_whmcs_orders($user_id = '')
+{
+    $postfields["username"]         = $whmcs['username']; 
+    $postfields["password"]         = $whmcs['password'];
+    $postfields['accesskey']        = $whmcs['accesskey'];
+    $postfields["action"]           = "GetOrders";
+    $postfields["responsetype"]     = 'json';
+    if(!empty($user_id)){
+        $postfields['userid']           = $user_id;
+    }
+
+    # debug($whmcs);
+    # debug($postfields);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $whmcs['url']);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+    $data = curl_exec($ch);
+
+    if (curl_error($ch)) {
+        die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+    }
+
+    curl_close($ch);
+
+    $results = json_decode($data, true);
+
+    # debug($data);
+    # debug($results);
+
+    // if($results["result"]=="success"){
+
+    return $results;
+}
+
 function get_affiliate($affiliate_username)
 {
     global $conn, $global_settings;
