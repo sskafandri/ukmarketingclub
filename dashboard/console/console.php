@@ -3,11 +3,11 @@
 include('/home/ukmarketingclub/public_html/dashboard/inc/db.php');
 include('/home/ukmarketingclub/public_html/dashboard/inc/global_vars.php');
 include('/home/ukmarketingclub/public_html/dashboard/inc/functions.php');
-include('/home/ukmarketingclub/public_html/dashboard/inc/php_colors.php');
+// include('/home/ukmarketingclub/public_html/dashboard/inc/php_colors.php');
 
 date_default_timezone_set('UTC');
 
-$colors = new Colors();
+// $colors = new Colors();
 
 $task = $argv[1];
 
