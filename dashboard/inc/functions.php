@@ -49,7 +49,7 @@ function get_whmcs_orders($user_id = '')
     foreach($results['orders']['order'] as $order) {
         // loop over line items to get product id
         foreach($order['lineitems']['lineitem'] as $line_item){
-            $line_item['product_id'] = whmcs_order_to_product($line_item['relid']);
+            $line_item['order_details'] = whmcs_order_to_product($line_item['relid']);
 
             $items[$lineitem_count] = $line_item;
             
@@ -69,9 +69,13 @@ function get_whmcs_orders($user_id = '')
 function whmcs_order_to_product($id)
 {
     global $conn, $global_settings, $whmcs;
-    
+
     $query      = $conn->query("SELECT * FROM `whmcs`.`tblhosting` WHERE `id` = '".$id."' ");
     $data       = $query->fetch(PDO::FETCH_ASSOC);
+
+    $data['product_id'] = $data['packageid'];
+
+    unset($data['packageid']);
 
     return $data;
 }
