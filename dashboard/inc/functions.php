@@ -2,6 +2,8 @@
 
 function get_whmcs_orders($user_id = '')
 {
+    global $conn, $global_settings, $whmcs;
+    
     $postfields["username"]         = $whmcs['username']; 
     $postfields["password"]         = $whmcs['password'];
     $postfields['accesskey']        = $whmcs['accesskey'];
