@@ -51,16 +51,19 @@ function get_whmcs_orders($user_id = '')
         foreach($order['lineitems']['lineitem'] as $line_item){
             $line_item['order_details'] = whmcs_order_to_product($line_item['relid']);
 
-            $items[$lineitem_count] = $line_item;
+            $items[$lineitem_count]         = $line_item;
             
             $lineitem_count++;
         }
 
-        $order['lineitems']['lineitem'] = $items;
+        $order['lineitems']['lineitem']     = $items;
 
-        $orders[$order_count]         = $order;
+        $orders[$order_count]               = $order;
         
         $order_count++;
+
+        unset($items);
+        $lineitem_count                     = 0;
     }
 
     return $orders;
