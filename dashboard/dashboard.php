@@ -853,11 +853,11 @@ desired effect
 									<table id="purchase_history" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th class="no-sort" width="1px">Tx ID</th>
 												<th class="no-sort" style="white-space: nowrap;" width="1px">Status</th>
 												<th class="no-sort" style="white-space: nowrap;" width="150px">Date</th>
 												<th class="no-sort" style="white-space: nowrap;">Item</th>
 												<th class="no-sort" style="white-space: nowrap;" width="1px">Amount</th>
+												<th class="no-sort" width="1px">Payment</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -885,33 +885,30 @@ desired effect
 
 													foreach($order['lineitems']['lineitem'] as $line_item){
 														if($line_item['status'] == 'Active') {
-															$item_status = '<span class="label label-success full-width" style="width: 10%;">Active</span>';
+															$item_status = '<span class="label label-success full-width" style="width: 100%;">Active</span>';
 														}elseif($line_item['status'] == 'Pending') {
-															$item_status = '<span class="label label-info full-width" style="width: 10%;">Pending</span>';
+															$item_status = '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
 														}elseif($line_item['status'] == 'Completed') {
-															$item_status = '<span class="label label-success full-width" style="width: 10%;">Completed</span>';
+															$item_status = '<span class="label label-success full-width" style="width: 100%;">Completed</span>';
 														}elseif($line_item['status'] == 'Suspended') {
-															$item_status = '<span class="label label-danger full-width" style="width: 10%;">Suspended</span>';
+															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
 														}elseif($line_item['status'] == 'Terminated') {
-															$item_status = '<span class="label label-danger full-width" style="width: 10%;">Terminated</span>';
+															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Terminated</span>';
 														}elseif($line_item['status'] == 'Cancelled') {
-															$item_status = '<span class="label label-danger full-width" style="width: 10%;">Cancelled</span>';
+															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Cancelled</span>';
 														}elseif($line_item['status'] == 'Fraud') {
-															$item_status = '<span class="label label-danger full-width" style="width: 10%;">Fraud</span>';
+															$item_status = '<span class="label label-danger full-width" style="width: 100%;">Fraud</span>';
 														}else{
-															$item_status = '<span class="label label-info full-width" style="width: 10%;">'.ucfirst($line_item['status']).'</span>';
+															$item_status = '<span class="label label-info full-width" style="width: 100%;">'.ucfirst($line_item['status']).'</span>';
 														}
 
-														$order_details[] = $item_status.' '.$line_item['product'];
+														$order_details[] = $line_item['product'];
 													}
 
 													$order_details = implode('<br>', $order_details);
 
 													echo '
 														<tr>
-															<td>
-																'.$order['transaction_id'].'
-															</td>
 															<td>
 																'.$status.'
 															</td>
@@ -923,6 +920,9 @@ desired effect
 															</td>
 															<td>
 																£'.number_format($order['amount'], 2).'
+															</td>
+															<td>
+																'.$item_status.'
 															</td>
 														</tr>
 													';
