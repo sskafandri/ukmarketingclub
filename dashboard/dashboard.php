@@ -867,14 +867,20 @@ desired effect
 
 													if($order['status'] == 'Active') {
 														$status = '<span class="label label-success full-width" style="width: 100%;">Active</span>';
-													}elseif($order['status'] == 'pending') {
+													}elseif($order['status'] == 'Pending') {
 														$status = '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
-													}elseif($order['status'] == 'declined') {
-														$status = '<span class="label label-danger full-width" style="width: 100%;">Declined</span>';
-													}elseif($order['status'] == 'fraud_check') {
-														$status = '<span class="label label-info full-width" style="width: 100%;">Fraud Check</span>';
+													}elseif($order['status'] == 'Completed') {
+														$status = '<span class="label label-success full-width" style="width: 100%;">Completed</span>';
+													}elseif($order['status'] == 'Suspended') {
+														$status = '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
+													}elseif($order['status'] == 'Terminated') {
+														$status = '<span class="label label-danger full-width" style="width: 100%;">Terminated</span>';
+													}elseif($order['status'] == 'Cancelled') {
+														$status = '<span class="label label-danger full-width" style="width: 100%;">Cancelled</span>';
+													}elseif($order['status'] == 'Fraud') {
+														$status = '<span class="label label-danger full-width" style="width: 100%;">Fraud</span>';
 													}else{
-														$status = '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($order['status']).'</span>';
+														$status = '<span class="label label-info full-width" style="width: 100%;">'.ucfirst($order['status']).'</span>';
 													}
 
 													foreach($order['lineitems']['lineitem'] as $line_item){
