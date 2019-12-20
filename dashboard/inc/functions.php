@@ -1,9 +1,14 @@
 <?php
 
+function products_to_points()
+{
+
+}
+
 function get_whmcs_orders($user_id = '')
 {
     global $conn, $global_settings, $whmcs;
-    
+
     $postfields["username"]         = $whmcs['username']; 
     $postfields["password"]         = $whmcs['password'];
     $postfields['accesskey']        = $whmcs['accesskey'];
@@ -40,6 +45,14 @@ function get_whmcs_orders($user_id = '')
     // if($results["result"]=="success"){
 
     return $results;
+}
+
+function whmcs_order_to_product($id)
+{
+    $query      = $conn->query("SELECT * FROM `whmcs`.`tblhosting` WHERE `id` = '".$id."' ");
+    $data       = $query->fetch(PDO::FETCH_ASSOC);
+
+    return $data;
 }
 
 function get_affiliate($affiliate_username)
