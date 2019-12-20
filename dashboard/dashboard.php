@@ -862,7 +862,7 @@ desired effect
 										</thead>
 										<tbody>
 											<?php
-												foreach($orders['order'] as $order) {
+												foreach($orders['orders']['order'] as $order) {
 													$order_details = array();
 
 													if($order['status'] == 'Active') {
