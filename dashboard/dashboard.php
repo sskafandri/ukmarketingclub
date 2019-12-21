@@ -24,7 +24,7 @@ $start = $time;
 // check is account->id is set, if not then assume user is not logged in correctly and redirect to login page
 if(empty($_SESSION['account']['id'])){
 	status_message('danger', 'Login Session Timeout');
-	go('index.php?c=session_timeout');
+	go($site['url']);
 }
 
 // get account details for logged in user
