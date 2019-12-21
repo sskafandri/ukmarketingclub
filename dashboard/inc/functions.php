@@ -2,6 +2,8 @@
 
 function products_to_points()
 {
+    global $conn, $global_settings, $whmcs;
+    
     $query      = $conn->query("SELECT * FROM `products_to_points` ");
     $data       = $query->fetchAll(PDO::FETCH_ASSOC);
 
