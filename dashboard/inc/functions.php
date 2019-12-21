@@ -2,7 +2,10 @@
 
 function products_to_points()
 {
+    $query      = $conn->query("SELECT * FROM `products_to_points` ");
+    $data       = $query->fetchAll(PDO::FETCH_ASSOC);
 
+    return $data;
 }
 
 function get_whmcs_orders($user_id = '')
@@ -49,7 +52,7 @@ function get_whmcs_orders($user_id = '')
     foreach($results['orders']['order'] as $order) {
         // loop over line items to get product id
         foreach($order['lineitems']['lineitem'] as $line_item){
-            $line_item['order_details'] = whmcs_order_to_product($line_item['relid']);
+            $line_item['order_details']     = whmcs_order_to_product($line_item['relid']);
 
             $items[$lineitem_count]         = $line_item;
             
