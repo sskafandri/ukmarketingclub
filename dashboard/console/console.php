@@ -299,10 +299,14 @@ if($task == 'get_orders'){
 
     	if(!isset($existing_order['id'])){
     		// new order, process it
-    		console_output("ID: ".$order['id']."| ".$order['ordernum'].' '.$order['name']);
+    		console_output("ID: ".$order['id']." | ".$order['ordernum'].' '.$order['name']);
+
+    		// get the upline
+    		$query      = $conn->query("SELECT `upline_id` FROM `users` WHERE `id` = '".$order['userid']."' ");
+    		$upline     = $query->fetch(PDO::FETCH_ASSOC);
 
     		$insert = $conn->exec("INSERT INTO `orders` 
-		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`)
+		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`,`upline_id`)
 		        VALUE
 		        ('".time()."',
 		        '".$order['id']."',
@@ -310,7 +314,8 @@ if($task == 'get_orders'){
 		        '".$order['userid']."',
 		        '".$order['amount']."',
 		        '".$order['invoiceid']."',
-		        '".$order['paymentstatus']."'
+		        '".$order['paymentstatus']."',
+		        '".$upline['upline_id']."'
 		    )");
     	}else{
     		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `order_id` = '".$order['id']."' ");
