@@ -895,10 +895,12 @@ desired effect
 													}
 
 													foreach($order['lineitems']['lineitem'] as $line_item){
-														foreach($product_points as $product_point){
-															if($product_point['product_id'] == $line_item['order_details']['product_id']){
-																$product_point_value = $product_point['points'];
-																break;
+														if($line_item['order_details']['product_id'] != 2){
+															foreach($product_points as $product_point){
+																if($product_point['product_id'] == $line_item['order_details']['product_id']){
+																	$product_point_value = $product_point['points'];
+																	break;
+																}
 															}
 														}
 
