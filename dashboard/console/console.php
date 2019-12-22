@@ -401,7 +401,7 @@ if($task == 'get_orders'){
 	    			$upline_2     	= $query->fetch(PDO::FETCH_ASSOC);
 
 	    			// check if upline os qualified
-			    	if($upline_1['promoter_qualified'] == 'yes'){
+			    	if($upline_2['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
 			    		$qualified = 'yes';
@@ -426,7 +426,7 @@ if($task == 'get_orders'){
 	    			$upline_3     	= $query->fetch(PDO::FETCH_ASSOC);
 
 	    			// check if upline os qualified
-			    	if($upline_1['promoter_qualified'] == 'yes'){
+			    	if($upline_3['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
 			    		$qualified = 'yes';
@@ -451,7 +451,7 @@ if($task == 'get_orders'){
 	    			$upline_4     	= $query->fetch(PDO::FETCH_ASSOC);
 
 	    			// check if upline os qualified
-			    	if($upline_1['promoter_qualified'] == 'yes'){
+			    	if($upline_4['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
 			    		$qualified = 'yes';
@@ -476,7 +476,7 @@ if($task == 'get_orders'){
 	    			$upline_5     	= $query->fetch(PDO::FETCH_ASSOC);
 
 	    			// check if upline os qualified
-			    	if($upline_1['promoter_qualified'] == 'yes'){
+			    	if($upline_5['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
 			    		$qualified = 'yes';
@@ -501,7 +501,7 @@ if($task == 'get_orders'){
 	    			$upline_6    	= $query->fetch(PDO::FETCH_ASSOC);
 
 	    			// check if upline os qualified
-			    	if($upline_1['promoter_qualified'] == 'yes'){
+			    	if($upline_6['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
 			    		$qualified = 'yes';
@@ -521,12 +521,12 @@ if($task == 'get_orders'){
 		    	}
 
 		    	// upline 7
-			    if($upline_5['upline_id'] != 0){
+			    if($upline_6['upline_id'] != 0){
 	    			$query      	= $conn->query("SELECT `id`,`upline_id`,`promoter_qualified` FROM `users` WHERE `id` = '".$upline_6['upline_id']."' ");
 	    			$upline_7    	= $query->fetch(PDO::FETCH_ASSOC);
 
 	    			// check if upline os qualified
-			    	if($upline_1['promoter_qualified'] == 'yes'){
+			    	if($upline_7['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
 			    		$qualified = 'yes';
