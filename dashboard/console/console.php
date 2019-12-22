@@ -297,7 +297,7 @@ if($task == 'get_orders'){
 	
 	foreach($orders as $order){
 		// check if existing or new order
-		$query      			= $conn->query("SELECT `id` FROM `orders` WHERE `order_id` = '".$order['id']."' ");
+		$query      			= $conn->query("SELECT `id`,`user_id`,`upline_id` FROM `orders` WHERE `order_id` = '".$order['id']."' ");
     	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
 
     	if(!isset($existing_order['id'])){
@@ -365,6 +365,7 @@ if($task == 'get_orders'){
 		        '".$commission."'
 		    )");
 
+		    /*
 		    $int_order_id = $conn->lastInsertId();
 
 		    // add the order to commissions if marked as paid
@@ -379,12 +380,19 @@ if($task == 'get_orders'){
 			        '".$int_order_id."'
 			    )");
 	    	}
+	    	*/
     	}else{
     		// update payment status for each order
-    		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `order_id` = '".$order['id']."' ");
+    		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `id` = '".$existing_order['id']."' ");
 
     		// add the order to commissions if marked as paid
 		    if($order['paymentstatus'] == 'Paid'){
+		    	// get upline details for working out commissions
+		    	
+		    	// get the upline user record
+    			$query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$existing_order['upline_id']."' ");
+    			$upline     = $query->fetch(PDO::FETCH_ASSOC);
+
 	    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
 			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
 			        VALUE
@@ -392,7 +400,7 @@ if($task == 'get_orders'){
 			        '".$upline['id']."',
 			        '".$order['userid']."',
 			        '".$commission."',
-			        '".$int_order_id."'
+			        '".$existing_order['id']."'
 			    )");
 	    	}
     	}
