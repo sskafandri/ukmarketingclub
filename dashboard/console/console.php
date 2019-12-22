@@ -294,7 +294,7 @@ if($task == 'get_orders'){
 
 	$orders = array_reverse($results['orders']['order']);
 	
-	foreach($results['orders']['order'] as $order){
+	foreach($orders as $order){
 		// check if existing or new order
 		$query      			= $conn->query("SELECT `id` FROM `orders` WHERE `order_id` = '".$order['id']."' ");
     	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
