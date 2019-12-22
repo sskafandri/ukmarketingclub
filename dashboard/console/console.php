@@ -270,7 +270,7 @@ if($task == 'get_orders'){
 	    'username' => $username,
 	    'password' => $password,
 	    'action' => 'GetOrders',
-	    'limitnum' => '10000';
+	    'limitnum' => '10000',
 	    'responsetype' => 'json',
 	);
 
