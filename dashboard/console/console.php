@@ -383,18 +383,16 @@ if($task == 'get_orders'){
 		    	}
 
 		    	// insert record
-		    	//if($upline_1['id'] != $existing_order['upline_id']){
-		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
-				        VALUE
-				        ('".time()."',
-				        '".$upline_1['id']."',
-				        '".$order['userid']."',
-				        '".$commission."',
-				        '".$existing_order['id']."',
-				        '".$qualified."'
-				    )");
-		    	//}
+	    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+			        VALUE
+			        ('".time()."',
+			        '".$upline_1['id']."',
+			        '".$order['userid']."',
+			        '".$commission."',
+			        '".$existing_order['id']."',
+			        '".$qualified."'
+			    )");
 
 
 			    // upline 2
@@ -549,6 +547,18 @@ if($task == 'get_orders'){
 	    	}
     	}
 	}
+
+	// clean up random bugs
+	$query      	= $conn->query("SELECT `id` FROM `users` ");
+    $users     		= $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach($users as $user){
+    	$query      			= $conn->query("SELECT `id` FROM `commissions` WHERE `user_id` = '".$user['id']."' AND `customer_id` = '".$user['id']."' ");
+    	$commissions     		= $query->fetchAll(PDO::FETCH_ASSOC);
+
+    	foreach($commissions as $commission){
+    		$delete = $conn->exec("DELETE FROM `commissions` WHERE `id` = '".$commission['id']."' ");
+    	}
+    }
 
 	console_output("Finished.");
 }
