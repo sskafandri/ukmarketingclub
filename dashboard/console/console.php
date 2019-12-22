@@ -316,8 +316,24 @@ if($task == 'get_orders'){
     			$first_order = 'yes';
     		}
 
+    		// search for business builder pack and remove it from commission
+    		$remove_business_builder_pack = false;
+    		foreach($order['lineitems']['lineitem'] as $line_item){
+	            $line_item['order_details']     = whmcs_order_to_product($line_item['relid']);
+
+	            if($line_item['order_details']['product_id'] == 2){
+	            	$remove_business_builder_pack = true;
+	            }
+	        }
+
+	        $order['lineitems']['lineitem']     = $items;
+
     		$commission = ($order['amount'] / 100 * 5);
     		$commission = number_format($commission, 2);
+
+    		if($remove_business_builder_pack == true){
+    			$commission = $commission - 2;
+    		}
 
     		$insert = $conn->exec("INSERT INTO `orders` 
 		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`,`upline_id`,`first_order`,`commission`)

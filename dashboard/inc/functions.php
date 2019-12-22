@@ -47,8 +47,6 @@ function get_whmcs_orders($user_id = '')
     # debug($data);
     # debug($results);
 
-    // if($results["result"]=="success"){
-
     $order_count        = 0;
     $lineitem_count     = 0;
     foreach($results['orders']['order'] as $order) {
