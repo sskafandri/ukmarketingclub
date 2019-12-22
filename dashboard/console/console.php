@@ -342,7 +342,7 @@ if($task == 'get_orders'){
     		}
 
     		// make it human readable
-    		$commission = number_format($commission, 2);
+    		$commission = number_format($commission, 2, '.', '');
 
     		// add the data
     		$insert = $conn->exec("INSERT INTO `orders` 
