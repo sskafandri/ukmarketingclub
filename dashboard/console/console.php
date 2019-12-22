@@ -256,3 +256,43 @@ if($task == 'sync_databases'){
 
 	console_output("Finished.");
 }
+
+if($task == 'get_all_orders'){
+	console_output("Get WHMCS Orders.");
+
+	// get all whmcs users
+	$whmcsUrl = "https://ublo.club/billing/";
+	$username = "api_user";
+	$password = md5("admin1372");
+
+	// Set post values
+	$postfields = array(
+	    'username' => $username,
+	    'password' => $password,
+	    'action' => 'GetOrders',
+	    'limitnum' => '10000';
+	    'responsetype' => 'json',
+	);
+
+	// Call the API
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+	$response = curl_exec($ch);
+	if (curl_error($ch)) {
+	    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+	}
+	curl_close($ch);
+
+	// Decode response
+	$results = json_decode($response, true);
+	
+	print_r($results);
+
+	console_output("Finished.");
+}
