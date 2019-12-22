@@ -368,7 +368,7 @@ if($task == 'get_orders'){
     		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `id` = '".$existing_order['id']."' ");
 
     		// add the order to commissions if marked as paid
-		    if($existing_order['paymentstatus'] == 'Unpaid' && $order['paymentstatus'] == 'Paid'){
+		    if($order['paymentstatus'] == 'Paid'){
 		    	// get upline details for working out commissions
 		    	
 		    	// upline 1
