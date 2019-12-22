@@ -333,9 +333,11 @@ if($task == 'get_orders'){
 
         // calculate commissions - first_order == yes gets a 20% additional rreward
         if($first_order == 'yes'){
-			$commission = ($commission_amount / 100 * 25);
+			$commission 			= ($commission_amount / 100 * 25);
+			$commission_upline 		= ($commission_amount / 100 * 5);
 		}else{
-			$commission = ($commission_amount / 100 * 5);
+			$commission 			= ($commission_amount / 100 * 5);
+			$commission_upline 		= ($commission_amount / 100 * 5);
 		}
 
 		// make it human readable
@@ -368,8 +370,6 @@ if($task == 'get_orders'){
     		// add the order to commissions if marked as paid
 		    if($order['paymentstatus'] == 'Paid'){
 		    	// get upline details for working out commissions
-
-
 		    	
 		    	// upline 1
     			$query      	= $conn->query("SELECT `id`,`upline_id` FROM `users` WHERE `id` = '".$existing_order['upline_id']."' ");
@@ -397,7 +397,23 @@ if($task == 'get_orders'){
 				        ('".time()."',
 				        '".$upline_2['id']."',
 				        '".$order['userid']."',
-				        '".$commission."',
+				        '".$commission_upline."',
+				        '".$existing_order['id']."'
+				    )");
+		    	}
+
+		    	// upline 3
+			    if($upline_1['upline_id'] != 0){
+	    			$query      	= $conn->query("SELECT `id`,`upline_id` FROM `users` WHERE `id` = '".$upline_2['upline_id']."' ");
+	    			$upline_3     	= $query->fetch(PDO::FETCH_ASSOC);
+
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_3['id']."',
+				        '".$order['userid']."',
+				        '".$commission_upline."',
 				        '".$existing_order['id']."'
 				    )");
 		    	}
