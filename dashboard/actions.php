@@ -2598,6 +2598,7 @@ function my_account_update()
 {
 	global $conn, $global_settings;
 
+	/*
 	$first_name 			= addslashes($_POST['first_name']);
 	$first_name 			= trim($first_name);
 
@@ -2636,6 +2637,7 @@ function my_account_update()
 
 	$address_zip 			= post('address_zip');
 	$address_zip 			= addslashes($address_zip);
+	*/
 
 	$bank_name 				= post('bank_name');
 	$bank_name 				= addslashes($bank_name);
@@ -2667,12 +2669,14 @@ function my_account_update()
 	$affiliate_username 	= addslashes($affiliate_username);
 
 	// check username availability
+	/*
 	$query 					= $conn->query("SELECT `id` FROM `users` WHERE `username` = '".$username."' AND `id` != '".$_SESSION['account']['id']."' ");
 	$username_check 		= $query->fetch(PDO::FETCH_ASSOC);
 	if(isset($username_check['id'])){
 		status_message('danger', "Unable to use '".$username."' as your username as its already in use.");
 		go($_SERVER['HTTP_REFERER']);
 	}
+	*/
 
 	// check affiliate_username availability
 	$query 					= $conn->query("SELECT `id` FROM `users` WHERE `affiliate_username` = '".$affiliate_username."' AND `id` != '".$_SESSION['account']['id']."' ");
@@ -2692,6 +2696,7 @@ function my_account_update()
 		}
 	}
 
+	/*
 	$update = $conn->exec("UPDATE `users` SET `first_name` = '".$first_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `last_name` = '".$last_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `email` = '".$email."' 								WHERE `id` = '".$_SESSION['account']['id']."' ");
@@ -2704,7 +2709,8 @@ function my_account_update()
 	$update = $conn->exec("UPDATE `users` SET `address_state` = '".$address_state."' 				WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `address_country` = '".$address_country."' 			WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `address_zip` = '".$address_zip."' 					WHERE `id` = '".$_SESSION['account']['id']."' ");
-
+	*/
+	
 	$update = $conn->exec("UPDATE `users` SET `bank_name` = '".$bank_name."' 						WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `bank_account_name` = '".$bank_account_name."' 		WHERE `id` = '".$_SESSION['account']['id']."' ");
 	$update = $conn->exec("UPDATE `users` SET `bank_account_number` = '".$bank_account_number."' 	WHERE `id` = '".$_SESSION['account']['id']."' ");
