@@ -300,53 +300,54 @@ if($task == 'get_orders'){
 		$query      			= $conn->query("SELECT `id`,`user_id`,`upline_id` FROM `orders` WHERE `order_id` = '".$order['id']."' ");
     	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
 
+    	// generate data for orders and commissions
+    	// get the upline_id
+		$query      = $conn->query("SELECT `upline_id` FROM `users` WHERE `id` = '".$order['userid']."' ");
+		$upline     = $query->fetch(PDO::FETCH_ASSOC);
+
+		// get the upline user record
+		$query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$upline['upline_id']."' ");
+		$upline     = $query->fetch(PDO::FETCH_ASSOC);
+
+		// is this the first order from this customer
+		$query      			= $conn->query("SELECT `id` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
+		$existing_customer     	= $query->fetch(PDO::FETCH_ASSOC);
+		if(isset($existing_customer['id'])){
+			$first_order = 'no';
+		}else{
+			$first_order = 'yes';
+		}
+
+		// search for business builder pack and remove it from commission
+		$remove_business_builder_pack = false;
+		foreach($order['lineitems']['lineitem'] as $line_item){
+            $line_item['order_details']     = whmcs_order_to_product($line_item['relid']);
+
+            if($line_item['order_details']['product_id'] == 2){
+            	$remove_business_builder_pack = true;
+            }
+        }
+
+        // remove commissions for business builder pack - its the law
+        if($remove_business_builder_pack == true){
+        	$commission_amount = $order['amount'] - 40.00;
+        }else{
+        	$commission_amount = $order['amount'];
+        }
+
+        // calculate commissions - first_order == yes gets a 20% additional rreward
+        if($first_order == 'yes'){
+			$commission = ($commission_amount / 100 * 25);
+		}else{
+			$commission = ($commission_amount / 100 * 5);
+		}
+
+		// make it human readable
+		$commission = number_format($commission, 2, '.', '');
+
     	if(!isset($existing_order['id'])){
     		// new order, process it
     		console_output("ID: ".$order['id']." | ".$order['ordernum'].' '.$order['name']);
-
-    		// get the upline_id
-    		$query      = $conn->query("SELECT `upline_id` FROM `users` WHERE `id` = '".$order['userid']."' ");
-    		$upline     = $query->fetch(PDO::FETCH_ASSOC);
-
-    		// get the upline user record
-    		$query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$upline['upline_id']."' ");
-    		$upline     = $query->fetch(PDO::FETCH_ASSOC);
-
-    		// is this the first order from this customer
-    		$query      			= $conn->query("SELECT `id` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
-    		$existing_customer     	= $query->fetch(PDO::FETCH_ASSOC);
-    		if(isset($existing_customer['id'])){
-    			$first_order = 'no';
-    		}else{
-    			$first_order = 'yes';
-    		}
-
-    		// search for business builder pack and remove it from commission
-    		$remove_business_builder_pack = false;
-    		foreach($order['lineitems']['lineitem'] as $line_item){
-	            $line_item['order_details']     = whmcs_order_to_product($line_item['relid']);
-
-	            if($line_item['order_details']['product_id'] == 2){
-	            	$remove_business_builder_pack = true;
-	            }
-	        }
-
-	        // remove commissions for business builder pack - its the law
-	        if($remove_business_builder_pack == true){
-	        	$commission_amount = $order['amount'] - 40.00;
-	        }else{
-	        	$commission_amount = $order['amount'];
-	        }
-
-	        // calculate commissions - first_order == yes gets a 20% additional rreward
-	        if($first_order == 'yes'){
-    			$commission = ($commission_amount / 100 * 25);
-    		}else{
-    			$commission = ($commission_amount / 100 * 5);
-    		}
-
-    		// make it human readable
-    		$commission = number_format($commission, 2, '.', '');
 
     		// add the order to orders
     		$insert = $conn->exec("INSERT INTO `orders` 
@@ -364,23 +365,6 @@ if($task == 'get_orders'){
 		        '".$first_order."',
 		        '".$commission."'
 		    )");
-
-		    /*
-		    $int_order_id = $conn->lastInsertId();
-
-		    // add the order to commissions if marked as paid
-		    if($order['paymentstatus'] == 'Paid'){
-	    		$insert = $conn->exec("INSERT INTO `commissions` 
-			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
-			        VALUE
-			        ('".time()."',
-			        '".$upline['id']."',
-			        '".$order['userid']."',
-			        '".$commission."',
-			        '".$int_order_id."'
-			    )");
-	    	}
-	    	*/
     	}else{
     		// update payment status for each order
     		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `id` = '".$existing_order['id']."' ");
@@ -388,6 +372,8 @@ if($task == 'get_orders'){
     		// add the order to commissions if marked as paid
 		    if($order['paymentstatus'] == 'Paid'){
 		    	// get upline details for working out commissions
+
+		    	
 		    	
 		    	// upline 1
     			$query      	= $conn->query("SELECT `id`,`upline_id` FROM `users` WHERE `id` = '".$existing_order['upline_id']."' ");
