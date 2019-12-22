@@ -304,8 +304,12 @@ if($task == 'get_orders'){
     		// new order, process it
     		console_output("ID: ".$order['id']." | ".$order['ordernum'].' '.$order['name']);
 
-    		// get the upline
+    		// get the upline_id
     		$query      = $conn->query("SELECT `upline_id` FROM `users` WHERE `id` = '".$order['userid']."' ");
+    		$upline     = $query->fetch(PDO::FETCH_ASSOC);
+
+    		// get the upline user record
+    		$query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$upline['upline_id']."' ");
     		$upline     = $query->fetch(PDO::FETCH_ASSOC);
 
     		// is this the first order from this customer
@@ -344,7 +348,7 @@ if($task == 'get_orders'){
     		// make it human readable
     		$commission = number_format($commission, 2, '.', '');
 
-    		// add the data
+    		// add the order to orders
     		$insert = $conn->exec("INSERT INTO `orders` 
 		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`commission_amount`,`invoice_id`,`paymentstatus`,`upline_id`,`first_order`,`commission`)
 		        VALUE
@@ -359,6 +363,19 @@ if($task == 'get_orders'){
 		        '".$upline['upline_id']."',
 		        '".$first_order."',
 		        '".$commission."'
+		    )");
+
+		    $int_order_id = $conn->lastInsertId();
+
+		    // add the order to commissions
+    		$insert = $conn->exec("INSERT INTO `commissions` 
+		        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
+		        VALUE
+		        ('".time()."',
+		        '".$upline['id']."',
+		        '".$order['userid']."',
+		        '".$commission."',
+		        '".$int_order_id."'
 		    )");
     	}else{
     		// update payment status for each order
