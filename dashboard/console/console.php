@@ -292,7 +292,30 @@ if($task == 'get_orders'){
 	// Decode response
 	$results = json_decode($response, true);
 	
-	print_r($results);
+	foreach($results['orders']['order'] as $order){
+		// check if existing or new order
+		$query      			= $conn->query("SELECT `id` FROM `orders` WHERE `order_id` = '".$order['id']."' ");
+    	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
+
+    	if(!isset($existing_order['id'])){
+    		// new order, process it
+    		console_output("ID: ".$order['id']."| ".$order['ordernum'].' '.$name['name']);
+
+    		$insert = $conn->exec("INSERT INTO `orders` 
+		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`)
+		        VALUE
+		        ('".time()."',
+		        '".$order['id']."',
+		        '".$order['ordernum']."',
+		        '".$order['userid']."',
+		        '".$order['amount']."',
+		        '".$order['invoiceid']."',
+		        '".$order['paymentstatus']."'
+		    )");
+    	}else{
+    		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `order_id` = '".$order['id']."' ");
+    	}
+	}
 
 	console_output("Finished.");
 }
