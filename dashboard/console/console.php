@@ -376,7 +376,7 @@ if($task == 'get_orders'){
     			$upline_1     	= $query->fetch(PDO::FETCH_ASSOC);
 
 	    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,``)
+			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
 			        VALUE
 			        ('".time()."',
 			        '".$upline_1['id']."',
