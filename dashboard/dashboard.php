@@ -623,6 +623,7 @@ desired effect
                 	<div class="row">
                 		<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
 							<div class="col-lg-6">
+								<!--
 								<div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
@@ -660,7 +661,9 @@ desired effect
 	                                    </div>
 		                            </div>
 		                        </div>
+		                    	-->
 
+		                    	<!--
 		                        <div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
@@ -746,6 +749,7 @@ desired effect
 	                                    </div>
 		                            </div>
 		                        </div>
+		                    	-->
 
 		                        <div class="box box-primary">
 			            			<div class="box-header">
