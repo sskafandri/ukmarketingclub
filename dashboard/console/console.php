@@ -328,10 +328,15 @@ if($task == 'get_orders'){
 	        }
 
 	        // calculate commissions - first_order == yes gets a 20% additional rreward
+	        if($remove_business_builder_pack == true){
+	        	$commission_amount = $order['amount'] - 40.00;
+	        }else{
+	        	$commission_amount = $order['amount'];
+	        }
 	        if($first_order == 'yes'){
-    			$commission = ($order['amount'] / 100 * 25);
+    			$commission = ($commission_amount / 100 * 25);
     		}else{
-    			$commission = ($order['amount'] / 100 * 5);
+    			$commission = ($commission_amount / 100 * 5);
     		}
 
     		// remove commissions for business builder pack - its the law
@@ -344,13 +349,14 @@ if($task == 'get_orders'){
 
     		// add the data
     		$insert = $conn->exec("INSERT INTO `orders` 
-		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`,`upline_id`,`first_order`,`commission`)
+		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`commission_amount`,`invoice_id`,`paymentstatus`,`upline_id`,`first_order`,`commission`)
 		        VALUE
 		        ('".time()."',
 		        '".$order['id']."',
 		        '".$order['ordernum']."',
 		        '".$order['userid']."',
 		        '".$order['amount']."',
+		        '".$commission_amount."',
 		        '".$order['invoiceid']."',
 		        '".$order['paymentstatus']."',
 		        '".$upline['upline_id']."',
