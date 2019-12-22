@@ -855,7 +855,6 @@ desired effect
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-									<?php debug($product_points); ?>
 									<table id="purchase_history" class="table table-bordered table-striped">
 										<thead>
 											<tr>
