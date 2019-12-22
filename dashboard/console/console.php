@@ -299,7 +299,7 @@ if($task == 'get_orders'){
 
     	if(!isset($existing_order['id'])){
     		// new order, process it
-    		console_output("ID: ".$order['id']."| ".$order['ordernum'].' '.$name['name']);
+    		console_output("ID: ".$order['id']."| ".$order['ordernum'].' '.$order['name']);
 
     		$insert = $conn->exec("INSERT INTO `orders` 
 		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`)
