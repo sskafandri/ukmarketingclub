@@ -257,7 +257,7 @@ if($task == 'sync_databases'){
 	console_output("Finished.");
 }
 
-if($task == 'get_all_orders'){
+if($task == 'get_orders'){
 	console_output("Get WHMCS Orders.");
 
 	// get all whmcs users
