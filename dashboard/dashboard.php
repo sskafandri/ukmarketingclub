@@ -902,7 +902,7 @@ desired effect
 															}
 														}
 
-														$order_details[] = $product_point_value.' '.$line_item['product'];
+														$order_details[] = $product_point_value.' '.$line_item['product'].' '.$line_item['order_details']['product_id'];
 													}
 
 													$order_details = implode('<br>', $order_details);
