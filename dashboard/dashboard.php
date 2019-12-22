@@ -895,14 +895,14 @@ desired effect
 													}
 
 													foreach($order['lineitems']['lineitem'] as $line_item){
-														$order_details[] = $line_item['product'];
-
 														foreach($product_points as $product_point){
 															if($product_point['product_id'] == $line_item['order_details']['product_id']){
 																$product_point_value = $product_point['points'];
 																break;
 															}
 														}
+
+														$order_details[] = $product_point_value.' '.$line_item['product'];
 													}
 
 													$order_details = implode('<br>', $order_details);
