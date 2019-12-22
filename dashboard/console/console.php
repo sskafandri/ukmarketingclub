@@ -301,12 +301,8 @@ if($task == 'get_orders'){
     	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
 
     	// generate data for orders and commissions
-    	// get the upline_id
-		$query      = $conn->query("SELECT `upline_id` FROM `users` WHERE `id` = '".$order['userid']."' ");
-		$upline     = $query->fetch(PDO::FETCH_ASSOC);
-
-		// get the upline user record
-		$query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$upline['upline_id']."' ");
+    	// get the upline record
+		$query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$order['userid']."' ");
 		$upline     = $query->fetch(PDO::FETCH_ASSOC);
 
 		// is this the first order from this customer
@@ -373,7 +369,7 @@ if($task == 'get_orders'){
 		    if($order['paymentstatus'] == 'Paid'){
 		    	// get upline details for working out commissions
 
-		    	
+
 		    	
 		    	// upline 1
     			$query      	= $conn->query("SELECT `id`,`upline_id` FROM `users` WHERE `id` = '".$existing_order['upline_id']."' ");
