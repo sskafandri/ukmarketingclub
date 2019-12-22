@@ -379,7 +379,7 @@ if($task == 'get_orders'){
 		    	if($upline_1['promoter_qualified'] == 'yes'){
 		    		$qualified = 'yes';
 		    	}else{
-		    		$qualified = 'yes';
+		    		$qualified = 'no';
 		    	}
 
 		    	// insert record
@@ -404,7 +404,7 @@ if($task == 'get_orders'){
 			    	if($upline_2['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
-			    		$qualified = 'yes';
+		    			$qualified = 'no';
 			    	}
 
 			    	// insert record
@@ -429,7 +429,7 @@ if($task == 'get_orders'){
 			    	if($upline_3['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
-			    		$qualified = 'yes';
+		    			$qualified = 'no';
 			    	}
 
 			    	// insert record
@@ -454,7 +454,7 @@ if($task == 'get_orders'){
 			    	if($upline_4['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
-			    		$qualified = 'yes';
+		    			$qualified = 'no';
 			    	}
 
 			    	// insert record
@@ -479,7 +479,7 @@ if($task == 'get_orders'){
 			    	if($upline_5['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
-			    		$qualified = 'yes';
+		    			$qualified = 'no';
 			    	}
 
 			    	// insert record
@@ -504,7 +504,7 @@ if($task == 'get_orders'){
 			    	if($upline_6['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
-			    		$qualified = 'yes';
+		    			$qualified = 'no';
 			    	}
 
 			    	// insert record
@@ -529,7 +529,7 @@ if($task == 'get_orders'){
 			    	if($upline_7['promoter_qualified'] == 'yes'){
 			    		$qualified = 'yes';
 			    	}else{
-			    		$qualified = 'yes';
+		    			$qualified = 'no';
 			    	}
 
 			    	// insert record
