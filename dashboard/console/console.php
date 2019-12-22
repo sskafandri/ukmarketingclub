@@ -292,6 +292,7 @@ if($task == 'get_orders'){
 	// Decode response
 	$results = json_decode($response, true);
 
+	// reorder the orders because whmcs is retarded
 	$orders = array_reverse($results['orders']['order']);
 	
 	foreach($orders as $order){
@@ -326,15 +327,22 @@ if($task == 'get_orders'){
 	            }
 	        }
 
-	        $order['lineitems']['lineitem']     = $items;
+	        // calculate commissions - first_order == yes gets a 20% additional rreward
+	        if($first_order == 'yes'){
+    			$commission = ($order['amount'] / 100 * 25);
+    		}else{
+    			$commission = ($order['amount'] / 100 * 5);
+    		}
 
-    		$commission = ($order['amount'] / 100 * 5);
-    		$commission = number_format($commission, 2);
-
+    		// remove commissions for business builder pack - its the law
     		if($remove_business_builder_pack == true){
     			$commission = $commission - 2;
     		}
 
+    		// make it human readable
+    		$commission = number_format($commission, 2);
+
+    		// add the data
     		$insert = $conn->exec("INSERT INTO `orders` 
 		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`,`upline_id`,`first_order`,`commission`)
 		        VALUE
@@ -350,6 +358,7 @@ if($task == 'get_orders'){
 		        '".$commission."'
 		    )");
     	}else{
+    		// update payment status for each order
     		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `order_id` = '".$order['id']."' ");
     	}
 	}
