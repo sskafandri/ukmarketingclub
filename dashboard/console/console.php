@@ -403,7 +403,7 @@ if($task == 'get_orders'){
 		    	}
 
 		    	// upline 3
-			    if($upline_1['upline_id'] != 0){
+			    if($upline_2['upline_id'] != 0){
 	    			$query      	= $conn->query("SELECT `id`,`upline_id` FROM `users` WHERE `id` = '".$upline_2['upline_id']."' ");
 	    			$upline_3     	= $query->fetch(PDO::FETCH_ASSOC);
 
