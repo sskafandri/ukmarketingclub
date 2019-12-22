@@ -327,21 +327,18 @@ if($task == 'get_orders'){
 	            }
 	        }
 
-	        // calculate commissions - first_order == yes gets a 20% additional rreward
+	        // remove commissions for business builder pack - its the law
 	        if($remove_business_builder_pack == true){
 	        	$commission_amount = $order['amount'] - 40.00;
 	        }else{
 	        	$commission_amount = $order['amount'];
 	        }
+
+	        // calculate commissions - first_order == yes gets a 20% additional rreward
 	        if($first_order == 'yes'){
     			$commission = ($commission_amount / 100 * 25);
     		}else{
     			$commission = ($commission_amount / 100 * 5);
-    		}
-
-    		// remove commissions for business builder pack - its the law
-    		if($remove_business_builder_pack == true){
-    			$commission = $commission - 2;
     		}
 
     		// make it human readable
