@@ -389,19 +389,36 @@ if($task == 'get_orders'){
 		    if($order['paymentstatus'] == 'Paid'){
 		    	// get upline details for working out commissions
 		    	
-		    	// get the upline user record
-    			$query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$existing_order['upline_id']."' ");
-    			$upline     = $query->fetch(PDO::FETCH_ASSOC);
+		    	// upline 1
+    			$query      	= $conn->query("SELECT `id`,`upline_id` FROM `users` WHERE `id` = '".$existing_order['upline_id']."' ");
+    			$upline_1     	= $query->fetch(PDO::FETCH_ASSOC);
 
 	    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
 			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
 			        VALUE
 			        ('".time()."',
-			        '".$upline['id']."',
+			        '".$upline_1['id']."',
 			        '".$order['userid']."',
 			        '".$commission."',
 			        '".$existing_order['id']."'
 			    )");
+
+
+			    // upline 2
+			    if($upline_1['upline_id'] != 0){
+	    			$query      	= $conn->query("SELECT `id`,`upline_id` FROM `users` WHERE `id` = '".$upline_1['upline_id']."' ");
+	    			$upline_2     	= $query->fetch(PDO::FETCH_ASSOC);
+
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_2['id']."',
+				        '".$order['userid']."',
+				        '".$commission."',
+				        '".$existing_order['id']."'
+				    )");
+		    	}
 	    	}
     	}
 	}
