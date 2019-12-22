@@ -417,6 +417,22 @@ if($task == 'get_orders'){
 				        '".$existing_order['id']."'
 				    )");
 		    	}
+
+		    	// upline 4
+			    if($upline_3['upline_id'] != 0){
+	    			$query      	= $conn->query("SELECT `id`,`upline_id` FROM `users` WHERE `id` = '".$upline_3['upline_id']."' ");
+	    			$upline_4     	= $query->fetch(PDO::FETCH_ASSOC);
+
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_4['id']."',
+				        '".$order['userid']."',
+				        '".$commission_upline."',
+				        '".$existing_order['id']."'
+				    )");
+		    	}
 	    	}
     	}
 	}
