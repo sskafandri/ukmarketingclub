@@ -894,6 +894,8 @@ desired effect
 														$payment_status = '<span class="label label-danger full-width" style="width: 100%;">Unpaid</span>';
 													}
 
+													$order_points = 0;
+
 													foreach($order['lineitems']['lineitem'] as $line_item){
 														if($line_item['order_details']['product_id'] != 2){
 															foreach($product_points as $product_point){
@@ -902,9 +904,13 @@ desired effect
 																	break;
 																}
 															}
+														}else{
+															$product_point_value = 0;
 														}
 
-														$order_details[] = $product_point_value.' '.$line_item['product'].' '.$line_item['order_details']['product_id'];
+														$order_points = $order_points + $product_point_value;
+
+														$order_details[] =$line_item['product'];
 													}
 
 													$order_details = implode('<br>', $order_details);
@@ -912,7 +918,7 @@ desired effect
 													echo '
 														<tr>
 															<td>
-																'.$product_point_value.'
+																'.$order_points.'
 															</td>
 															<td>
 																'.$order['date'].'
