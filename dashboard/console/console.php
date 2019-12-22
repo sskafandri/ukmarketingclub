@@ -367,19 +367,34 @@ if($task == 'get_orders'){
 
 		    $int_order_id = $conn->lastInsertId();
 
-		    // add the order to commissions
-    		$insert = $conn->exec("INSERT INTO `commissions` 
-		        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
-		        VALUE
-		        ('".time()."',
-		        '".$upline['id']."',
-		        '".$order['userid']."',
-		        '".$commission."',
-		        '".$int_order_id."'
-		    )");
+		    // add the order to commissions if marked as paid
+		    if($order['paymentstatus'] == 'Paid'){
+	    		$insert = $conn->exec("INSERT INTO `commissions` 
+			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
+			        VALUE
+			        ('".time()."',
+			        '".$upline['id']."',
+			        '".$order['userid']."',
+			        '".$commission."',
+			        '".$int_order_id."'
+			    )");
+	    	}
     	}else{
     		// update payment status for each order
     		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `order_id` = '".$order['id']."' ");
+
+    		// add the order to commissions if marked as paid
+		    if($order['paymentstatus'] == 'Paid'){
+	    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`)
+			        VALUE
+			        ('".time()."',
+			        '".$upline['id']."',
+			        '".$order['userid']."',
+			        '".$commission."',
+			        '".$int_order_id."'
+			    )");
+	    	}
     	}
 	}
 
