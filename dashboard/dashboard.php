@@ -1276,6 +1276,7 @@ desired effect
 									                </th>
 									                <th class="no-sort" width="1px">Expand</th>
 									                <th class="no-sort" width="1px">ID</th>
+									                <th class="no-sort" width="1px">Joined</th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
@@ -1291,6 +1292,7 @@ desired effect
 									                </th>
 									                <th class="no-sort" width="1px">Expand</th>
 									                <th class="no-sort" width="1px">ID</th>
+									                <th class="no-sort" width="1px">Joined</th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
@@ -2482,6 +2484,7 @@ desired effect
 			            },
 			            { "data": "id"},
 			            { "data": "status"},
+			            { "data": "join_date"},
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
 			            { "data": "upline" },

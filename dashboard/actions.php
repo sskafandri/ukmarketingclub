@@ -4966,7 +4966,7 @@ function ajax_members()
 	}
 
 	// get customers
-	$query 				= $conn->query("SELECT `id`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+	$query 				= $conn->query("SELECT `id`,`added`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
 	$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	if($query !== FALSE) {
@@ -5003,6 +5003,8 @@ function ajax_members()
 						break;
 					}
 				}
+
+				$output[$count]['join_date']					= date("Y-m-d", $customer['added']);
 
 				$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a>';
 
