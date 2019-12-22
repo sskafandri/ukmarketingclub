@@ -291,6 +291,8 @@ if($task == 'get_orders'){
 
 	// Decode response
 	$results = json_decode($response, true);
+
+	$results = array_reverse($results);
 	
 	foreach($results['orders']['order'] as $order){
 		// check if existing or new order
@@ -305,8 +307,19 @@ if($task == 'get_orders'){
     		$query      = $conn->query("SELECT `upline_id` FROM `users` WHERE `id` = '".$order['userid']."' ");
     		$upline     = $query->fetch(PDO::FETCH_ASSOC);
 
+    		// is this the first order from this customer
+    		$query      			= $conn->query("SELECT `id` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
+    		$existing_customer     	= $query->fetch(PDO::FETCH_ASSOC);
+    		if(isset($existing_customer['id'])){
+    			$first_order = 'yes';
+    		}else{
+    			$first_order = 'no';
+    		}
+
+    		$commission = ($order['amount'] / 100 * 5);
+
     		$insert = $conn->exec("INSERT INTO `orders` 
-		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`,`upline_id`)
+		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`,`upline_id`,`first_order`,`commission`)
 		        VALUE
 		        ('".time()."',
 		        '".$order['id']."',
@@ -315,7 +328,9 @@ if($task == 'get_orders'){
 		        '".$order['amount']."',
 		        '".$order['invoiceid']."',
 		        '".$order['paymentstatus']."',
-		        '".$upline['upline_id']."'
+		        '".$upline['upline_id']."',
+		        '".$first_order."',
+		        '".$commission."'
 		    )");
     	}else{
     		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `order_id` = '".$order['id']."' ");
