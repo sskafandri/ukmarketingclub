@@ -2483,8 +2483,8 @@ desired effect
 			                "defaultContent": ''
 			            },
 			            { "data": "id"},
-			            { "data": "status"},
 			            { "data": "join_date"},
+			            { "data": "status"},
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
 			            { "data": "upline" },
