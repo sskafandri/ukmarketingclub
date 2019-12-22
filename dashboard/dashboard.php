@@ -859,7 +859,7 @@ desired effect
 										<thead>
 											<tr>
 												<th class="no-sort" style="white-space: nowrap;" width="1px">Points</th>
-												<th class="no-sort" style="white-space: nowrap;" width="150px">Date</th>
+												<th class="no-sort" style="white-space: nowrap;" width="1px">Date</th>
 												<th class="no-sort" style="white-space: nowrap;">Item(s)</th>
 												<th class="no-sort" style="white-space: nowrap;" width="1px">Amount</th>
 												<th class="no-sort" width="1px">Payment</th>
