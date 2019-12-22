@@ -383,7 +383,7 @@ if($task == 'get_orders'){
 		    	}
 
 		    	// insert record
-		    	if($upline_1['id'] != $existing_order['upline_id']){
+		    	//if($upline_1['id'] != $existing_order['upline_id']){
 		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
 				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
 				        VALUE
@@ -394,7 +394,7 @@ if($task == 'get_orders'){
 				        '".$existing_order['id']."',
 				        '".$qualified."'
 				    )");
-		    	}
+		    	//}
 
 
 			    // upline 2
