@@ -383,16 +383,18 @@ if($task == 'get_orders'){
 		    	}
 
 		    	// insert record
-	    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
-			        VALUE
-			        ('".time()."',
-			        '".$upline_1['id']."',
-			        '".$order['userid']."',
-			        '".$commission."',
-			        '".$existing_order['id']."',
-			        '".$qualified."'
-			    )");
+		    	if($upline_1['id'] != $order['userid']){
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_1['id']."',
+				        '".$order['userid']."',
+				        '".$commission."',
+				        '".$existing_order['id']."',
+				        '".$qualified."'
+				    )");
+		    	}
 
 
 			    // upline 2
