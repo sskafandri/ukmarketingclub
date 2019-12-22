@@ -317,6 +317,7 @@ if($task == 'get_orders'){
     		}
 
     		$commission = ($order['amount'] / 100 * 5);
+    		$commission = number_format($commission, 2);
 
     		$insert = $conn->exec("INSERT INTO `orders` 
 		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`invoice_id`,`paymentstatus`,`upline_id`,`first_order`,`commission`)
