@@ -292,7 +292,7 @@ if($task == 'get_orders'){
 	// Decode response
 	$results = json_decode($response, true);
 
-	$results = array_reverse($results);
+	$orders = array_reverse($results['orders']['order']);
 	
 	foreach($results['orders']['order'] as $order){
 		// check if existing or new order
@@ -311,9 +311,9 @@ if($task == 'get_orders'){
     		$query      			= $conn->query("SELECT `id` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
     		$existing_customer     	= $query->fetch(PDO::FETCH_ASSOC);
     		if(isset($existing_customer['id'])){
-    			$first_order = 'yes';
-    		}else{
     			$first_order = 'no';
+    		}else{
+    			$first_order = 'yes';
     		}
 
     		$commission = ($order['amount'] / 100 * 5);
