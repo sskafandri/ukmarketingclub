@@ -253,7 +253,7 @@ if($task == 'sync_databases'){
 		$update = $conn->exec("UPDATE `users` SET `last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `email` = '".addslashes($user['email'])."' WHERE `id` = '".$user['id']."' ");
 
-		console_output(" -> Getting Products");
+		console_output("-> Getting User Products");
 
 		// Set post values
 		$postfields = array(
@@ -287,9 +287,9 @@ if($task == 'sync_databases'){
 		foreach($results['products']['product'] as $product){
 			// find the right product
 			if($product['pid'] == 1){
-				console_output(" - -> Qualifying Product Found.");
-				console_output(" - -> Status: ".$product['status']);
-				console_output(" - -> Renew Date: ".$product['nextduedate']);
+				console_output("- -> Qualifying Product Found.");
+				console_output("- -> Status: ".$product['status']);
+				console_output("- -> Renew Date: ".$product['nextduedate']);
 
 				// calculate days remaining
 				$now 			= time();
@@ -297,13 +297,13 @@ if($task == 'sync_databases'){
 				$datediff 		= $your_date - $now;
 				$remaining_days = round($datediff / (60 * 60 * 24));
 
-				console_output(" - -> Remaining Days: ".$remaining_days." days");
+				console_output("- -> Remaining Days: ".$remaining_days." days");
+
+				$update = $conn->exec("UPDATE `users` SET `expire_date` = '".$product['nextduedate']."' WHERE `id` = '".$user['id']."' ");
 
 				break;
 			}
 		}
-
-
 	}
 
 	console_output("Finished.");
