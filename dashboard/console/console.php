@@ -598,6 +598,10 @@ if($task == 'get_orders2'){
 	// Decode response
 	$results = json_decode($response, true);
 
+	debug($results);
+
+	die();
+
 	// reorder the orders because whmcs is retarded
 	$orders = array_reverse($results['orders']['order']);
 	
