@@ -5012,9 +5012,9 @@ function ajax_members()
 
 				$output[$count]['join_date']					= date("Y-m-d", $customer['added']);
 
-				$output[$count]['actions'] 						= '<a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$customer['id'].'" target="_blank"><i class="fa fa-eye"></i></a>
+				$output[$count]['actions'] 						= '<span class="pull-right"><a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$customer['id'].'" target="_blank"><i class="fa fa-eye"></i></a>
 
-					<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a> -->';
+					<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a> --> </span>';
 
 				$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
 				$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
