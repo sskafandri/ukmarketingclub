@@ -2524,7 +2524,6 @@ desired effect
 			            '<td width="150px" valign="top">Contact Details</td>'+
 			            '<td valign="top">'+
 			            	'<strong>Email:</strong> '+d.email+' <br>'+
-			            	'<strong>Tel:</strong> '+d.tel+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';

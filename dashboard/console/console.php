@@ -562,3 +562,309 @@ if($task == 'get_orders'){
 
 	console_output("Finished.");
 }
+
+if($task == 'get_orders2'){
+	console_output("Get WHMCS Orders.");
+
+	// get all whmcs users
+	$whmcsUrl = "https://ublo.club/billing/";
+	$username = "api_user";
+	$password = md5("admin1372");
+
+	// Set post values
+	$postfields = array(
+	    'username' => $username,
+	    'password' => $password,
+	    'action' => 'GetOrders',
+	    'limitnum' => '1',
+	    'responsetype' => 'json',
+	);
+
+	// Call the API
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+	$response = curl_exec($ch);
+	if (curl_error($ch)) {
+	    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+	}
+	curl_close($ch);
+
+	// Decode response
+	$results = json_decode($response, true);
+
+	// reorder the orders because whmcs is retarded
+	$orders = array_reverse($results['orders']['order']);
+	
+	foreach($orders as $order){
+		// check if existing or new order
+		$query      			= $conn->query("SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' ");
+    	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
+
+    	// generate data for orders and commissions
+    	// get the upline record
+		$query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$order['userid']."' ");
+		$upline     = $query->fetch(PDO::FETCH_ASSOC);
+
+		// is this the first order from this customer
+		$query      			= $conn->query("SELECT `id` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
+		$existing_customer     	= $query->fetch(PDO::FETCH_ASSOC);
+		if(isset($existing_customer['id'])){
+			$first_order = 'no';
+		}else{
+			$first_order = 'yes';
+		}
+
+		// search for business builder pack and remove it from commission
+		$remove_business_builder_pack = false;
+		foreach($order['lineitems']['lineitem'] as $line_item){
+            $line_item['order_details']     = whmcs_order_to_product($line_item['relid']);
+
+            if($line_item['order_details']['product_id'] == 2){
+            	$remove_business_builder_pack = true;
+            }
+        }
+
+        // remove commissions for business builder pack - its the law
+        if($remove_business_builder_pack == true){
+        	$commission_amount = $order['amount'] - 40.00;
+        }else{
+        	$commission_amount = $order['amount'];
+        }
+
+        // calculate commissions - first_order == yes gets a 20% additional rreward
+        if($first_order == 'yes'){
+			$commission 			= ($commission_amount / 100 * 25);
+			$commission_upline 		= ($commission_amount / 100 * 5);
+		}else{
+			$commission 			= ($commission_amount / 100 * 5);
+			$commission_upline 		= ($commission_amount / 100 * 5);
+		}
+
+		// make it human readable
+		$commission = number_format($commission, 2, '.', '');
+
+    	if(!isset($existing_order['id'])){
+    		// new order, process it
+    		console_output("ID: ".$order['id']." | ".$order['ordernum'].' '.$order['name']);
+
+    		// add the order to orders
+    		$insert = $conn->exec("INSERT INTO `orders` 
+		        (`added`,`order_id`,`order_num`,`user_id`,`amount`,`commission_amount`,`invoice_id`,`paymentstatus`,`upline_id`,`first_order`,`commission`)
+		        VALUE
+		        ('".time()."',
+		        '".$order['id']."',
+		        '".$order['ordernum']."',
+		        '".$order['userid']."',
+		        '".$order['amount']."',
+		        '".$commission_amount."',
+		        '".$order['invoiceid']."',
+		        '".$order['paymentstatus']."',
+		        '".$upline['upline_id']."',
+		        '".$first_order."',
+		        '".$commission."'
+		    )");
+    	}else{
+    		// update payment status for each order
+    		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `id` = '".$existing_order['id']."' ");
+
+    		// add the order to commissions if marked as paid
+		    if($order['paymentstatus'] == 'Paid'){
+		    	// get upline details for working out commissions
+		    	
+		    	// upline 1
+    			$query      	= $conn->query("SELECT `id`,`upline_id`,`promoter_qualified` FROM `users` WHERE `id` = '".$existing_order['upline_id']."' ");
+    			$upline_1     	= $query->fetch(PDO::FETCH_ASSOC);
+
+    			// check if upline os qualified
+		    	if($upline_1['promoter_qualified'] == 'yes'){
+		    		$qualified = 'yes';
+		    	}else{
+		    		$qualified = 'no';
+		    	}
+
+		    	// insert record
+	    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+			        VALUE
+			        ('".time()."',
+			        '".$upline_1['id']."',
+			        '".$order['userid']."',
+			        '".$commission."',
+			        '".$existing_order['id']."',
+			        '".$qualified."'
+			    )");
+
+
+			    // upline 2
+			    if($upline_1['upline_id'] != 0){
+	    			$query      	= $conn->query("SELECT `id`,`upline_id`,`promoter_qualified` FROM `users` WHERE `id` = '".$upline_1['upline_id']."' ");
+	    			$upline_2     	= $query->fetch(PDO::FETCH_ASSOC);
+
+	    			// check if upline os qualified
+			    	if($upline_2['promoter_qualified'] == 'yes'){
+			    		$qualified = 'yes';
+			    	}else{
+		    			$qualified = 'no';
+			    	}
+
+			    	// insert record
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_2['id']."',
+				        '".$order['userid']."',
+				        '".$commission_upline."',
+				        '".$existing_order['id']."',
+			        	'".$qualified."'
+				    )");
+		    	}
+
+		    	// upline 3
+			    if($upline_2['upline_id'] != 0){
+	    			$query      	= $conn->query("SELECT `id`,`upline_id`,`promoter_qualified` FROM `users` WHERE `id` = '".$upline_2['upline_id']."' ");
+	    			$upline_3     	= $query->fetch(PDO::FETCH_ASSOC);
+
+	    			// check if upline os qualified
+			    	if($upline_3['promoter_qualified'] == 'yes'){
+			    		$qualified = 'yes';
+			    	}else{
+		    			$qualified = 'no';
+			    	}
+
+			    	// insert record
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_3['id']."',
+				        '".$order['userid']."',
+				        '".$commission_upline."',
+				        '".$existing_order['id']."',
+			        	'".$qualified."'
+				    )");
+		    	}
+
+		    	// upline 4
+			    if($upline_3['upline_id'] != 0){
+	    			$query      	= $conn->query("SELECT `id`,`upline_id`,`promoter_qualified` FROM `users` WHERE `id` = '".$upline_3['upline_id']."' ");
+	    			$upline_4     	= $query->fetch(PDO::FETCH_ASSOC);
+
+	    			// check if upline os qualified
+			    	if($upline_4['promoter_qualified'] == 'yes'){
+			    		$qualified = 'yes';
+			    	}else{
+		    			$qualified = 'no';
+			    	}
+
+			    	// insert record
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_4['id']."',
+				        '".$order['userid']."',
+				        '".$commission_upline."',
+				        '".$existing_order['id']."',
+			        	'".$qualified."'
+				    )");
+		    	}
+
+		    	// upline 5
+			    if($upline_4['upline_id'] != 0){
+	    			$query      	= $conn->query("SELECT `id`,`upline_id`,`promoter_qualified` FROM `users` WHERE `id` = '".$upline_4['upline_id']."' ");
+	    			$upline_5     	= $query->fetch(PDO::FETCH_ASSOC);
+
+	    			// check if upline os qualified
+			    	if($upline_5['promoter_qualified'] == 'yes'){
+			    		$qualified = 'yes';
+			    	}else{
+		    			$qualified = 'no';
+			    	}
+
+			    	// insert record
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_5['id']."',
+				        '".$order['userid']."',
+				        '".$commission_upline."',
+				        '".$existing_order['id']."',
+			        	'".$qualified."'
+				    )");
+		    	}
+
+		    	// upline 6
+			    if($upline_5['upline_id'] != 0){
+	    			$query      	= $conn->query("SELECT `id`,`upline_id`,`promoter_qualified` FROM `users` WHERE `id` = '".$upline_5['upline_id']."' ");
+	    			$upline_6    	= $query->fetch(PDO::FETCH_ASSOC);
+
+	    			// check if upline os qualified
+			    	if($upline_6['promoter_qualified'] == 'yes'){
+			    		$qualified = 'yes';
+			    	}else{
+		    			$qualified = 'no';
+			    	}
+
+			    	// insert record
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_6['id']."',
+				        '".$order['userid']."',
+				        '".$commission_upline."',
+				        '".$existing_order['id']."',
+			        	'".$qualified."'
+				    )");
+		    	}
+
+		    	// upline 7
+			    if($upline_6['upline_id'] != 0){
+	    			$query      	= $conn->query("SELECT `id`,`upline_id`,`promoter_qualified` FROM `users` WHERE `id` = '".$upline_6['upline_id']."' ");
+	    			$upline_7    	= $query->fetch(PDO::FETCH_ASSOC);
+
+	    			// check if upline os qualified
+			    	if($upline_7['promoter_qualified'] == 'yes'){
+			    		$qualified = 'yes';
+			    	}else{
+		    			$qualified = 'no';
+			    	}
+
+			    	// insert record
+		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        VALUE
+				        ('".time()."',
+				        '".$upline_7['id']."',
+				        '".$order['userid']."',
+				        '".$commission_upline."',
+				        '".$existing_order['id']."',
+			        	'".$qualified."'
+				    )");
+		    	}
+	    	}
+    	}
+	}
+
+	// clean up random bugs
+	$query      	= $conn->query("SELECT `id` FROM `users` ");
+    $users     		= $query->fetchAll(PDO::FETCH_ASSOC);
+    foreach($users as $user){
+    	$query      			= $conn->query("SELECT `id` FROM `commissions` WHERE `user_id` = '".$user['id']."' AND `customer_id` = '".$user['id']."' ");
+    	$commissions     		= $query->fetchAll(PDO::FETCH_ASSOC);
+
+    	foreach($commissions as $commission){
+    		$delete = $conn->exec("DELETE FROM `commissions` WHERE `id` = '".$commission['id']."' ");
+    	}
+    }
+
+	console_output("Finished.");
+}
