@@ -563,8 +563,8 @@ if($task == 'get_orders'){
 	console_output("Finished.");
 }
 
-if($task == 'get_orders2'){
-	console_output("Get WHMCS Orders.");
+if($task == 'get_client_products'){
+	console_output("Get WHMCS User Products.");
 
 	// get all whmcs users
 	$whmcsUrl = "https://ublo.club/billing/";
@@ -575,7 +575,8 @@ if($task == 'get_orders2'){
 	$postfields = array(
 	    'username' => $username,
 	    'password' => $password,
-	    'action' => 'GetOrders',
+	    'action' => 'GetClientsProducts',
+	    'clientid' => '1',
 	    'limitnum' => '10000',
 	    'responsetype' => 'json',
 	);
