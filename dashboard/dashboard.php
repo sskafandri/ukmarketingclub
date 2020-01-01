@@ -1230,7 +1230,6 @@ desired effect
 										<table id="example" class="display" style="width:100%">
 									        <thead>
 									            <tr>
-									            	<th class="no-sort" width="1px">ID</th>
 									                <th class="no-sort" width="1px">
 									                	<input type="checkbox" id="checkAll" />
 									                </th>
@@ -1239,14 +1238,12 @@ desired effect
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-									                <th class="no-sort" width="1px">Joined</th>
 									                <th class="no-sort" width="1px">Expires</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </thead>
 									        <tfoot>
 									            <tr>
-									            	<th class="no-sort" width="1px">ID</th>
 									                <th class="no-sort" width="1px">
 									                	<input type="checkbox" id="checkAll" />
 									                </th>
@@ -1255,7 +1252,6 @@ desired effect
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-									                <th class="no-sort" width="1px">Joined</th>
 									                <th class="no-sort" width="1px">Expires</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
@@ -1887,7 +1883,6 @@ desired effect
 									<table id="example" class="display" style="width:100%">
 								        <thead>
 								            <tr>
-								            	<th class="no-sort" width="1px">ID</th>
 								                <th class="no-sort" width="1px">
 								                	<input type="checkbox" id="checkAll" />
 								                </th>
@@ -1897,14 +1892,12 @@ desired effect
 								                <th style="white-space: nowrap;">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-								                <th style="white-space: nowrap;" width="1px">Joined</th>
 								                <th style="white-space: nowrap;" width="1px">Expires</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 								            </tr>
 								        </thead>
 								        <tfoot>
 								            <tr>
-								            	<th class="no-sort" width="1px">ID</th>
 								                <th class="no-sort" width="1px">
 								                	<input type="checkbox" id="checkAll" />
 								                </th>
@@ -1914,7 +1907,6 @@ desired effect
 								                <th style="white-space: nowrap;">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-								                <th style="white-space: nowrap;" width="1px">Joined</th>
 								                <th style="white-space: nowrap;" width="1px">Expires</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 								            </tr>
@@ -2395,6 +2387,13 @@ desired effect
 			    // `d` is the original data object for the row
 			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
 			        '<tr>'+
+			            '<td width="150px" valign="top">Additional Details</td>'+
+			            '<td valign="top">'+
+			            	'<strong>User ID:</strong> '+d.id+' <br>'+
+			            	'<strong>Join Date:</strong> '+d.join_date+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			        '<tr>'+
 			            '<td width="150px" valign="top">Contact Details</td>'+
 			            '<td valign="top">'+
 			            	'<strong>Email:</strong> '+d.email+' <br>'+
@@ -2434,7 +2433,6 @@ desired effect
 						"emptyTable": "No members found."
 					},
 			        "columns": [
-			        	{ "data": "id"},
 			        	{ "data": "checkbox"},
 			            {
 			                "className":      'details-control',
@@ -2446,7 +2444,6 @@ desired effect
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
 			            { "data": "upline" },
-			            { "data": "join_date"},
 			            { "data": "expire_date" },
 			            { "data": "actions" }
 			        ],
@@ -2479,6 +2476,13 @@ desired effect
 			function format ( d ) {
 			    // `d` is the original data object for the row
 			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
+			        '<tr>'+
+			            '<td width="150px" valign="top">Additional Details</td>'+
+			            '<td valign="top">'+
+			            	'<strong>User ID:</strong> '+d.id+' <br>'+
+			            	'<strong>Join Date:</strong> '+d.join_date+' <br>'+
+			            '</td>'+
+			        '</tr>'+
 			        '<tr>'+
 			            '<td width="150px" valign="top">Contact Details</td>'+
 			            '<td valign="top">'+
@@ -2514,7 +2518,6 @@ desired effect
 						"emptyTable": "No members found."
 					},
 			        "columns": [
-			        	{ "data": "id"},
 			        	{ "data": "checkbox"},
 			            {
 			                "className":      'details-control',
@@ -2527,7 +2530,6 @@ desired effect
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
 			            { "data": "upline" },
-			            { "data": "join_date"},
 			            { "data": "expire_date" },
 			            { "data": "actions" }
 			        ],
