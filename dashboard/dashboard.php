@@ -1173,47 +1173,6 @@ desired effect
 
                 <!-- Main content -->
 				<section class="content">
-
-					<!-- customer_add -->
-					<form action="actions.php?a=customer_add" class="form-horizontal form-bordered" method="post">
-						<div class="modal fade" id="new_customer_modal" role="dialog">
-						    <div class="modal-dialog">
-						        <div class="modal-content">
-						            <div class="modal-header">
-						                <button type="button" class="close" data-dismiss="modal">&times;</button>
-						                <h4 class="modal-title">Add New Member</h4>
-						            </div>
-						            <div class="modal-body">
-						                <div class="row">
-									    	<div class="col-lg-12">
-											    <div class="form-group">
-													<label class="col-md-2 control-label" for="first_name">Name</label>
-													<div class="col-md-5">
-														<input type="text" class="form-control" id="first_name" name="first_name" placeholder="Joe">
-													</div>
-													<div class="col-md-5">
-														<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Bloggs">
-													</div>
-												</div>
-
-												<div class="form-group">
-													<label class="col-md-2 control-label" for="email">Email</label>
-													<div class="col-md-10">
-														<input type="text" class="form-control" id="email" name="email" value="" placeholder="joe.bloggs@gmail.com">
-													</div>
-												</div>
-											</div>
-										</div>
-						            </div>
-						            <div class="modal-footer">
-						                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						                <button type="submit" class="btn btn-success">Add Member</button>
-						            </div>
-						        </div>
-						    </div>
-						</div>
-					</form>
-
 					<!-- customer multi update -->
 					<form id="customer_update_multi" action="actions.php?a=customer_multi_options" method="post">
 						<div class="row">
@@ -1264,7 +1223,7 @@ desired effect
 			              					View All Members
 			              				</h3>
 			              				<div class="pull-right">
-			              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button>
+			              					<!-- <button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button> -->
 										</div>
 			            			</div>
 									<div class="box-body">
@@ -1276,12 +1235,12 @@ desired effect
 									                </th>
 									                <th class="no-sort" width="1px">Expand</th>
 									                <th class="no-sort" width="1px">ID</th>
-									                <th class="no-sort" width="1px">Joined</th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
+									                <th class="no-sort" width="1px">Joined</th>
+									                <th class="no-sort" width="1px">Expires</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </thead>
@@ -1292,12 +1251,12 @@ desired effect
 									                </th>
 									                <th class="no-sort" width="1px">Expand</th>
 									                <th class="no-sort" width="1px">ID</th>
-									                <th class="no-sort" width="1px">Joined</th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
+									                <th class="no-sort" width="1px">Joined</th>
+									                <th class="no-sort" width="1px">Expires</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </tfoot>
@@ -2483,11 +2442,11 @@ desired effect
 			                "defaultContent": ''
 			            },
 			            { "data": "id"},
-			            { "data": "join_date"},
 			            { "data": "status"},
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
 			            { "data": "upline" },
+			            { "data": "join_date"},
 			            { "data": "expire_date" },
 			            { "data": "actions" }
 			        ],
