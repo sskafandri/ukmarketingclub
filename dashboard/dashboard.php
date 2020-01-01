@@ -1164,7 +1164,7 @@ desired effect
                 <div id="status_message"></div>   
                             	
                 <section class="content-header">
-                    <h1>View All Members <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - View All Members <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
                         <li class="active">View All Members</li>
