@@ -243,6 +243,10 @@ if($task == 'sync_databases'){
 
 	// Decode response
 	$results = json_decode($response, true);
+
+	debug($results);
+
+	die();
 	
 	foreach($results['clients']['client'] as $user){
 		console_output("ID: ".$user['id']."| ".$user['firstname'].' '.$user['lastname']." - Updated");
@@ -252,6 +256,7 @@ if($task == 'sync_databases'){
 		$update = $conn->exec("UPDATE `users` SET `first_name` = '".addslashes($user['firstname'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `email` = '".addslashes($user['email'])."' WHERE `id` = '".$user['id']."' ");
+		$update = $conn->exec("UPDATE `users` SET `tel` = '".addslashes($user['email'])."' WHERE `id` = '".$user['id']."' ");
 
 		console_output("-> Getting User Products");
 
