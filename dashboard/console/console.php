@@ -288,9 +288,19 @@ if($task == 'sync_databases'){
 			// find the right product
 			if($product['pid'] == 1){
 				console_output(" - -> Qualifying Product Found.");
-			}
+				console_output(" - -> Status: ".$product['status']);
+				console_output(" - -> Renew Date: ".$product['nextduedate']);
 
-			break;
+				// calculate days remaining
+				$now 			= time();
+				$your_date 		= strtotime($product['nextduedate']);
+				$datediff 		= $now - $your_date;
+				$remaining_days = round($datediff / (60 * 60 * 24));
+
+				console_output(" - -> Remaining Days: ".$remaining_days." days");
+
+				break;
+			}
 		}
 
 
