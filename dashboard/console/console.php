@@ -289,6 +289,8 @@ if($task == 'sync_databases'){
 			if($product['pid'] == 1){
 				console_output(" - -> Qualifying Product Found.");
 			}
+
+			break;
 		}
 
 
