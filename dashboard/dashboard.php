@@ -1230,11 +1230,11 @@ desired effect
 										<table id="example" class="display" style="width:100%">
 									        <thead>
 									            <tr>
+									            	<th class="no-sort" width="1px">ID</th>
 									                <th class="no-sort" width="1px">
 									                	<input type="checkbox" id="checkAll" />
 									                </th>
 									                <th class="no-sort" width="1px">Expand</th>
-									                <th class="no-sort" width="1px">ID</th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
@@ -1246,11 +1246,11 @@ desired effect
 									        </thead>
 									        <tfoot>
 									            <tr>
+									            	<th class="no-sort" width="1px">ID</th>
 									                <th class="no-sort" width="1px">
 									                	<input type="checkbox" id="checkAll" />
 									                </th>
 									                <th class="no-sort" width="1px">Expand</th>
-									                <th class="no-sort" width="1px">ID</th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
@@ -1880,42 +1880,42 @@ desired effect
 		              					Table Downline
 		              				</h3>
 		              				<div class="pull-right">
-		              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button>
+		              					<!-- <button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button> -->
 									</div>
 		            			</div>
 								<div class="box-body">
 									<table id="example" class="display" style="width:100%">
 								        <thead>
 								            <tr>
+								            	<th class="no-sort" width="1px">ID</th>
 								                <th class="no-sort" width="1px">
 								                	<input type="checkbox" id="checkAll" />
 								                </th>
 								                <th class="no-sort" width="1px">Expand</th>
-								                <th class="no-sort" width="1px">ID</th>
-								                <th style="white-space: nowrap;" width="1px">Joined</th>
 								                <th style="white-space: nowrap;" width="1px">Status</th>
 								                <th style="white-space: nowrap;" width="1px">Level</th>
 								                <th style="white-space: nowrap;">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-								                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
+								                <th style="white-space: nowrap;" width="1px">Joined</th>
+								                <th style="white-space: nowrap;" width="1px">Expires</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 								            </tr>
 								        </thead>
 								        <tfoot>
 								            <tr>
+								            	<th class="no-sort" width="1px">ID</th>
 								                <th class="no-sort" width="1px">
 								                	<input type="checkbox" id="checkAll" />
 								                </th>
 								                <th class="no-sort" width="1px">Expand</th>
-								                <th class="no-sort" width="1px">ID</th>
-								                <th style="white-space: nowrap;" width="1px">Joined</th>
 								                <th style="white-space: nowrap;" width="1px">Status</th>
 								                <th style="white-space: nowrap;" width="1px">Level</th>
 								                <th style="white-space: nowrap;">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-								                <th class="no-sort" style="white-space: nowrap;" width="100px">Expires</th>
+								                <th style="white-space: nowrap;" width="1px">Joined</th>
+								                <th style="white-space: nowrap;" width="1px">Expires</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 								            </tr>
 								        </tfoot>
@@ -2434,6 +2434,7 @@ desired effect
 						"emptyTable": "No members found."
 					},
 			        "columns": [
+			        	{ "data": "id"},
 			        	{ "data": "checkbox"},
 			            {
 			                "className":      'details-control',
@@ -2441,7 +2442,6 @@ desired effect
 			                "data":           null,
 			                "defaultContent": ''
 			            },
-			            { "data": "id"},
 			            { "data": "status"},
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
@@ -2514,6 +2514,7 @@ desired effect
 						"emptyTable": "No members found."
 					},
 			        "columns": [
+			        	{ "data": "id"},
 			        	{ "data": "checkbox"},
 			            {
 			                "className":      'details-control',
@@ -2521,13 +2522,12 @@ desired effect
 			                "data":           null,
 			                "defaultContent": ''
 			            },
-			            { "data": "id"},
-			            { "data": "join_date"},
 			            { "data": "status"},
 			            { "data": "level"},
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
 			            { "data": "upline" },
+			            { "data": "join_date"},
 			            { "data": "expire_date" },
 			            { "data": "actions" }
 			        ],
