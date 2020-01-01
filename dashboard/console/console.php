@@ -294,7 +294,7 @@ if($task == 'sync_databases'){
 				// calculate days remaining
 				$now 			= time();
 				$your_date 		= strtotime($product['nextduedate']);
-				$datediff 		= $now - $your_date;
+				$datediff 		= $your_date - $now;
 				$remaining_days = round($datediff / (60 * 60 * 24));
 
 				console_output(" - -> Remaining Days: ".$remaining_days." days");
