@@ -2447,7 +2447,7 @@ desired effect
 			            { "data": "expire_date" },
 			            { "data": "actions" }
 			        ],
-			        "order": [[4, 'asc']]
+			        "order": [[3, 'asc']]
 			    } );
 			     
 			    // Add event listener for opening and closing details
@@ -2533,7 +2533,7 @@ desired effect
 			            { "data": "expire_date" },
 			            { "data": "actions" }
 			        ],
-			        "order": [[4, "asc" ], [ 5, "asc" ]]
+			        "order": [[3, "asc" ], [ 4, "asc" ]]
 			    } );
 			     
 			    // Add event listener for opening and closing details
