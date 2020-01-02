@@ -2345,7 +2345,6 @@ desired effect
 			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
 			            	'<strong>Order ID:</strong> '+d.int_order_id+' <br>'+
 			            	'<strong>Order Date:</strong> '+d.order_date+' <br>'+
-			            	'<strong>Release Date:</strong> '+d.release_date+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';
