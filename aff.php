@@ -26,4 +26,7 @@ $user      	 	= $query->fetch(PDO::FETCH_ASSOC);
 $query      	= $conn->query("SELECT `id` FROM `whmcs`.`tblaffiliates` WHERE `clientid` = '".$user['id']."' ");
 $affiliate 		= $query->fetch(PDO::FETCH_ASSOC);
 
+debug($affiliate);
+
+echo "WHMCS Affiliate URL: https://ublo.club/billing/aff.php?aff=".$affiliate['id'];
 ?>
