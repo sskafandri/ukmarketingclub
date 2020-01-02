@@ -1411,7 +1411,7 @@ desired effect
 												                <th class="no-sort" width="1px">
 												                	<input type="checkbox" id="checkAll" />
 												                </th>
-												                <th class="no-sort" width="1px">Expand</th>
+												                <th class="no-sort" width="1px">ID</th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort" width="1px">Qualified</th>
 												                <th style="white-space: nowrap;">Release Date</th>
@@ -1424,7 +1424,7 @@ desired effect
 												                <th class="no-sort" width="1px">
 												                	<input type="checkbox" id="checkAll" />
 												                </th>
-												                <th class="no-sort" width="1px">Expand</th>
+												                <th class="no-sort" width="1px">ID</th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort" width="1px">Qualified</th>
 												                <th style="white-space: nowrap;">Release Date</th>
@@ -2378,19 +2378,14 @@ desired effect
 					},
 			        "columns": [
 			        	{ "data": "checkbox"},
-			            {
-			                "className":      'details-control',
-			                "orderable":      false,
-			                "data":           null,
-			                "defaultContent": ''
-			            },
+			        	{ "data": "id"},
 			            { "data": "status"},
 			            { "data": "qualified" },
 			            { "data": "release_date" },
 			            { "data": "order_id" },
 			            { "data": "actions" }
 			        ],
-			        "order": [[4, 'asc']]
+			        "order": [[3, 'asc']]
 			    } );
 			     
 			    // Add event listener for opening and closing details
