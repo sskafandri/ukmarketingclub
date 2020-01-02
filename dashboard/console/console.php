@@ -597,7 +597,7 @@ if($task == 'get_orders'){
 				    )");
 		    	}
 	    	}else{
-	    		console_output("-> Order has not been paid yet");
+	    		console_output("-> Order ID: ".$existing_order['id']." has not been paid yet");
 	    	}
     	}
 	}
