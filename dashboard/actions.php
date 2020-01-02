@@ -5089,7 +5089,7 @@ function ajax_member_commissions()
 		}elseif($commission['status'] != 'paid'){
 			$output[$count]['actions'] 						.= '
 				<span class="hidden-xs">
-					<a title="Reset Commission" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be removed and auto recalculated in a few minutes. Are you sure?\')" href="actions.php?a=commission_reset&id='.$commission['id'].'"><i class="fa fa-recycle"></i></a>
+					<a title="Reset Commission" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be reset. Are you sure?\')" href="actions.php?a=commission_reset&id='.$commission['id'].'"><i class="fa fa-reset"></i></a>
 				</span>
 			';
 		}else{
