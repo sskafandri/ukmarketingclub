@@ -1353,7 +1353,7 @@ desired effect
 														<?php } ?>
 
 														<div class="form-group">
-															<label class="col-md-2 control-label" for="account_status">Account Status</label>
+															<label class="col-md-2 control-label" for="account_status">Status</label>
 															<div class="col-md-10">
 																<span class="vcenter">
 																	<?php 
