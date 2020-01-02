@@ -2289,7 +2289,6 @@ desired effect
 			$(document).ready(function() {
 			    var table = $('#example').DataTable( {
 			        "ajax": "actions.php?a=ajax_members",
-			        "responsive": true,
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
