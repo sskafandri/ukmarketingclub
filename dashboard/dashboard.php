@@ -1920,6 +1920,21 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
+							<div class="box box-warning">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Pending
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['approved']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
 							<div class="box box-success">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
@@ -1959,21 +1974,6 @@ desired effect
 								<div class="box-body">
 									<center>
 										<h3>£<?php echo $commissions['commissions']['rejected']; ?></h3>
-									</center>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-2 col-xs-6">
-							<div class="box box-primary">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Orders
-		              				</h3>
-		            			</div>
-								<div class="box-body">
-									<center>
-										<h3><?php echo $commissions['commissions']['orders']; ?></h3>
 									</center>
 								</div>
 							</div>
