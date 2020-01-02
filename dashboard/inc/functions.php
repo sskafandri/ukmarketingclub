@@ -2,7 +2,7 @@
 
 function get_commissions($member_id = ''){
     global $conn, $global_settings, $whmcs;
-    
+
     if(empty($member_id)){
         $member_id              = $_SESSION['account']['id'];
     }
@@ -12,6 +12,7 @@ function get_commissions($member_id = ''){
     // set commissions default
     $data['commissions']['total']               = '0';
     $data['commissions']['pending']             = '0';
+    $data['commissions']['approved']            = '0';
     $data['commissions']['paid']                = '0';
     $data['commissions']['rejected']            = '0';
     $data['commissions']['missed']              = '0';
@@ -28,6 +29,9 @@ function get_commissions($member_id = ''){
         if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
             $data['commissions']['pending']             = $data['commissions']['pending'] + $commission['amount'];
         }
+        if($commission['status'] == 'approved' && $commission['qualified'] == 'yes'){
+            $data['commissions']['approved']             = $data['commissions']['approved'] + $commission['amount'];
+        }
         if($commission['status'] == 'paid' && $commission['qualified'] == 'yes'){
             $data['commissions']['paid']                = $data['commissions']['paid'] + $commission['amount'];
         }
@@ -42,6 +46,7 @@ function get_commissions($member_id = ''){
     // clean up commissions
     $data['commissions']['total']                       = number_format($data['commissions']['total'], 2);
     $data['commissions']['pending']                     = number_format($data['commissions']['pending'], 2);
+    $data['commissions']['approved']                    = number_format($data['commissions']['approved'], 2);
     $data['commissions']['paid']                        = number_format($data['commissions']['paid'], 2);
     $data['commissions']['rejected']                    = number_format($data['commissions']['rejected'], 2);
     $data['commissions']['missed']                      = number_format($data['commissions']['missed'], 2);

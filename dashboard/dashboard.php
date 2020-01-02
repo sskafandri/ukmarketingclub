@@ -653,21 +653,6 @@ desired effect
 							</div>
 						</div>
 
-						<!-- 
-						<div class="col-lg-2 col-xs-6">
-							<div class="small-box bg-teal">
-								<div class="inner">
-									<h3><?php echo $globals['cdn_streams']['total']; ?></h3>
-									<p>Premium Streams</p>
-								</div>
-								<div class="icon">
-									<i class="fa fa-cloud"></i>
-								</div>
-								<a href="?c=cdn_streams" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-						-->
-
 						<div class="col-lg-2 col-xs-6">
 							<div class="small-box bg-maroon">
 								<div class="inner">
@@ -695,10 +680,10 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
-							<div class="small-box bg-yellow">
+							<div class="small-box bg-teal">
 								<div class="inner">
-									<h3>£<?php echo $commissions['commissions']['rejected']; ?></h3>
-									<p>Rejected Commissions</p>
+									<h3>£<?php echo $commissions['commissions']['missed']; ?></h3>
+									<p>Missed Commissions</p>
 								</div>
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
@@ -708,10 +693,10 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
-							<div class="small-box bg-teal">
+							<div class="small-box bg-yellow">
 								<div class="inner">
-									<h3>£<?php echo $commissions['commissions']['missed']; ?></h3>
-									<p>Missed Commissions</p>
+									<h3>£<?php echo $commissions['commissions']['rejected']; ?></h3>
+									<p>Rejected Commissions</p>
 								</div>
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
@@ -1920,21 +1905,6 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
-							<div class="box box-success">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Paid
-		              				</h3>
-		            			</div>
-								<div class="box-body">
-									<center>
-										<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
-									</center>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-2 col-xs-6">
 							<div class="box box-warning">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
@@ -1944,6 +1914,21 @@ desired effect
 								<div class="box-body">
 									<center>
 										<h3>£<?php echo $commissions['commissions']['pending']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="box box-success">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Paid
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
 									</center>
 								</div>
 							</div>
