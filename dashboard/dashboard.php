@@ -131,7 +131,15 @@ $account_details = account_details($_SESSION['account']['id']);
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
 	<style>
-		.vcenter {
+		td.details-control {
+		    background: url('img/details_open.png') no-repeat center center;
+		    cursor: pointer;
+		}
+		tr.shown td.details-control {
+		    background: url('img/details_close.png') no-repeat center center;
+		}
+
+		#vcenter {
 			display: inline-block;
 			vertical-align: middle;
 			float: none;
@@ -1163,16 +1171,6 @@ desired effect
         		global $conn, $globals, $global_settings, $account_details, $site;
 			?>
 
-			<style>
-				td.details-control {
-				    background: url('img/details_open.png') no-repeat center center;
-				    cursor: pointer;
-				}
-				tr.shown td.details-control {
-				    background: url('img/details_close.png') no-repeat center center;
-				}
-			</style>
-
             <div class="content-wrapper">
 				
                 <div id="status_message"></div>   
@@ -1416,27 +1414,23 @@ desired effect
 										<div class="col-lg-12">
 											<section class="panel">
 												<div class="panel-body">
-													<table id="example" class="display responsive nowrap" style="width:100%">
+													<table id="member_commissions" class="display responsive nowrap" style="width:100%">
 												        <thead>
 												            <tr>
-												                <th width="1px">ID</th>
+												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort" width="1px">Qualified</th>
-												                <th class="no-sort" style="white-space: nowrap;">Order Date</th>
 												                <th class="no-sort" style="white-space: nowrap;">Release Date</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="1px">Order ID</th>
 												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 												            </tr>
 												        </thead>
 												        <tfoot>
 												            <tr>
-												                <th class="no-sort" width="1px">ID</th>
+												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort" width="1px">Qualified</th>
-												                <th class="no-sort" style="white-space: nowrap;">Order Date</th>
 												                <th class="no-sort" style="white-space: nowrap;">Release Date</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="1px">Order ID</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 												            </tr>
 												        </tfoot>
 												    </table>
@@ -2351,6 +2345,8 @@ desired effect
 			            '<td width="150px" valign="top">Additional Details</td>'+
 			            '<td valign="top">'+
 			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
+			            	'<strong>Order ID:</strong> '+d.int_order_id+' <br>'+
+			            	'<strong>Order Date:</strong> '+d.order_date+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';
@@ -2370,7 +2366,7 @@ desired effect
 			});
 			 
 			$(document).ready(function() {
-			    var table = $('#example').DataTable( {
+			    var table = $('#member_commissions').DataTable( {
 			        "ajax": "actions.php?a=ajax_member_commissions&id=<?php echo get('id'); ?>",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
@@ -2382,19 +2378,22 @@ desired effect
 						"emptyTable": "No commissions found."
 					},
 			        "columns": [
-			        	{ "data": "id"},
+			        	{
+			                "className":      'details-control',
+			                "orderable":      false,
+			                "data":           "",
+			                "defaultContent": ''
+			            },
 			            { "data": "status"},
 			            { "data": "qualified" },
-			            { "data": "order_date" },
 			            { "data": "release_date" },
-			            { "data": "order_id" },
 			            { "data": "actions" }
 			        ],
 			        "order": [[0, 'desc']]
 			    } );
 			     
 			    // Add event listener for opening and closing details
-			    $('#example tbody').on('click', 'td.details-control', function () {
+			    $('#member_commissions tbody').on('click', 'td.details-control', function () {
 			        var tr = $(this).closest('tr');
 			        var row = table.row( tr );
 			 
