@@ -245,7 +245,7 @@ if($task == 'sync_databases'){
 	$results = json_decode($response, true);
 	
 	foreach($results['clients']['client'] as $user){
-		console_output("ID: ".$user['id']."| ".$user['firstname'].' '.$user['lastname']." - Updated");
+		console_output("ID: ".$user['id']." | ".$user['firstname'].' '.$user['lastname']." - Updated");
 
 		$update = $conn->exec("UPDATE `users` SET `status` = '".strtolower($user['status'])."' WHERE `id` = '".$user['id']."' ");
 
@@ -924,6 +924,74 @@ if($task == 'get_client_products'){
     		$delete = $conn->exec("DELETE FROM `commissions` WHERE `id` = '".$commission['id']."' ");
     	}
     }
+
+	console_output("Finished.");
+}
+
+if($task == 'activate_affiliates'){
+	console_output("Activating WHMCS Affiliates.");
+
+	// get all whmcs users
+	$whmcsUrl = "https://ublo.club/billing/";
+	$username = "api_user";
+	$password = md5("admin1372");
+
+	// Set post values
+	$postfields = array(
+	    'username' => $username,
+	    'password' => $password,
+	    'action' => 'GetClients',
+	    'responsetype' => 'json',
+	);
+
+	// Call the API
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+	$response = curl_exec($ch);
+	if (curl_error($ch)) {
+	    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+	}
+	curl_close($ch);
+
+	// Decode response
+	$results = json_decode($response, true);
+	
+	foreach($results['clients']['client'] as $user){
+		console_output("Activating ID: ".$user['id']);
+
+		// Set post values
+		$postfields = array(
+		    'username' => $username,
+		    'password' => $password,
+		    'action' => 'AffiliateActivate',
+		    'clientid' => $user['id'],
+		    'responsetype' => 'json',
+		);
+
+		// Call the API
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+		$response = curl_exec($ch);
+		if (curl_error($ch)) {
+		    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+		}
+		curl_close($ch);
+
+		// Decode response
+		$results = json_decode($response, true);
+	}
 
 	console_output("Finished.");
 }
