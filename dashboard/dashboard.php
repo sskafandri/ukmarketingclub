@@ -1819,7 +1819,7 @@ desired effect
 				
 				// work with commissions
 				foreach($commissions as $commission){
-					if($commission['status'] == 'pending'){
+					if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
 						$data['commissions']['pending']				= $data['commissions']['pending'] + $commission['amount'];
 					}
 					if($commission['status'] == 'paid'){
