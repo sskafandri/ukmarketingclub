@@ -496,6 +496,10 @@ switch ($a)
 		commission_approve();
 		break;
 
+	case "commission_approve_all":
+		commission_approve_all();
+		break;
+
 	case "commission_reset":
 		commission_reset();
 		break;
@@ -5859,6 +5863,19 @@ function commission_approve()
 	$update = $conn->exec("UPDATE `commissions` SET `status` = 'approved' WHERE `id` = '".$id."' ");
 	
     status_message('success',"Commission has been manually approved.");
+
+	go($_SERVER['HTTP_REFERER']);
+}
+
+function commission_approve_all()
+{
+	global $conn, $global_settings;
+
+	$member_id = get('id');
+
+	$update = $conn->exec("UPDATE `commissions` SET `status` = 'approved' WHERE `user_id` = '".$id."' ");
+	
+    status_message('success',"All pending commissions have been manually approved.");
 
 	go($_SERVER['HTTP_REFERER']);
 }
