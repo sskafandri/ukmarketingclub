@@ -1333,7 +1333,7 @@ desired effect
 
 				<section class="content">
 					<div class="row">
-						<div class="col-lg-10">
+						<div class="col-lg-12">
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
@@ -1502,48 +1502,6 @@ desired effect
 											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
 										</footer>
 									</form>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-2">
-							<div class="box box-primary">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Customer IPs
-		              				</h3>
-
-									<div class="pull-right">
-		              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_ip_modal">Add IP Address</button>
-									</div>
-								</div>
-								<div class="box-body">
-									<table id="customer_ips" class="table table-bordered table-striped">
-										<thead>
-											<tr>
-												<th class="no-sort" style="white-space: nowrap;">IP</th>
-								                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
-												foreach($customer_ips as $customer_ip) {
-													echo '
-														<tr>
-															<td>
-																'.$customer_ip['ip_address'].'
-															</td>
-															<td style="vertical-align: middle;">
-																<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=customer_ip_delete&customer_ip_id='.$customer_ip['id'].'">
-																	<i class="fa fa-times"></i>
-																</a>
-															</td>
-														</tr>
-													';
-												}
-											?>
-										</tbody>
-									</table>
 								</div>
 							</div>
 						</div>
