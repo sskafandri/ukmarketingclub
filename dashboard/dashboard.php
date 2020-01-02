@@ -1417,18 +1417,20 @@ desired effect
 													<table id="member_commissions" class="display responsive nowrap" style="width:100%">
 												        <thead>
 												            <tr>
-												            	<th class="no-sort hidden-xs" width="1px"></th>
+												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
-												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-												                <th class="no-sort" width="50px">Actions</th>
+												                <th class="no-sort" width="1px">Qualified</th>
+												                <th class="no-sort" style="white-space: nowrap;">Release Date</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 												            </tr>
 												        </thead>
 												        <tfoot>
 												            <tr>
-												            	<th class="no-sort hidden-xs" width="1px"></th>
+												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
-												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-												                <th class="no-sort" width="50px">Actions</th>
+												                <th class="no-sort" width="1px">Qualified</th>
+												                <th class="no-sort" style="white-space: nowrap;">Release Date</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 												            </tr>
 												        </tfoot>
 												    </table>
@@ -2345,7 +2347,6 @@ desired effect
 			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
 			            	'<strong>Order ID:</strong> '+d.int_order_id+' <br>'+
 			            	'<strong>Order Date:</strong> '+d.order_date+' <br>'+
-			            	'<strong>Release Date:</strong> '+d.release_date+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';
