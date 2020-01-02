@@ -1247,7 +1247,6 @@ desired effect
 									                <th class="no-sort" width="1px">
 									                	<input type="checkbox" id="checkAll" />
 									                </th>
-									                <th class="no-sort" width="1px">Expand</th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
@@ -1261,7 +1260,6 @@ desired effect
 									                <th class="no-sort" width="1px">
 									                	<input type="checkbox" id="checkAll" />
 									                </th>
-									                <th class="no-sort" width="1px">Expand</th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
@@ -2311,8 +2309,8 @@ desired effect
 						"emptyTable": "No members found."
 					},
 			        "columns": [
-			        	{ "data": "checkbox"},
-			            {
+			        	{ 
+			        		"data": "checkbox"
 			                "className":      'details-control',
 			                "orderable":      false,
 			                "data":           null,
