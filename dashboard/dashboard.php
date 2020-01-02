@@ -491,7 +491,7 @@ desired effect
 		                </ul>
 		            </li>
 
-                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline'){ ?>
+                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline' || get('c') == 'commissions'){ ?>
                     	<li class="active treeview menu-open">
                     <?php }else{ ?>
                     	<li class="treeview">
@@ -504,7 +504,18 @@ desired effect
 						</a>
 						<ul class="treeview-menu">
 							<!-- <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
-							<?php if(get('c') == 'visual_downline'){ ?>
+							<?php if(get('c') == 'commissions'){ ?>
+		                    	<li class="active">
+		                    <?php }else{ ?>
+		                    	<li>
+		                    <?php } ?>
+		                    	<a href="dashboard.php?c=commissions">
+		                        	<i class="fa fa-gbp"></i> 
+		                        	<span>Commissions</span>
+		                        </a>
+		                    </li>
+
+		                    <?php if(get('c') == 'visual_downline'){ ?>
 		                    	<li class="active">
 		                    <?php }else{ ?>
 		                    	<li>
@@ -1783,6 +1794,77 @@ desired effect
             </div>
         <?php } ?>
 
+        <?php function commissions(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+            
+            	$member_id 				= $_SESSION['account']['id'];
+
+				$member 				= $account_details;
+
+				$query 					= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
+				$commissions 			= $query->fetchAll(PDO::FETCH_ASSOC);
+			?>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>
+                            	
+                <section class="content-header">
+                    <h1>Commissions <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">Commissions</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Commissions
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<div class="row">
+										<div class="col-lg-12">
+											<section class="panel">
+												<div class="panel-body">
+													<table id="my_commissions" class="display responsive nowrap" style="width:100%">
+												        <thead>
+												            <tr>
+												            	<th class="no-sort" width="1px"></th>
+												                <th class="no-sort" width="1px">Status</th>
+												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
+												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
+												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
+												            </tr>
+												        </thead>
+												        <tfoot>
+												            <tr>
+												            	<th class="no-sort" width="1px"></th>
+												                <th class="no-sort" width="1px">Status</th>
+												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
+												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
+												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
+												            </tr>
+												        </tfoot>
+												    </table>
+												</div>
+											</section>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+            </div>
+        <?php } ?>
+
         <?php function staging(){ ?>
         	<?php 
         		global $conn, $global_settings, $account_details, $site;
@@ -2504,6 +2586,89 @@ desired effect
 			     
 			    // Add event listener for opening and closing details
 			    $('#example tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
+			        }
+			    } );
+			} );
+    	</script>
+    <?php } ?>
+
+    <?php if(get('c') == 'commissions') { ?>
+    	<script>
+			/* Formatting function for row details - modify as you need */
+			function format ( d ) {
+			    // `d` is the original data object for the row
+			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
+			        '<tr>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
+			            '<td valign="top" align="left">'+
+			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
+			            	'<strong>Order ID:</strong> '+d.int_order_id+' <br>'+
+			            	'<strong>Order Date:</strong> '+d.order_date+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			    '</table>';
+			}
+
+			$('#checkAll').change(function () {
+			    $('.chk').prop('checked', this.checked);
+			    $('#multi_options_show').removeClass("hidden");
+			});
+
+			$(".chk").change(function () {
+			    if ($(".chk:checked").length == $(".chk").length) {
+			        $('#checkAll').prop('checked', 'checked');
+			    } else {
+			        $('#checkAll').prop('checked', false);
+			    }
+			});
+			 
+			$(document).ready(function() {
+			    var table = $('#my_commissions').DataTable( {
+			        "ajax": "actions.php?a=ajax_my_commissions",
+			        "iDisplayLength": 100,
+			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
+			        "columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No commissions found."
+					},
+			        "columns": [
+			        	{
+			                "className":      'details-control',
+			                "orderable":      false,
+			                "data":           "order_id_hidden",
+			                "defaultContent": ''
+			            },
+			            { "data": "status" },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "qualified"
+			            },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "release_date"
+			            },
+			            { "data": "amount" },
+			        ],
+			        "order": [[0, 'desc']]
+			    } );
+			     
+			    // Add event listener for opening and closing details
+			    $('#my_commissions tbody').on('click', 'td.details-control', function () {
 			        var tr = $(this).closest('tr');
 			        var row = table.row( tr );
 			 
