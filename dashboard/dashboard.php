@@ -1356,22 +1356,10 @@ desired effect
 															<label class="col-md-2 control-label" for="status">Account Status</label>
 															<div class="col-md-4">
 																<select id="status" name="status" class="form-control select2">
-																	<option <?php if($customer['status']=='enabled'){echo"selected";} ?> value="enabled">Enabled</option>
-																	<option <?php if($customer['status']=='disable'){echo"selected";} ?> value="disable">Disabled</option>
-																	<option <?php if($customer['status']=='expired'){echo"selected";} ?> value="expired">Expired</option>
-																	<option <?php if($customer['status']=='suspended'){echo"selected";} ?> value="suspended">Suspended</option>
-																</select>
-															</div>
-
-															<label class="col-md-2 control-label" for="reseller_id">Owner / Reseller</label>
-															<div class="col-md-4">
-																<select id="reseller_id" name="reseller_id" class="form-control select2">
-																	<option value="0" <?php if($customer['reseller_id']=='0'){echo"selected";} ?>>Main Account</option>
-																	<?php if(is_array($resellers) && isset($resellers[0])){ foreach($resellers as $reseller){ ?>
-																		<option value="<?php echo $reseller['id']; ?>" <?php if($reseller['id'] == $customer['reseller_id']){ echo 'selected'; } ?>>
-																			<?php echo stripslashes($reseller['username'].' | '.$reseller['email'].' | '.$reseller['first_name'].' | '.$reseller['last_name']); ?>
-																		</option>
-																	<?php } } ?>
+																	<option <?php if($member['status']=='enabled'){echo"selected";} ?> value="enabled">Enabled</option>
+																	<option <?php if($member['status']=='disable'){echo"selected";} ?> value="disable">Disabled</option>
+																	<option <?php if($member['status']=='expired'){echo"selected";} ?> value="expired">Expired</option>
+																	<option <?php if($member['status']=='suspended'){echo"selected";} ?> value="suspended">Suspended</option>
 																</select>
 															</div>
 														</div>
@@ -1380,10 +1368,10 @@ desired effect
 														<div class="form-group">
 															<label class="col-md-2 control-label" for="first_name">Name</label>
 															<div class="col-md-5">
-																<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($customer['first_name']); ?>">
+																<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($member['first_name']); ?>">
 															</div>
 															<div class="col-md-5">
-																<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($customer['last_name']); ?>">
+																<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($member['last_name']); ?>">
 															</div>
 														</div>
 
@@ -1391,7 +1379,7 @@ desired effect
 														<div class="form-group">
 															<label class="col-md-2 control-label" for="email">Email</label>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($customer['email']); ?>">
+																<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($member['email']); ?>">
 															</div>
 														</div>
 
@@ -1406,92 +1394,9 @@ desired effect
 															</div>
 														</div>
 
-														<!-- email -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="max_connections">Connections</label>
-															<div class="col-md-4">
-																<input type="text" class="form-control" id="max_connections" name="max_connections" value="<?php echo stripslashes($customer['max_connections']); ?>" required>
-																<small>How many simultaneous connections can this client make.</small>
-															</div>
+														
 
-															<label class="col-md-2 control-label" for="expire_date">Expire Date</label>
-															<div class="col-md-4">
-																<input type="date" class="form-control pull-right datepicker" id="expire_date" name="expire_date" value="<?php echo stripslashes($customer['expire_date']); ?>">
-																<small>Setting 01-01-1970 = Unlimited / No Expire Date.</small>
-															</div>
-														</div>
-
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="package_id">Set New Package</label>
-															<div class="col-md-10">
-																<select id="package_id" name="package_id" class="form-control select2">
-																	<option value="0">Select a Package to set Bouquet(s) or manually select bouquets below.</option>
-																	<?php foreach($packages as $package){ ?>
-																		<option value="<?php echo $package['id']; ?>"><?php echo stripslashes($package['name']); ?></option>
-																	<?php } ?>
-																</select>
-															</div>
-														</div>
-
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="bouquets">Current Bouquets</label>
-															<div class="col-md-10">
-																<select id="bouquets" name="bouquets[]" class="form-control" multiple="" size="10">
-																	<?php if(is_array($bouquets)){ foreach($bouquets as $bouquet){ ?>
-																		<option value="<?php echo $bouquet['id']; ?>" <?php if(in_array($bouquet['id'], $customer_bouquets)){ echo 'selected'; } ?>>
-																			<?php
-																				if($bouquet['type'] == 'live'){
-																					$bouquet['type']		= 'Live TV Streams';
-																				}
-																				if($bouquet['type'] == 'channel'){
-																					$bouquet['type']		= '24/7 TV Channels';
-																				}
-																				if($bouquet['type'] == 'vod'){
-																					$bouquet['type']		= 'VoD';
-																				}
-																				if($bouquet['type'] == 'series'){
-																					$bouquet['type']		= 'TV Series';
-																				}
-																			?>
-																			<?php echo stripslashes($bouquet['type'].' | '.$bouquet['name']); ?>
-																		</option>
-																	<?php } } ?>
-																</select>
-																<small>Use the SHIFT key and left mouse button to select multiple bouquets from the list above.</small>
-															</div>
-														</div>
-
-														<!-- mag devices -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="max_connections">MAG Devices</label>
-															<div class="col-md-4">
-																<?php if(is_array($mags) && isset($mags[0])){ ?>
-																	<select id="bouquets" name="bouquets[]" class="form-control" multiple="">
-																		<?php foreach($mags as $mag){ ?>
-																			<option>
-																				<?php echo base64_decode($mag['mac']); ?>
-																			</option>
-																		<?php } ?>
-																	</select>
-																<?php }else{ ?>
-																	<input type="text" class="form-control" id="nothing" name="nothing" value="No MAG Devices" disabled>
-																<?php } ?>
-															</div>
-														</div>
-
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="notes">Admin Notes</label>
-															<div class="col-md-10">
-																<textarea class="form-control" id="notes" name="notes"><?php echo stripslashes($customer['notes']); ?></textarea>
-															</div>
-														</div>
-
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="reseller_notes">Reseller Notes</label>
-															<div class="col-md-10">
-																<textarea class="form-control" id="reseller_notes" name="reseller_notes"><?php echo stripslashes($customer['reseller_notes']); ?></textarea>
-															</div>
-														</div>
+														
 													</div>
 												</section>
 											</div>
