@@ -1807,6 +1807,7 @@ desired effect
 				$member 				= $account_details;
 
 				// set commissions default
+				$data['commissions']['total']				= '0';
 				$data['commissions']['pending']				= '0';
 				$data['commissions']['paid']				= '0';
 				$data['commissions']['rejected']			= '0';
@@ -1819,6 +1820,8 @@ desired effect
 				
 				// work with commissions
 				foreach($commissions as $commission){
+					$data['commissions']['total']					= $data['commissions']['total'] + $commission['amount'];
+
 					if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
 						$data['commissions']['pending']				= $data['commissions']['pending'] + $commission['amount'];
 					}
@@ -1834,6 +1837,7 @@ desired effect
 				}
 
 				// clean up commissions
+				$data['commissions']['total'] 						= number_format($data['commissions']['total'], 2);
 				$data['commissions']['pending'] 					= number_format($data['commissions']['pending'], 2);
 				$data['commissions']['paid'] 						= number_format($data['commissions']['paid'], 2);
 				$data['commissions']['rejected'] 					= number_format($data['commissions']['rejected'], 2);
@@ -1858,6 +1862,21 @@ desired effect
 					<div class="row">
 						<div class="col-lg-2">
 							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Total
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $data['commissions']['total']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2">
+							<div class="box box-success">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
 		              					Paid
