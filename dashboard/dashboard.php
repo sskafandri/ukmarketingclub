@@ -1825,10 +1825,10 @@ desired effect
 					if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
 						$data['commissions']['pending']				= $data['commissions']['pending'] + $commission['amount'];
 					}
-					if($commission['status'] == 'paid'){
+					if($commission['status'] == 'paid' && $commission['qualified'] == 'yes'){
 						$data['commissions']['paid']				= $data['commissions']['paid'] + $commission['amount'];
 					}
-					if($commission['status'] == 'rejected'){
+					if($commission['status'] == 'rejected' && $commission['qualified'] == 'yes'){
 						$data['commissions']['rejected']			= $data['commissions']['rejected'] + $commission['amount'];
 					}
 					if($commission['qualified'] == 'no'){
