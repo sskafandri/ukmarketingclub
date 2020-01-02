@@ -1861,7 +1861,6 @@ desired effect
 
                 <!-- Main content -->
 				<section class="content">
-					<?php debug($commissions); ?>
 					<div class="row">
 						<div class="col-lg-2 col-xs-6">
 							<div class="box box-primary">
