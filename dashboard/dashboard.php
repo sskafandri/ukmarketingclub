@@ -1835,7 +1835,7 @@ desired effect
 						$data['commissions']['missed'] 				= $data['commissions']['missed'] + $commission['amount'];
 					}
 
-					$data['commissions']['orders']++
+					$data['commissions']['orders']++;
 				}
 
 				// clean up commissions
