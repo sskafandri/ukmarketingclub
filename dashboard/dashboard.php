@@ -1242,7 +1242,7 @@ desired effect
 										<table id="example" class="display responsive nowrap" style="width:100%">
 									        <thead>
 									            <tr>
-									                <th class="no-sort hidden-xs" width="1px"></th>
+									                <th class="no-sort" width="1px"></th>
 									                <th class="no-sort hidden-xs" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th class="hidden-xs" style="white-space: nowrap;" width="1px">Downline</th>
@@ -2301,7 +2301,7 @@ desired effect
 					},
 			        "columns": [
 			            {
-			                "className":      'details-control hidden-xs',
+			                "className":      'details-control',
 			                "orderable":      false,
 			                "data":           "",
 			                "defaultContent": ''
