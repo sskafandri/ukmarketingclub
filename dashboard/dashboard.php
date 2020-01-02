@@ -2309,11 +2309,10 @@ desired effect
 						"emptyTable": "No members found."
 					},
 			        "columns": [
-			        	{ 
-			        		"data": "checkbox"
+			            {
 			                "className":      'details-control',
 			                "orderable":      false,
-			                "data":           null,
+			                "data":           "checkbox",
 			                "defaultContent": ''
 			            },
 			            { "data": "status"},
