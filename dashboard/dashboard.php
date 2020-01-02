@@ -2366,7 +2366,7 @@ desired effect
 			 
 			$(document).ready(function() {
 			    var table = $('#member_commissions').DataTable( {
-			        "ajax": "actions.php?a=ajax_member_commissions",
+			        "ajax": "actions.php?a=ajax_member_commissions&id=<?php echo get('id'); ?>",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
