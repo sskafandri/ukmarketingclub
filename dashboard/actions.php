@@ -5028,10 +5028,11 @@ function ajax_members()
 			$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
 			$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
 
-			// get pending commissions
+			// set commissions default
 			$output[$count]['pending_commissions_qualified']	= '';
 			$output[$count]['pending_commissions_unqualified']	= '';
 
+			// get pending commissions
 			$query 				= $conn->query("SELECT `id`,`amount`,`qualified` FROM `commissions` WHERE `user_id` = '".$customer['id']."' AND `status` = 'pending' ");
 			$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
 			
