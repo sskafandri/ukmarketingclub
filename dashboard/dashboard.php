@@ -2345,27 +2345,8 @@ desired effect
 			        '<tr>'+
 			            '<td width="150px" valign="top">Additional Details</td>'+
 			            '<td valign="top">'+
-			            	'<strong>User ID:</strong> '+d.id+' <br>'+
-			            	'<strong>Join Date:</strong> '+d.join_date+' <br>'+
+			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
 			            '</td>'+
-			        '</tr>'+
-			        '<tr>'+
-			            '<td width="150px" valign="top">Contact Details</td>'+
-			            '<td valign="top">'+
-			            	'<strong>Email:</strong> '+d.email+' <br>'+
-			            	'<strong>Tel:</strong> '+d.tel+' <br>'+
-			            '</td>'+
-			        '</tr>'+
-			        '<tr>'+
-			            '<td width="150px" valign="top">Pending Commissions</td>'+
-			            '<td valign="top">'+
-			            	'<strong>Qualified:</strong> £'+d.pending_commissions_qualified+' <br>'+
-			            	'<strong>Unqualified:</strong> £'+d.pending_commissions_unqualified+' <br>'+
-			            '</td>'+
-			        '</tr>'+
-			        '<tr>'+
-			            '<td width="150px" valign="top">Internal Notes</td>'+
-			            '<td valign="top">'+d.internal_notes+'</td>'+
 			        '</tr>'+
 			    '</table>';
 			}
@@ -2413,7 +2394,7 @@ desired effect
 			    } );
 			     
 			    // Add event listener for opening and closing details
-			    $('#example tbody').on('click', 'td.details-control', function () {
+			    $('#member_commissions tbody').on('click', 'td.details-control', function () {
 			        var tr = $(this).closest('tr');
 			        var row = table.row( tr );
 			 
