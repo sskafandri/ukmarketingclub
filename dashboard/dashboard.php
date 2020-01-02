@@ -1843,8 +1843,9 @@ desired effect
 												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
-												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
+												                <th class="no-sort hidden-xs">Order Date</th>
+												                <th class="no-sort hidden-xs">Release Date</th>
+												                <th class="">Amount</th>
 												            </tr>
 												        </thead>
 												        <tfoot>
@@ -1852,8 +1853,9 @@ desired effect
 												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
-												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
+												                <th class="no-sort hidden-xs">Order Date</th>
+												                <th class="no-sort hidden-xs">Release Date</th>
+												                <th class="">Amount</th>
 												            </tr>
 												        </tfoot>
 												    </table>
@@ -2661,6 +2663,10 @@ desired effect
 			            {
 			            	"className":      'hidden-xs',
 			            	"data": "qualified"
+			            },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "order_date"
 			            },
 			            {
 			            	"className":      'hidden-xs',
