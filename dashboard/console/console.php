@@ -970,7 +970,7 @@ if($task == 'activate_affiliates'){
 		    'username' => $username,
 		    'password' => $password,
 		    'action' => 'AffiliateActivate',
-		    'clientid' => $user['id'],
+		    'userid' => $user['id'],
 		    'responsetype' => 'json',
 		);
 
