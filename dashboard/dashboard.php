@@ -1807,8 +1807,11 @@ desired effect
 				$member 				= $account_details;
 
 				// set commissions default
-				$data['pending_commissions_qualified']	= '0';
-				$data['pending_commissions_unqualified']	= '0';
+				$data['commissions']['pending']				= '0';
+				$data['commissions']['paid']				= '0';
+				$data['commissions']['rejected']			= '0';
+				$data['commissions']['missed']				= '0';
+				$data['commissions']['orders']				= '0';
 
 				// get pending commissions
 				$query 				= $conn->query("SELECT `id`,`amount`,`qualified` FROM `commissions` WHERE `user_id` = '".$member_id."' AND `status` = 'pending' ");
@@ -1816,18 +1819,27 @@ desired effect
 				
 				// work with commissions
 				foreach($commissions as $commission){
-					if($commission['qualified'] == 'yes'){
-						$data['pending_commissions_qualified'] = $data['pending_commissions_qualified'] + $commission['amount'];
+					if($commission['status'] == 'pending'){
+						$data['commissions']['pending']				= $data['commissions']['pending'] + $commission['amount'];
 					}
-
+					if($commission['status'] == 'paid'){
+						$data['commissions']['paid']				= $data['commissions']['paid'] + $commission['amount'];
+					}
+					if($commission['status'] == 'rejected'){
+						$data['commissions']['rejected']			= $data['commissions']['rejected'] + $commission['amount'];
+					}
 					if($commission['qualified'] == 'no'){
-						$data['pending_commissions_unqualified'] = $data['pending_commissions_unqualified'] + $commission['amount'];
+						$data['commissions']['missed'] 				= $data['commissions']['missed'] + $commission['amount'];
 					}
+					$data['commissions']['orders'] 					= $data['commissions']['orders'] + 1;
 				}
 
 				// clean up commissions
-				$data['pending_commissions_qualified'] 			= number_format($data['pending_commissions_qualified'], 2);
-				$data['pending_commissions_unqualified'] 		= number_format($data['pending_commissions_unqualified'], 2);
+				$data['commissions']['pending'] 					= number_format($data['commissions']['pending'], 2);
+				$data['commissions']['paid'] 						= number_format($data['commissions']['paid'], 2);
+				$data['commissions']['rejected'] 					= number_format($data['commissions']['rejected'], 2);
+				$data['commissions']['missed'] 						= number_format($data['commissions']['missed'], 2);
+				$data['commissions']['orders'] 						= number_format($data['commissions']['orders'], 2);
 			?>
 
             <div class="content-wrapper">
@@ -1853,33 +1865,39 @@ desired effect
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-
+									<center>
+										<h3>£<?php echo $data['commissions']['paid']; ?></h3>
+									</center>
 								</div>
 							</div>
 						</div>
 
 						<div class="col-lg-2">
-							<div class="box box-primary">
+							<div class="box box-warning">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
 		              					Pending
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-
+									<center>
+										<h3>£<?php echo $data['commissions']['pending']; ?></h3>
+									</center>
 								</div>
 							</div>
 						</div>
 
 						<div class="col-lg-2">
-							<div class="box box-primary">
+							<div class="box box-danger">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
 		              					Missed Commissions
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-
+									<center>
+										<h3>£<?php echo $data['commissions']['missed']; ?></h3>
+									</center>
 								</div>
 							</div>
 						</div>
@@ -1892,7 +1910,9 @@ desired effect
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-
+									<center>
+										<h3><?php echo $data['commissions']['orders']; ?></h3>
+									</center>
 								</div>
 							</div>
 						</div>
