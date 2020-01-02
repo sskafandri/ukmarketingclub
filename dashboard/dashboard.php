@@ -783,7 +783,7 @@ desired effect
 			            			</div>
 									<div class="box-body">
 	                                    <div class="form-group">
-	                                        <label for="affiliate_username" class="col-sm-3 control-label">Affiliate Username</label>
+	                                        <label for="affiliate_username" class="col-sm-3 control-label">Username</label>
 	                                        <div class="col-sm-9">
 	                                            <input type="text" name="affiliate_username" id="affiliate_username" class="form-control" value="<?php echo $account_details['affiliate_username']; ?>">
 	                                            <small>Please note: If you change this, any existing affiliate links you have given out will no longer work.</small>
