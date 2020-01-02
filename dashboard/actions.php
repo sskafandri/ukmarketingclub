@@ -5087,6 +5087,7 @@ function ajax_member_commissions()
 	// work with commissions
 	foreach($commissions as $commission){
 		$output[$count]['added'] 				= $commission['added'];
+		$output[$count]['release_date'] 		= $commission['added'];
 
 		// status
 		if($commission['status'] == 'approved') {
