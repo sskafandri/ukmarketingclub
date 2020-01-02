@@ -1422,7 +1422,7 @@ desired effect
 										<div class="col-lg-12">
 											<section class="panel">
 												<div class="panel-body">
-													<table id="example" class="display" style="width:100%">
+													<table id="example" class="display responsive nowrap" style="width:100%">
 												        <thead>
 												            <tr>
 												                <th width="1px">ID</th>
