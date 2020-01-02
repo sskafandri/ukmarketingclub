@@ -5080,7 +5080,7 @@ function ajax_member_commissions()
 				-->
 
 				<span class="">
-					<a title="Manually Approve Commission" class="btn btn-success btn-flat btn-xs" href="actions.php?a=commission_reset&id='.$commission['id'].'"><i class="fa fa-check"></i></a>
+					<a title="Manually Approve Commission" class="btn btn-success btn-flat btn-xs" href="actions.php?a=commission_approve&id='.$commission['id'].'"><i class="fa fa-check"></i></a>
 				</span>
 
 				<span class="hidden-xs">
