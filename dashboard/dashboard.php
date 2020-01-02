@@ -1337,7 +1337,7 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Member > <?php echo stripslashes($member['firstname']); ?> <?php echo stripslashes($member['lastname']); ?>
+		              					Member > <?php echo stripslashes($member['first_name']); ?> <?php echo stripslashes($member['last_name']); ?>
 		              				</h3>
 		            			</div>
 								<div class="box-body">
