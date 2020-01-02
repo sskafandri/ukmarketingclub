@@ -4997,20 +4997,19 @@ function ajax_members()
 			
 			// work with commissions
 			foreach($commissions as $commission){
-					$output[$count]['commissions']['total']						= $output[$count]['commissions']['total'] + $commission['amount'];
+				$output[$count]['commissions']['total']						= $output[$count]['commissions']['total'] + $commission['amount'];
 
-					if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
-						$output[$count]['commissions']['pending']				= $output[$count]['commissions']['pending'] + $commission['amount'];
-					}
-					if($commission['status'] == 'paid' && $commission['qualified'] == 'yes'){
-						$output[$count]['commissions']['paid']					= $output[$count]['commissions']['paid'] + $commission['amount'];
-					}
-					if($commission['status'] == 'rejected' && $commission['qualified'] == 'yes'){
-						$output[$count]['commissions']['rejected']				= $output[$count]['commissions']['rejected'] + $commission['amount'];
-					}
-					if($commission['qualified'] == 'no'){
-						$output[$count]['commissions']['missed'] 				= $output[$count]['commissions']['missed'] + $commission['amount'];
-					}
+				if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
+					$output[$count]['commissions']['pending']				= $output[$count]['commissions']['pending'] + $commission['amount'];
+				}
+				if($commission['status'] == 'paid' && $commission['qualified'] == 'yes'){
+					$output[$count]['commissions']['paid']					= $output[$count]['commissions']['paid'] + $commission['amount'];
+				}
+				if($commission['status'] == 'rejected' && $commission['qualified'] == 'yes'){
+					$output[$count]['commissions']['rejected']				= $output[$count]['commissions']['rejected'] + $commission['amount'];
+				}
+				if($commission['qualified'] == 'no'){
+					$output[$count]['commissions']['missed'] 				= $output[$count]['commissions']['missed'] + $commission['amount'];
 				}
 			}
 
