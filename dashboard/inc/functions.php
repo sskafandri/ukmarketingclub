@@ -1,6 +1,8 @@
 <?php
 
 function get_commissions($member_id = ''){
+    global $conn, $global_settings, $whmcs;
+    
     if(empty($member_id)){
         $member_id              = $_SESSION['account']['id'];
     }
