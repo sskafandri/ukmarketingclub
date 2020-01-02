@@ -596,6 +596,8 @@ if($task == 'get_orders'){
 			        	'".$qualified."'
 				    )");
 		    	}
+	    	}else{
+	    		console_output("-> Order has not been paid yet");
 	    	}
     	}
 	}
@@ -650,6 +652,10 @@ if($task == 'get_client_products'){
 
 	// Decode response
 	$results = json_decode($response, true);
+
+	debug($results);
+
+	die();
 
 	// reorder the orders because whmcs is retarded
 	$orders = array_reverse($results['orders']['order']);
