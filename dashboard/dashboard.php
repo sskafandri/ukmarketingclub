@@ -1825,6 +1825,49 @@ desired effect
                 <!-- Main content -->
 				<section class="content">
 					<div class="row">
+						<div class="col-lg-2">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Paid
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Pending
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Orders
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
 						<div class="col-lg-12">
 							<div class="box box-primary">
 		            			<div class="box-header">
