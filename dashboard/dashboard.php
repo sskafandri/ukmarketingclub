@@ -596,6 +596,10 @@ desired effect
 					break;
 
 				// business manager
+				case "marketing_tools":
+					marketing_tools();
+					break;
+
 				case "commissions":
 					commissions();
 					break;
