@@ -4990,6 +4990,7 @@ function ajax_members()
 			// set commissions default
 			$output[$count]['commissions']['total']				= '0';
 			$output[$count]['commissions']['pending']			= '0';
+			$output[$count]['commissions']['approved']			= '0';
 			$output[$count]['commissions']['paid']				= '0';
 			$output[$count]['commissions']['rejected']			= '0';
 			$output[$count]['commissions']['missed']			= '0';
@@ -5006,6 +5007,9 @@ function ajax_members()
 				if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
 					$output[$count]['commissions']['pending']				= $output[$count]['commissions']['pending'] + $commission['amount'];
 				}
+				if($commission['status'] == 'approved' && $commission['qualified'] == 'yes'){
+					$output[$count]['commissions']['approved']				= $output[$count]['approved']['rejected'] + $commission['amount'];
+				}
 				if($commission['status'] == 'paid' && $commission['qualified'] == 'yes'){
 					$output[$count]['commissions']['paid']					= $output[$count]['commissions']['paid'] + $commission['amount'];
 				}
@@ -5020,6 +5024,7 @@ function ajax_members()
 			// clean up commissions
 			$output[$count]['commissions']['total'] 							= number_format($output[$count]['commissions']['total'], 2);
 			$output[$count]['commissions']['pending'] 							= number_format($output[$count]['commissions']['pending'], 2);
+			$output[$count]['commissions']['approved'] 							= number_format($output[$count]['commissions']['approved'], 2);
 			$output[$count]['commissions']['paid'] 								= number_format($output[$count]['commissions']['paid'], 2);
 			$output[$count]['commissions']['rejected'] 							= number_format($output[$count]['commissions']['rejected'], 2);
 			$output[$count]['commissions']['missed'] 							= number_format($output[$count]['commissions']['missed'], 2);

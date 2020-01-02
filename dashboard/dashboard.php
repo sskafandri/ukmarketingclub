@@ -2455,8 +2455,9 @@ desired effect
 			            '<td width="150px" valign="top" class="hidden-xs">Commissions</td>'+
 			            '<td valign="top" align="left">'+
 			            	'<strong>Total:</strong> £'+d.commissions.total+' <br>'+
-			            	'<strong>Paid:</strong> £'+d.commissions.paid+' <br>'+
 			            	'<strong>Pending:</strong> £'+d.commissions.pending+' <br>'+
+			            	'<strong>Approved:</strong> £'+d.commissions.approved+' <br>'+
+			            	'<strong>Paid:</strong> £'+d.commissions.paid+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+
