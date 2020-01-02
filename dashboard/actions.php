@@ -5070,13 +5070,15 @@ function ajax_member_commissions()
 		$output[$count]['release_date'] 		= date("Y-m-d", $commission['added'] + $pending_commissions_period);
 
 		// status
-		if($commission['status'] == 'approved') {
+		if($commission['status'] == 'approved'){
 			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">Approved</span>';
-		}elseif($commission['status'] == 'pending') {
+		}elseif($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
 			$output[$count]['status']					= '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
-		}elseif($commission['status'] == 'paid') {
+		}elseif($commission['status'] == 'pending' && $commission['qualified'] == 'no'){
+			$output[$count]['status']					= '<span class="label label-default full-width" style="width: 100%;">N/A</span>';
+		}elseif($commission['status'] == 'paid'){
 			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Paid</span>';
-		}elseif($commission['status'] == 'rejected') {
+		}elseif($commission['status'] == 'rejected'){
 			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Rejected</span>';
 		}else{
 			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($commission['status']).'</span>';
