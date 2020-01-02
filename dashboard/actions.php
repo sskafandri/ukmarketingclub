@@ -5008,7 +5008,7 @@ function ajax_members()
 					$output[$count]['commissions']['pending']				= $output[$count]['commissions']['pending'] + $commission['amount'];
 				}
 				if($commission['status'] == 'approved' && $commission['qualified'] == 'yes'){
-					$output[$count]['commissions']['approved']				= $output[$count]['approved']['rejected'] + $commission['amount'];
+					$output[$count]['commissions']['approved']				= $output[$count]['commissions']['approved'] + $commission['amount'];
 				}
 				if($commission['status'] == 'paid' && $commission['qualified'] == 'yes'){
 					$output[$count]['commissions']['paid']					= $output[$count]['commissions']['paid'] + $commission['amount'];
