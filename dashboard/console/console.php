@@ -746,7 +746,7 @@ if($task == 'get_client_products'){
 		    	}
 
 		    	// insert record
-	    		$insert = $conn->exec("INSERT INTO `commissions` 
+	    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
 			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
 			        VALUE
 			        ('".time()."',
