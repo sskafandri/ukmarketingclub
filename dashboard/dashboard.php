@@ -1806,8 +1806,28 @@ desired effect
 
 				$member 				= $account_details;
 
-				$query 					= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
-				$commissions 			= $query->fetchAll(PDO::FETCH_ASSOC);
+				// set commissions default
+				$data['pending_commissions_qualified']	= '0';
+				$data['pending_commissions_unqualified']	= '0';
+
+				// get pending commissions
+				$query 				= $conn->query("SELECT `id`,`amount`,`qualified` FROM `commissions` WHERE `user_id` = '".$member_id."' AND `status` = 'pending' ");
+				$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
+				
+				// work with commissions
+				foreach($commissions as $commission){
+					if($commission['qualified'] == 'yes'){
+						$data['pending_commissions_qualified'] = $data['pending_commissions_qualified'] + $commission['amount'];
+					}
+
+					if($commission['qualified'] == 'no'){
+						$data['pending_commissions_unqualified'] = $data['pending_commissions_unqualified'] + $commission['amount'];
+					}
+				}
+
+				// clean up commissions
+				$data['pending_commissions_qualified'] 			= number_format($data['pending_commissions_qualified'], 2);
+				$data['pending_commissions_unqualified'] 		= number_format($data['pending_commissions_unqualified'], 2);
 			?>
 
             <div class="content-wrapper">
@@ -1837,8 +1857,7 @@ desired effect
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
+
 						<div class="col-lg-2">
 							<div class="box box-primary">
 		            			<div class="box-header">
@@ -1851,8 +1870,20 @@ desired effect
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
+
+						<div class="col-lg-2">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Missed Commissions
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+
+								</div>
+							</div>
+						</div>
+
 						<div class="col-lg-2">
 							<div class="box box-primary">
 		            			<div class="box-header">
