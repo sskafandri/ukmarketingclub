@@ -395,7 +395,7 @@ desired effect
 	                <?php } ?>
 
 	                <?php if($account_details['type'] == 'admin') { ?>
-                		<li class="header">ADMIN NAVIGATION</li>
+                		<li class="header">STAFF PANEL</li>
 	                    <?php if(get('c') == 'members'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
@@ -537,8 +537,16 @@ desired effect
 
 				// staff
 				case "members":
-					if($account_details['type'] == 'admin'){
+					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						members();
+					}else{
+						home();
+					}
+					break;
+
+				case "member":
+					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
+						member();
 					}else{
 						home();
 					}
@@ -1268,28 +1276,14 @@ desired effect
 
         <?php function member(){ ?>
         	<?php 
-        		global $conn, $wp, $global_settings, $account_details, $site, $whmcs, $product_ids;
+        		global $conn, $globals, $global_settings, $account_details, $site;
             
-            	$customer_id 			= get('customer_id');
+            	$member_id 				= get('id');
 
-				$query 					= $conn->query("SELECT * FROM `customers` WHERE `id` = '".$customer_id."' AND `user_id` = '".$_SESSION['account']['id']."' ");
-				$customer 				= $query->fetch(PDO::FETCH_ASSOC);
-				$customer_bouquets 		= explode(",", $customer['bouquet']);
+				$member 				= account_details($member_id);
 
-				$query 					= $conn->query("SELECT * FROM `packages` ORDER BY `name` ");
-				$packages 				= $query->fetchAll(PDO::FETCH_ASSOC);
-
-        		$query 					= $conn->query("SELECT `id`,`name`,`type` FROM `bouquets` WHERE `user_id` = '".$_SESSION['account']['id']."' ORDER BY `type`,`name` ");
-				$bouquets 				= $query->fetchAll(PDO::FETCH_ASSOC);
-
-				$query 					= $conn->query("SELECT `mag_id`,`mac` FROM `mag_devices` WHERE `customer_id` = '".$customer_id."' ORDER BY `mac` ");
-				$mags 					= $query->fetchAll(PDO::FETCH_ASSOC);
-
-				$query 					= $conn->query("SELECT * FROM `resellers` ORDER BY `username` ");
-				$resellers 				= $query->fetchAll(PDO::FETCH_ASSOC);
-
-				$query 					= $conn->query("SELECT * FROM `customers_ips` WHERE `customer_id` = '".$customer_id."' ");
-				$customer_ips 			= $query->fetchAll(PDO::FETCH_ASSOC);
+				$query 					= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
+				$commissions 			= $query->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
             <div class="content-wrapper">
@@ -1297,292 +1291,264 @@ desired effect
                 <div id="status_message"></div>
                             	
                 <section class="content-header">
-                    <h1>Customer <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - Member <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active"><a href="dashboard.php?c=customers">Customers</a></li>
-                        <li class="active">Customer</li>
+                        <li class="active"><a href="dashboard.php?c=members">View All Members</a></li>
+                        <li class="active">Member</li>
                     </ol>
                 </section>
 
                 <!-- Main content -->
-                <?php if($customer['user_id'] != $_SESSION['account']['id']) { ?>
-					<section class="content">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="box box-danger">
-			            			<div class="box-header">
-			              				<h3 class="box-title">
-			              					ERROR
-			              				</h3>
-			            			</div>
-									<div class="box-body">
-										<h3>There was an error loading this content.</h3>
-										You don't own this customer. This security breach has been reported to our security team.
-
-										<?php if(isset($_GET['dev'])) { ?>
-											<hr>
-												<?php debug($customer); ?>
-										<?php } ?>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-				<?php }else{ ?>
-
-					<form action="actions.php?a=customer_ip_add" class="form-horizontal form-bordered" method="post">
-						<input type="hidden" name="customer_id" value="<?php echo $customer_id; ?>">
-						<div class="modal fade" id="new_customer_ip_modal" role="dialog">
-						    <div class="modal-dialog">
-						        <div class="modal-content">
-						            <div class="modal-header">
-						                <button type="button" class="close" data-dismiss="modal">&times;</button>
-						                <h4 class="modal-title">Add New Customer IP Address</h4>
-						            </div>
-						            <div class="modal-body">
-						                <div class="row">
-									    	<div class="col-lg-12">
-											    <div class="form-group">
-													<label class="col-md-2 control-label" for="ip_address">IP Address</label>
-													<div class="col-md-10">
-														<input type="text" class="form-control" id="ip_address" name="ip_address" placeholder="214.114.5.123">
-														<small>This must be the customers public / WAN IP address and not their devices internal / LAN IP address.</small>
-													</div>
+				<form action="actions.php?a=customer_ip_add" class="form-horizontal form-bordered" method="post">
+					<input type="hidden" name="customer_id" value="<?php echo $customer_id; ?>">
+					<div class="modal fade" id="new_customer_ip_modal" role="dialog">
+					    <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <button type="button" class="close" data-dismiss="modal">&times;</button>
+					                <h4 class="modal-title">Add New Customer IP Address</h4>
+					            </div>
+					            <div class="modal-body">
+					                <div class="row">
+								    	<div class="col-lg-12">
+										    <div class="form-group">
+												<label class="col-md-2 control-label" for="ip_address">IP Address</label>
+												<div class="col-md-10">
+													<input type="text" class="form-control" id="ip_address" name="ip_address" placeholder="214.114.5.123">
+													<small>This must be the customers public / WAN IP address and not their devices internal / LAN IP address.</small>
 												</div>
 											</div>
 										</div>
-						            </div>
-						            <div class="modal-footer">
-						                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						                <button type="submit" class="btn btn-success">Add IP Address</button>
-						            </div>
-						        </div>
-						    </div>
-						</div>
-					</form>
+									</div>
+					            </div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					                <button type="submit" class="btn btn-success">Add IP Address</button>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</form>
 
-					<section class="content">
-						<div class="row">
-							<div class="col-lg-10">
-								<div class="box box-primary">
-			            			<div class="box-header">
-			              				<h3 class="box-title">
-			              					Customer > <?php echo stripslashes($customer['username']); ?>
-			              				</h3>
-			            			</div>
-									<div class="box-body">
-										<form action="actions.php?a=customer_update" class="form-horizontal form-bordered" method="post">
-											<input type="hidden" name="customer_id" value="<?php echo $customer_id; ?>">
-											<input type="hidden" name="existing_username" value="<?php echo $customer['username']; ?>">
-											<div class="row">
-												<div class="col-lg-12">
-													<section class="panel">
-														<div class="panel-body">
-															<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
-																	<?php debug($customer); ?>
-																	<?php debug($customer_bouquets); ?>
-																	<?php debug($bouquets); ?>
-															<?php } ?>
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-10">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Member > <?php echo stripslashes($member['firstname']); ?> <?php echo stripslashes($member['lastname']); ?>
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<form action="actions.php?a=member_update" class="form-horizontal form-bordered" method="post">
+										<input type="hidden" name="member_id" value="<?php echo $member_id; ?>">
+										<div class="row">
+											<div class="col-lg-12">
+												<section class="panel">
+													<div class="panel-body">
+														<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
+																<?php debug($member); ?>
+																<?php debug($commissions); ?>
+														<?php } ?>
 
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="status">Account Status</label>
-																<div class="col-md-4">
-																	<select id="status" name="status" class="form-control select2">
-																		<option <?php if($customer['status']=='enabled'){echo"selected";} ?> value="enabled">Enabled</option>
-																		<option <?php if($customer['status']=='disable'){echo"selected";} ?> value="disable">Disabled</option>
-																		<option <?php if($customer['status']=='expired'){echo"selected";} ?> value="expired">Expired</option>
-																		<option <?php if($customer['status']=='suspended'){echo"selected";} ?> value="suspended">Suspended</option>
-																	</select>
-																</div>
-
-																<label class="col-md-2 control-label" for="reseller_id">Owner / Reseller</label>
-																<div class="col-md-4">
-																	<select id="reseller_id" name="reseller_id" class="form-control select2">
-																		<option value="0" <?php if($customer['reseller_id']=='0'){echo"selected";} ?>>Main Account</option>
-																		<?php if(is_array($resellers) && isset($resellers[0])){ foreach($resellers as $reseller){ ?>
-																			<option value="<?php echo $reseller['id']; ?>" <?php if($reseller['id'] == $customer['reseller_id']){ echo 'selected'; } ?>>
-																				<?php echo stripslashes($reseller['username'].' | '.$reseller['email'].' | '.$reseller['first_name'].' | '.$reseller['last_name']); ?>
-																			</option>
-																		<?php } } ?>
-																	</select>
-																</div>
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="status">Account Status</label>
+															<div class="col-md-4">
+																<select id="status" name="status" class="form-control select2">
+																	<option <?php if($customer['status']=='enabled'){echo"selected";} ?> value="enabled">Enabled</option>
+																	<option <?php if($customer['status']=='disable'){echo"selected";} ?> value="disable">Disabled</option>
+																	<option <?php if($customer['status']=='expired'){echo"selected";} ?> value="expired">Expired</option>
+																	<option <?php if($customer['status']=='suspended'){echo"selected";} ?> value="suspended">Suspended</option>
+																</select>
 															</div>
 
-															<!-- name -->
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="first_name">Name</label>
-																<div class="col-md-5">
-																	<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($customer['first_name']); ?>">
-																</div>
-																<div class="col-md-5">
-																	<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($customer['last_name']); ?>">
-																</div>
-															</div>
-
-															<!-- email -->
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="email">Email</label>
-																<div class="col-md-10">
-																	<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($customer['email']); ?>">
-																</div>
-															</div>
-
-															<!-- login -->
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="username">Login</label>
-																<div class="col-md-5">
-																	<input type="text" class="form-control" id="username" name="username" value="<?php echo stripslashes($customer['username']); ?>" placeholder="username" required>
-																</div>
-																<div class="col-md-5">
-																	<input type="text" class="form-control" id="password" name="password" value="<?php echo stripslashes($customer['password']); ?>" placeholder="password" required>
-																</div>
-															</div>
-
-															<!-- email -->
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="max_connections">Connections</label>
-																<div class="col-md-4">
-																	<input type="text" class="form-control" id="max_connections" name="max_connections" value="<?php echo stripslashes($customer['max_connections']); ?>" required>
-																	<small>How many simultaneous connections can this client make.</small>
-																</div>
-
-																<label class="col-md-2 control-label" for="expire_date">Expire Date</label>
-																<div class="col-md-4">
-																	<input type="date" class="form-control pull-right datepicker" id="expire_date" name="expire_date" value="<?php echo stripslashes($customer['expire_date']); ?>">
-																	<small>Setting 01-01-1970 = Unlimited / No Expire Date.</small>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="package_id">Set New Package</label>
-																<div class="col-md-10">
-																	<select id="package_id" name="package_id" class="form-control select2">
-																		<option value="0">Select a Package to set Bouquet(s) or manually select bouquets below.</option>
-																		<?php foreach($packages as $package){ ?>
-																			<option value="<?php echo $package['id']; ?>"><?php echo stripslashes($package['name']); ?></option>
-																		<?php } ?>
-																	</select>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="bouquets">Current Bouquets</label>
-																<div class="col-md-10">
-																	<select id="bouquets" name="bouquets[]" class="form-control" multiple="" size="10">
-																		<?php if(is_array($bouquets)){ foreach($bouquets as $bouquet){ ?>
-																			<option value="<?php echo $bouquet['id']; ?>" <?php if(in_array($bouquet['id'], $customer_bouquets)){ echo 'selected'; } ?>>
-																				<?php
-																					if($bouquet['type'] == 'live'){
-																						$bouquet['type']		= 'Live TV Streams';
-																					}
-																					if($bouquet['type'] == 'channel'){
-																						$bouquet['type']		= '24/7 TV Channels';
-																					}
-																					if($bouquet['type'] == 'vod'){
-																						$bouquet['type']		= 'VoD';
-																					}
-																					if($bouquet['type'] == 'series'){
-																						$bouquet['type']		= 'TV Series';
-																					}
-																				?>
-																				<?php echo stripslashes($bouquet['type'].' | '.$bouquet['name']); ?>
-																			</option>
-																		<?php } } ?>
-																	</select>
-																	<small>Use the SHIFT key and left mouse button to select multiple bouquets from the list above.</small>
-																</div>
-															</div>
-
-															<!-- mag devices -->
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="max_connections">MAG Devices</label>
-																<div class="col-md-4">
-																	<?php if(is_array($mags) && isset($mags[0])){ ?>
-																		<select id="bouquets" name="bouquets[]" class="form-control" multiple="">
-																			<?php foreach($mags as $mag){ ?>
-																				<option>
-																					<?php echo base64_decode($mag['mac']); ?>
-																				</option>
-																			<?php } ?>
-																		</select>
-																	<?php }else{ ?>
-																		<input type="text" class="form-control" id="nothing" name="nothing" value="No MAG Devices" disabled>
-																	<?php } ?>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="notes">Admin Notes</label>
-																<div class="col-md-10">
-																	<textarea class="form-control" id="notes" name="notes"><?php echo stripslashes($customer['notes']); ?></textarea>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="reseller_notes">Reseller Notes</label>
-																<div class="col-md-10">
-																	<textarea class="form-control" id="reseller_notes" name="reseller_notes"><?php echo stripslashes($customer['reseller_notes']); ?></textarea>
-																</div>
+															<label class="col-md-2 control-label" for="reseller_id">Owner / Reseller</label>
+															<div class="col-md-4">
+																<select id="reseller_id" name="reseller_id" class="form-control select2">
+																	<option value="0" <?php if($customer['reseller_id']=='0'){echo"selected";} ?>>Main Account</option>
+																	<?php if(is_array($resellers) && isset($resellers[0])){ foreach($resellers as $reseller){ ?>
+																		<option value="<?php echo $reseller['id']; ?>" <?php if($reseller['id'] == $customer['reseller_id']){ echo 'selected'; } ?>>
+																			<?php echo stripslashes($reseller['username'].' | '.$reseller['email'].' | '.$reseller['first_name'].' | '.$reseller['last_name']); ?>
+																		</option>
+																	<?php } } ?>
+																</select>
 															</div>
 														</div>
-													</section>
-												</div>
+
+														<!-- name -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="first_name">Name</label>
+															<div class="col-md-5">
+																<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($customer['first_name']); ?>">
+															</div>
+															<div class="col-md-5">
+																<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($customer['last_name']); ?>">
+															</div>
+														</div>
+
+														<!-- email -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="email">Email</label>
+															<div class="col-md-10">
+																<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($customer['email']); ?>">
+															</div>
+														</div>
+
+														<!-- login -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="username">Login</label>
+															<div class="col-md-5">
+																<input type="text" class="form-control" id="username" name="username" value="<?php echo stripslashes($customer['username']); ?>" placeholder="username" required>
+															</div>
+															<div class="col-md-5">
+																<input type="text" class="form-control" id="password" name="password" value="<?php echo stripslashes($customer['password']); ?>" placeholder="password" required>
+															</div>
+														</div>
+
+														<!-- email -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="max_connections">Connections</label>
+															<div class="col-md-4">
+																<input type="text" class="form-control" id="max_connections" name="max_connections" value="<?php echo stripslashes($customer['max_connections']); ?>" required>
+																<small>How many simultaneous connections can this client make.</small>
+															</div>
+
+															<label class="col-md-2 control-label" for="expire_date">Expire Date</label>
+															<div class="col-md-4">
+																<input type="date" class="form-control pull-right datepicker" id="expire_date" name="expire_date" value="<?php echo stripslashes($customer['expire_date']); ?>">
+																<small>Setting 01-01-1970 = Unlimited / No Expire Date.</small>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="package_id">Set New Package</label>
+															<div class="col-md-10">
+																<select id="package_id" name="package_id" class="form-control select2">
+																	<option value="0">Select a Package to set Bouquet(s) or manually select bouquets below.</option>
+																	<?php foreach($packages as $package){ ?>
+																		<option value="<?php echo $package['id']; ?>"><?php echo stripslashes($package['name']); ?></option>
+																	<?php } ?>
+																</select>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="bouquets">Current Bouquets</label>
+															<div class="col-md-10">
+																<select id="bouquets" name="bouquets[]" class="form-control" multiple="" size="10">
+																	<?php if(is_array($bouquets)){ foreach($bouquets as $bouquet){ ?>
+																		<option value="<?php echo $bouquet['id']; ?>" <?php if(in_array($bouquet['id'], $customer_bouquets)){ echo 'selected'; } ?>>
+																			<?php
+																				if($bouquet['type'] == 'live'){
+																					$bouquet['type']		= 'Live TV Streams';
+																				}
+																				if($bouquet['type'] == 'channel'){
+																					$bouquet['type']		= '24/7 TV Channels';
+																				}
+																				if($bouquet['type'] == 'vod'){
+																					$bouquet['type']		= 'VoD';
+																				}
+																				if($bouquet['type'] == 'series'){
+																					$bouquet['type']		= 'TV Series';
+																				}
+																			?>
+																			<?php echo stripslashes($bouquet['type'].' | '.$bouquet['name']); ?>
+																		</option>
+																	<?php } } ?>
+																</select>
+																<small>Use the SHIFT key and left mouse button to select multiple bouquets from the list above.</small>
+															</div>
+														</div>
+
+														<!-- mag devices -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="max_connections">MAG Devices</label>
+															<div class="col-md-4">
+																<?php if(is_array($mags) && isset($mags[0])){ ?>
+																	<select id="bouquets" name="bouquets[]" class="form-control" multiple="">
+																		<?php foreach($mags as $mag){ ?>
+																			<option>
+																				<?php echo base64_decode($mag['mac']); ?>
+																			</option>
+																		<?php } ?>
+																	</select>
+																<?php }else{ ?>
+																	<input type="text" class="form-control" id="nothing" name="nothing" value="No MAG Devices" disabled>
+																<?php } ?>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="notes">Admin Notes</label>
+															<div class="col-md-10">
+																<textarea class="form-control" id="notes" name="notes"><?php echo stripslashes($customer['notes']); ?></textarea>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="reseller_notes">Reseller Notes</label>
+															<div class="col-md-10">
+																<textarea class="form-control" id="reseller_notes" name="reseller_notes"><?php echo stripslashes($customer['reseller_notes']); ?></textarea>
+															</div>
+														</div>
+													</div>
+												</section>
 											</div>
-
-											<footer class="panel-footer">
-												<a href="dashboard.php?c=customers" class="btn btn-default">Back</a>
-												<button type="submit" class="btn btn-success pull-right">Save Changes</button>
-											</footer>
-										</form>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-2">
-								<div class="box box-primary">
-			            			<div class="box-header">
-			              				<h3 class="box-title">
-			              					Customer IPs
-			              				</h3>
-
-										<div class="pull-right">
-			              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_ip_modal">Add IP Address</button>
 										</div>
-									</div>
-									<div class="box-body">
-										<table id="customer_ips" class="table table-bordered table-striped">
-											<thead>
-												<tr>
-													<th class="no-sort" style="white-space: nowrap;">IP</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
-												</tr>
-											</thead>
-											<tbody>
-												<?php
-													foreach($customer_ips as $customer_ip) {
-														echo '
-															<tr>
-																<td>
-																	'.$customer_ip['ip_address'].'
-																</td>
-																<td style="vertical-align: middle;">
-																	<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=customer_ip_delete&customer_ip_id='.$customer_ip['id'].'">
-																		<i class="fa fa-times"></i>
-																	</a>
-																</td>
-															</tr>
-														';
-													}
-												?>
-											</tbody>
-										</table>
-									</div>
+
+										<footer class="panel-footer">
+											<a href="dashboard.php?c=customers" class="btn btn-default">Back</a>
+											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
+										</footer>
+									</form>
 								</div>
 							</div>
 						</div>
-					</section>
-				<?php } ?>
+
+						<div class="col-lg-2">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Customer IPs
+		              				</h3>
+
+									<div class="pull-right">
+		              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_ip_modal">Add IP Address</button>
+									</div>
+								</div>
+								<div class="box-body">
+									<table id="customer_ips" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th class="no-sort" style="white-space: nowrap;">IP</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+												foreach($customer_ips as $customer_ip) {
+													echo '
+														<tr>
+															<td>
+																'.$customer_ip['ip_address'].'
+															</td>
+															<td style="vertical-align: middle;">
+																<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=customer_ip_delete&customer_ip_id='.$customer_ip['id'].'">
+																	<i class="fa fa-times"></i>
+																</a>
+															</td>
+														</tr>
+													';
+												}
+											?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
             </div>
         <?php } ?>
 
