@@ -5873,7 +5873,7 @@ function commissions_approve_all()
 
 	$member_id = get('id');
 
-	$update = $conn->exec("UPDATE `commissions` SET `status` = 'approved' WHERE `user_id` = '".$id."' ");
+	$update = $conn->exec("UPDATE `commissions` SET `status` = 'approved' WHERE `user_id` = '".$member_id."' ");
 	
     status_message('success',"All pending commissions have been manually approved.");
 
