@@ -630,7 +630,7 @@ desired effect
 						<div class="col-lg-2 col-xs-6">
 							<div class="small-box bg-green">
 								<div class="inner">
-									<h3><?php echo $commissions['commissions']['total']; ?></h3>
+									<h3>£<?php echo $commissions['commissions']['total']; ?></h3>
 									<p>Total Commissions</p>
 								</div>
 								<div class="icon">
@@ -643,7 +643,7 @@ desired effect
 						<div class="col-lg-2 col-xs-6">
 							<div class="small-box bg-blue">
 								<div class="inner">
-									<h3><?php echo $commissions['commissions']['pending']; ?></h3>
+									<h3>£<?php echo $commissions['commissions']['pending']; ?></h3>
 									<p>Pending Commissions</p>
 								</div>
 								<div class="icon">
@@ -671,7 +671,7 @@ desired effect
 						<div class="col-lg-2 col-xs-6">
 							<div class="small-box bg-maroon">
 								<div class="inner">
-									<h3><?php echo $commissions['commissions']['approved']; ?></h3>
+									<h3>£<?php echo $commissions['commissions']['approved']; ?></h3>
 									<p>Approved Commissions</p>
 								</div>
 								<div class="icon">
@@ -684,7 +684,7 @@ desired effect
 						<div class="col-lg-2 col-xs-6">
 							<div class="small-box bg-light-blue">
 								<div class="inner">
-									<h3><?php echo $commissions['commissions']['paid']; ?></h3>
+									<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
 									<p>Paid Commissions</p>
 								</div>
 								<div class="icon">
@@ -697,7 +697,7 @@ desired effect
 						<div class="col-lg-2 col-xs-6">
 							<div class="small-box bg-yellow">
 								<div class="inner">
-									<h3><?php echo $commissions['commissions']['rejected']; ?></h3>
+									<h3>£<?php echo $commissions['commissions']['rejected']; ?></h3>
 									<p>Rejected Commissions</p>
 								</div>
 								<div class="icon">
@@ -710,7 +710,7 @@ desired effect
 						<div class="col-lg-2 col-xs-6">
 							<div class="small-box bg-teal">
 								<div class="inner">
-									<h3><?php echo $commissions['commissions']['missed']; ?></h3>
+									<h3>£<?php echo $commissions['commissions']['missed']; ?></h3>
 									<p>Missed Commissions</p>
 								</div>
 								<div class="icon">
