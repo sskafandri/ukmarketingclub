@@ -1402,9 +1402,8 @@ desired effect
 
 										<footer class="panel-footer">
 											<a href="dashboard.php?c=members" class="btn btn-default">Back</a>
-
 											<!-- <button type="submit" class="btn btn-success pull-right">Save Changes</button> -->
-											<a href="https://ublo.club/billing/admin/clientssummary.php?userid=16" target="_blank" class="btn btn-primary pull-right">View Full Profile</a>
+											<a href="https://ublo.club/billing/admin/clientssummary.php?userid=<?php echo $member_id; ?>" target="_blank" class="btn btn-primary pull-right">View Full Profile</a>
 										</footer>
 									</form>
 								</div>
@@ -1432,7 +1431,7 @@ desired effect
 												                <th class="no-sort" style="white-space: nowrap;">Order Date</th>
 												                <th class="no-sort" style="white-space: nowrap;">Release Date</th>
 												                <th class="no-sort" style="white-space: nowrap;" width="1px">Order ID</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 												            </tr>
 												        </thead>
 												        <tfoot>
@@ -1693,7 +1692,6 @@ desired effect
 								                </div>
 								            </div>
 								        <?php } } ?>
-
 							        </div>
 							    </div>
 							</div>
