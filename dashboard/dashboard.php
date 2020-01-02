@@ -1243,23 +1243,23 @@ desired effect
 									        <thead>
 									            <tr>
 									                <th class="no-sort hidden-xs" width="1px"></th>
-									                <th class="no-sort" width="1px">Status</th>
+									                <th class="no-sort hidden-xs" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
-									                <th style="white-space: nowrap;" width="1px">Downline</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-									                <th class="no-sort" width="1px">Expires</th>
+									                <th class="hidden-xs" style="white-space: nowrap;" width="1px">Downline</th>
+									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Upline</th>
+									                <th class="no-sort hidden-xs" width="1px">Expires</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </thead>
 									        <tfoot>
 									            <tr>
 									                <th class="no-sort hidden-xs" width="1px"></th>
-									                <th class="no-sort" width="1px">Status</th>
+									                <th class="no-sort hidden-xs" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
-									                <th style="white-space: nowrap;" width="1px">Downline</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-									                <th class="no-sort" width="1px">Expires</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+									                <th class="hidden-xs" style="white-space: nowrap;" width="1px">Downline</th>
+									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Upline</th>
+									                <th class="no-sort hidden-xs" width="1px">Expires</th>
+									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>ajax_memb
 									            </tr>
 									        </tfoot>
 									    </table>
@@ -2306,11 +2306,23 @@ desired effect
 			                "data":           "",
 			                "defaultContent": ''
 			            },
-			            { "data": "status"},
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "status"
+			            },
 			            { "data": "full_name" },
-			            { "data": "total_downline" },
-			            { "data": "upline" },
-			            { "data": "expire_date" },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "total_downline"
+			            },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "upline"
+			            },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "expire_date"
+			            },
 			            { "data": "actions" }
 			        ],
 			        "order": [[3, 'asc']]
