@@ -680,7 +680,7 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
-							<div class="small-box bg-teal">
+							<div class="small-box bg-red">
 								<div class="inner">
 									<h3>£<?php echo $commissions['commissions']['missed']; ?></h3>
 									<p>Missed Commissions</p>
