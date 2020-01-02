@@ -5113,7 +5113,7 @@ function ajax_member_commissions()
 		$output[$count]['amount'] 				= '£'.number_format($commission['amount'], 2);
 
 		// order_id
-		$output[$count]['order_id'] 			= $commission['int_order_id'];
+		$output[$count]['order_id'] 			= '<a href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank" title="View Order">'.$commission['int_order_id'].'</a>';
 
 		// qualified
 		if($commission['qualified'] == 'yes') {
@@ -5130,9 +5130,11 @@ function ajax_member_commissions()
 				<a title="View Billing Profile" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$commission['id'].'" target="_blank"><i class="fa fa-dollar"></i></a>
 				-->
 
-				<a title="Reset" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be removed and auto recalculated in a few minutes. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$commission['id'].'"><i class="fa fa-recycle"></i></a>
+				<a title="View Order" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank"><i class="fa fa-shopping-cart"></i></a>
 
-				<a title="Reject" class="btn btn-warned btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$commission['id'].'"><i class="fa fa-times"></i></a>
+				<a title="Reset Commission" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be removed and auto recalculated in a few minutes. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$commission['id'].'"><i class="fa fa-recycle"></i></a>
+
+				<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$commission['id'].'"><i class="fa fa-times"></i></a>
 			</span>';
 
 		// $count loop
