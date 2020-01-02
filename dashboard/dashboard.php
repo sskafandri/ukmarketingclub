@@ -1405,7 +1405,7 @@ desired effect
 										<div class="col-lg-12">
 											<section class="panel">
 												<div class="panel-body">
-													<table id="member_commissions" class="display" style="width:100%">
+													<table id="example" class="display" style="width:100%">
 												        <thead>
 												            <tr>
 												                <th class="no-sort" width="1px">
@@ -2365,7 +2365,7 @@ desired effect
 			});
 			 
 			$(document).ready(function() {
-			    var table = $('#member_commissions').DataTable( {
+			    var table = $('#example').DataTable( {
 			        "ajax": "actions.php?a=ajax_member_commissions&id=<?php echo get('id'); ?>",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
@@ -2394,7 +2394,7 @@ desired effect
 			    } );
 			     
 			    // Add event listener for opening and closing details
-			    $('#member_commissions tbody').on('click', 'td.details-control', function () {
+			    $('#example tbody').on('click', 'td.details-control', function () {
 			        var tr = $(this).closest('tr');
 			        var row = table.row( tr );
 			 
