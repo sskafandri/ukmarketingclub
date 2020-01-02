@@ -626,8 +626,118 @@ desired effect
 
                 <!-- Main content -->
 				<section class="content">
-					<div class="callout callout-warning">
-						Content will go here
+					<div class="row">
+						<div class="col-lg-2 col-xs-6">
+							<div class="small-box bg-green">
+								<div class="inner">
+									<h3><?php echo $commissions['commissions']['total']; ?></h3>
+									<p>Total Commissions</p>
+								</div>
+								<div class="icon">
+									<i class="fa fa-gbp"></i>
+								</div>
+								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="small-box bg-blue">
+								<div class="inner">
+									<h3><?php echo $commissions['commissions']['pending']; ?></h3>
+									<p>Pending Commissions</p>
+								</div>
+								<div class="icon">
+									<i class="fa fa-gbp"></i>
+								</div>
+								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+
+						<!-- 
+						<div class="col-lg-2 col-xs-6">
+							<div class="small-box bg-teal">
+								<div class="inner">
+									<h3><?php echo $globals['cdn_streams']['total']; ?></h3>
+									<p>Premium Streams</p>
+								</div>
+								<div class="icon">
+									<i class="fa fa-cloud"></i>
+								</div>
+								<a href="?c=cdn_streams" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						-->
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="small-box bg-maroon">
+								<div class="inner">
+									<h3><?php echo $commissions['commissions']['approved']; ?></h3>
+									<p>Approved Commissions</p>
+								</div>
+								<div class="icon">
+									<i class="fa fa-gbp"></i>
+								</div>
+								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="small-box bg-light-blue">
+								<div class="inner">
+									<h3><?php echo $commissions['commissions']['paid']; ?></h3>
+									<p>Paid Commissions</p>
+								</div>
+								<div class="icon">
+									<i class="fa fa-gbp"></i>
+								</div>
+								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="small-box bg-yellow">
+								<div class="inner">
+									<h3><?php echo $commissions['commissions']['rejected']; ?></h3>
+									<p>Rejected Commissions</p>
+								</div>
+								<div class="icon">
+									<i class="fa fa-gbp"></i>
+								</div>
+								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="small-box bg-teal">
+								<div class="inner">
+									<h3><?php echo $commissions['commissions']['missed']; ?></h3>
+									<p>Missed Commissions</p>
+								</div>
+								<div class="icon">
+									<i class="fa fa-gbp"></i>
+								</div>
+								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+          			</div>
+
+					<div class="row">
+						<div class="col-lg-12 col-xs-12">
+							<div class="box box-primary no-padding">
+								<div class="box-header with-border">
+									<h3 class="box-title">
+										Server Locations 
+										<a href="#" data-toggle="modal" data-target="#help_dashboard_map">
+											<i class="fas fa-question-circle"></i>
+										</a>
+									</h3> 
+									<small>(estimated)</small>
+								</div>
+								<div class="box-body">
+					                
+								</div>
+							</div>
+						</div>
 					</div>
 				</section>
             </div>
