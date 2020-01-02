@@ -1861,8 +1861,9 @@ desired effect
 
                 <!-- Main content -->
 				<section class="content">
+					<?php debug($data); ?>
 					<div class="row">
-						<div class="col-lg-2">
+						<div class="col-lg-2 col-xs-6">
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
@@ -1877,7 +1878,7 @@ desired effect
 							</div>
 						</div>
 
-						<div class="col-lg-2">
+						<div class="col-lg-2 col-xs-6">
 							<div class="box box-success">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
@@ -1892,7 +1893,7 @@ desired effect
 							</div>
 						</div>
 
-						<div class="col-lg-2">
+						<div class="col-lg-2 col-xs-6">
 							<div class="box box-warning">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
@@ -1907,11 +1908,11 @@ desired effect
 							</div>
 						</div>
 
-						<div class="col-lg-2">
+						<div class="col-lg-2 col-xs-6">
 							<div class="box box-danger">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Missed Commissions
+		              					Missed
 		              				</h3>
 		            			</div>
 								<div class="box-body">
@@ -1922,11 +1923,11 @@ desired effect
 							</div>
 						</div>
 
-						<div class="col-lg-2">
+						<div class="col-lg-2 col-xs-6">
 							<div class="box box-danger">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Rejected Commissions
+		              					Rejected
 		              				</h3>
 		            			</div>
 								<div class="box-body">
@@ -1937,7 +1938,7 @@ desired effect
 							</div>
 						</div>
 
-						<div class="col-lg-2">
+						<div class="col-lg-2 col-xs-6">
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
