@@ -991,8 +991,6 @@ if($task == 'activate_affiliates'){
 
 		// Decode response
 		$results = json_decode($response, true);
-
-		debug($results);
 	}
 
 	console_output("Finished.");
