@@ -410,7 +410,7 @@ desired effect
 
 	                <?php if($account_details['type'] == 'admin') { ?>
                 		<li class="header">STAFF PANEL</li>
-	                    <?php if(get('c') == 'members'){ ?>
+	                    <?php if(get('c') == 'members' || get('c') == 'member'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
