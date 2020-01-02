@@ -608,6 +608,8 @@ desired effect
         <?php function home(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
+
+        		$commissions = get_commissions();
         	?>
 
             <div class="content-wrapper">
@@ -1774,47 +1776,7 @@ desired effect
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
             
-            	$member_id 				= $_SESSION['account']['id'];
-
-				$member 				= $account_details;
-
-				// set commissions default
-				$data['commissions']['total']				= '0';
-				$data['commissions']['pending']				= '0';
-				$data['commissions']['paid']				= '0';
-				$data['commissions']['rejected']			= '0';
-				$data['commissions']['missed']				= '0';
-				$data['commissions']['orders']				= '0';
-
-				// get pending commissions
-				$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
-				$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
-				
-				// work with commissions
-				foreach($commissions as $commission){
-					$data['commissions']['total']					= $data['commissions']['total'] + $commission['amount'];
-
-					if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
-						$data['commissions']['pending']				= $data['commissions']['pending'] + $commission['amount'];
-					}
-					if($commission['status'] == 'paid' && $commission['qualified'] == 'yes'){
-						$data['commissions']['paid']				= $data['commissions']['paid'] + $commission['amount'];
-					}
-					if($commission['status'] == 'rejected' && $commission['qualified'] == 'yes'){
-						$data['commissions']['rejected']			= $data['commissions']['rejected'] + $commission['amount'];
-					}
-					if($commission['qualified'] == 'no'){
-						$data['commissions']['missed'] 				= $data['commissions']['missed'] + $commission['amount'];
-					}
-				}
-
-				// clean up commissions
-				$data['commissions']['total'] 						= number_format($data['commissions']['total'], 2);
-				$data['commissions']['pending'] 					= number_format($data['commissions']['pending'], 2);
-				$data['commissions']['paid'] 						= number_format($data['commissions']['paid'], 2);
-				$data['commissions']['rejected'] 					= number_format($data['commissions']['rejected'], 2);
-				$data['commissions']['missed'] 						= number_format($data['commissions']['missed'], 2);
-				$data['commissions']['orders'] 						= number_format(count($commissions));
+            	$commissions = get_commissions();
 			?>
 
             <div class="content-wrapper">
@@ -1841,7 +1803,7 @@ desired effect
 		            			</div>
 								<div class="box-body">
 									<center>
-										<h3>£<?php echo $data['commissions']['total']; ?></h3>
+										<h3>£<?php echo $commissions['commissions']['total']; ?></h3>
 									</center>
 								</div>
 							</div>
@@ -1856,7 +1818,7 @@ desired effect
 		            			</div>
 								<div class="box-body">
 									<center>
-										<h3>£<?php echo $data['commissions']['paid']; ?></h3>
+										<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
 									</center>
 								</div>
 							</div>
@@ -1871,7 +1833,7 @@ desired effect
 		            			</div>
 								<div class="box-body">
 									<center>
-										<h3>£<?php echo $data['commissions']['pending']; ?></h3>
+										<h3>£<?php echo $commissions['commissions']['pending']; ?></h3>
 									</center>
 								</div>
 							</div>
@@ -1886,7 +1848,7 @@ desired effect
 		            			</div>
 								<div class="box-body">
 									<center>
-										<h3>£<?php echo $data['commissions']['missed']; ?></h3>
+										<h3>£<?php echo $commissions['commissions']['missed']; ?></h3>
 									</center>
 								</div>
 							</div>
@@ -1901,7 +1863,7 @@ desired effect
 		            			</div>
 								<div class="box-body">
 									<center>
-										<h3>£<?php echo $data['commissions']['rejected']; ?></h3>
+										<h3>£<?php echo $commissions['commissions']['rejected']; ?></h3>
 									</center>
 								</div>
 							</div>
@@ -1916,7 +1878,7 @@ desired effect
 		            			</div>
 								<div class="box-body">
 									<center>
-										<h3><?php echo $data['commissions']['orders']; ?></h3>
+										<h3><?php echo $commissions['commissions']['orders']; ?></h3>
 									</center>
 								</div>
 							</div>
