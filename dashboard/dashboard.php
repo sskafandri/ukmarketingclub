@@ -1355,7 +1355,18 @@ desired effect
 														<div class="form-group">
 															<label class="col-md-2 control-label" for="account_status">Account Status</label>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="account_status" name="account_status" value="<?php echo stripslashes($member['status']); ?>">
+																
+																<?php 
+																	if($member['status'] == 'active') {
+																		echo '<span class="label label-success full-width" style="width: 100%;">Active</span>';
+																	}elseif($member['status'] == 'disabled') {
+																		echo = '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
+																	}elseif($member['status'] == 'suspended') {
+																		echo = '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
+																	}else{
+																		echo = '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($member['status']).'</span>';
+																	}
+																?>
 															</div>
 														</div>
 
