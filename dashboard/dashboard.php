@@ -1353,14 +1353,9 @@ desired effect
 														<?php } ?>
 
 														<div class="form-group">
-															<label class="col-md-2 control-label" for="status">Account Status</label>
-															<div class="col-md-4">
-																<select id="status" name="status" class="form-control select2">
-																	<option <?php if($member['status']=='enabled'){echo"selected";} ?> value="enabled">Enabled</option>
-																	<option <?php if($member['status']=='disable'){echo"selected";} ?> value="disable">Disabled</option>
-																	<option <?php if($member['status']=='expired'){echo"selected";} ?> value="expired">Expired</option>
-																	<option <?php if($member['status']=='suspended'){echo"selected";} ?> value="suspended">Suspended</option>
-																</select>
+															<label class="col-md-2 control-label" for="account_status">Account Status</label>
+															<div class="col-md-10">
+																<input type="text" class="form-control" id="account_status" name="account_status" value="<?php echo stripslashes($member['status']); ?>">
 															</div>
 														</div>
 
@@ -1382,21 +1377,6 @@ desired effect
 																<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($member['email']); ?>">
 															</div>
 														</div>
-
-														<!-- login -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="username">Login</label>
-															<div class="col-md-5">
-																<input type="text" class="form-control" id="username" name="username" value="<?php echo stripslashes($customer['username']); ?>" placeholder="username" required>
-															</div>
-															<div class="col-md-5">
-																<input type="text" class="form-control" id="password" name="password" value="<?php echo stripslashes($customer['password']); ?>" placeholder="password" required>
-															</div>
-														</div>
-
-														
-
-														
 													</div>
 												</section>
 											</div>
@@ -1407,6 +1387,56 @@ desired effect
 											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
 										</footer>
 									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Commissions
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<div class="row">
+										<div class="col-lg-12">
+											<section class="panel">
+												<div class="panel-body">
+													<table id="member_commissions" class="display" style="width:100%">
+												        <thead>
+												            <tr>
+												                <th class="no-sort" width="1px">
+												                	<input type="checkbox" id="checkAll" />
+												                </th>
+												                <th class="no-sort" width="1px">Expand</th>
+												                <th class="no-sort" width="1px">Status</th>
+												                <th class="no-sort" width="1px">Qualified</th>
+												                <th style="white-space: nowrap;">Release Date</th>
+												                <th style="white-space: nowrap;" width="1px">Order ID</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+												            </tr>
+												        </thead>
+												        <tfoot>
+												            <tr>
+												                <th class="no-sort" width="1px">
+												                	<input type="checkbox" id="checkAll" />
+												                </th>
+												                <th class="no-sort" width="1px">Expand</th>
+												                <th class="no-sort" width="1px">Status</th>
+												                <th class="no-sort" width="1px">Qualified</th>
+												                <th style="white-space: nowrap;">Release Date</th>
+												                <th style="white-space: nowrap;" width="1px">Order ID</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+												            </tr>
+												        </tfoot>
+												    </table>
+												</div>
+											</section>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -2284,6 +2314,102 @@ desired effect
 			            { "data": "actions" }
 			        ],
 			        "order": [[3, 'asc']]
+			    } );
+			     
+			    // Add event listener for opening and closing details
+			    $('#example tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
+			        }
+			    } );
+			} );
+    	</script>
+    <?php } ?>
+
+    <?php if(get('c') == 'member') { ?>
+    	<script>
+			/* Formatting function for row details - modify as you need */
+			function format ( d ) {
+			    // `d` is the original data object for the row
+			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
+			        '<tr>'+
+			            '<td width="150px" valign="top">Additional Details</td>'+
+			            '<td valign="top">'+
+			            	'<strong>User ID:</strong> '+d.id+' <br>'+
+			            	'<strong>Join Date:</strong> '+d.join_date+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			        '<tr>'+
+			            '<td width="150px" valign="top">Contact Details</td>'+
+			            '<td valign="top">'+
+			            	'<strong>Email:</strong> '+d.email+' <br>'+
+			            	'<strong>Tel:</strong> '+d.tel+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			        '<tr>'+
+			            '<td width="150px" valign="top">Pending Commissions</td>'+
+			            '<td valign="top">'+
+			            	'<strong>Qualified:</strong> £'+d.pending_commissions_qualified+' <br>'+
+			            	'<strong>Unqualified:</strong> £'+d.pending_commissions_unqualified+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			        '<tr>'+
+			            '<td width="150px" valign="top">Internal Notes</td>'+
+			            '<td valign="top">'+d.internal_notes+'</td>'+
+			        '</tr>'+
+			    '</table>';
+			}
+
+			$('#checkAll').change(function () {
+			    $('.chk').prop('checked', this.checked);
+			    $('#multi_options_show').removeClass("hidden");
+			});
+
+			$(".chk").change(function () {
+			    if ($(".chk:checked").length == $(".chk").length) {
+			        $('#checkAll').prop('checked', 'checked');
+			    } else {
+			        $('#checkAll').prop('checked', false);
+			    }
+			});
+			 
+			$(document).ready(function() {
+			    var table = $('#member_commissions').DataTable( {
+			        "ajax": "actions.php?a=ajax_member_commissions",
+			        "iDisplayLength": 100,
+			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
+			        "columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No commissions found."
+					},
+			        "columns": [
+			        	{ "data": "checkbox"},
+			            {
+			                "className":      'details-control',
+			                "orderable":      false,
+			                "data":           null,
+			                "defaultContent": ''
+			            },
+			            { "data": "status"},
+			            { "data": "qualified" },
+			            { "data": "release_date" },
+			            { "data": "Order ID" },
+			            { "data": "actions" }
+			        ],
+			        "order": [[4, 'asc']]
 			    } );
 			     
 			    // Add event listener for opening and closing details

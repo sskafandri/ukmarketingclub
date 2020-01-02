@@ -30,7 +30,7 @@ switch ($a)
 		break;
 
 
-	// headend functions
+	// functions
 	case "ajax_headends":
 		ajax_headends();
 		break;
@@ -542,6 +542,11 @@ switch ($a)
 	// get members
 	case "ajax_members":
 		ajax_members();
+		break;
+
+	// get member commissions
+	case "ajax_member_commissions":
+		ajax_member_commissions();
 		break;
 
 	// get downline table_downline
@@ -5054,6 +5059,67 @@ function ajax_members()
 			// $count loop
 			$count++;
 		}
+
+		if(isset($output)) {
+			$data['data'] = array_values($output);
+		}else{
+			$data['data'] = array();
+		}
+
+		json_output($data);
+	}
+}
+
+function ajax_member_commissions()
+{
+	global $conn, $global_settings;
+
+	$count 			= 0;
+
+	$member_id 		= get('id');
+
+	header("Content-Type:application/json; charset=utf-8");
+
+	// get pending commissions
+	$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
+	$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
+	
+	// work with commissions
+	foreach($commissions as $commission){
+		$output[$count]['added'] 				= $commission['added'];
+
+		// status
+		if($commission['status'] == 'approved') {
+			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Approved</span>';
+		}elseif($commission['status'] == 'pending') {
+			$output[$count]['status']					= '<span class="label label-warning full-width" style="width: 100%;">Pending</span>';
+		}elseif($commission['status'] == 'paid') {
+			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Paid</span>';
+		}elseif($commission['status'] == 'rejected') {
+			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Rejected</span>';
+		}else{
+			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($commission['status']).'</span>';
+		}
+
+		$output[$count]['customer_id'] 			= $commission['customer_id'];
+		$output[$count]['amount'] 				= $commission['amount'];
+		$output[$count]['order_id'] 			= $commission['int_order_id'];
+
+		// qualified
+		if($commission['qualified'] == 'yes') {
+			$output[$count]['qualified'] 					= '<span class="label label-success full-width" style="width: 100%;">Yes</span>';
+		}elseif($commission['qualified'] == 'no') {
+			$output[$count]['qualified']					= '<span class="label label-danger full-width" style="width: 100%;">No</span>';
+		}
+
+		// $count loop
+		$count++;
+	}
+
+	// clean up commissions
+	$output[$count]['pending_commissions_qualified'] 		= number_format($output[$count]['pending_commissions_qualified'], 2);
+	$output[$count]['pending_commissions_unqualified'] 		= number_format($output[$count]['pending_commissions_unqualified'], 2);
+
 
 		if(isset($output)) {
 			$data['data'] = array_values($output);
