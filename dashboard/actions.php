@@ -5102,7 +5102,7 @@ function ajax_member_commissions()
 		}
 
 		$output[$count]['customer_id'] 			= $commission['customer_id'];
-		$output[$count]['amount'] 				= $commission['amount'];
+		$output[$count]['amount'] 				= '£'.number_format($commission['amount'], 2);
 		$output[$count]['order_id'] 			= $commission['int_order_id'];
 
 		// qualified
@@ -5116,19 +5116,13 @@ function ajax_member_commissions()
 		$count++;
 	}
 
-	// clean up commissions
-	$output[$count]['pending_commissions_qualified'] 		= number_format($output[$count]['pending_commissions_qualified'], 2);
-	$output[$count]['pending_commissions_unqualified'] 		= number_format($output[$count]['pending_commissions_unqualified'], 2);
-
-
-		if(isset($output)) {
-			$data['data'] = array_values($output);
-		}else{
-			$data['data'] = array();
-		}
-
-		json_output($data);
+	if(isset($output)) {
+		$data['data'] = array_values($output);
+	}else{
+		$data['data'] = array();
 	}
+
+	json_output($data);
 }
 
 function ajax_downline()
