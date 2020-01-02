@@ -628,7 +628,7 @@ desired effect
 				<section class="content">
 					<div class="row">
 						<div class="col-lg-2 col-xs-6">
-							<div class="small-box bg-green">
+							<div class="small-box bg-primary">
 								<div class="inner">
 									<h3>£<?php echo $commissions['commissions']['total']; ?></h3>
 									<p>Total Commissions</p>
@@ -641,7 +641,7 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
-							<div class="small-box bg-blue">
+							<div class="small-box bg-warning">
 								<div class="inner">
 									<h3>£<?php echo $commissions['commissions']['pending']; ?></h3>
 									<p>Pending Commissions</p>
@@ -667,7 +667,7 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
-							<div class="small-box bg-light-blue">
+							<div class="small-box bg-light-success">
 								<div class="inner">
 									<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
 									<p>Paid Commissions</p>
@@ -693,7 +693,7 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
-							<div class="small-box bg-yellow">
+							<div class="small-box bg-danger">
 								<div class="inner">
 									<h3>£<?php echo $commissions['commissions']['rejected']; ?></h3>
 									<p>Rejected Commissions</p>
