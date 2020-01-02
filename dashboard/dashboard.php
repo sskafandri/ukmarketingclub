@@ -1358,7 +1358,7 @@ desired effect
 																
 																<?php 
 																	if($member['status'] == 'active') {
-																		echo '<span class="label label-success full-width" style="width: 100%;">Active</span>';
+																		echo = '<span class="label label-success full-width" style="width: 100%;">Active</span>';
 																	}elseif($member['status'] == 'disabled') {
 																		echo = '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
 																	}elseif($member['status'] == 'suspended') {
