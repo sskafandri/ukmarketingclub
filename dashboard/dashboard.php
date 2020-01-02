@@ -1902,6 +1902,21 @@ desired effect
 						</div>
 
 						<div class="col-lg-2">
+							<div class="box box-danger">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Rejected Commissions
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $data['commissions']['rejected']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2">
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
