@@ -4984,27 +4984,43 @@ function ajax_members()
 			$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
 
 			// set commissions default
-			$output[$count]['pending_commissions_qualified']	= '0';
-			$output[$count]['pending_commissions_unqualified']	= '0';
+			$output[$count]['commissions']['total']				= '0';
+			$output[$count]['commissions']['pending']			= '0';
+			$output[$count]['commissions']['paid']				= '0';
+			$output[$count]['commissions']['rejected']			= '0';
+			$output[$count]['commissions']['missed']			= '0';
+			$output[$count]['commissions']['orders']			= '0';
 
 			// get pending commissions
-			$query 				= $conn->query("SELECT `id`,`amount`,`qualified` FROM `commissions` WHERE `user_id` = '".$customer['id']."' AND `status` = 'pending' ");
+			$query 				= $conn->query("SELECT `id`,`amount`,`qualified`,`status` FROM `commissions` WHERE `user_id` = '".$customer['id']."' ");
 			$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
 			
 			// work with commissions
 			foreach($commissions as $commission){
-				if($commission['qualified'] == 'yes'){
-					$output[$count]['pending_commissions_qualified'] = $output[$count]['pending_commissions_qualified'] + $commission['amount'];
-				}
+					$output[$count]['commissions']['total']						= $output[$count]['commissions']['total'] + $commission['amount'];
 
-				if($commission['qualified'] == 'no'){
-					$output[$count]['pending_commissions_unqualified'] = $output[$count]['pending_commissions_unqualified'] + $commission['amount'];
+					if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
+						$output[$count]['commissions']['pending']				= $output[$count]['commissions']['pending'] + $commission['amount'];
+					}
+					if($commission['status'] == 'paid' && $commission['qualified'] == 'yes'){
+						$output[$count]['commissions']['paid']					= $output[$count]['commissions']['paid'] + $commission['amount'];
+					}
+					if($commission['status'] == 'rejected' && $commission['qualified'] == 'yes'){
+						$output[$count]['commissions']['rejected']				= $output[$count]['commissions']['rejected'] + $commission['amount'];
+					}
+					if($commission['qualified'] == 'no'){
+						$output[$count]['commissions']['missed'] 				= $output[$count]['commissions']['missed'] + $commission['amount'];
+					}
 				}
 			}
 
 			// clean up commissions
-			$output[$count]['pending_commissions_qualified'] 		= number_format($output[$count]['pending_commissions_qualified'], 2);
-			$output[$count]['pending_commissions_unqualified'] 		= number_format($output[$count]['pending_commissions_unqualified'], 2);
+			$output[$count]['commissions']['total'] 							= number_format($output[$count]['commissions']['total'], 2);
+			$output[$count]['commissions']['pending'] 							= number_format($output[$count]['commissions']['pending'], 2);
+			$output[$count]['commissions']['paid'] 								= number_format($output[$count]['commissions']['paid'], 2);
+			$output[$count]['commissions']['rejected'] 							= number_format($output[$count]['commissions']['rejected'], 2);
+			$output[$count]['commissions']['missed'] 							= number_format($output[$count]['commissions']['missed'], 2);
+			$output[$count]['commissions']['orders'] 							= number_format(count($commissions));
 
 			// $count loop
 			$count++;

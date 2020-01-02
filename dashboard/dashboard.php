@@ -1812,7 +1812,7 @@ desired effect
 				$data['commissions']['paid']				= '0';
 				$data['commissions']['rejected']			= '0';
 				$data['commissions']['missed']				= '0';
-				$data['commissions']['orders']				= '1';
+				$data['commissions']['orders']				= '0';
 
 				// get pending commissions
 				$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
@@ -1834,8 +1834,6 @@ desired effect
 					if($commission['qualified'] == 'no'){
 						$data['commissions']['missed'] 				= $data['commissions']['missed'] + $commission['amount'];
 					}
-
-					$data['commissions']['orders']++;
 				}
 
 				// clean up commissions
@@ -1844,7 +1842,7 @@ desired effect
 				$data['commissions']['paid'] 						= number_format($data['commissions']['paid'], 2);
 				$data['commissions']['rejected'] 					= number_format($data['commissions']['rejected'], 2);
 				$data['commissions']['missed'] 						= number_format($data['commissions']['missed'], 2);
-				$data['commissions']['orders'] 						= number_format($data['commissions']['orders']);
+				$data['commissions']['orders'] 						= number_format(count($commissions));
 			?>
 
             <div class="content-wrapper">
@@ -2482,10 +2480,11 @@ desired effect
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+
-			            '<td width="150px" valign="top" class="hidden-xs">Pending Commissions</td>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Commissions</td>'+
 			            '<td valign="top" align="left">'+
-			            	'<strong>Qualified:</strong> £'+d.pending_commissions_qualified+' <br>'+
-			            	'<strong>Unqualified:</strong> £'+d.pending_commissions_unqualified+' <br>'+
+			            	'<strong>Total:</strong> £'+d.commissions.total+' <br>'+
+			            	'<strong>Paid:</strong> £'+d.commissions.paid+' <br>'+
+			            	'<strong>Pending:</strong> £'+d.commissions.pending+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+
