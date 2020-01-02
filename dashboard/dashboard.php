@@ -1239,7 +1239,7 @@ desired effect
 										</div>
 			            			</div>
 									<div class="box-body">
-										<table id="example" class="display" style="width:100%">
+										<table id="example" class="display responsive nowrap" style="width:100%">
 									        <thead>
 									            <tr>
 									                <th class="no-sort hidden-xs" width="1px"></th>
