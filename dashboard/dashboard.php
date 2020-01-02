@@ -1815,7 +1815,7 @@ desired effect
 				$data['commissions']['orders']				= '1';
 
 				// get pending commissions
-				$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' AND `status` = 'pending' ");
+				$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
 				$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
 				
 				// work with commissions
@@ -1862,7 +1862,6 @@ desired effect
                 <!-- Main content -->
 				<section class="content">
 					<?php debug($commissions); ?>
-					<?php debug($data); ?>
 					<div class="row">
 						<div class="col-lg-2 col-xs-6">
 							<div class="box box-primary">
