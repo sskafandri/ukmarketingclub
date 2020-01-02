@@ -491,7 +491,7 @@ desired effect
 		                </ul>
 		            </li>
 
-                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline' || get('c') == 'commissions'){ ?>
+                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline' || get('c') == 'commissions' || get('c') == 'marketing_tools'){ ?>
                     	<li class="active treeview menu-open">
                     <?php }else{ ?>
                     	<li class="treeview">
@@ -503,7 +503,17 @@ desired effect
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<!-- <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
+							<?php if(get('c') == 'marketing_tools'){ ?>
+		                    	<li class="active">
+		                    <?php }else{ ?>
+		                    	<li>
+		                    <?php } ?>
+		                    	<a href="dashboard.php?c=marketing_tools">
+		                        	<i class="fa fa-circle"></i> 
+		                        	<span>Marketing Tools</span>
+		                        </a>
+		                    </li>
+
 							<?php if(get('c') == 'commissions'){ ?>
 		                    	<li class="active">
 		                    <?php }else{ ?>
@@ -1987,32 +1997,28 @@ desired effect
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-12">
-											<section class="panel">
-												<div class="panel-body">
-													<table id="commissions" class="display responsive nowrap" style="width:100%">
-												        <thead>
-												            <tr>
-												            	<th class="no-sort" width="1px"></th>
-												                <th class="no-sort" width="1px">Status</th>
-												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-												                <th class="no-sort hidden-xs">Order Date</th>
-												                <th class="no-sort hidden-xs">Release Date</th>
-												                <th class="">Amount</th>
-												            </tr>
-												        </thead>
-												        <tfoot>
-												            <tr>
-												            	<th class="no-sort" width="1px"></th>
-												                <th class="no-sort" width="1px">Status</th>
-												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-												                <th class="no-sort hidden-xs">Order Date</th>
-												                <th class="no-sort hidden-xs">Release Date</th>
-												                <th class="">Amount</th>
-												            </tr>
-												        </tfoot>
-												    </table>
-												</div>
-											</section>
+											<table id="commissions" class="display responsive nowrap" style="width:100%">
+										        <thead>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
+										                <th class="no-sort hidden-xs">Order Date</th>
+										                <th class="no-sort hidden-xs">Release Date</th>
+										                <th class="">Amount</th>
+										            </tr>
+										        </thead>
+										        <tfoot>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
+										                <th class="no-sort hidden-xs">Order Date</th>
+										                <th class="no-sort hidden-xs">Release Date</th>
+										                <th class="">Amount</th>
+										            </tr>
+										        </tfoot>
+										    </table>
 										</div>
 									</div>
 								</div>
