@@ -5088,7 +5088,7 @@ function ajax_member_commissions()
 	foreach($commissions as $commission){
 		$output[$count]							= $commission;
 
-		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
+		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$commission['id'].'" name="commission_ids[]" value="'.$commission['id'].'" onclick="multi_options();"></center>';
 
 		$output[$count]['added'] 				= $commission['added'];
 		$output[$count]['release_date'] 		= $commission['added'];
