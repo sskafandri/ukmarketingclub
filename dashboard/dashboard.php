@@ -1814,7 +1814,7 @@ desired effect
 				$data['commissions']['orders']				= '0';
 
 				// get pending commissions
-				$query 				= $conn->query("SELECT `id`,`amount`,`qualified` FROM `commissions` WHERE `user_id` = '".$member_id."' AND `status` = 'pending' ");
+				$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' AND `status` = 'pending' ");
 				$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
 				
 				// work with commissions
@@ -1839,7 +1839,7 @@ desired effect
 				$data['commissions']['paid'] 						= number_format($data['commissions']['paid'], 2);
 				$data['commissions']['rejected'] 					= number_format($data['commissions']['rejected'], 2);
 				$data['commissions']['missed'] 						= number_format($data['commissions']['missed'], 2);
-				$data['commissions']['orders'] 						= number_format($data['commissions']['orders'], 2);
+				$data['commissions']['orders'] 						= number_format($data['commissions']['orders']);
 			?>
 
             <div class="content-wrapper">
