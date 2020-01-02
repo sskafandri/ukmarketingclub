@@ -482,8 +482,8 @@ switch ($a)
 		ajax_member_commissions();
 		break;
 
-	case "ajax_my_commissions":
-		ajax_my_commissions();
+	case "ajax_commissions":
+		ajax_commissions();
 		break;
 
 	// get downline table_downline
@@ -5861,7 +5861,7 @@ function commission_reset()
 	go($_SERVER['HTTP_REFERER']);
 }
 
-function ajax_my_commissions()
+function ajax_commissions()
 {
 	global $conn, $global_settings;
 
