@@ -5843,3 +5843,16 @@ function commission_approve()
 
 	go($_SERVER['HTTP_REFERER']);
 }
+
+function commission_reset()
+{
+	global $conn, $global_settings;
+
+	$id = get('id');
+
+	$update = $conn->exec("UPDATE `commissions` SET `status` = 'pending' WHERE `id` = '".$id."' ");
+	
+    status_message('success',"Commission has been reset.");
+
+	go($_SERVER['HTTP_REFERER']);
+}
