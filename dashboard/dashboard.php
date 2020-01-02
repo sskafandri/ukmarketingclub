@@ -1812,7 +1812,7 @@ desired effect
 				$data['commissions']['paid']				= '0';
 				$data['commissions']['rejected']			= '0';
 				$data['commissions']['missed']				= '0';
-				$data['commissions']['orders']				= '0';
+				$data['commissions']['orders']				= '1';
 
 				// get pending commissions
 				$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' AND `status` = 'pending' ");
@@ -1834,6 +1834,8 @@ desired effect
 					if($commission['qualified'] == 'no'){
 						$data['commissions']['missed'] 				= $data['commissions']['missed'] + $commission['amount'];
 					}
+
+					$data['commissions']['orders']++
 				}
 
 				// clean up commissions
@@ -1842,7 +1844,7 @@ desired effect
 				$data['commissions']['paid'] 						= number_format($data['commissions']['paid'], 2);
 				$data['commissions']['rejected'] 					= number_format($data['commissions']['rejected'], 2);
 				$data['commissions']['missed'] 						= number_format($data['commissions']['missed'], 2);
-				$data['commissions']['orders'] 						= number_format(count($commissions));
+				$data['commissions']['orders'] 						= number_format($data['commissions']['orders']);
 			?>
 
             <div class="content-wrapper">
