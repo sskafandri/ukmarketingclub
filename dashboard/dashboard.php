@@ -1495,32 +1495,28 @@ desired effect
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-12">
-											<section class="panel">
-												<div class="panel-body">
-													<table id="member_commissions" class="display responsive nowrap" style="width:100%">
-												        <thead>
-												            <tr>
-												            	<th class="no-sort" width="1px"></th>
-												                <th class="no-sort" width="1px">Status</th>
-												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
-												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="60px">Actions</th>
-												            </tr>
-												        </thead>
-												        <tfoot>
-												            <tr>
-												            	<th class="no-sort" width="1px"></th>
-												                <th class="no-sort" width="1px">Status</th>
-												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
-												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="60px">Actions</th>
-												            </tr>
-												        </tfoot>
-												    </table>
-												</div>
-											</section>
+											<table id="member_commissions" class="display" style="width:100%">
+										        <thead>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
+										                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
+										                <th class="no-sort" style="white-space: nowrap;">Amount</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="60px">Actions</th>
+										            </tr>
+										        </thead>
+										        <tfoot>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
+										                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
+										                <th class="no-sort" style="white-space: nowrap;">Amount</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="60px">Actions</th>
+										            </tr>
+										        </tfoot>
+										    </table>
 										</div>
 									</div>
 								</div>
@@ -2017,6 +2013,47 @@ desired effect
 												    </table>
 												</div>
 											</section>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+            </div>
+        <?php } ?>
+
+        <?php function marketing_tools(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+			?>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>
+                            	
+                <section class="content-header">
+                    <h1>Marketing Tools <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">Marketing Tools</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Affiliate Links
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<div class="row">
+										<div class="col-lg-12">
+											
 										</div>
 									</div>
 								</div>
