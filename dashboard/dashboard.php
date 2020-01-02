@@ -2548,7 +2548,7 @@ desired effect
 
     <?php include('inc/help_modals.php'); ?>
 
-    <?php if($global_settings['cms_terms_accepted'] == 'no'){ ?>
+    <?php if($account_details['cms_terms_accepted'] == 'no'){ ?>
 		<script>
 			$(window).on('load',function(){
 		        $('#modal-terms').modal({backdrop: 'static', keyboard: false});
