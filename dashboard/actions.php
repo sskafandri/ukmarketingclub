@@ -4976,12 +4976,14 @@ function ajax_members()
 
 			// build the actions menu options
 			$output[$count]['actions'] 						= '
-				<span class="pull-right">
-					<a title="View MLM Profile" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=member&id='.$customer['id'].'"><i class="fa fa-funnel-dollar"></i></a>
-					<a title="View Billing Profile" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$customer['id'].'" target="_blank"><i class="fa fa-user"></i></a>
+				<div class="btn-group">
+					<span class="pull-right">
+						<a title="View MLM Profile" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=member&id='.$customer['id'].'"><i class="fa fa-funnel-dollar"></i></a>
+						<a title="View Billing Profile" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$customer['id'].'" target="_blank"><i class="fa fa-user"></i></a>
 
-					<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a> -->
-				</span>';
+						<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a> -->
+					</span>
+				</div>';
 
 			// internal staff notes
 			$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
@@ -5103,40 +5105,42 @@ function ajax_member_commissions()
 
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
-			<span class="pull-right">
-				<!-- 
-				<a title="View MLM Profile" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=member&id='.$commission['id'].'"><i class="fa fa-eye"></i></a>
-				<a title="View Billing Profile" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$commission['id'].'" target="_blank"><i class="fa fa-dollar"></i></a>
-				-->
+			<div class="btn-group">
+				<span class="pull-right">
+					<!-- 
+					<a title="View MLM Profile" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=member&id='.$commission['id'].'"><i class="fa fa-eye"></i></a>
+					<a title="View Billing Profile" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$commission['id'].'" target="_blank"><i class="fa fa-dollar"></i></a>
+					-->
 		';
 
 		if($commission['status'] == 'pending'){
 			$output[$count]['actions'] 						.= '
-				<span class="hidden-xs">
-					<a title="Manually Approve Commission" class="btn btn-success btn-flat btn-xs" href="actions.php?a=commission_approve&id='.$commission['id'].'"><i class="fa fa-check"></i></a>
-				</span>
+					<span class="hidden-xs">
+						<a title="Manually Approve Commission" class="btn btn-success btn-flat btn-xs" href="actions.php?a=commission_approve&id='.$commission['id'].'"><i class="fa fa-check"></i></a>
+					</span>
 			';
 		}elseif($commission['status'] != 'paid'){
 			$output[$count]['actions'] 						.= '
-				<span class="hidden-xs">
-					<a title="Reset Commission" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be reset. Are you sure?\')" href="actions.php?a=commission_reset&id='.$commission['id'].'"><i class="fa fa-recycle"></i></a>
-				</span>
+					<span class="hidden-xs">
+						<a title="Reset Commission" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be reset. Are you sure?\')" href="actions.php?a=commission_reset&id='.$commission['id'].'"><i class="fa fa-recycle"></i></a>
+					</span>
 			';
 		}else{
 			$output[$count]['actions'] 						.= '
-				<span class="hidden-xs">
-					<a title="Not Available" class="btn btn-default btn-flat btn-xs" href="#" disabled><i class="fa fa-recycle"></i></a>
-				</span>
+					<span class="hidden-xs">
+						<a title="Not Available" class="btn btn-default btn-flat btn-xs" href="#" disabled><i class="fa fa-recycle"></i></a>
+					</span>
 			';
 		}
 
 		$output[$count]['actions'] 						.= '
-				<span class="hidden-xs">
-					<a title="View Order" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank"><i class="fa fa-shopping-cart"></i></a>
-				</span>
+					<span class="hidden-xs">
+						<a title="View Order" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank"><i class="fa fa-shopping-cart"></i></a>
+					</span>
 
-				<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=commission_reject&id='.$commission['id'].'"><i class="fa fa-times"></i></a>
-			</span>';
+					<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=commission_reject&id='.$commission['id'].'"><i class="fa fa-times"></i></a>
+				</span>
+			</div>';
 
 		// $count loop
 		$count++;
