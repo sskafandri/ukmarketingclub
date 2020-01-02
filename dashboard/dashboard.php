@@ -131,6 +131,12 @@ $account_details = account_details($_SESSION['account']['id']);
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
 	<style>
+		.vcenter {
+			display: inline-block;
+			vertical-align: middle;
+			float: none;
+		}
+
 		#server_locations {
 			height: 600px;
 			margin: 0px;
@@ -1355,18 +1361,19 @@ desired effect
 														<div class="form-group">
 															<label class="col-md-2 control-label" for="account_status">Account Status</label>
 															<div class="col-md-10">
-																
-																<?php 
-																	if($member['status'] == 'active') {
-																		echo '<span class="label label-success full-width" style="width: 100px;">Active</span>';
-																	}elseif($member['status'] == 'disabled') {
-																		echo '<span class="label label-danger full-width" style="width: 100px%;">Disabled</span>';
-																	}elseif($member['status'] == 'suspended') {
-																		echo '<span class="label label-danger full-width" style="width: 100px%;">Suspended</span>';
-																	}else{
-																		echo '<span class="label label-warning full-width" style="width: 100px%;">'.ucfirst($member['status']).'</span>';
-																	}
-																?>
+																<span class="vcenter">
+																	<?php 
+																		if($member['status'] == 'active') {
+																			echo '<span class="label label-success full-width" style="width: 100px;">Active</span>';
+																		}elseif($member['status'] == 'disabled') {
+																			echo '<span class="label label-danger full-width" style="width: 100px%;">Disabled</span>';
+																		}elseif($member['status'] == 'suspended') {
+																			echo '<span class="label label-danger full-width" style="width: 100px%;">Suspended</span>';
+																		}else{
+																			echo '<span class="label label-warning full-width" style="width: 100px%;">'.ucfirst($member['status']).'</span>';
+																		}
+																	?>
+																</span>
 															</div>
 														</div>
 
