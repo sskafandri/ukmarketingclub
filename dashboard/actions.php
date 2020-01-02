@@ -5086,10 +5086,16 @@ function ajax_member_commissions()
 					<a title="Manually Approve Commission" class="btn btn-success btn-flat btn-xs" href="actions.php?a=commission_approve&id='.$commission['id'].'"><i class="fa fa-check"></i></a>
 				</span>
 			';
-		}else{
+		}elseif($commission['status'] != 'paid'){
 			$output[$count]['actions'] 						.= '
 				<span class="hidden-xs">
 					<a title="Reset Commission" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be removed and auto recalculated in a few minutes. Are you sure?\')" href="actions.php?a=commission_reset&id='.$commission['id'].'"><i class="fa fa-recycle"></i></a>
+				</span>
+			';
+		}else{
+			$output[$count]['actions'] 						.= '
+				<span class="hidden-xs">
+					<a title="Not Available" class="btn btn-default btn-flat btn-xs" href="#" disabled><i class="fa fa-recycle"></i></a>
 				</span>
 			';
 		}
