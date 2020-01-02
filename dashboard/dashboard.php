@@ -1420,7 +1420,6 @@ desired effect
 												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort" width="1px">Qualified</th>
-												                <th class="no-sort" style="white-space: nowrap;">Release Date</th>
 												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 												            </tr>
 												        </thead>
@@ -1429,7 +1428,6 @@ desired effect
 												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort" width="1px">Qualified</th>
-												                <th class="no-sort" style="white-space: nowrap;">Release Date</th>
 												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 												            </tr>
 												        </tfoot>
@@ -2347,6 +2345,7 @@ desired effect
 			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
 			            	'<strong>Order ID:</strong> '+d.int_order_id+' <br>'+
 			            	'<strong>Order Date:</strong> '+d.order_date+' <br>'+
+			            	'<strong>Release Date:</strong> '+d.release_date+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';
