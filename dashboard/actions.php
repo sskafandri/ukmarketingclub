@@ -5327,7 +5327,7 @@ function accept_terms()
 {
 	global $conn, $global_settings;
 
-	$update = $conn->exec("UPDATE `global_settings` SET `config_value` = 'yes' WHERE `config_name` = 'cms_terms_accepted' ");
+	$update = $conn->exec("UPDATE `users` SET `cms_terms_accepted` = 'yes' WHERE `id` = '".$_SESSION['account']['id']."' ");
 
     go($_SERVER['HTTP_REFERER']);
 }

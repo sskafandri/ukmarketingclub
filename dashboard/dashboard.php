@@ -2550,9 +2550,9 @@ desired effect
 
     <?php if($account_details['cms_terms_accepted'] == 'no'){ ?>
 		<script>
-			$(window).on('load',function(){
-		        $('#modal-terms').modal({backdrop: 'static', keyboard: false});
-		    });
+			// $(window).on('load',function(){
+		        // $('#modal-terms').modal({backdrop: 'static', keyboard: false});
+		    // });
 		</script>
 	<?php } ?>
 
