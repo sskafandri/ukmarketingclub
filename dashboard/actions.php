@@ -5047,6 +5047,10 @@ function ajax_members()
 				}
 			}
 
+			// clean up commissions
+			$output[$count]['pending_commissions_qualified'] 		= number_format($output[$count]['pending_commissions_qualified'], 2);
+			$output[$count]['pending_commissions_unqualified'] 		= number_format($output[$count]['pending_commissions_unqualified'], 2);
+
 			// $count loop
 			$count++;
 		}
