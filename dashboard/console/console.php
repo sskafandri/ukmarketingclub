@@ -628,7 +628,7 @@ if($task == 'get_client_products'){
 	    'username' => $username,
 	    'password' => $password,
 	    'action' => 'GetClientsProducts',
-	    'clientid' => '1',
+	    'clientid' => '10',
 	    'limitnum' => '10000',
 	    'responsetype' => 'json',
 	);
