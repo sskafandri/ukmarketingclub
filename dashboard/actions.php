@@ -5029,8 +5029,8 @@ function ajax_members()
 			$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
 
 			// set commissions default
-			$output[$count]['pending_commissions_qualified']	= '';
-			$output[$count]['pending_commissions_unqualified']	= '';
+			$output[$count]['pending_commissions_qualified']	= '0';
+			$output[$count]['pending_commissions_unqualified']	= '0';
 
 			// get pending commissions
 			$query 				= $conn->query("SELECT `id`,`amount`,`qualified` FROM `commissions` WHERE `user_id` = '".$customer['id']."' AND `status` = 'pending' ");
