@@ -1419,19 +1419,21 @@ desired effect
 													<table id="member_commissions" class="display responsive nowrap" style="width:100%">
 												        <thead>
 												            <tr>
-												            	<th class="no-sort hidden-xs" width="1px"></th>
+												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
 												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
+												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
 												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 												            </tr>
 												        </thead>
 												        <tfoot>
 												            <tr>
-												            	<th class="no-sort hidden-xs" width="1px"></th>
+												            	<th class="no-sort" width="1px"></th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
 												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
+												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
 												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 												            </tr>
 												        </tfoot>
@@ -2399,9 +2401,16 @@ desired effect
 			                "data":           "order_id_hidden",
 			                "defaultContent": ''
 			            },
-			            { "data": "status"},
-			            { "data": "qualified" },
-			            { "data": "release_date" },
+			            { "data": "status" },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "qualified"
+			            },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "release_date"
+			            },
+			            { "data": "amount" },
 			            { "data": "actions" }
 			        ],
 			        "order": [[0, 'desc']]
