@@ -1242,7 +1242,7 @@ desired effect
 										<table id="example" class="display" style="width:100%">
 									        <thead>
 									            <tr>
-									                <th class="no-sort" width="1px"></th>
+									                <th class="no-sort hidden-xs" width="1px"></th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
@@ -1253,7 +1253,7 @@ desired effect
 									        </thead>
 									        <tfoot>
 									            <tr>
-									                <th class="no-sort" width="1px"></th>
+									                <th class="no-sort hidden-xs" width="1px"></th>
 									                <th class="no-sort" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th style="white-space: nowrap;" width="1px">Downline</th>
