@@ -586,6 +586,10 @@ desired effect
 					break;
 
 				// business manager
+				case "commissions":
+					commissions();
+					break;
+
 				case "visual_downline":
 					visual_downline();
 					break;
@@ -1833,7 +1837,7 @@ desired effect
 										<div class="col-lg-12">
 											<section class="panel">
 												<div class="panel-body">
-													<table id="my_commissions" class="display responsive nowrap" style="width:100%">
+													<table id="commissions" class="display responsive nowrap" style="width:100%">
 												        <thead>
 												            <tr>
 												            	<th class="no-sort" width="1px"></th>
@@ -2635,8 +2639,8 @@ desired effect
 			});
 			 
 			$(document).ready(function() {
-			    var table = $('#my_commissions').DataTable( {
-			        "ajax": "actions.php?a=ajax_my_commissions",
+			    var table = $('#commissions').DataTable( {
+			        "ajax": "actions.php?a=ajax_commissions",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
@@ -2668,7 +2672,7 @@ desired effect
 			    } );
 			     
 			    // Add event listener for opening and closing details
-			    $('#my_commissions tbody').on('click', 'td.details-control', function () {
+			    $('#commissions tbody').on('click', 'td.details-control', function () {
 			        var tr = $(this).closest('tr');
 			        var row = table.row( tr );
 			 
