@@ -1343,7 +1343,7 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Member > <?php echo stripslashes($member['first_name']); ?> <?php echo stripslashes($member['last_name']); ?>
+		              					Basic Contact Details
 		              				</h3>
 		            			</div>
 								<div class="box-body">
@@ -1401,7 +1401,8 @@ desired effect
 										</div>
 
 										<footer class="panel-footer">
-											<a href="dashboard.php?c=customers" class="btn btn-default">Back</a>
+											<a href="dashboard.php?c=members" class="btn btn-default">Back</a>
+											<a href="https://ublo.club/billing/admin/clientssummary.php?userid=16" target="_blank" class="btn btn-primary">View Full Profile</a>
 											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
 										</footer>
 									</form>
