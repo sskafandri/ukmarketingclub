@@ -2381,7 +2381,7 @@ desired effect
 			        	{
 			                "className":      'details-control',
 			                "orderable":      false,
-			                "data":           "",
+			                "data":           "id",
 			                "defaultContent": ''
 			            },
 			            { "data": "status"},
