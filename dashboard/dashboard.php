@@ -510,7 +510,7 @@ desired effect
 		                    	<li>
 		                    <?php } ?>
 		                    	<a href="dashboard.php?c=commissions">
-		                        	<i class="fa fa-gbp"></i> 
+		                        	<i class="fa fa-circle"></i> 
 		                        	<span>Commissions</span>
 		                        </a>
 		                    </li>
