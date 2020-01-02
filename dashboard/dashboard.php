@@ -2406,7 +2406,7 @@ desired effect
 			            { "data": "status"},
 			            { "data": "qualified" },
 			            { "data": "release_date" },
-			            { "data": "Order ID" },
+			            { "data": "order_id" },
 			            { "data": "actions" }
 			        ],
 			        "order": [[4, 'asc']]
