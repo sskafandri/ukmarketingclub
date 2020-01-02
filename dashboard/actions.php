@@ -496,8 +496,8 @@ switch ($a)
 		commission_approve();
 		break;
 
-	case "commission_approve_all":
-		commission_approve_all();
+	case "commissions_approve_all":
+		commissions_approve_all();
 		break;
 
 	case "commission_reset":
@@ -5867,7 +5867,7 @@ function commission_approve()
 	go($_SERVER['HTTP_REFERER']);
 }
 
-function commission_approve_all()
+function commissions_approve_all()
 {
 	global $conn, $global_settings;
 

@@ -1428,7 +1428,7 @@ desired effect
 									</div>
 								</div>
 								<div class="box-footer">
-									<a href="actions.php?a=commissions_approve_all" class="btn btn-primary pull-right" onclick="return confirm('This will approve all pending commissions. Are you sure?')">Approve All</a>
+									<a href="actions.php?a=commissions_approve_all&id=<?php echo $member_id; ?>" class="btn btn-primary pull-right" onclick="return confirm('This will approve all pending commissions. Are you sure?')">Approve All</a>
 								</div>
 							</div>
 						</div>
