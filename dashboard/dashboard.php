@@ -1255,13 +1255,13 @@ desired effect
 									        </thead>
 									        <tfoot>
 									            <tr>
-									                <th class="no-sort hidden-xs" width="1px"></th>
+									                <th class="no-sort" width="1px"></th>
 									                <th class="no-sort hidden-xs" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th class="hidden-xs" style="white-space: nowrap;" width="1px">Downline</th>
 									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Upline</th>
 									                <th class="no-sort hidden-xs" width="1px">Expires</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>ajax_memb
+									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </tfoot>
 									    </table>
