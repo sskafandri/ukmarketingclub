@@ -359,9 +359,11 @@ desired effect
                             </ul>
                         </li>
                         <!-- Control Sidebar Toggle Button -->
-						<li>
-							<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-						</li>
+						<!--
+							<li>
+								<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+							</li>
+						-->
                     </ul>
                 </div>
             </nav>
@@ -1239,7 +1241,7 @@ desired effect
 										</div>
 			            			</div>
 									<div class="box-body">
-										<table id="example" class="display" style="width:100%">
+										<table id="example" class="display responsive nowrap" style="width:100%">
 									        <thead>
 									            <tr>
 									                <th class="no-sort" width="1px"></th>
@@ -1839,16 +1841,17 @@ desired effect
         </footer>
 
         <!-- Create the tabs -->
-        <aside class="control-sidebar control-sidebar-dark">
-        	<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-        		<li class="active"><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-globe"></i></a></li>
-        	</ul>
-        
-        	<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- <a href="index2.php" onclick="easter_egg();" class="btn btn-info btn-xs btn-flat full-width">EJECT</a> -->
-			</div>
-      	</aside>
+        <!--
+	        <aside class="control-sidebar control-sidebar-dark">
+	        	<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+	        		<li class="active"><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-globe"></i></a></li>
+	        	</ul>
+	        
+				<div class="tab-content">
+					<a href="index2.php" onclick="easter_egg();" class="btn btn-info btn-xs btn-flat full-width">EJECT</a>
+				</div>
+	      	</aside>
+	      -->
 
       	<!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
