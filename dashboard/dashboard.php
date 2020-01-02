@@ -2458,6 +2458,8 @@ desired effect
 			            	'<strong>Pending:</strong> £'+d.commissions.pending+' <br>'+
 			            	'<strong>Approved:</strong> £'+d.commissions.approved+' <br>'+
 			            	'<strong>Paid:</strong> £'+d.commissions.paid+' <br>'+
+			            	'<strong>Rejected:</strong> £'+d.commissions.rejected+' <br>'+
+			            	'<strong>Missed:</strong> £'+d.commissions.missed+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+
