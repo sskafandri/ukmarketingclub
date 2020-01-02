@@ -1426,10 +1426,9 @@ desired effect
 											</section>
 										</div>
 									</div>
-
-									<footer class="panel-footer">
-										<a href="actions.php?a=commissions_approve_all" class="btn btn-primary" onclick="return confirm('This will approve all pending commissions. Are you sure?')">Approve All</a>
-									</footer>
+								</div>
+								<div class="box-footer">
+									<a href="actions.php?a=commissions_approve_all" class="btn btn-primary pull-right" onclick="return confirm('This will approve all pending commissions. Are you sure?')">Approve All</a>
 								</div>
 							</div>
 						</div>
