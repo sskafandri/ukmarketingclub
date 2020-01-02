@@ -1424,7 +1424,7 @@ desired effect
 												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
 												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
 												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="60px">Actions</th>
 												            </tr>
 												        </thead>
 												        <tfoot>
@@ -1434,7 +1434,7 @@ desired effect
 												                <th class="no-sort hidden-xs" width="1px">Qualified</th>
 												                <th class="no-sort hidden-xs" style="white-space: nowrap;">Release Date</th>
 												                <th class="no-sort" style="white-space: nowrap;">Amount</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="60px">Actions</th>
 												            </tr>
 												        </tfoot>
 												    </table>

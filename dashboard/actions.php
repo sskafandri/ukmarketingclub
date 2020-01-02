@@ -5133,6 +5133,10 @@ function ajax_member_commissions()
 				<a title="View Billing Profile" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$commission['id'].'" target="_blank"><i class="fa fa-dollar"></i></a>
 				-->
 
+				<span class="">
+					<a title="Manually Approve Commission" class="btn btn-success btn-flat btn-xs" href="actions.php?a=approve_commission&id='.$commission['id'].'"><i class="fa fa-tick"></i></a>
+				</span>
+
 				<span class="hidden-xs">
 					<a title="View Order" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank"><i class="fa fa-shopping-cart"></i></a>
 				</span>
