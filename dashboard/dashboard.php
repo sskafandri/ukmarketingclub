@@ -1425,7 +1425,7 @@ desired effect
 													<table id="example" class="display" style="width:100%">
 												        <thead>
 												            <tr>
-												                <th class="no-sort" width="1px">ID</th>
+												                <th width="1px">ID</th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort" width="1px">Qualified</th>
 												                <th class="no-sort" style="white-space: nowrap;">Order Date</th>
@@ -2397,7 +2397,7 @@ desired effect
 			            { "data": "order_id" },
 			            { "data": "actions" }
 			        ],
-			        "order": [[3, 'asc']]
+			        "order": [[0, 'desc']]
 			    } );
 			     
 			    // Add event listener for opening and closing details
