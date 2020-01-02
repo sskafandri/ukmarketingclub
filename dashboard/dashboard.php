@@ -2401,6 +2401,13 @@ desired effect
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+
+			            '<td width="150px" valign="top">Pending Commissions</td>'+
+			            '<td valign="top">'+
+			            	'<strong>Qualified:</strong> £'+d.pending_commissions_qualified+' <br>'+
+			            	'<strong>Unqualified:</strong> £'+d.pending_commissions_unqualified+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			        '<tr>'+
 			            '<td width="150px" valign="top">Internal Notes</td>'+
 			            '<td valign="top">'+d.internal_notes+'</td>'+
 			        '</tr>'+
