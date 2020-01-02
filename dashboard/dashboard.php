@@ -1315,37 +1315,6 @@ desired effect
                 </section>
 
                 <!-- Main content -->
-				<form action="actions.php?a=customer_ip_add" class="form-horizontal form-bordered" method="post">
-					<input type="hidden" name="customer_id" value="<?php echo $customer_id; ?>">
-					<div class="modal fade" id="new_customer_ip_modal" role="dialog">
-					    <div class="modal-dialog">
-					        <div class="modal-content">
-					            <div class="modal-header">
-					                <button type="button" class="close" data-dismiss="modal">&times;</button>
-					                <h4 class="modal-title">Add New Customer IP Address</h4>
-					            </div>
-					            <div class="modal-body">
-					                <div class="row">
-								    	<div class="col-lg-12">
-										    <div class="form-group">
-												<label class="col-md-2 control-label" for="ip_address">IP Address</label>
-												<div class="col-md-10">
-													<input type="text" class="form-control" id="ip_address" name="ip_address" placeholder="214.114.5.123">
-													<small>This must be the customers public / WAN IP address and not their devices internal / LAN IP address.</small>
-												</div>
-											</div>
-										</div>
-									</div>
-					            </div>
-					            <div class="modal-footer">
-					                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					                <button type="submit" class="btn btn-success">Add IP Address</button>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-				</form>
-
 				<section class="content">
 					<div class="row">
 						<div class="col-lg-4">
@@ -1457,6 +1426,10 @@ desired effect
 											</section>
 										</div>
 									</div>
+
+									<footer class="panel-footer">
+										<a href="actions.php?a=commissions_approve_all" class="btn btn-primary pull-right" onclick="return confirm('This will approve all pending commissions. Are you sure?')">Approve All</a>
+									</footer>
 								</div>
 							</div>
 						</div>
