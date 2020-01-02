@@ -5091,7 +5091,9 @@ function ajax_member_commissions()
 		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$commission['id'].'" name="commission_ids[]" value="'.$commission['id'].'" onclick="multi_options();"></center>';
 
 		$output[$count]['added'] 				= $commission['added'];
-		$output[$count]['release_date'] 		= $commission['added'];
+		$output[$count]['order_date'] 			= date("Y-m-d", $commission['added']);
+		$pending_commissions_period				= 2592000;
+		$output[$count]['release_date'] 		= date("Y-m-d", $commission['added'] + $pending_commissions_period);
 
 		// status
 		if($commission['status'] == 'approved') {

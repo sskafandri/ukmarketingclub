@@ -1426,28 +1426,24 @@ desired effect
 													<table id="example" class="display" style="width:100%">
 												        <thead>
 												            <tr>
-												                <th class="no-sort" width="1px">
-												                	<input type="checkbox" id="checkAll" />
-												                </th>
 												                <th class="no-sort" width="1px">ID</th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort" width="1px">Qualified</th>
-												                <th style="white-space: nowrap;">Release Date</th>
-												                <th style="white-space: nowrap;" width="1px">Order ID</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+												                <th class="no-sort" style="white-space: nowrap;">Order Date</th>
+												                <th class="no-sort" style="white-space: nowrap;">Release Date</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="1px">Order ID</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
 												            </tr>
 												        </thead>
 												        <tfoot>
 												            <tr>
-												                <th class="no-sort" width="1px">
-												                	<input type="checkbox" id="checkAll" />
-												                </th>
 												                <th class="no-sort" width="1px">ID</th>
 												                <th class="no-sort" width="1px">Status</th>
 												                <th class="no-sort" width="1px">Qualified</th>
-												                <th style="white-space: nowrap;">Release Date</th>
-												                <th style="white-space: nowrap;" width="1px">Order ID</th>
-												                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+												                <th class="no-sort" style="white-space: nowrap;">Order Date</th>
+												                <th class="no-sort" style="white-space: nowrap;">Release Date</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="1px">Order ID</th>
+												                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
 												            </tr>
 												        </tfoot>
 												    </table>
@@ -2395,10 +2391,10 @@ desired effect
 						"emptyTable": "No commissions found."
 					},
 			        "columns": [
-			        	{ "data": "checkbox"},
 			        	{ "data": "id"},
 			            { "data": "status"},
 			            { "data": "qualified" },
+			            { "data": "order_date" },
 			            { "data": "release_date" },
 			            { "data": "order_id" },
 			            { "data": "actions" }
