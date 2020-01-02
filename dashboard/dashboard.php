@@ -2360,7 +2360,7 @@ desired effect
 			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
 			        '<tr>'+
 			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
-			            '<td valign="top">'+
+			            '<td valign="top" align="left">'+
 			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
 			            	'<strong>Order ID:</strong> '+d.int_order_id+' <br>'+
 			            	'<strong>Order Date:</strong> '+d.order_date+' <br>'+
