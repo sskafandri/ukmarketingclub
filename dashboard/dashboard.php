@@ -646,7 +646,7 @@ desired effect
                 <section class="content">
                 	<div class="row">
                 		<form action="actions.php?a=my_account_update" method="post" class="form-horizontal">
-							<div class="col-lg-6">
+							<div class="col-lg-4">
 								<!--
 								<div class="box box-primary">
 			            			<div class="box-header">
@@ -871,7 +871,7 @@ desired effect
 		                    </div>
 		                </form>
 
-	                    <div class="col-lg-6">
+	                    <div class="col-lg-8">
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
