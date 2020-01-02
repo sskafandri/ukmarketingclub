@@ -2251,28 +2251,28 @@ desired effect
 			    // `d` is the original data object for the row
 			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
 			        '<tr>'+
-			            '<td width="150px" valign="top">Additional Details</td>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
 			            '<td valign="top">'+
 			            	'<strong>User ID:</strong> '+d.id+' <br>'+
 			            	'<strong>Join Date:</strong> '+d.join_date+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+
-			            '<td width="150px" valign="top">Contact Details</td>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Contact Details</td>'+
 			            '<td valign="top">'+
 			            	'<strong>Email:</strong> '+d.email+' <br>'+
 			            	'<strong>Tel:</strong> '+d.tel+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+
-			            '<td width="150px" valign="top">Pending Commissions</td>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Pending Commissions</td>'+
 			            '<td valign="top">'+
 			            	'<strong>Qualified:</strong> £'+d.pending_commissions_qualified+' <br>'+
 			            	'<strong>Unqualified:</strong> £'+d.pending_commissions_unqualified+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			        '<tr>'+
-			            '<td width="150px" valign="top">Internal Notes</td>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Internal Notes</td>'+
 			            '<td valign="top">'+d.internal_notes+'</td>'+
 			        '</tr>'+
 			    '</table>';
@@ -2359,7 +2359,7 @@ desired effect
 			    // `d` is the original data object for the row
 			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
 			        '<tr>'+
-			            '<td width="150px" valign="top">Additional Details</td>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
 			            '<td valign="top">'+
 			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
 			            	'<strong>Order ID:</strong> '+d.int_order_id+' <br>'+
