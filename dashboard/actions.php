@@ -29,63 +29,6 @@ switch ($a)
 		accept_terms();
 		break;
 
-
-	// functions
-	case "ajax_headends":
-		ajax_headends();
-		break;
-
-	case "ajax_headend":
-		ajax_headend();
-		break;
-
-	case "headend_add":
-		headend_add();
-		break;
-
-	case "headend_update":
-		headend_update();
-		break;
-
-	case "server_delete":
-		server_delete();
-		break;
-
-
-	// source functions
-	case "ajax_sources_video":
-		ajax_sources_video();
-		break;
-
-	case "ajax_sources_audio":
-		ajax_sources_audio();
-		break;
-		
-	case "ajax_source_video":
-		ajax_source_video();
-		break;
-
-	case "ajax_source_audio":
-		ajax_source_audio();
-		break;
-
-	case "source_update":
-		source_update();
-		break;
-
-	case "source_stop":
-		source_stop();
-		break;
-
-	case "source_start":
-		source_start();
-		break;
-
-	case "source_scan":
-		source_scan();
-		break;
-
-
 	// customer functions
 	case "customer_add":
 		customer_add();
@@ -529,16 +472,6 @@ switch ($a)
 		my_account_update();
 		break;
 
-	// reset_account
-	case "reset_account":
-		reset_account();
-		break;
-
-	// get customer line
-	case "ajax_customer_line":
-		ajax_customer_line();
-		break;
-
 	// get members
 	case "ajax_members":
 		ajax_members();
@@ -552,6 +485,19 @@ switch ($a)
 	// get downline table_downline
 	case "ajax_downline":
 		ajax_downline();
+		break;
+
+	// commissions
+	case "commission_approve":
+		commission_approve();
+		break;
+
+	case "commission_reset":
+		commission_reset();
+		break;
+
+	case "commission_reject":
+		commission_reject();
 		break;
 
 // default		
@@ -5134,7 +5080,7 @@ function ajax_member_commissions()
 				-->
 
 				<span class="">
-					<a title="Manually Approve Commission" class="btn btn-success btn-flat btn-xs" href="actions.php?a=approve_commission&id='.$commission['id'].'"><i class="fa fa-check"></i></a>
+					<a title="Manually Approve Commission" class="btn btn-success btn-flat btn-xs" href="actions.php?a=commission_reset&id='.$commission['id'].'"><i class="fa fa-check"></i></a>
 				</span>
 
 				<span class="hidden-xs">
@@ -5142,10 +5088,10 @@ function ajax_member_commissions()
 				</span>
 
 				<span class="hidden-xs">
-					<a title="Reset Commission" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be removed and auto recalculated in a few minutes. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$commission['id'].'"><i class="fa fa-recycle"></i></a>
+					<a title="Reset Commission" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be removed and auto recalculated in a few minutes. Are you sure?\')" href="actions.php?a=commission_reset&id='.$commission['id'].'"><i class="fa fa-recycle"></i></a>
 				</span>
 
-				<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$commission['id'].'"><i class="fa fa-times"></i></a>
+				<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=commission_reject&id='.$commission['id'].'"><i class="fa fa-times"></i></a>
 			</span>';
 
 		// $count loop
@@ -5864,155 +5810,22 @@ function channel_multi_options()
 	go($_SERVER['HTTP_REFERER']);
 }
 
-function stream_source_add(){
-	global $conn, $site;
 
-	$stream_id 			= post('stream_id');
-	$new_source_url 	= post('source_url');
 
-	// get existing source urls
-	$query = $conn->query("SELECT `source` FROM `streams` WHERE `id` = '".$stream_id."' ");
-	$stream = $query->fetch(PDO::FETCH_ASSOC);
 
-	$sources = explode(",", $stream['source']);
 
-	$sources[] = $new_source_url;
 
-	$sources_array = implode(",", $sources);
 
-	$update = $conn->exec("UPDATE `streams` SET `source` = '".$sources_array."' 		WHERE `id` = '".$stream_id."' ");
 
-	status_message('success',"Stream source has been added.");
-	go($_SERVER['HTTP_REFERER']);
-}
-
-function stream_source_update(){
-	global $conn, $site;
-
-	$stream_id 			= post('stream_id');
-	$sources 			= post('sources');
-	$sources 			= array_filter($sources);
-	$sources 			= implode(",", $sources);
-
-	$update = $conn->exec("UPDATE `streams` SET `source` = '".$sources."' 		WHERE `id` = '".$stream_id."' ");
-
-	status_message('success',"Stream sources have been updated.");
-	go($_SERVER['HTTP_REFERER']);
-}
-
-function epg_source_add()
-{
-	global $conn, $global_settings;
-		
-	$name 				= addslashes(post('name'));
-	$uri 				= addslashes(post('uri'));
-	$time_offset 		= addslashes(post('time_offset'));
-
-	$etag 		= '"'.random_string(8).'-'.random_string(6).'"';
-
-	// check if epg source is already added
-	$query = $conn->query("SELECT `id` FROM `epg_setting` WHERE `uri` = '".$uri."' ");
-	$existing_epg_source = $query->fetch(PDO::FETCH_ASSOC);
-	if(isset($existing_epg_source['id'])){
-		status_message('danger',"EPG Source '".$url."' is a duplicate.");
-	}else{
-		$source_url 		= @file_get_contents($uri);
-
-		if($source_url){
-			$insert = $conn->exec("INSERT INTO `slipstream_cms`.`epg_setting` 
-		        (`name`,`uri`,`etag`,`status`,`time_offset`)
-		        VALUE
-		        ('".$name."',
-		        '".$uri."',
-		        '".$etag."',
-		        '1',
-		        '".$time_offset."'
-		    )");
-
-		    $epg_source_id = $conn->lastInsertId();
-
-		    $insert = $conn->exec("INSERT INTO `stalker_db`.`epg_setting` 
-		        (`id`,`uri`,`etag`,`status`)
-		        VALUE
-		        ('".$epg_source_id."',
-		        '".$uri."',
-		        '".$etag."',
-		        '1'
-		    )");
-
-			$input_lines 		= mb_convert_encoding($source_url, "UTF-8", "ISO-8859-1");
-
-			preg_match_all('/<channel id="(.*)">\s+<display-name(.*)>(.*)<\/display-name>/', $input_lines, $output_array);
-
-			// print_r($output_array);
-
-			$xml_ids 		= $output_array[1];
-			$xml_langs 		= $output_array[2];
-			$xml_names 		= $output_array[3];
-
-			// $delete = $conn->query("DELETE FROM `epg_xml_ids` ");
-
-			foreach($xml_ids as $key => $value){
-
-				$channel_id 		= $value;
-				$channel_name 		= $xml_names[$key];
-				$channel_lang 		= $xml_langs[$key];
-
-				$channel_lang 		= str_replace("lang=", "", $channel_lang);
-				$channel_lang 		= str_replace('"', "", $channel_lang);
-
-				$insert = $conn->exec("INSERT IGNORE INTO `epg_xml_ids` 
-			        (`epg_source_id`,`xml_id`,`xml_name`,`xml_language`)
-			        VALUE
-			        ('".$epg_source_id."', '".$channel_id."', '".$channel_name."','".$channel_lang."')");
-			}
-
-			status_message('success',"EPG Source has been added.");
-		}else{
-			status_message('danger',"EPG Source appears to be offline or something else went wrong.");
-		}
-	}
-	go($_SERVER['HTTP_REFERER']);
-}
-
-function epg_source_update()
-{
-	global $conn, $global_settings;
-	
-	$mag_id 			= post('mag_id');
-
-	$mac_address 		= addslashes($_POST['mac_address']);
-	$mac_address 		= trim($mac_address);
-	$mac_address 		= base64_encode($mac_address);
-
-	$customer_id 		= addslashes($_POST['customer_id']);
-	$customer_id 		= trim($customer_id);
-
-	$update = $conn->exec("UPDATE `mag_devices` SET `customer_id` = '".$customer_id."' 			WHERE `mag_id` = '".$mag_id."' ");
-	$update = $conn->exec("UPDATE `mag_devices` SET `mac` = '".$mac_address."' 					WHERE `mag_id` = '".$mag_id."' ");
-
-	status_message('success',"EPG Source has been updated.");
-	go($_SERVER['HTTP_REFERER']);
-}
-
-function epg_source_delete()
+function commission_approve()
 {
 	global $conn, $global_settings;
 
 	$id = get('id');
 
-	$delete = $conn->exec("DELETE FROM `slipstream_cms`.`epg_xml_ids` WHERE `epg_source_id` = '".$id."' ");
-	$delete = $conn->exec("DELETE FROM `slipstream_cms`.`epg_setting` WHERE `id` = '".$id."' ");
-	$delete = $conn->exec("DELETE FROM `stalker_db`.`epg_setting` WHERE `id` = '".$id."' ");
+	$update = $conn->exec("UPDATE `commissions` SET `status` = 'approved' WHERE `id` = '".$id."' ");
 	
-    // log_add("Customer account has been deleted.");
-    status_message('success',"EPG Source has been deleted.");
-	go($_SERVER['HTTP_REFERER']);
-}
+    status_message('success',"Commission has been manually approved.");
 
-function force_epg_update(){
-	shell_exec('sudo sh /var/www/html/portal/scripts/ministra_epg_update.sh');
-
-	status_message('success',"Force EPG complete.");
 	go($_SERVER['HTTP_REFERER']);
 }
