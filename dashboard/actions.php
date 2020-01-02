@@ -5032,7 +5032,7 @@ function ajax_members()
 			$output[$count]['pending_commissions_qualified']	= '';
 			$output[$count]['pending_commissions_unqualified']	= '';
 
-			$query 				= $conn->query("SELECT  FROM `commissions` WHERE `user_id` = '".$customer['id']."' AND `status` = 'pending' ");
+			$query 				= $conn->query("SELECT `id`,`amount`,`qualified` FROM `commissions` WHERE `user_id` = '".$customer['id']."' AND `status` = 'pending' ");
 			$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
 			
 			// work with commissions
@@ -5045,7 +5045,7 @@ function ajax_members()
 					$output[$count]['pending_commissions_unqualified'] = $output[$count]['pending_commissions_unqualified'] + $commission['amount'];
 				}
 			}
-			
+
 			// $count loop
 			$count++;
 		}
