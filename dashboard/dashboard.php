@@ -2084,6 +2084,35 @@ desired effect
 		                        </div>
 		                    </div>
 		                </div>
+
+		                <div class="row">
+							<div class="col-lg-6">
+		                        <div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
+			              					Social Links
+			              				</h3>
+			            			</div>
+									<div class="box-body">
+										<form action="" method="post" class="form-horizontal">
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
+			                                    <div class="col-sm-9">
+			                                        <a class="btn_fb" onclick="openURLInPopup('http://www.facebook.com/sharer.php?u=http://www.domain.ro/url.html',600, 400); return false;" href="#" target="_blank">Facebook</a>
+			                                    </div>
+			                                </div>
+
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">Google</label>
+			                                    <div class="col-sm-9">
+			                                        <a class="btn_gplus" onclick="openURLInPopup('https://plus.google.com/share?url=http://www.domain.ro/url.html',600, 400); return false;" href="#">gplus</a>
+			                                    </div>
+			                                </div>
+			                            </form>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
 					<?php } ?>
 	            </section>
 	        </div>
@@ -2185,6 +2214,17 @@ desired effect
     <script src="dist/js/app.min.js"></script>
 
     <script>
+    	function openURLInPopup(url, width, height, name) {
+		    if (typeof(width) == "undefined") {
+		        width = 800;
+		        height = 600;
+		    }
+		    if (typeof(height) == "undefined") {
+		        height = 600;
+		    }
+		    popup(url, name || 'window' + Math.floor(Math.random() * 10000 + 1), width, height, 'menubar=0,location=0,toolbar=0,status=0,scrollbars=1');
+		}
+
     	function easter_egg(){
     		alert('All data has been transmitted to law agencies around the world and your CMS data has now been purged.')
     		window.location.href('index2.php');
