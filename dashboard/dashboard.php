@@ -2151,7 +2151,7 @@ desired effect
 			            			</div>
 									<div class="box-body">
 										<p>
-											These sharing options are for end user / retail customers only and redirect to the www.ublo.club website.
+											These sharing options are for end user / retail customers only and redirects to the www.ublo.club website.
 										</p>
 										<form action="" method="post" class="form-horizontal">
 			                                <div class="form-group">
@@ -2165,7 +2165,7 @@ desired effect
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
 			                                    <div class="col-sm-9">
-			                                        <button id="btn_shareFB"><i></i><span>Share</span></button>
+			                                        <button id="btn_shareFB_retail"><i></i><span>Share</span></button>
 			                                        <small></small>
 			                                    </div>
 			                                </div>
@@ -2173,7 +2173,7 @@ desired effect
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Twitter</label>
 			                                    <div class="col-sm-9">
-			                                        <button id="btn_shareTWI"><i></i><span>Tweet</span></button>
+			                                        <button id="btn_shareTWI_retail"><i></i><span>Tweet</span></button>
 			                                        <small></small>
 			                                    </div>
 			                                </div>
@@ -2186,60 +2186,35 @@ desired effect
 		                        <div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
-			              					Social Links
+			              					Business Builder Affiliate Links
 			              				</h3>
 			            			</div>
 									<div class="box-body">
+										<p>
+											These sharing options are for business builder members only and redirects to the www.ukmarketingclub.com website.
+										</p>
 										<form action="" method="post" class="form-horizontal">
 			                                <div class="form-group">
-			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
-			                                    
-			                                    <button id="btn_shareFB"><i></i><span>Share on Facebook</span></button>
-
-												<a class="twitter-share-button"
-													href="https://twitter.com/intent/tweet"
-													data-size="large"
-													data-text="Check out our awesome vape products."
-													data-url="https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>"
-													data-hashtags="ublo,ubloclub"
-													data-via="twitterdev"
-													data-related="twitterapi,twitter">
-													Tweet
-												</a>
+			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
+			                                    <div class="col-sm-9">
+			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="http://ukmarketingclub.com/?ref=<?php echo $account_details['affiliate_username']; ?>">
+			                                        <small></small>
+			                                    </div>
 			                                </div>
 
-			                                <script>
-			                                	function share_on_facebook(){
-													var el = document.getElementById('share_facebook_iframe');
-													el.src = 'https://www.facebook.com/sharer.php?u=http://www.domain.ro/url.html';
-												}
-
-												$(document).ready(function() {
-													var width  = 575,
-													height = 400,
-													left   = ($(window).width()  - width)  / 2,
-													top    = ($(window).height() - height) / 2,
-													// url    = location.href,
-													url_retail.   = 'https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>',
-													url_mlm.   = 'https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>',
-													opts   = 'status=1' +
-													',width='  + width  +
-													',height=' + height +
-													',top='    + top    +
-													',left='   + left;
-
-													$("#btn_shareFB_retail").click(function() {
-														window.open('https://www.facebook.com/sharer/sharer.php?u='+url_retail, 
-														'facebook-share-dialog', 
-														opts); 
-													});
-												});
-											</script>
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
+			                                    <div class="col-sm-9">
+			                                        <button id="btn_shareFB_mlm"><i></i><span>Share</span></button>
+			                                        <small></small>
+			                                    </div>
+			                                </div>
 
 			                                <div class="form-group">
-			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">Google</label>
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Twitter</label>
 			                                    <div class="col-sm-9">
-			                                        <a class="btn_gplus" onclick="openURLInPopup('https://plus.google.com/share?url=http://www.domain.ro/url.html',600, 400); return false;" href="#">gplus</a>
+			                                        <button id="btn_shareTWI_mlm"><i></i><span>Tweet</span></button>
+			                                        <small></small>
 			                                    </div>
 			                                </div>
 			                            </form>
@@ -2367,6 +2342,50 @@ desired effect
 
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js"></script>
+
+    <script>
+    	function share_on_facebook(){
+			var el = document.getElementById('share_facebook_iframe');
+			el.src = 'https://www.facebook.com/sharer.php?u=http://www.domain.ro/url.html';
+		}
+
+		$(document).ready(function() {
+			var width  = 575,
+			height = 400,
+			left   = ($(window).width()  - width)  / 2,
+			top    = ($(window).height() - height) / 2,
+			// url    = location.href,
+			url_retail.   	= 'https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
+			url_mlm.   		= 'http://ukmarketingclub.com/?ref=<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
+			opts   			= 'status=1' +
+			',width='  + width  +
+			',height=' + height +
+			',top='    + top    +
+			',left='   + left;
+
+			$("#btn_shareFB_retail").click(function() {
+				window.open('https://www.facebook.com/sharer/sharer.php?u='+url_retail, 
+				'facebook-share-dialog', 
+				opts); 
+			});
+			$("#btn_shareTWI_retail").click(function() {
+				window.open('https://twitter.com/share?url'+url_retail+'&text=Share%20with%20twitter%20is%20so%20easy', 
+				'twitter-sahre-dialog', 
+				opts); 
+			});
+
+			$("#btn_shareFB_mlm").click(function() {
+				window.open('https://www.facebook.com/sharer/sharer.php?u='+url_mlm, 
+				'facebook-share-dialog', 
+				opts); 
+			});
+			$("#btn_shareTWI_mlm").click(function() {
+				window.open('https://twitter.com/share?url'+url_mlm+'&text=Share%20with%20twitter%20is%20so%20easy', 
+				'twitter-sahre-dialog', 
+				opts); 
+			});
+		});
+	</script>
 
     <script>
     	function openURLInPopup(url, width, height, name) {
