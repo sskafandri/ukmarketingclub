@@ -2196,7 +2196,16 @@ desired effect
 			                                    
 			                                    <button id="btn_shareFB"><i></i><span>Share on Facebook</span></button>
 
-												<button id="btn_shareTWI"><i></i><span>Share on Twitter</span></button>
+												<a class="twitter-share-button"
+													href="https://twitter.com/intent/tweet"
+													data-size="large"
+													data-text="Check out our awesome vape products."
+													data-url="https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>"
+													data-hashtags="ublo,ubloclub"
+													data-via="twitterdev"
+													data-related="twitterapi,twitter">
+													Tweet
+												</a>
 			                                </div>
 
 			                                <script>
@@ -2210,24 +2219,20 @@ desired effect
 													height = 400,
 													left   = ($(window).width()  - width)  / 2,
 													top    = ($(window).height() - height) / 2,
-													url    = location.href,
+													// url    = location.href,
+													url_retail.   = 'https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>',
+													url_mlm.   = 'https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>',
 													opts   = 'status=1' +
 													',width='  + width  +
 													',height=' + height +
 													',top='    + top    +
 													',left='   + left;
 
-													$("#btn_shareFB").click(function() {
-													window.open(	      'https://www.facebook.com/sharer/sharer.php?u='+url, 
-													'facebook-share-dialog', 
-													opts); 
+													$("#btn_shareFB_retail").click(function() {
+														window.open('https://www.facebook.com/sharer/sharer.php?u='+url_retail, 
+														'facebook-share-dialog', 
+														opts); 
 													});
-													$("#btn_shareTWI").click(function() {
-													window.open(	      'https://twitter.com/share?text=Share%20with%20twitter%20is%20so%20easy', 
-													'twitter-sahre-dialog', 
-													opts); 
-													});
-
 												});
 											</script>
 
