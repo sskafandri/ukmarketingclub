@@ -277,6 +277,93 @@ $account_details = account_details($_SESSION['account']['id']);
 		}
 
 		.select2-container{ width: 100% !important; }
+
+		/* FACEBOOK */
+		#btn_shareFB{
+			font-family: helvetica,arial,sans-serif;
+			background: rgba(0, 0, 0, 0) linear-gradient(#4c69ba, #3b55a0) repeat scroll 0 0;
+			border: medium none;
+			border-radius: 2px;
+			color: #fff;
+			cursor: pointer;
+			font-weight: bold;
+			height: 22px;
+			line-height: 22px;
+			padding: 0;
+			text-shadow: 0 -1px 0 #354c8c;
+			white-space: nowrap;
+		}
+
+		#btn_shareFB span{
+			padding: 0 5px 0 0;
+			position: relative;
+			vertical-align: top;
+		}
+
+		#btn_shareFB i{
+			background-image: url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/y5/r/KxVPs0eEy36.png");
+			background-position: 0 -42px;
+			background-repeat: no-repeat;
+			background-size: 30px 72px;
+			display: inline-block;
+			height: 14px;
+			width: 14px;
+			left: 0;
+			margin: 0 4px;
+			position: relative;
+			top: 3px;
+			vertical-align: top;
+		}
+
+		#btn_shareFB:hover{
+			background: rgba(0,0,0,0) linear-gradient(#5b7bd5, #4864b1) repeat scroll 0 0;
+			border-color: #5874c3 #4961a8 #41599f;
+			box-shadow: 0 0 1px #607fd6 inset;
+		}
+
+		/* TWITTER */
+		#btn_shareTWI{
+			background-color: #eee;
+			background-image: linear-gradient(#fff, #dedede);
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			color: #333;
+			cursor: pointer;
+			font-weight: bold;
+			width: 55px;
+			height: 22px;
+			padding: 0;
+			position: relative;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		#btn_shareTWI i{
+		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABQCAYAAACZM2JkAAANzElEQVR42u1cW0wbVxo+6q72ZVkp2pVWbV/KQ5SX7gPavKyq1Za8pauVWlV5W6nK63YViUqVyjU4QEgaIA4kIdeNIVzM3RBIQiHgBCeljekaEgEFmpiEgBNMcDChTuJoz/7fmZnWNraZMbZxwUi/8GVmPOc73/n+y5lzGOecRctYpjGVZdbtJdNJZkyP5vU3ypjOsI1l1WeQmcjMwjKNBvr/UTgs/N77XSy7Li3iG8EPZzdyltfK2X4T/W/jLKeZs6wGl+8N4TXLpBuN8Lc03Rd+i+5tXdfIJuLkNLrYfmrPgQ7OCjol07VTG1s4y26wKW35uUOM9kCS+VzQqCNQbFpvTFw8p4nOo5s43MfZ0VuclX/L2bFvOCu9wVnRVQl0XBugoyPyTea4MBEAZTcYIgeZMMkn0hzqoTYNcnbKxtmZO5KdHOKsbIDadwWAu0T7chq5OL7gEtr3ZlCgf13QMcAKujjLbbFpYRvLbjKx4q84O0E/bJjirOYhZ3WzZI84uzjN2dkxzvRfc3FMcQ//3fGvJ7vuLdS+U95XETi8ojvcTemsuJuzQmoT7lErgXKN6QQYEYbu/T/fU3tmOGtwcNb0RDK8rpmWQAeh0L4v+/jvzwzZHSve1r8brZ/R76atZnSZhbPjVomVuS2ucPrjp8kEHjt9RwK3eYGzlkV/a5ynG3pANzsh2YVJ6pTviAndGTFlc9GVDFb5X4l5B2lUYdRpIRCxklXQyLxoJ2CpDa2Lq63lKbXvMWfV96ld1LaqH/iOtgfL7CS172C3LSij/1A1uiTYeHaUsyNmSWezGkzhWEc3kyFAq58jkJ+uBlkxfIdOaHIKxr9dNYrhvDdweEXT/lwzVCIAABNPDUvDXwzx+gwVo2GbYGn1Pbr/heAg+wG+IBk6hDrmjcqhka/nlnbTtbavAnrX5RmnAKLhscQ6DHdICRwaHF2QCOKPFZZSZvghOJNDAF72/fNxOhcatieWjN4/OJMvQAYARiLCOSJQ6XXJiWU32OHkQgJd2JnOTo9IbF0LZF9rdvJ3Lz+Zm/e8ttB1zgVldOM9d58AWhnu0NfKYYndBy7JEYTwpgbhWXOb09+9OGxmtTPqQIbR9WWQ/x0HZ7gnpfGR12+Iw4dADqDdiCIAeFa9PlBS3qm8+YE4FudpAZo6VW4fQE4JCvRD98uSDwcWHT+zD0wgwa+i4VNJ3rZ0ALrDRXSBKAIhDjQdsqEWaHKQ9Lc7TvFv2r7bT+2BjBMsPzcmOTk4MDA896cw1EyRg/7tU7c6hKPTAjKMHCT96QNB9gP6V2UW94f9jx0ppqde/+EuAw6Gn/9eAh2hG0I4vIfUqAWaOi1uScahq6lPPK+7d3QvLq9yYNDS2odSNHHCKkkKWA7yFF2WQjl8rxHolPoH3pD3o7x4o+T6SFjg4NAgLQAdoRskA6/V6jPZjtYHy/HL5ky631RaV3b1OZ1BJQCfgeHQb7AXUcOZu1KsjA5A+KYR6J2XHrrWBPpf16cnhEwI8J6qZ6lao2t+eG3WES+g/2K4+bFgJiIHAKomclDiY+i5mmgj4Px/9Dx6uCbQcyuvqt9qf+LRwlBNRg62/O7TnjjWKPb+1jD+SkhAqDg4mkad9OmtuetrAo0bs8y/tKaYFr2xADql+TH064s4Ap2279sFuwBZKzsjMRoJFsfzw2qAhqc0zr94bfnE+nwmpd0VVcD33V600/X/GufKW+fOay5XzEEm29H5eDlcbhD4wfa/dU47RDqtxNTRYHPbghcRwAaUOJGUmEGcmAJNjrVs9Nl4uEx31Qd/qrG9J4L1xidRc4p5w+4pudEbUU/Wl40vj5dNesZTOlzeWACd0jbvhY8LGwUF+bCwbHRpPFqM3tnrQsjTGSyIj5el1o5OstoHMXOKecNLU2slYsE+RCHEbHG+su7sW3KtB+S3Op955Lx/z0bOkJQOzX4q4mSEblrT6rW0mRIiNUQK9cVuOWcnwL3WHd1Ly5p1maIXRDFySrrR01F6aZRGl9Ep7Wijx6qGSCG/yBuwv//Paw8HU+oeeEW2qEGv0TFjS95BRDEbKRmBo7R99qVtx1dLy9ECumzix/HAKl1IoKX5PmUyleyLer2YlkE9+ss+SklHpHRbZSLzye3nMwgR5eG0PYEmWf1G6XojERlk1W1U6gJpmMcT812ozmEe7Ei/VJ1DBKKC0dBzMManTPhmAs5ooxx6Ls+2OJXS8tgbaSIjg2zWUolUEhWEXnu/mn72+fttE/3v1E8uiLoHSqBhoo+3up55wAwwRGGLXGtOSTSQMXHB8pr17GC3i5V/IxEItQ0tmkzh4YVpz12tIPtq9HbZaSlgmTH822df2fJGf5zaZ1uxK4Z4FJ/Pv/ifxfd4+fy0hAAVjwgoz19k1btYllGqOaP2fLhXmkdExU5NsUm2XQNupyyJ5khq6oEfvCkz8lwAiKHMKB+/PeEYrDOlsqIug5iYxXwhHg0AwJggrn+kGmQA7COJnZGWEX7xTxGFcXwYYXqk/kiPd/U+cQpdVgEw/A1G8pj79aAPqQrXI4mbFWhldH4ROAoBXvvcK9uF6Zd39w2THA7LckifWRb8fI0vwOuWxM0MtG9VcrcMWKdKSdTLSUjUIqetAHRi+IwkCEmgk0AnLQl0Eugk0EkQkkAngU5aEugk0Emgo3exzMzM1Ozs7L1kOhi9T0+CHAC0TqfbRuBEVKWSzzXk5uby/fv3c3rP8/PzeV5eHqfPXVlZWT8tPMJrMnOkv/WLB5pA0uXk5NgAmlaQ6VxbQUEBP3LkCD927Bg/fvw4r6io4GVlZby4uFiAjmuTueSOMG9ZRhcWFg4UFRWBkTYtbCPWmg4dOsRPnjzJq6qqeF1dHTcajby+vp7X1tby8+fP8/Lyco5jDh8+jOMm79+/X0udUQGp2XJA6/V6ARZYSWD7DfcwbE4FeGfPnhXgtra28ra2Nj9rbm4WgBsMBmHojMrKSjA9Y0sy+uLFi0tgIxhYWloqdJaYbQrHOpKLDIDW0NAQFGTF8B2spaVFMJ6Aj/k6w4QF+urVq04A0dTUJFiH4Q4pkR2aIVgEceLEidLq6uqwIAcCPjExEZd1hgkLtN1u7wPQvsP99OnTgt1wdDLgdgLcQLKSQYxPp2PM0GI1IMNw/TiuM0xMoN1ud8nNmzcdvuxrbGzkJCn81KlT/OjRoyKCAOiIIsh5Ck2HbKgFGp0Sx3WGCesM3Waz2dHR0eENHO4AHAy/cOGCAB2hG0I4vIfUqAUanbblExZi7Eg44BRnBtDBTBheq9VnmMlkWv4lgoRcAXJJZkKyBZMl9KNwWXJQoG/cuDEBxmkFT63hmn19fY54AgQgtCZggYaSAiVkLsglZBOSCTtw4IDIgpGIKXmH0iHwZXRO8B1oVlZWqkk2PLEAWXGwo6Oj8VxniGzXRUAY1nG+DmEucgVEYZBN5Aww+Cf4rYMHD4q8g8C1oQSB46lDQu9Ag7h2fn7eGqjRUWR0XNcZIiqC80aISgCYtDIbjASDATAkVZFKEAam+C2AjlIDMl8ke/TeTqRtpe8/882wV60zfPHihWVoaGjm0qVLUQWcrhnXdYbIPMFAMA+Aox6jpbQAVsLh19TUCGBDySF8GiQXWS9yCvghOfO1hV1n2NXV5UA6rcTU0bD29navx+OJ6zpDAqgEAICJyAcw/DHESUoy1Dg/sBTnq5FSJfNFh6BjCOiRubm54DvQ+Nzge8gMcVK09PrOnTtxX2c4ODiYD5DRBsT6KC0APDgxAtsOJxfqXHJ26WfOnNEUuioJ2eXLl+eIVKF3oPFdZ0hOazxajKZIY6PWGe4hoLy+QxwEghz4lG7tFCXoAyWFGPkBjtVKNBy/5g40gSuYnE6ntb+/37UekKl3PdD8DaprpMEvBDIOLPct3YLhPhMUZnqtJzZ3wNFpbS8c5Jo70IRawbSwsGDt6elZ1vqjiF7QWRu1zpBATIVfoL/lQNZBFlFFRDQBZ6lMUCA+RpSCTsD3WttMvm3tHWgCbWBg4P1r164N4mQMOy3DCB2ztLS0oesMiak6koAVki5nsHtXMl3ot1IvR6iGSAUdAHZqBbqzszP0DjTyfJ9OMWiWPKXFS0pKOJyC4lTU/JjVap2R5WJD1xkScB+DmYgc1PgbhekAWCuxlPN7e3vD70BDoKZhHk/OakS2A5CV6Sk1Pww9p5AmkdYZ7qV7fwUJCBUHRzvzvXXr1nVV6wynp6c/J23tJ7lYABMwrMKx4cqVKx4kN9DxBFxnmHb79m17NMPUtRyhw+FYcweaVesMMfzB0LGxsamRkRG7YlNTU+P4XJaHhFxn6LsDDcLLWIMs67OmHWg2zTpD3x1o4DdiCTJGDHIPTTvQbELTj9Pf5OTkeLTrNz51di+qn1v+2TsK3yYRwsXKKcolht1bHmhy2J8iTo7FpAYSovXsQLPp5AMaGm1GI/tFDX9dO9BsMhP1m9nZWVsk5YRQJj+jom4Hmi00E+1Xv0H8HwWQte1As4VM7EAzPDw8ham1SPUaEUwkO9BsCcMcYH5+vr64uNiF51KUyQ0tACM8pOx5XTvQbCrD7Iny/AUZZqhFzRm1Z/nRYVGx0zK5YbFYnD7Z8Lp3oNk0hkeKi4qKDKgzA1w8GgCAlRlttSADYJ9iWXIHmlA70KD4j9Cut7cXdWmvGoBRiUSNx+12J3egiXQHGoAHhkJrAwtlAVXI5A40yR1okhbS/g/H5BFic8lpAQAAAABJRU5ErkJggg==");
+			background-size: 45px 40px;
+			margin-top: -6px;
+			height: 13px;
+			left: 2px;
+			position: absolute;
+			top: 50%;
+			width: 16px;
+		}
+
+		#btn_shareTWI span{
+			padding: 0 3px 0 19px;
+			white-space: nowrap;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		#btn_shareTWI:hover,
+		#btn_shareTWI:focus{
+			background-color: #d9d9d9;
+			background-image: linear-gradient(#f8f8f8, #d9d9d9);
+			border-color: #bbb;
+			box-shadow: none;
+		}
 	</style>
 </head>
 
@@ -2097,7 +2184,10 @@ desired effect
 										<form action="" method="post" class="form-horizontal">
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
-			                                    <button title="Share on Facebook" type="button" class="btn btn-primary btn-flat btn-xs" data-toggle="modal" data-target="#modal_share_facebook" onclick="share_on_facebook()"><i class="fa fa-download" aria-hidden="true"></i></button>
+			                                    
+			                                    <button id="btn_shareFB"><i></i><span>Share on Facebook</span></button>
+
+												<button id="btn_shareTWI"><i></i><span>Share on Twitter</span></button>
 			                                </div>
 
 			                                <script>
@@ -2105,6 +2195,31 @@ desired effect
 													var el = document.getElementById('share_facebook_iframe');
 													el.src = 'https://www.facebook.com/sharer.php?u=http://www.domain.ro/url.html';
 												}
+
+												$(document).ready(function() {
+													var width  = 575,
+													height = 400,
+													left   = ($(window).width()  - width)  / 2,
+													top    = ($(window).height() - height) / 2,
+													url    = location.href,
+													opts   = 'status=1' +
+													',width='  + width  +
+													',height=' + height +
+													',top='    + top    +
+													',left='   + left;
+
+													$("#btn_shareFB").click(function() {
+													window.open(	      'https://www.facebook.com/sharer/sharer.php?u='+url, 
+													'facebook-share-dialog', 
+													opts); 
+													});
+													$("#btn_shareTWI").click(function() {
+													window.open(	      'https://twitter.com/share?text=Share%20with%20twitter%20is%20so%20easy', 
+													'twitter-sahre-dialog', 
+													opts); 
+													});
+
+												});
 											</script>
 
 			                                <div class="form-group">
