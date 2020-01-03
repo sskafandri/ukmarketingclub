@@ -2051,36 +2051,40 @@ desired effect
                 </section>
 
                 <section class="content">
-                	<div class="row">
-						<div class="col-lg-6">
-	                        <div class="box box-primary">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Affiliate Links
-		              				</h3>
-		            			</div>
-								<div class="box-body">
-									<form action="" method="post" class="form-horizontal">
-		                                <div class="form-group">
-		                                    <label for="affiliate_link_1" class="col-sm-3 control-label">ublo.club</label>
-		                                    <div class="col-sm-9">
-		                                        <input type="text" name="affiliate_link_1" id="affiliate_link_1" class="form-control" value="https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>">
-		                                        <small></small>
-		                                    </div>
-		                                </div>
+                	<?php if(empty()){ ?>
+                		<div class="callout callout-danger lead"><p>You need to set your public affiliate username under <a href="dashboard.php?c=my_account">Account Settings</></p></div>
+					<?php }else{ ?>
+						<div class="row">
+							<div class="col-lg-6">
+		                        <div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
+			              					Affiliate Links
+			              				</h3>
+			            			</div>
+									<div class="box-body">
+										<form action="" method="post" class="form-horizontal">
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">ublo.club</label>
+			                                    <div class="col-sm-9">
+			                                        <input type="text" name="affiliate_link_1" id="affiliate_link_1" class="form-control" value="https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>">
+			                                        <small></small>
+			                                    </div>
+			                                </div>
 
-		                                <div class="form-group">
-		                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
-		                                    <div class="col-sm-9">
-		                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/aff.php?username=<?php echo $account_details['affiliate_username']; ?>">
-		                                        <small></small>
-		                                    </div>
-		                                </div>
-		                            </form>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
+			                                    <div class="col-sm-9">
+			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/aff.php?username=<?php echo $account_details['affiliate_username']; ?>">
+			                                        <small></small>
+			                                    </div>
+			                                </div>
+			                            </form>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+					<?php } ?>
 	            </section>
 	        </div>
         <?php } ?>
@@ -2265,76 +2269,6 @@ desired effect
 					
 				}
 			});	
-		}
-
-		function stream_set_transcode_or_restream(selectObject) {
-		    var transcoding_type = selectObject.value; 
-
-		    if(transcoding_type == '0') {
-		    	$("#manual_transcoding_options").removeClass("hidden");
-			}else{
-				$("#manual_transcoding_options").addClass("hidden");
-			}
-		}
-
-	  	function stream_set_stream_type(selectObject) {
-		    var stream_type = selectObject.value; 
-
-		    // copy / restream / pass-through
-		    if(stream_type == 'copy') {
-		    	$("#transcode_hardware").addClass("hidden");
-		    	$("#fingerprint_options_parent").addClass("hidden");
-		    	$("#transcode_options").addClass("hidden");
-			}else{
-				$("#transcode_hardware").removeClass("hidden");
-		    	$("#fingerprint_options_parent").removeClass("hidden");
-		    	$("#transcode_options").removeClass("hidden");
-			}
-		}
-
-    	function stream_set_transcode_hardware(selectObject) {
-		    var transcode_hardware = selectObject.value; 
-
-		    // handle cpu
-		    if(transcode_hardware == 'copy') {
-		    	$("#stream_cpu_options").addClass("hidden");
-		    	$("#stream_gpu_options").addClass("hidden");
-		    	$("#transcode_options").addClass("hidden");
-		    }
-		    if(transcode_hardware == 'cpu') {
-		    	$("#stream_cpu_options").removeClass("hidden");
-		    	$("#stream_gpu_options").addClass("hidden");
-		    	$("#transcode_options").removeClass("hidden");
-			}
-			if(transcode_hardware == 'gpu') {
-				$("#stream_gpu_options").removeClass("hidden");
-				$("#stream_cpu_options").addClass("hidden");
-				$("#transcode_options").removeClass("hidden");
-			}
-		}
-
-		function stream_set_transcode_audio(selectObject) {
-		    var audio_codec = selectObject.value; 
-
-		    if(audio_codec == 'copy') {
-		    	$("#stream_audio_options").addClass("hidden");
-		    }
-		    if(audio_codec != 'copy') {
-		    	$("#stream_audio_options").removeClass("hidden");
-		    }
-		}
-
-		function direct_or_restream(selectObject) {
-		    var direct = selectObject.value; 
-
-		    if(direct == 'no') {
-		    	$("#restream_options_1").removeClass("hidden");
-		    	$("#restream_options_2").removeClass("hidden");
-		    }
-		    if(direct != 'yes') {
-		    	$("#restream_options_1").addClass("hidden");
-		    	$("#restream_options_2").addClass("hidden");
-		    }
 		}
 
 		function blink(selector){
