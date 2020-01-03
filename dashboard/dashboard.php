@@ -2097,10 +2097,15 @@ desired effect
 										<form action="" method="post" class="form-horizontal">
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
-			                                    <div class="col-sm-9">
-			                                        <a class="btn_fb" onclick="openURLInPopup('http://www.facebook.com/sharer.php?u=http://www.domain.ro/url.html',600, 400); return false;" href="#" target="_blank">Facebook</a>
-			                                    </div>
+			                                    <button title="Share on Facebook" type="button" class="btn btn-block btn-social btn-facebook" data-toggle="modal" data-target="#modal_share_facebook" onclick="share_on_facebook()"><i class="fa fa-download" aria-hidden="true"></i></button>
 			                                </div>
+
+			                                <script>
+			                                	function share_on_facebook(){
+													var el = document.getElementById('share_facebook_iframe');
+													el.src = 'http://www.facebook.com/sharer.php?u=http://www.domain.ro/url.html';
+												}
+											</script>
 
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">Google</label>
@@ -2116,6 +2121,27 @@ desired effect
 					<?php } ?>
 	            </section>
 	        </div>
+
+	        <div class="modal fade" id="modal_share_facebook" role="dialog">
+			    <div class="modal-dialog modal-lg">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal">&times;</button>
+			                <h4 class="modal-title">Share on Facebook</h4>
+			            </div>
+			            <div class="modal-body">
+			                <div class="row">
+						    	<div class="col-lg-12">
+						    		<iframe id="share_facebook_iframe" src="" width="100%" height="150px" frameborder="0"></iframe>
+								</div>
+							</div>
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			            </div>
+			        </div>
+			    </div>
+			</div>
         <?php } ?>
 
         <?php function staging(){ ?>
