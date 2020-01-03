@@ -330,7 +330,7 @@ $account_details = account_details($_SESSION['account']['id']);
 			color: #333;
 			cursor: pointer;
 			font-weight: bold;
-			width: 55px;
+			width: 65px;
 			height: 22px;
 			padding: 0;
 			position: relative;
