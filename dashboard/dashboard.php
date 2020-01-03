@@ -2061,7 +2061,7 @@ desired effect
 		            			</div>
 								<div class="box-body">
 	                                <div class="form-group">
-	                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Basic ublo.club</label>
+	                                    <label for="affiliate_link_1" class="col-sm-3 control-label">ublo.club</label>
 	                                    <div class="col-sm-9">
 	                                        <input type="text" name="affiliate_link_1" id="affiliate_link_1" class="form-control" value="https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>">
 	                                        <small></small>
@@ -2069,7 +2069,7 @@ desired effect
 	                                </div>
 
 	                                <div class="form-group">
-	                                    <label for="affiliate_link_2" class="col-sm-3 control-label">Basic ukmarketingclub.com</label>
+	                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
 	                                    <div class="col-sm-9">
 	                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/aff.php?username=<?php echo $account_details['affiliate_username']; ?>">
 	                                        <small></small>
