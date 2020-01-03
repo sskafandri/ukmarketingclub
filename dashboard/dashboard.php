@@ -2097,7 +2097,7 @@ desired effect
 										<form action="" method="post" class="form-horizontal">
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
-			                                    <button title="Share on Facebook" type="button" class="btn btn-block btn-social btn-facebook" data-toggle="modal" data-target="#modal_share_facebook" onclick="share_on_facebook()"><i class="fa fa-download" aria-hidden="true"></i></button>
+			                                    <button title="Share on Facebook" type="button" class="btn btn-primary btn-flat btn-xs" data-toggle="modal" data-target="#modal_share_facebook" onclick="share_on_facebook()"><i class="fa fa-download" aria-hidden="true"></i></button>
 			                                </div>
 
 			                                <script>
