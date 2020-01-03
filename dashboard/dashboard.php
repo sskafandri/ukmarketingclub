@@ -2103,7 +2103,7 @@ desired effect
 			                                <script>
 			                                	function share_on_facebook(){
 													var el = document.getElementById('share_facebook_iframe');
-													el.src = 'http://www.facebook.com/sharer.php?u=http://www.domain.ro/url.html';
+													el.src = 'https://www.facebook.com/sharer.php?u=http://www.domain.ro/url.html';
 												}
 											</script>
 
