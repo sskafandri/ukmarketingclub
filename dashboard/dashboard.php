@@ -2146,10 +2146,13 @@ desired effect
 		                        <div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
-			              					Affiliate Links
+			              					Retail Affiliate Links
 			              				</h3>
 			            			</div>
 									<div class="box-body">
+										<p>
+											These sharing options are for end user / retail customers only and redirect to the www.ublo.club website.
+										</p>
 										<form action="" method="post" class="form-horizontal">
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">ublo.club</label>
@@ -2160,9 +2163,17 @@ desired effect
 			                                </div>
 
 			                                <div class="form-group">
-			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
 			                                    <div class="col-sm-9">
-			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/aff.php?username=<?php echo $account_details['affiliate_username']; ?>">
+			                                        <button id="btn_shareFB"><i></i><span>Share</span></button>
+			                                        <small></small>
+			                                    </div>
+			                                </div>
+
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Twitter</label>
+			                                    <div class="col-sm-9">
+			                                        <button id="btn_shareTWI"><i></i><span>Tweet</span></button>
 			                                        <small></small>
 			                                    </div>
 			                                </div>
@@ -2170,9 +2181,7 @@ desired effect
 		                            </div>
 		                        </div>
 		                    </div>
-		                </div>
 
-		                <div class="row">
 							<div class="col-lg-6">
 		                        <div class="box box-primary">
 			            			<div class="box-header">
