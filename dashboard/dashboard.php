@@ -1510,7 +1510,7 @@ desired effect
 				    'username' 		=> $username,
 				    'password' 		=> $password,
 				    'action' 		=> 'GetAffiliates',
-				    'usrid' 		=> $member_id,
+				    'userid' 		=> $member_id,
 				    'responsetype' 	=> 'json',
 				);
 
