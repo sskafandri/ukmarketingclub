@@ -2162,6 +2162,7 @@ desired effect
 			                                    </div>
 			                                </div>
 
+			                                <!--
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
 			                                    <div class="col-sm-9">
@@ -2177,6 +2178,7 @@ desired effect
 			                                        <small></small>
 			                                    </div>
 			                                </div>
+			                            	-->
 			                            </form>
 		                            </div>
 		                        </div>
@@ -2202,6 +2204,7 @@ desired effect
 			                                    </div>
 			                                </div>
 
+			                                <!--
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
 			                                    <div class="col-sm-9">
@@ -2217,6 +2220,7 @@ desired effect
 			                                        <small></small>
 			                                    </div>
 			                                </div>
+			                            	-->
 			                            </form>
 		                            </div>
 		                        </div>
