@@ -1549,7 +1549,6 @@ desired effect
 
                 <!-- Main content -->
 				<section class="content">
-					<?php debug($whmcs_affiliate_details); ?>
 					<div class="row">
 						<div class="col-lg-4">
 							<div class="col-lg-12">
@@ -1639,7 +1638,7 @@ desired effect
 															<div class="form-group">
 																<label class="col-md-2 control-label" for="whmcs_visitors">Visitors</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control" id="whmcs_visitors" name="whmcs_visitors" value="<?php echo stripslashes($whmcs_affiliate_details['visitors']); ?>">
+																	<input type="text" class="form-control" id="whmcs_visitors" name="whmcs_visitors" value="<?php echo stripslashes($whmcs_affiliate_details['visitors']); ?>" read-only>
 																</div>
 															</div>
 														</div>
