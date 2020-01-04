@@ -1531,6 +1531,7 @@ desired effect
 
 				// Decode response
 				$whmcs_affiliate_details = json_decode($response, true);
+				$whmcs_affiliate_details = $whmcs_affiliate_details['affiliates']['affiliate'][0];
 			?>
 
             <div class="content-wrapper">
@@ -1626,68 +1627,25 @@ desired effect
 								<div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
-			              					Basic Contact Details
+			              					Ublo.club Affiliate Stats
 			              				</h3>
 			            			</div>
 									<div class="box-body">
-										<form action="actions.php?a=member_update" class="form-horizontal form-bordered" method="post">
-											<input type="hidden" name="member_id" value="<?php echo $member_id; ?>">
+										<form class="form-horizontal form-bordered">
 											<div class="row">
 												<div class="col-lg-12">
 													<section class="panel">
 														<div class="panel-body">
-															<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
-																	<?php debug($member); ?>
-																	<?php debug($commissions); ?>
-															<?php } ?>
-
 															<div class="form-group">
-																<label class="col-md-2 control-label" for="account_status">Status</label>
+																<label class="col-md-2 control-label" for="whmcs_visitors">Visitors</label>
 																<div class="col-md-10">
-																	<span class="vcenter">
-																		<?php 
-																			if($member['status'] == 'active') {
-																				echo '<span class="label label-success full-width" style="width: 100px;">Active</span>';
-																			}elseif($member['status'] == 'disabled') {
-																				echo '<span class="label label-danger full-width" style="width: 100px%;">Disabled</span>';
-																			}elseif($member['status'] == 'suspended') {
-																				echo '<span class="label label-danger full-width" style="width: 100px%;">Suspended</span>';
-																			}else{
-																				echo '<span class="label label-warning full-width" style="width: 100px%;">'.ucfirst($member['status']).'</span>';
-																			}
-																		?>
-																	</span>
-																</div>
-															</div>
-
-															<!-- name -->
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="first_name">Name</label>
-																<div class="col-md-5">
-																	<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($member['first_name']); ?>">
-																</div>
-																<div class="col-md-5">
-																	<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($member['last_name']); ?>">
-																</div>
-															</div>
-
-															<!-- email -->
-															<div class="form-group">
-																<label class="col-md-2 control-label" for="email">Email</label>
-																<div class="col-md-10">
-																	<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($member['email']); ?>">
+																	<input type="text" class="form-control" id="whmcs_visitors" name="whmcs_visitors" value="<?php echo stripslashes($whmcs_affiliate_details['visitors']); ?>">
 																</div>
 															</div>
 														</div>
 													</section>
 												</div>
 											</div>
-
-											<footer class="panel-footer">
-												<a href="dashboard.php?c=members" class="btn btn-default">Back</a>
-												<!-- <button type="submit" class="btn btn-success pull-right">Save Changes</button> -->
-												<a href="https://ublo.club/billing/admin/clientssummary.php?userid=<?php echo $member_id; ?>" target="_blank" class="btn btn-primary pull-right">View Full Profile</a>
-											</footer>
 										</form>
 									</div>
 								</div>
@@ -1734,7 +1692,6 @@ desired effect
 								</div>
 							</div>
 						</div>
-
 
 					</div>
 				</section>
