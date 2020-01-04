@@ -2153,7 +2153,7 @@ desired effect
 										<p>
 											These sharing options are for end user / retail customers only and redirects to the www.ublo.club website.
 										</p>
-										<form action="" method="post" class="form-horizontal">
+										<form class="form-horizontal">
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">ublo.club</label>
 			                                    <div class="col-sm-9">
