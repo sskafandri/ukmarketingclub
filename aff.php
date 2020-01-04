@@ -16,7 +16,7 @@ include('/home/ukmarketingclub/public_html/dashboard/inc/global_vars.php');
 include('/home/ukmarketingclub/public_html/dashboard/inc/functions.php');
 
 // get affiliate username
-$username = get('username');
+$username 		= get('username');
 
 // convert username to userid
 $query      	= $conn->query("SELECT `id` FROM `users` WHERE `affiliate_username` = '".$username."' ");
