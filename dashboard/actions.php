@@ -6119,7 +6119,7 @@ function ajax_all_commissions()
 	header("Content-Type:application/json; charset=utf-8");
 
 	// get all commissions
-	$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` != '0' ");
+	$query 				= $conn->query("SELECT * FROM `commissions` ");
 	$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	// get all customers
