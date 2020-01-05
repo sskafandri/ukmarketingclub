@@ -1754,7 +1754,7 @@ desired effect
 									                <th class="no-sort" width="1px">Monthly</th>
 									                <th class="no-sort" width="1px">Quarterly</th>
 									                <th class="no-sort" width="1px">Annually</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+									                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
 									            </tr>
 									        </thead>
 									        <tfoot>
@@ -1765,7 +1765,7 @@ desired effect
 									                <th class="no-sort" width="1px">Monthly</th>
 									                <th class="no-sort" width="1px">Quarterly</th>
 									                <th class="no-sort" width="1px">Annually</th>
-									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+									                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
 									            </tr>
 									        </tfoot>
 									    </table>
