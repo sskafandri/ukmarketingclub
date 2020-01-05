@@ -706,7 +706,7 @@ desired effect
 					}
 					break;
 
-				case "members":
+				case "all_commissions":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						all_commissions();
 					}else{
