@@ -1855,8 +1855,9 @@ desired effect
 							<div class="box box-warning">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Pending
+		              					Approved
 		              				</h3>
+		              				<small>Pending Payment</small>
 		            			</div>
 								<div class="box-body">
 									<center>
