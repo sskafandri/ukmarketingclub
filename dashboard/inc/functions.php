@@ -68,7 +68,7 @@ function get_all_commissions(){
     $data['commissions']['orders']              = '0';
 
     // get pending commissions
-    $query              = $conn->query("SELECT * FROM `commissions` WHERE `user_id` != '0' ");
+    $query              = $conn->query("SELECT * FROM `commissions` ");
     $commissions        = $query->fetchAll(PDO::FETCH_ASSOC); 
     
     // work with commissions
