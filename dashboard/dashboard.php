@@ -3102,7 +3102,7 @@ desired effect
 			            { "data": "price.annually" },
 			            { "data": "actions" }
 			        ],
-			        "order": [[1, 'asc']]
+			        "order": [[1, 'asc'], [2, 'asc']]
 			    } );
 			     
 			    // Add event listener for opening and closing details
