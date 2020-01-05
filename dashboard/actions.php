@@ -4983,7 +4983,7 @@ function ajax_members()
 			$output[$count]['actions'] 						= '
 				<div class="btn-group">
 					<span class="pull-right">
-						<a title="View MLM Profile" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=member&id='.$customer['id'].'"><i class="fa fa-funnel-dollar"></i></a>
+						<a title="View MLM Profile" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=member&id='.$customer['id'].'"><i class="fa fa-user"></i></a>
 						<a title="View Billing Profile" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$customer['id'].'" target="_blank"><i class="fa fa-user"></i></a>
 
 						<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a> -->
@@ -6087,7 +6087,7 @@ function ajax_products()
 		$output[$count]['actions'] 						= '
 			<div class="btn-group">
 				<span class="pull-right">
-					<a title="View / Edit Product" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/configproducts.php?action=edit&id='.$product['pid'].'" target="_blank"><i class="fa fa-user"></i></a>
+					<a title="View / Edit Product" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/configproducts.php?action=edit&id='.$product['pid'].'" target="_blank"><i class="fa fa-cogs"></i></a>
 
 					<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$product['pid'].'"><i class="fa fa-times"></i></a> -->
 				</span>
