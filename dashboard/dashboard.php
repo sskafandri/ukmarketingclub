@@ -1933,7 +1933,7 @@ desired effect
 										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
 										                <th class="no-sort hidden-xs" width="100px">Order Date</th>
 										                <th class="no-sort hidden-xs" width="100px">Release Date</th>
-										                <th class="">Amount</th>
+										                <th class="no-sort" width="100px">Amount</th>
 										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 										            </tr>
 										        </thead>
@@ -1945,7 +1945,7 @@ desired effect
 										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
 										                <th class="no-sort hidden-xs" width="1px">Order Date</th>
 										                <th class="no-sort hidden-xs" width="1px">Release Date</th>
-										                <th class="">Amount</th>
+										                <th class="no-sort" width="100px">Amount</th>
 										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 										            </tr>
 										        </tfoot>
