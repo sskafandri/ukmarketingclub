@@ -1746,7 +1746,8 @@ desired effect
 				curl_close($ch);
 
 				// Decode response
-				$whmcs_products = json_decode($response['products']['product'], true);
+				$whmcs_products = json_decode($response, true);
+				$whmcs_products = $whmcs_products['products']['product'];
 			?>
 
             <div class="content-wrapper">
