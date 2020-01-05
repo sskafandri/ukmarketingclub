@@ -6038,7 +6038,6 @@ function ajax_products()
 	    'username' 		=> $username,
 	    'password' 		=> $password,
 	    'action' 		=> 'GetProducts',
-	    'userid' 		=> $member_id,
 	    'responsetype' 	=> 'json',
 	);
 
@@ -6066,7 +6065,7 @@ function ajax_products()
 		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$product['pid'].'" name="product_ids[]" value="'.$product['pid'].'" onclick="multi_options();"></center>';
 
 		// set recurring or not
-		if($customer['paytype'] == 'onetime'){
+		if($product['paytype'] == 'onetime'){
 			$output[$count]['recurring']				= 'One Time';
 		}else{
 			$output[$count]['recurring']				= 'Recurring';
@@ -6078,7 +6077,7 @@ function ajax_products()
 				<span class="pull-right">
 					<a title="View / Edit Product" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/configproducts.php?action=edit&id='.$product['pid'].'" target="_blank"><i class="fa fa-user"></i></a>
 
-					<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a> -->
+					<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$product['pid'].'"><i class="fa fa-times"></i></a> -->
 				</span>
 			</div>';
 
