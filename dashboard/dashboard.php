@@ -497,9 +497,9 @@ desired effect
 	                    </li>
 	                <?php } ?>
 
-	                <?php if($account_details['type'] == 'admin') { ?>
+	                <?php if($account_details['type'] == 'admin' || $account_details['type'] == 'dev') { ?>
                 		<li class="header">STAFF PANEL</li>
-	                    <?php if(get('c') == 'members' || get('c') == 'member'){ ?>
+	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
@@ -520,6 +520,17 @@ desired effect
 			                    	<a href="dashboard.php?c=members">
 			                        	<i class="fa fa-circle"></i> 
 			                        	<span>View All Members</span>
+			                        </a>
+			                    </li>
+
+			                    <?php if(get('c') == 'products'){ ?>
+			                    	<li class="active">
+			                    <?php }else{ ?>
+			                    	<li>
+			                    <?php } ?>
+			                    	<a href="dashboard.php?c=products">
+			                        	<i class="fa fa-circle"></i> 
+			                        	<span>View All Products</span>
 			                        </a>
 			                    </li>
 							</ul>
@@ -671,6 +682,14 @@ desired effect
 				case "member":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						member();
+					}else{
+						home();
+					}
+					break;
+
+				case "products":
+					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
+						products();
 					}else{
 						home();
 					}
@@ -1689,6 +1708,145 @@ desired effect
 						</div>
 
 					</div>
+				</section>
+            </div>
+        <?php } ?>
+
+        <?php function products(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+
+        		// get ublo affiliate info
+				$whmcsUrl = "https://ublo.club/billing/";
+				$username = "api_user";
+				$password = md5("admin1372");
+
+				// Set post values
+				$postfields = array(
+				    'username' 		=> $username,
+				    'password' 		=> $password,
+				    'action' 		=> 'GetProducts',
+				    'userid' 		=> $member_id,
+				    'responsetype' 	=> 'json',
+				);
+
+				// Call the API
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
+				curl_setopt($ch, CURLOPT_POST, 1);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+				$response = curl_exec($ch);
+				if (curl_error($ch)) {
+				    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+				}
+				curl_close($ch);
+
+				// Decode response
+				$whmcs_products = json_decode($response, true);
+			?>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>   
+                            	
+                <section class="content-header">
+                    <h1>Staff Panel - View All Products <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">View All Products</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<?php debug($whmcs_products); ?>
+					<!-- customer multi update -->
+					<form id="customer_update_multi" action="actions.php?a=customer_multi_options" method="post">
+						<div class="row">
+							<div id="multi_options_show" class="col-md-4 hidden">
+								<div class="box box-default">
+									<div class="box-header with-border">
+										<h3 class="box-title">
+											Multi Member Options / Update
+										</h3>
+
+										<div class="box-tools pull-right">
+											<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+											</button>
+										</div>
+									</div>
+									<div class="box-body">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Action</label>
+													<div class="col-sm-9">
+														<select id="multi_options_action" name="multi_options_action" class="form-control" onchange="multi_options_select_customer(this.value);">
+															<optgroup label="Enable / Disable">
+																<option value="enable">Enabled Selected Members</option>
+																<option value="disable">Disable Selected Members</option>
+															</optgroup>
+															<optgroup label="Delete">
+																<option value="delete">Delete Selected Members</option>
+															</optgroup>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="box-footer">
+										<button type="submit" class="btn btn-success pull-right">Go</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
+			              					View All Products
+			              				</h3>
+			              				<div class="pull-right">
+			              					<!-- <button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button> -->
+										</div>
+			            			</div>
+									<div class="box-body">
+										<table id="example" class="display" style="width:100%">
+									        <thead>
+									            <tr>
+									                <th class="no-sort" width="1px"></th>
+									                <th class="no-sort hidden-xs" width="1px">Status</th>
+									                <th style="white-space: nowrap;">Name</th>
+									                <th class="hidden-xs" style="white-space: nowrap;" width="1px">Downline</th>
+									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Upline</th>
+									                <th class="no-sort hidden-xs" width="1px">Expires</th>
+									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+									            </tr>
+									        </thead>
+									        <tfoot>
+									            <tr>
+									                <th class="no-sort" width="1px"></th>
+									                <th class="no-sort hidden-xs" width="1px">Status</th>
+									                <th style="white-space: nowrap;">Name</th>
+									                <th class="hidden-xs" style="white-space: nowrap;" width="1px">Downline</th>
+									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Upline</th>
+									                <th class="no-sort hidden-xs" width="1px">Expires</th>
+									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+									            </tr>
+									        </tfoot>
+									    </table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
 				</section>
             </div>
         <?php } ?>
