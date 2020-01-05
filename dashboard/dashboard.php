@@ -812,12 +812,8 @@ desired effect
 							<div class="box box-primary no-padding">
 								<div class="box-header with-border">
 									<h3 class="box-title">
-										Server Locations 
-										<a href="#" data-toggle="modal" data-target="#help_dashboard_map">
-											<i class="fas fa-question-circle"></i>
-										</a>
+										Something goes here
 									</h3> 
-									<small>(estimated)</small>
 								</div>
 								<div class="box-body">
 					                
