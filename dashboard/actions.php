@@ -6066,6 +6066,11 @@ function ajax_products()
 		$output[$count] 								= $product;
 		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$product['pid'].'" name="product_ids[]" value="'.$product['pid'].'" onclick="multi_options();"></center>';
 
+		// get product category
+		$query 					= $conn->query("SELECT * FROM `whmcs`.`tblproductgroups` WHERE `id` = '".$product['gid']."' ");
+		$product_category 		= $query->fetch(PDO::FETCH_ASSOC);
+		$output[$count]['category']						= stripslashes($product_category['name']);
+
 		// set recurring or not
 		if($product['paytype'] == 'onetime'){
 			$output[$count]['recurring']				= 'One Time';
