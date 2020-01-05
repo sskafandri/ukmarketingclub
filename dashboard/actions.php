@@ -6074,7 +6074,7 @@ function ajax_products()
 		}
 
 		// set pricing to price var
-		$output[$count]['price']['month']				= $output[$count]['pricing']['GBP']['monthly'];
+		$output[$count]['price']['monthly']				= $output[$count]['pricing']['GBP']['monthly'];
 		$output[$count]['price']['quarterly']			= $output[$count]['pricing']['GBP']['quarterly'];
 		$output[$count]['price']['annually']			= $output[$count]['pricing']['GBP']['annually'];
 
