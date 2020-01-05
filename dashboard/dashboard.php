@@ -1749,7 +1749,7 @@ desired effect
 									        <thead>
 									            <tr>
 									                <th class="no-sort" width="1px"></th>
-									                <th class="no-sort" width="1px" style="white-space: nowrap;">Category</th>
+									                <th class="no-sort" width="150px" style="white-space: nowrap;">Category</th>
 									                <th class="no-sort" style="white-space: nowrap;">Name</th>
 									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
 									                <th class="no-sort" width="1px">Monthly</th>
@@ -1761,7 +1761,7 @@ desired effect
 									        <tfoot>
 									            <tr>
 									                <th class="no-sort" width="1px"></th>
-									                <th class="no-sort" width="1px" style="white-space: nowrap;">Category</th>
+									                <th class="no-sort" width="150px" style="white-space: nowrap;">Category</th>
 									                <th class="no-sort" style="white-space: nowrap;">Name</th>
 									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
 									                <th class="no-sort" width="1px">Monthly</th>
