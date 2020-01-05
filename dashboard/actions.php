@@ -6120,7 +6120,11 @@ function ajax_all_commissions()
 
 	// get all commissions
 	$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` != '0' ");
-	$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
+	$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC);
+
+	// get all customers
+	$query 				= $conn->query("SELECT `id`,`added`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+	$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 	
 	// work with commissions
 	foreach($commissions as $commission){
@@ -6148,8 +6152,13 @@ function ajax_all_commissions()
 			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($commission['status']).'</span>';
 		}
 
-		// get customer_id
-		$output[$count]['member'] 						= $commission['customer_id'];
+		// get customer data
+		foreach($customers as $customer){
+			if($commission['customer_id'] == $customer['id']){
+				$output[$count]['member']				= '<a href="dashboard.php?c=member&id='.$customer['id'].'">'.$customer['first_name'].' '.$customer['last_name'].'</a>';
+				break;
+			}
+		}
 
 		// commission amount
 		$output[$count]['amount'] 						= '£'.number_format($commission['amount'], 2);
