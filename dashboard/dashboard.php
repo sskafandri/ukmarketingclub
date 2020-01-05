@@ -3123,7 +3123,7 @@ desired effect
 			            	"className":      'hidden-xs',
 			            	"data": "recurring"
 			            },
-			            { "data": "price" },
+			            { "data": "price.monthly" },
 			            { "data": "actions" }
 			        ],
 			        "order": [[0, 'asc']]

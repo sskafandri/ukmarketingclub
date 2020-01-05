@@ -6073,6 +6073,11 @@ function ajax_products()
 			$output[$count]['recurring']				= 'Recurring';
 		}
 
+		// set pricing to price var
+		$output[$count]['price']['month']				= $output[$count]['pricing']['GBP']['monthly'];
+		$output[$count]['price']['quarterly']			= $output[$count]['pricing']['GBP']['quarterly'];
+		$output[$count]['price']['annually']			= $output[$count]['pricing']['GBP']['annually'];
+
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
 			<div class="btn-group">
