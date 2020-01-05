@@ -1749,7 +1749,7 @@ desired effect
 									        <thead>
 									            <tr>
 									                <th class="no-sort" width="1px"></th>
-									                <th style="white-space: nowrap;">Name</th>
+									                <th class="no-sort" style="white-space: nowrap;">Name</th>
 									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
 									                <th class="no-sort" width="1px">Monthly</th>
 									                <th class="no-sort" width="1px">Quarterly</th>
@@ -1760,7 +1760,7 @@ desired effect
 									        <tfoot>
 									            <tr>
 									                <th class="no-sort" width="1px"></th>
-									                <th style="white-space: nowrap;">Name</th>
+									                <th class="no-sort" style="white-space: nowrap;">Name</th>
 									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
 									                <th class="no-sort" width="1px">Monthly</th>
 									                <th class="no-sort" width="1px">Quarterly</th>
