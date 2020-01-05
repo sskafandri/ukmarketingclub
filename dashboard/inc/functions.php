@@ -55,6 +55,55 @@ function get_commissions($member_id = ''){
     return $data;
 }
 
+function get_all_commissions(){
+    global $conn, $global_settings, $whmcs;
+
+    // set commissions default
+    $data['commissions']['total']               = '0';
+    $data['commissions']['pending']             = '0';
+    $data['commissions']['approved']            = '0';
+    $data['commissions']['paid']                = '0';
+    $data['commissions']['rejected']            = '0';
+    $data['commissions']['missed']              = '0';
+    $data['commissions']['orders']              = '0';
+
+    // get pending commissions
+    $query              = $conn->query("SELECT * FROM `commissions` WHERE `user_id` != '0' ");
+    $commissions        = $query->fetchAll(PDO::FETCH_ASSOC); 
+    
+    // work with commissions
+    foreach($commissions as $commission){
+        $data['commissions']['total']                   = $data['commissions']['total'] + $commission['amount'];
+
+        if($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
+            $data['commissions']['pending']             = $data['commissions']['pending'] + $commission['amount'];
+        }
+        if($commission['status'] == 'approved' && $commission['qualified'] == 'yes'){
+            $data['commissions']['approved']             = $data['commissions']['approved'] + $commission['amount'];
+        }
+        if($commission['status'] == 'paid' && $commission['qualified'] == 'yes'){
+            $data['commissions']['paid']                = $data['commissions']['paid'] + $commission['amount'];
+        }
+        if($commission['status'] == 'rejected' && $commission['qualified'] == 'yes'){
+            $data['commissions']['rejected']            = $data['commissions']['rejected'] + $commission['amount'];
+        }
+        if($commission['qualified'] == 'no'){
+            $data['commissions']['missed']              = $data['commissions']['missed'] + $commission['amount'];
+        }
+    }
+
+    // clean up commissions
+    $data['commissions']['total']                       = number_format($data['commissions']['total'], 2);
+    $data['commissions']['pending']                     = number_format($data['commissions']['pending'], 2);
+    $data['commissions']['approved']                    = number_format($data['commissions']['approved'], 2);
+    $data['commissions']['paid']                        = number_format($data['commissions']['paid'], 2);
+    $data['commissions']['rejected']                    = number_format($data['commissions']['rejected'], 2);
+    $data['commissions']['missed']                      = number_format($data['commissions']['missed'], 2);
+    $data['commissions']['orders']                      = number_format(count($commissions));
+
+    return $data;
+}
+
 function products_to_points()
 {
     global $conn, $global_settings, $whmcs;

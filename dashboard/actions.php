@@ -491,6 +491,10 @@ switch ($a)
 		ajax_commissions();
 		break;
 
+	case "ajax_all_commissions":
+		ajax_all_commissions();
+		break;
+
 	// get downline table_downline
 	case "ajax_downline":
 		ajax_downline();
@@ -5919,7 +5923,7 @@ function ajax_commissions()
 
 	header("Content-Type:application/json; charset=utf-8");
 
-	// get pending commissions
+	// get all commissions
 	$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
 	$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
 	
@@ -6090,6 +6094,113 @@ function ajax_products()
 					<a title="View / Edit Product" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/configproducts.php?action=edit&id='.$product['pid'].'" target="_blank"><i class="fa fa-cogs"></i></a>
 
 					<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$product['pid'].'"><i class="fa fa-times"></i></a> -->
+				</span>
+			</div>';
+
+		// $count loop
+		$count++;
+	}
+
+	if(isset($output)) {
+		$data['data'] = array_values($output);
+	}else{
+		$data['data'] = array();
+	}
+
+	json_output($data);
+}
+
+function ajax_all_commissions()
+{
+	global $conn, $global_settings;
+
+	$count 			= 0;
+
+	header("Content-Type:application/json; charset=utf-8");
+
+	// get all commissions
+	$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` != '0' ");
+	$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
+	
+	// work with commissions
+	foreach($commissions as $commission){
+		$output[$count]							= $commission;
+
+		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$commission['id'].'" name="commission_ids[]" value="'.$commission['id'].'" onclick="multi_options();"></center>';
+
+		$output[$count]['added'] 				= $commission['added'];
+		$output[$count]['order_date'] 			= date("Y-m-d", $commission['added']);
+		$pending_commissions_period				= 2592000;
+		$output[$count]['release_date'] 		= date("Y-m-d", $commission['added'] + $pending_commissions_period);
+
+		// status
+		if($commission['status'] == 'approved') {
+			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">Approved</span>';
+		}elseif($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
+			$output[$count]['status']					= '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
+		}elseif($commission['status'] == 'pending' && $commission['qualified'] == 'no'){
+			$output[$count]['status']					= '<span class="label label-default full-width" style="width: 100%;">N/A</span>';
+		}elseif($commission['status'] == 'paid') {
+			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Paid</span>';
+		}elseif($commission['status'] == 'rejected') {
+			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Rejected</span>';
+		}else{
+			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($commission['status']).'</span>';
+		}
+
+		// get customer_id
+		$output[$count]['customer_id'] 					= $commission['customer_id'];
+
+		// commission amount
+		$output[$count]['amount'] 						= '£'.number_format($commission['amount'], 2);
+
+		// order_id
+		$output[$count]['order_id'] 					= $commission['int_order_id'];
+		$output[$count]['order_id_hidden']				= '<span class="hidden">'.stripslashes($commission['int_order_id']).'</span>';
+
+		// qualified
+		if($commission['qualified'] == 'yes') {
+			$output[$count]['qualified'] 				= '<span class="label label-success full-width" style="width: 100%;">Yes</span>';
+		}elseif($commission['qualified'] == 'no') {
+			$output[$count]['qualified']				= '<span class="label label-danger full-width" style="width: 100%;">No</span>';
+		}
+
+		// build the actions menu options
+		$output[$count]['actions'] 						= '
+			<div class="btn-group">
+				<span class="pull-right">
+					<!-- 
+					<a title="View MLM Profile" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=member&id='.$commission['id'].'"><i class="fa fa-eye"></i></a>
+					<a title="View Billing Profile" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/clientssummary.php?userid='.$commission['id'].'" target="_blank"><i class="fa fa-dollar"></i></a>
+					-->
+		';
+
+		if($commission['status'] == 'pending'){
+			$output[$count]['actions'] 					.= '
+					<span class="hidden-xs">
+						<a title="Manually Approve Commission" class="btn btn-success btn-flat btn-xs" href="actions.php?a=commission_approve&id='.$commission['id'].'"><i class="fa fa-check"></i></a>
+					</span>
+			';
+		}elseif($commission['status'] != 'paid'){
+			$output[$count]['actions'] 					.= '
+					<span class="hidden-xs">
+						<a title="Reset Commission" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'The commission will be reset. Are you sure?\')" href="actions.php?a=commission_reset&id='.$commission['id'].'"><i class="fa fa-recycle"></i></a>
+					</span>
+			';
+		}else{
+			$output[$count]['actions'] 					.= '
+					<span class="hidden-xs">
+						<a title="Not Available" class="btn btn-default btn-flat btn-xs" href="#" disabled><i class="fa fa-recycle"></i></a>
+					</span>
+			';
+		}
+
+		$output[$count]['actions'] 						.= '
+					<span class="hidden-xs">
+						<a title="View Order" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank"><i class="fa fa-shopping-cart"></i></a>
+					</span>
+
+					<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=commission_reject&id='.$commission['id'].'"><i class="fa fa-times"></i></a>
 				</span>
 			</div>';
 

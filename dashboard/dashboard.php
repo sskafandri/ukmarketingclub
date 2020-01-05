@@ -499,7 +499,7 @@ desired effect
 
 	                <?php if($account_details['type'] == 'admin' || $account_details['type'] == 'dev') { ?>
                 		<li class="header">STAFF PANEL</li>
-	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product'){ ?>
+	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product' || get('c') == 'all_commissions'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
@@ -531,6 +531,17 @@ desired effect
 			                    	<a href="dashboard.php?c=products">
 			                        	<i class="fa fa-circle"></i> 
 			                        	<span>View All Products</span>
+			                        </a>
+			                    </li>
+
+			                    <?php if(get('c') == 'all_commissions'){ ?>
+			                    	<li class="active">
+			                    <?php }else{ ?>
+			                    	<li>
+			                    <?php } ?>
+			                    	<a href="dashboard.php?c=all_commissions">
+			                        	<i class="fa fa-circle"></i> 
+			                        	<span>View All Commissions</span>
 			                        </a>
 			                    </li>
 							</ul>
@@ -1776,6 +1787,166 @@ desired effect
 							</div>
 						</div>
 					</form>
+				</section>
+            </div>
+        <?php } ?>
+
+        <?php function all_commissions(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+            
+            	$commissions = get_all_commissions();
+			?>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>
+                            	
+                <section class="content-header">
+                    <h1>Staff Panel - View All Commissions <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">View All Commissions</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-2 col-xs-6">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Total
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['total']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="box box-warning">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Pending
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['pending']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="box box-warning">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Pending
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['approved']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="box box-success">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Paid
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="box box-danger">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Missed
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['missed']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="box box-danger">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Rejected
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['rejected']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					View All Commissions
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<div class="row">
+										<div class="col-lg-12">
+											<table id="commissions" class="display " style="width:100%">
+										        <thead>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort" style="white-space: nowrap;">Member</th>
+										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
+										                <th class="no-sort hidden-xs" width="1px">Order Date</th>
+										                <th class="no-sort hidden-xs" width="1px">Release Date</th>
+										                <th class="">Amount</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+										            </tr>
+										        </thead>
+										        <tfoot>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort" style="white-space: nowrap;">Member</th>
+										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
+										                <th class="no-sort hidden-xs" width="1px">Order Date</th>
+										                <th class="no-sort hidden-xs" width="1px">Release Date</th>
+										                <th class="">Amount</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+										            </tr>
+										        </tfoot>
+										    </table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</section>
             </div>
         <?php } ?>
@@ -3125,6 +3296,7 @@ desired effect
     	</script>
     <?php } ?>
 
+
     <?php if(get('c') == 'table_downline') { ?>
     	<script>
 			/* Formatting function for row details - modify as you need */
@@ -3244,6 +3416,93 @@ desired effect
 			$(document).ready(function() {
 			    var table = $('#commissions').DataTable( {
 			        "ajax": "actions.php?a=ajax_commissions",
+			        "iDisplayLength": 100,
+			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
+			        "columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No commissions found."
+					},
+			        "columns": [
+			        	{
+			                "className":      'details-control',
+			                "orderable":      false,
+			                "data":           "order_id_hidden",
+			                "defaultContent": ''
+			            },
+			            { "data": "status" },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "qualified"
+			            },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "order_date"
+			            },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "release_date"
+			            },
+			            { "data": "amount" },
+			        ],
+			        "order": [[0, 'desc']]
+			    } );
+			     
+			    // Add event listener for opening and closing details
+			    $('#commissions tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
+			        }
+			    } );
+			} );
+    	</script>
+    <?php } ?>
+
+    <?php if(get('c') == 'all_commissions') { ?>
+    	<script>
+			/* Formatting function for row details - modify as you need */
+			function format ( d ) {
+			    // `d` is the original data object for the row
+			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
+			        '<tr>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
+			            '<td valign="top" align="left">'+
+			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
+			            	'<strong>Order ID:</strong> '+d.int_order_id+' <br>'+
+			            	'<strong>Order Date:</strong> '+d.order_date+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			    '</table>';
+			}
+
+			$('#checkAll').change(function () {
+			    $('.chk').prop('checked', this.checked);
+			    $('#multi_options_show').removeClass("hidden");
+			});
+
+			$(".chk").change(function () {
+			    if ($(".chk:checked").length == $(".chk").length) {
+			        $('#checkAll').prop('checked', 'checked');
+			    } else {
+			        $('#checkAll').prop('checked', false);
+			    }
+			});
+			 
+			$(document).ready(function() {
+			    var table = $('#commissions').DataTable( {
+			        "ajax": "actions.php?a=ajax_all_commissions",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
