@@ -6154,7 +6154,7 @@ function ajax_all_commissions()
 
 		// get customer data
 		foreach($customers as $customer){
-			if($commission['customer_id'] == $customer['id']){
+			if($commission['user_id'] == $customer['id']){
 				$output[$count]['member']				= '<a href="dashboard.php?c=member&id='.$customer['id'].'">'.$customer['first_name'].' '.$customer['last_name'].'</a>';
 				break;
 			}

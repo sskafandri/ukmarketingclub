@@ -1,6 +1,7 @@
 <?php
 
-function get_commissions($member_id = ''){
+function get_commissions($member_id = '')
+{
     global $conn, $global_settings, $whmcs;
 
     if(empty($member_id)){
@@ -55,7 +56,8 @@ function get_commissions($member_id = ''){
     return $data;
 }
 
-function get_all_commissions(){
+function get_all_commissions()
+{
     global $conn, $global_settings, $whmcs;
 
     // set commissions default
