@@ -477,6 +477,11 @@ switch ($a)
 		ajax_members();
 		break;
 
+	// get products
+	case "ajax_products":
+		ajax_products();
+		break;
+
 	// get member commissions
 	case "ajax_member_commissions":
 		ajax_member_commissions();
@@ -5997,6 +6002,83 @@ function ajax_commissions()
 					</span>
 
 					<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=commission_reject&id='.$commission['id'].'"><i class="fa fa-times"></i></a>
+				</span>
+			</div>';
+
+		// $count loop
+		$count++;
+	}
+
+	if(isset($output)) {
+		$data['data'] = array_values($output);
+	}else{
+		$data['data'] = array();
+	}
+
+	json_output($data);
+}
+
+function ajax_products()
+{
+	global $conn, $global_settings;
+
+	$time_shift 	= time() - 20;
+
+	$user_id 		= $_SESSION['account']['id'];
+
+	header("Content-Type:application/json; charset=utf-8");
+
+	// get ublo affiliate info
+	$whmcsUrl = "https://ublo.club/billing/";
+	$username = "api_user";
+	$password = md5("admin1372");
+
+	// Set post values
+	$postfields = array(
+	    'username' 		=> $username,
+	    'password' 		=> $password,
+	    'action' 		=> 'GetProducts',
+	    'userid' 		=> $member_id,
+	    'responsetype' 	=> 'json',
+	);
+
+	// Call the API
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+	$response = curl_exec($ch);
+	if (curl_error($ch)) {
+	    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+	}
+	curl_close($ch);
+
+	// Decode response
+	$whmcs_products = json_decode($response, true);
+	$whmcs_products = $whmcs_products['products']['product'];
+
+	foreach($whmcs_products as $product) {
+		$output[$count] 								= $product;
+		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$product['pid'].'" name="product_ids[]" value="'.$product['pid'].'" onclick="multi_options();"></center>';
+
+		// set recurring or not
+		if($customer['paytype'] == 'onetime'){
+			$output[$count]['recurring']				= 'One Time';
+		}else{
+			$output[$count]['recurring']				= 'Recurring';
+		}
+
+		// build the actions menu options
+		$output[$count]['actions'] 						= '
+			<div class="btn-group">
+				<span class="pull-right">
+					<a title="View / Edit Product" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/configproducts.php?action=edit&id='.$product['pid'].'" target="_blank"><i class="fa fa-user"></i></a>
+
+					<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a> -->
 				</span>
 			</div>';
 

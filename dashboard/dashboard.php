@@ -1768,46 +1768,6 @@ desired effect
 					<!-- customer multi update -->
 					<form id="customer_update_multi" action="actions.php?a=customer_multi_options" method="post">
 						<div class="row">
-							<div id="multi_options_show" class="col-md-4 hidden">
-								<div class="box box-default">
-									<div class="box-header with-border">
-										<h3 class="box-title">
-											Multi Member Options / Update
-										</h3>
-
-										<div class="box-tools pull-right">
-											<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-											</button>
-										</div>
-									</div>
-									<div class="box-body">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="form-group">
-													<label class="col-sm-3 control-label">Action</label>
-													<div class="col-sm-9">
-														<select id="multi_options_action" name="multi_options_action" class="form-control" onchange="multi_options_select_customer(this.value);">
-															<optgroup label="Enable / Disable">
-																<option value="enable">Enabled Selected Members</option>
-																<option value="disable">Disable Selected Members</option>
-															</optgroup>
-															<optgroup label="Delete">
-																<option value="delete">Delete Selected Members</option>
-															</optgroup>
-														</select>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="box-footer">
-										<button type="submit" class="btn btn-success pull-right">Go</button>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
 							<div class="col-lg-12">
 								<div class="box box-primary">
 			            			<div class="box-header">
@@ -1823,22 +1783,18 @@ desired effect
 									        <thead>
 									            <tr>
 									                <th class="no-sort" width="1px"></th>
-									                <th class="no-sort hidden-xs" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
-									                <th class="hidden-xs" style="white-space: nowrap;" width="1px">Downline</th>
-									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Upline</th>
-									                <th class="no-sort hidden-xs" width="1px">Expires</th>
+									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
+									                <th class="no-sort" width="1px">Price</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </thead>
 									        <tfoot>
 									            <tr>
 									                <th class="no-sort" width="1px"></th>
-									                <th class="no-sort hidden-xs" width="1px">Status</th>
 									                <th style="white-space: nowrap;">Name</th>
-									                <th class="hidden-xs" style="white-space: nowrap;" width="1px">Downline</th>
-									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Upline</th>
-									                <th class="no-sort hidden-xs" width="1px">Expires</th>
+									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
+									                <th class="no-sort" width="1px">Price</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </tfoot>
@@ -3097,6 +3053,84 @@ desired effect
 			     
 			    // Add event listener for opening and closing details
 			    $('#member_commissions tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
+			        }
+			    } );
+			} );
+    	</script>
+    <?php } ?>
+
+    <?php if(get('c') == 'products') { ?>
+    	<script>
+			/* Formatting function for row details - modify as you need */
+			function format ( d ) {
+			    // `d` is the original data object for the row
+			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
+			        '<tr>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
+			            '<td valign="top" align="left">'+
+			            	'<strong>Product ID:</strong> '+d.pid+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			    '</table>';
+			}
+
+			$('#checkAll').change(function () {
+			    $('.chk').prop('checked', this.checked);
+			    $('#multi_options_show').removeClass("hidden");
+			});
+
+			$(".chk").change(function () {
+			    if ($(".chk:checked").length == $(".chk").length) {
+			        $('#checkAll').prop('checked', 'checked');
+			    } else {
+			        $('#checkAll').prop('checked', false);
+			    }
+			});
+			 
+			$(document).ready(function() {
+			    var table = $('#example').DataTable( {
+			        "ajax": "actions.php?a=ajax_products",
+			        "iDisplayLength": 100,
+			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
+			        "columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No products found."
+					},
+			        "columns": [
+			            {
+			                "className":      'details-control',
+			                "orderable":      false,
+			                "data":           "",
+			                "defaultContent": ''
+			            },
+			            { "data": "name" },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "recurring"
+			            },
+			            { "data": "price" },
+			            { "data": "actions" }
+			        ],
+			        "order": [[0, 'asc']]
+			    } );
+			     
+			    // Add event listener for opening and closing details
+			    $('#example tbody').on('click', 'td.details-control', function () {
 			        var tr = $(this).closest('tr');
 			        var row = table.row( tr );
 			 
