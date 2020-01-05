@@ -6024,6 +6024,8 @@ function ajax_products()
 
 	$time_shift 	= time() - 20;
 
+	$count 			= 0;
+
 	$user_id 		= $_SESSION['account']['id'];
 
 	header("Content-Type:application/json; charset=utf-8");
