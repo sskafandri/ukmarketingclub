@@ -6153,12 +6153,18 @@ function ajax_all_commissions()
 		}
 
 		// get customer data
-		$output[$count]['member']						= 'Unknown ID: '.$commission['user_id'];
-		foreach($customers as $customer){
-			if($commission['user_id'] == $customer['id']){
-				$output[$count]['member']				= '<a href="dashboard.php?c=member&id='.$customer['id'].'">'.$customer['first_name'].' '.$customer['last_name'].'</a>';
-				break;
+		if($commission['user_id'] == 0){
+			$output[$count]['member']					= 'Company Account';
+		}else{
+			foreach($customers as $customer){
+				if($commission['user_id'] == $customer['id']){
+					$output[$count]['member']			= '<a href="dashboard.php?c=member&id='.$customer['id'].'">'.$customer['first_name'].' '.$customer['last_name'].'</a>';
+					break;
+				}
 			}
+		}
+		if(!isset($output[$count]['member'])){
+			$output[$count]['member']					= 'Unknown ID: '.$commission['user_id'];
 		}
 
 		// commission amount
