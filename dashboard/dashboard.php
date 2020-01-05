@@ -1715,39 +1715,6 @@ desired effect
         <?php function products(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
-
-        		// get ublo affiliate info
-				$whmcsUrl = "https://ublo.club/billing/";
-				$username = "api_user";
-				$password = md5("admin1372");
-
-				// Set post values
-				$postfields = array(
-				    'username' 		=> $username,
-				    'password' 		=> $password,
-				    'action' 		=> 'GetProducts',
-				    'userid' 		=> $member_id,
-				    'responsetype' 	=> 'json',
-				);
-
-				// Call the API
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
-				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
-				$response = curl_exec($ch);
-				if (curl_error($ch)) {
-				    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
-				}
-				curl_close($ch);
-
-				// Decode response
-				$whmcs_products = json_decode($response, true);
-				$whmcs_products = $whmcs_products['products']['product'];
 			?>
 
             <div class="content-wrapper">
@@ -1764,7 +1731,6 @@ desired effect
 
                 <!-- Main content -->
 				<section class="content">
-					<?php debug($whmcs_products); ?>
 					<!-- customer multi update -->
 					<form id="customer_update_multi" action="actions.php?a=customer_multi_options" method="post">
 						<div class="row">
@@ -1785,7 +1751,9 @@ desired effect
 									                <th class="no-sort" width="1px"></th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
-									                <th class="no-sort" width="1px">Price</th>
+									                <th class="no-sort" width="1px">Monthly</th>
+									                <th class="no-sort" width="1px">Quarterly</th>
+									                <th class="no-sort" width="1px">Annually</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </thead>
@@ -1794,7 +1762,9 @@ desired effect
 									                <th class="no-sort" width="1px"></th>
 									                <th style="white-space: nowrap;">Name</th>
 									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
-									                <th class="no-sort" width="1px">Price</th>
+									                <th class="no-sort" width="1px">Monthly</th>
+									                <th class="no-sort" width="1px">Quarterly</th>
+									                <th class="no-sort" width="1px">Annually</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 									            </tr>
 									        </tfoot>
@@ -3081,6 +3051,7 @@ desired effect
 			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
 			            '<td valign="top" align="left">'+
 			            	'<strong>Product ID:</strong> '+d.pid+' <br>'+
+			            	'<strong>Product Description:</strong> '+d.description+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';
@@ -3124,6 +3095,8 @@ desired effect
 			            	"data": "recurring"
 			            },
 			            { "data": "price.monthly" },
+			            { "data": "price.quarterly" },
+			            { "data": "price.annually" },
 			            { "data": "actions" }
 			        ],
 			        "order": [[0, 'asc']]

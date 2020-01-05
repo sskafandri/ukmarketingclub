@@ -6074,9 +6074,9 @@ function ajax_products()
 		}
 
 		// set pricing to price var
-		$output[$count]['price']['monthly']				= $output[$count]['pricing']['GBP']['monthly'];
-		$output[$count]['price']['quarterly']			= $output[$count]['pricing']['GBP']['quarterly'];
-		$output[$count]['price']['annually']			= $output[$count]['pricing']['GBP']['annually'];
+		$output[$count]['price']['monthly']				= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['monthly']);
+		$output[$count]['price']['quarterly']			= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['quarterly']);
+		$output[$count]['price']['annually']			= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['annually']);
 
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
