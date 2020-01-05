@@ -6114,7 +6114,7 @@ function ajax_all_commissions()
 {
 	global $conn, $global_settings;
 
-	$count 			= 0;
+	$count 				= 0;
 
 	header("Content-Type:application/json; charset=utf-8");
 
@@ -6149,7 +6149,7 @@ function ajax_all_commissions()
 		}
 
 		// get customer_id
-		$output[$count]['customer_id'] 					= $commission['customer_id'];
+		$output[$count]['member'] 						= $commission['customer_id'];
 
 		// commission amount
 		$output[$count]['amount'] 						= '£'.number_format($commission['amount'], 2);

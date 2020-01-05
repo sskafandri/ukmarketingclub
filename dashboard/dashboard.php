@@ -3306,7 +3306,6 @@ desired effect
     	</script>
     <?php } ?>
 
-
     <?php if(get('c') == 'table_downline') { ?>
     	<script>
 			/* Formatting function for row details - modify as you need */
@@ -3530,6 +3529,7 @@ desired effect
 			                "defaultContent": ''
 			            },
 			            { "data": "status" },
+			            { "data": "member" },
 			            {
 			            	"className":      'hidden-xs',
 			            	"data": "qualified"
@@ -3543,6 +3543,7 @@ desired effect
 			            	"data": "release_date"
 			            },
 			            { "data": "amount" },
+			            { "data": "actions" },
 			        ],
 			        "order": [[0, 'desc']]
 			    } );
