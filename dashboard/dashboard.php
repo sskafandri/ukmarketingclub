@@ -3091,7 +3091,7 @@ desired effect
 			                "data":           "",
 			                "defaultContent": ''
 			            },
-			            { "data": "Category" },
+			            { "data": "category" },
 			            { "data": "name" },
 			            {
 			            	"className":      'hidden-xs',
