@@ -2469,7 +2469,7 @@ desired effect
 
                 <section class="content">
                 	<?php if(empty($account_details['affiliate_username'])){ ?>
-                		<div class="callout callout-danger lead"><p>You need to set your public affiliate username under <a href="dashboard.php?c=my_account">Account Settings</></p></div>
+                		<div class="callout callout-danger lead"><p>You need to set your public affiliate username under <a href="dashboard.php?c=my_account">Account Settings</a></p></div>
 					<?php }else{ ?>
 						<div class="row">
 							<div class="col-lg-6">
