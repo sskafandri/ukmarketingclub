@@ -2505,7 +2505,7 @@ desired effect
 												<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
 												<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Reset Filter</button>
 											</div>
-											<div class="col-lg-1 text-center">
+											<div class="col-lg-1">
 												<button id="search_reset" type="button" class="btn btn-success btn-xs btn-flat" >Request Payout</button>
 											</div>
 										</div>
