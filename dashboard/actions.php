@@ -6313,11 +6313,13 @@ function ajax_withdrawl_requests()
 					<a title="Reset Withdrawl Request" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawl_request_status&id='.$withdrawl_request['id'].'&status=pending"><i class="fa fa-times"></i></a>
 				</span>
 			</div>';
-		}else{
+		}elseif($withdrawl_request['status'] == 'pending'){{
 			$output[$count]['actions'] 					.= '
 					<a title="Reject Withdrawl Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawl_request_status&id='.$withdrawl_request['id'].'&status=rejected"><i class="fa fa-times"></i></a>
 				</span>
 			</div>';
+		}else{
+			$output[$count]['actions'] 					.= '';
 		}
 
 		// $count loop
