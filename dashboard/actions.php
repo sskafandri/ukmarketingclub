@@ -5321,7 +5321,7 @@ function ajax_downline()
 					$output[$count]['upline'] 						= 'You';
 					foreach($customers as $customer_upline) {
 						if($customer_upline['id'] == $customer['upline_id']) {
-							$output[$count]['upline'] 				= '<a href="dashboard.php?c=customer&customer_id='.$customer_upline['id'].'">'.stripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']).'</a>';
+							$output[$count]['upline'] 				= tripslashes($customer_upline['first_name']).' '.stripslashes($customer_upline['last_name']);
 							break;
 						}
 					}
