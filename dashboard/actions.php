@@ -6267,7 +6267,7 @@ function ajax_withdrawl_requests()
 		if($withdrawl_request['status'] == 'approved') {
 			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">Approved</span>';
 		}elseif($withdrawl_request['status'] == 'pending'){
-			$output[$count]['status']					= '<span class="label label-default full-width" style="width: 100%;">Pending</span>';
+			$output[$count]['status']					= '<span class="label label-warning full-width" style="width: 100%;">Pending</span>';
 		}elseif($withdrawl_request['status'] == 'paid') {
 			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Paid</span>';
 		}elseif($withdrawl_request['status'] == 'rejected') {
@@ -6305,7 +6305,7 @@ function ajax_withdrawl_requests()
 		';
 
 		$output[$count]['actions'] 						.= '
-					<a title="Delete Withdrawl Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=commission_reject&id='.$withdrawl_request['id'].'"><i class="fa fa-times"></i></a>
+					<a title="Reject Withdrawl Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawl_request_reject&id='.$withdrawl_request['id'].'"><i class="fa fa-times"></i></a>
 				</span>
 			</div>';
 
