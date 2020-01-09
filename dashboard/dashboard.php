@@ -2421,6 +2421,17 @@ desired effect
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-12">
+											<div class="form-inline pull-right">
+												<!-- 
+												<a href="actions.php?a=export_m3u" class="btn btn-primary btn-flat">
+													<i class="fas fa-download"></i> Download Playlist
+												</a>
+												-->
+
+												<a href="actions.php?a=streams_restart_all" class="btn btn-warning btn-flat btn-xs" onclick="return confirm('Are you sure? \nPlease allow up to 5 minutes for all streams to restart.')">
+													<i class="fas fa-sync"></i> Restart All Streams
+												</a>
+											</div>
 											<table id="commissions" class="display responsive nowrap" style="width:100%">
 										        <thead>
 										            <tr>
