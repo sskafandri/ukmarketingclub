@@ -3429,6 +3429,8 @@ desired effect
 			$(document).ready(function() {
 			    var table = $('#commissions').DataTable( {
 			        "ajax": "actions.php?a=ajax_commissions",
+			        "order": [[0, 'desc']],
+			        "search": '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>',
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
@@ -3459,8 +3461,7 @@ desired effect
 			            	"data": "release_date"
 			            },
 			            { "data": "amount" },
-			        ],
-			        "order": [[0, 'desc']]
+			        ]
 			    } );
 			     
 			    // Add event listener for opening and closing details
