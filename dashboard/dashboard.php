@@ -3176,9 +3176,7 @@ desired effect
 			$(document).ready(function() {
 			    var table = $('#member_commissions').DataTable( {
 			        "order": [[0, 'desc']],
-			        search: {
-					   search: '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>'
-					},
+			        "search": '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>',
 					"ajax": "actions.php?a=ajax_member_commissions&id=<?php echo get('id'); ?>",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
