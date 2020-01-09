@@ -2012,6 +2012,7 @@ desired effect
 		              					View All Withdrawl Requests
 		              				</h3>
 		              				<div class="pull-right">
+		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
 		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
 										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
 										<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Reset Filter</button>
@@ -3775,7 +3776,11 @@ desired effect
 			        "order": [[0, 'desc']]
 			    } );
 
-			    $("#search_pending").click(function() {
+			    $("#search_rejected").click(function() {
+					table.search("rejected").draw();
+				});
+
+				$("#search_pending").click(function() {
 					table.search("pending").draw();
 				});
 
