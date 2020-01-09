@@ -1920,6 +1920,11 @@ desired effect
 		              				<h3 class="box-title">
 		              					View All Commissions
 		              				</h3>
+		              				<div class="pull-right">
+		              					<button id="search_missed" type="button" class="btn btn-danger btn-xs btn-flat" >Missed</button>
+										<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
+										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
+									</div>
 		            			</div>
 								<div class="box-body">
 									<div class="row">
@@ -3212,6 +3217,18 @@ desired effect
 			            { "data": "actions" }
 			        ]
 			    } );
+
+			    $("#search_pending").click(function() {
+					table.search("pending").draw();
+				});
+
+				$("#search_missed").click(function() {
+					table.search("missed").draw();
+				});
+
+				$("#search_paid").click(function() {
+					table.search("paid").draw();
+				});
 			     
 			    // Add event listener for opening and closing details
 			    $('#member_commissions tbody').on('click', 'td.details-control', function () {
