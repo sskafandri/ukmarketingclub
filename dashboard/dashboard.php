@@ -3762,12 +3762,7 @@ desired effect
 						"emptyTable": "No withdrawl requests found."
 					},
 			        "columns": [
-			        	{
-			                "className":      'details-control',
-			                "orderable":      false,
-			                "data":           "request_id_hidden",
-			                "defaultContent": ''
-			            },
+			        	{ "data": "id" },
 			            { "data": "status" },
 			            { "data": "member" },
 			            {
