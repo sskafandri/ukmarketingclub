@@ -2420,7 +2420,7 @@ desired effect
 										<button type="button" class="btn btn-primary btn-xs btn-flat" data-toggle="modal" data-target="#new_output_stream_modal">New Output Stream</button>
 										<script>
 											$("#search_pending").click(function() {
-												table.search("pending").draw();
+												commissions.search("pending").draw();
 											});
 										</script>
 									</div>
