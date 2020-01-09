@@ -3598,6 +3598,22 @@ desired effect
 			        ],
 			        "order": [[0, 'desc']]
 			    } );
+
+			    $("#search_pending").click(function() {
+					table.search("pending").draw();
+				});
+
+				$("#search_missed").click(function() {
+					table.search("missed").draw();
+				});
+
+				$("#search_paid").click(function() {
+					table.search("paid").draw();
+				});
+
+				$("#search_reset").click(function() {
+					table.search("").draw();
+				});
 			     
 			    // Add event listener for opening and closing details
 			    $('#commissions tbody').on('click', 'td.details-control', function () {
