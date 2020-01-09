@@ -3117,7 +3117,7 @@ desired effect
 			            },
 			            { "data": "actions" }
 			        ],
-			        "order": [[3, 'asc']]
+			        "order": [[2, 'asc']]
 			    } );
 			     
 			    // Add event listener for opening and closing details
