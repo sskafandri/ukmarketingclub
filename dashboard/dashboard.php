@@ -641,7 +641,7 @@ desired effect
 		                    <?php } ?>
 		                    	<a href="dashboard.php?c=visual_downline">
 		                        	<i class="fa fa-circle"></i> 
-		                        	<span>Visual Downline</span>
+		                        	<span>Visual Genealogy</span>
 		                        </a>
 		                    </li>
 
@@ -652,7 +652,7 @@ desired effect
 		                    <?php } ?>
 		                    	<a href="dashboard.php?c=table_downline">
 		                        	<i class="fa fa-circle"></i> 
-		                        	<span>Table Downline</span>
+		                        	<span>Table Genealogy</span>
 		                        </a>
 		                    </li>
 						</ul>
@@ -1979,10 +1979,10 @@ desired effect
                 <div id="status_message"></div>   
                             	
                 <section class="content-header">
-                    <h1>Visual Downline <!-- <small>Optional description</small> --></h1>
+                    <h1>Visual Genealogy <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">Visual Downline</li>
+                        <li class="active">Visual Genealogy</li>
                     </ol>
                 </section>
 
@@ -2232,10 +2232,10 @@ desired effect
                 <div id="status_message"></div>   
                             	
                 <section class="content-header">
-                    <h1>Table Downline <!-- <small>Optional description</small> --></h1>
+                    <h1>Table Genealogy <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">Table Downline</li>
+                        <li class="active">Table Genealogy</li>
                     </ol>
                 </section>
 
@@ -2246,7 +2246,7 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Table Downline
+		              					Table Genealogy
 		              				</h3>
 		              				<div class="pull-right">
 		              					<!-- <button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button> -->
