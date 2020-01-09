@@ -725,7 +725,7 @@ desired effect
 					}
 					break;
 
-				case "all_commissions":
+				case "all_withdrawl_requests":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						all_withdrawl_requests();
 					}else{
