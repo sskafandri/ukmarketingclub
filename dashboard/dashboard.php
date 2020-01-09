@@ -2416,8 +2416,8 @@ desired effect
 		              				</h3>
 		              				<div class="pull-right">
 										<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
-										<button type="button" class="btn btn-default btn-xs btn-flat" data-toggle="modal" data-target="#import_streams_modal">Import Input Streams</button>
-										<button type="button" class="btn btn-primary btn-xs btn-flat" data-toggle="modal" data-target="#new_output_stream_modal">New Output Stream</button>
+										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
+										<button id="search_missed" type="button" class="btn btn-danger btn-xs btn-flat" >Missed</button>
 									</div>
 		            			</div>
 								<div class="box-body">
@@ -3470,6 +3470,14 @@ desired effect
 
 			    $("#search_pending").click(function() {
 					table.search("pending").draw();
+				});
+
+				$("#search_missed").click(function() {
+					table.search("missed").draw();
+				});
+
+				$("#search_paid").click(function() {
+					table.search("paid").draw();
 				});
 			     
 			    // Add event listener for opening and closing details
