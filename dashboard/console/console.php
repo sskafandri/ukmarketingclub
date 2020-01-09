@@ -249,14 +249,15 @@ if($task == 'sync_databases'){
 
 		// add user and ignore errors
 		$insert = $conn->exec("INSERT IGNORE INTO `users` 
-	        (`added`,`type`,`status`)
+	        (`id`,`added`,`type`,`status`)
 	        VALUE
-	        ('".time()."',
+	        ('".$user['id']."',
+	        '".time()."',
 	        'promoter',
 	        '".strtolower($user['status'])."'
 	    )");
 
-		
+
 		$update = $conn->exec("UPDATE `users` SET `status` = '".strtolower($user['status'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `first_name` = '".addslashes($user['firstname'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
