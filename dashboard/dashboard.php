@@ -2029,7 +2029,7 @@ desired effect
 										                <th class="no-sort" style="white-space: nowrap;">Member</th>
 										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
 										                <th class="no-sort" width="100px">Amount</th>
-										                <th class="no-sort text-right" style="white-space: nowrap;" width="50px">Actions</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 										            </tr>
 										        </thead>
 										        <tfoot>
@@ -2039,7 +2039,7 @@ desired effect
 										                <th class="no-sort" style="white-space: nowrap;">Member</th>
 										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
 										                <th class="no-sort" width="100px">Amount</th>
-										                <th class="no-sort text-right" style="white-space: nowrap;" width="50px">Actions</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 										            </tr>
 										        </tfoot>
 										    </table>
