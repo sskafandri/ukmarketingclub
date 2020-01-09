@@ -2414,13 +2414,17 @@ desired effect
 		              				<h3 class="box-title">
 		              					Commissions
 		              				</h3>
+		              				<div class="pull-right">
+										<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
+										<button type="button" class="btn btn-default btn-xs btn-flat" data-toggle="modal" data-target="#import_streams_modal">Import Input Streams</button>
+										<button type="button" class="btn btn-primary btn-xs btn-flat" data-toggle="modal" data-target="#new_output_stream_modal">New Output Stream</button>
+										<script>
+											$("#search_pending").click(function() {
+												table.search("pending").draw();
+											});
+										</script>
+									</div>
 		            			</div>
-		            			<div class="pull-right">
-	              					<a href="actions.php?a=delete_all&type=streams" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure?')">Delete All</a>
-									<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_stream_modal">New Input Stream</button>
-									<button type="button" class="btn btn-default btn-xs btn-flat" data-toggle="modal" data-target="#import_streams_modal">Import Input Streams</button>
-									<button type="button" class="btn btn-primary btn-xs btn-flat" data-toggle="modal" data-target="#new_output_stream_modal">New Output Stream</button>
-								</div>
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-12">
