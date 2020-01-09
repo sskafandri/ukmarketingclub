@@ -2492,7 +2492,7 @@ desired effect
 
 					<div class="row">
 						<div class="col-lg-6">
-							<button type="button" class="btn btn-info btn-flat full-width" >Withdrawl Requests</button>
+							<button type="button" class="btn btn-info btn-flat full-width" >View Withdrawl Requests</button>
 						</div>
 						<div class="col-lg-6">
 							<button type="button" class="btn btn-success btn-flat full-width" >Request Payout</button>
