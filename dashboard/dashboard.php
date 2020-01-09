@@ -544,6 +544,17 @@ desired effect
 			                        	<span>View All Commissions</span>
 			                        </a>
 			                    </li>
+
+			                    <?php if(get('c') == 'all_withdrawl_requests'){ ?>
+			                    	<li class="active">
+			                    <?php }else{ ?>
+			                    	<li>
+			                    <?php } ?>
+			                    	<a href="dashboard.php?c=all_withdrawl_requests">
+			                        	<i class="fa fa-circle"></i> 
+			                        	<span>View Withdrawl Requests</span>
+			                        </a>
+			                    </li>
 							</ul>
 						</li>
 	                <?php } ?>
