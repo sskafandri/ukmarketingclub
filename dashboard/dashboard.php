@@ -2689,8 +2689,8 @@ desired effect
 			left   = ($(window).width()  - width)  / 2,
 			top    = ($(window).height() - height) / 2,
 			// url    = location.href,
-			url_retail.   	= 'https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
-			url_mlm.   		= 'http://ukmarketingclub.com/?ref=<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
+			url_retail   	= 'https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
+			url_mlm   		= 'http://ukmarketingclub.com/?ref=<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
 			opts   			= 'status=1' +
 			',width='  + width  +
 			',height=' + height +
