@@ -729,7 +729,7 @@ desired effect
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						all_withdrawl_requests();
 					}else{
-						all_withdrawl_requests();
+						home();
 					}
 					break;
 
