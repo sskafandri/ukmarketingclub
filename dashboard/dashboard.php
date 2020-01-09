@@ -2415,9 +2415,6 @@ desired effect
 		              					Commissions
 		              				</h3>
 		            			</div>
-		            			<div class="box-tools pull-right">
-									<button type="button" class="btn btn-success btn-box-tool">Pending</button>
-								</div>
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-12">
@@ -2432,6 +2429,9 @@ desired effect
 													<i class="fas fa-sync"></i> Restart All Streams
 												</a>
 											</div>
+
+											<br>
+											
 											<table id="commissions" class="display responsive nowrap" style="width:100%">
 										        <thead>
 										            <tr>
