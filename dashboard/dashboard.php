@@ -2497,7 +2497,7 @@ desired effect
 		              				<h3 class="box-title">
 		              					Commissions
 		              				</h3>
-		              				<div class="pull-right">
+		              				<div class="pull-left">
 		              					<button id="search_missed" type="button" class="btn btn-danger btn-xs btn-flat" >Missed</button>
 										<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
 										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
