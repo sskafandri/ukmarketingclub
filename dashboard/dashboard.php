@@ -3117,6 +3117,9 @@ desired effect
 			            },
 			            { "data": "actions" }
 			        ],
+			        search: {
+					   search: '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>'
+					},
 			        "order": [[2, 'asc']]
 			    } );
 			     
