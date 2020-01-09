@@ -247,8 +247,17 @@ if($task == 'sync_databases'){
 	foreach($results['clients']['client'] as $user){
 		console_output("ID: ".$user['id']." | ".$user['firstname'].' '.$user['lastname']." - Updated");
 
-		$update = $conn->exec("UPDATE `users` SET `status` = '".strtolower($user['status'])."' WHERE `id` = '".$user['id']."' ");
+		// add user and ignore errors
+		$insert = $conn->exec("INSERT IGNORE INTO `users` 
+	        (`added`,`type`,`status`)
+	        VALUE
+	        ('".time()."',
+	        'promoter',
+	        '".strtolower($user['status'])."'
+	    )");
 
+		
+		$update = $conn->exec("UPDATE `users` SET `status` = '".strtolower($user['status'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `first_name` = '".addslashes($user['firstname'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `email` = '".addslashes($user['email'])."' WHERE `id` = '".$user['id']."' ");
