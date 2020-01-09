@@ -2492,7 +2492,7 @@ desired effect
 
 					<div class="row">
 						<div class="col-lg-12">
-							<button id="search_missed" type="button" class="btn btn-danger btn-xs btn-flat" >Request Payout</button>
+							<button id="search_missed" type="button" class="btn btn-danger btn-flat full-width" >Request Payout</button>
 						</div>
 					</div>
 
