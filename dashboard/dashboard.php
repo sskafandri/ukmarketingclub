@@ -788,7 +788,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=commissions&search=pending" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
@@ -801,7 +801,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=commissions&search=approved" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
@@ -814,7 +814,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=commissions&search=paid" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
@@ -827,7 +827,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=commissions&search=missed" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
@@ -840,7 +840,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=commissions&search=rejected" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
           			</div>
@@ -3081,6 +3081,7 @@ desired effect
 			 
 			$(document).ready(function() {
 			    var table = $('#example').DataTable( {
+			        "order": [[2, 'asc']],
 			        "ajax": "actions.php?a=ajax_members",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
@@ -3119,8 +3120,7 @@ desired effect
 			        ],
 			        search: {
 					   search: '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>'
-					},
-			        "order": [[2, 'asc']]
+					}
 			    } );
 			     
 			    // Add event listener for opening and closing details
@@ -3175,7 +3175,11 @@ desired effect
 			 
 			$(document).ready(function() {
 			    var table = $('#member_commissions').DataTable( {
-			        "ajax": "actions.php?a=ajax_member_commissions&id=<?php echo get('id'); ?>",
+			        "order": [[0, 'desc']],
+			        search: {
+					   search: '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>'
+					},
+					"ajax": "actions.php?a=ajax_member_commissions&id=<?php echo get('id'); ?>",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
@@ -3203,8 +3207,7 @@ desired effect
 			            },
 			            { "data": "amount" },
 			            { "data": "actions" }
-			        ],
-			        "order": [[0, 'desc']]
+			        ]
 			    } );
 			     
 			    // Add event listener for opening and closing details
