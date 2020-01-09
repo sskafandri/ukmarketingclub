@@ -2415,6 +2415,9 @@ desired effect
 		              					Commissions
 		              				</h3>
 		            			</div>
+		            			<div class="box-tools pull-right">
+									<button type="button" class="btn btn-success btn-box-tool">Pending</button>
+								</div>
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-12">
@@ -3430,7 +3433,6 @@ desired effect
 			    var table = $('#commissions').DataTable( {
 			        "ajax": "actions.php?a=ajax_commissions",
 			        "order": [[0, 'desc']],
-			        "search": '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>',
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
