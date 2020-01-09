@@ -2418,11 +2418,6 @@ desired effect
 										<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
 										<button type="button" class="btn btn-default btn-xs btn-flat" data-toggle="modal" data-target="#import_streams_modal">Import Input Streams</button>
 										<button type="button" class="btn btn-primary btn-xs btn-flat" data-toggle="modal" data-target="#new_output_stream_modal">New Output Stream</button>
-										<script>
-											$("#search_pending").click(function() {
-												commissions.search("pending").draw();
-											});
-										</script>
 									</div>
 		            			</div>
 								<div class="box-body">
@@ -3472,6 +3467,10 @@ desired effect
 			            { "data": "amount" },
 			        ]
 			    } );
+
+			    $("#search_pending").click(function() {
+					table.search("pending").draw();
+				});
 			     
 			    // Add event listener for opening and closing details
 			    $('#commissions tbody').on('click', 'td.details-control', function () {
