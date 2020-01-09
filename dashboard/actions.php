@@ -487,6 +487,10 @@ switch ($a)
 		ajax_withdrawl_requests();
 		break;
 
+	case "withdrawl_request_status":
+		withdrawl_request_status();
+		break;
+
 	// get member commissions
 	case "ajax_member_commissions":
 		ajax_member_commissions();
@@ -6304,10 +6308,17 @@ function ajax_withdrawl_requests()
 				<span class="pull-right">
 		';
 
-		$output[$count]['actions'] 						.= '
-					<a title="Reject Withdrawl Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawl_request_reject&id='.$withdrawl_request['id'].'"><i class="fa fa-times"></i></a>
+		if($withdrawl_request['status'] == 'rejected'){
+			$output[$count]['actions'] 					.= '
+					<a title="Reset Withdrawl Request" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawl_request_status&id='.$withdrawl_request['id'].'&status=pending"><i class="fa fa-times"></i></a>
 				</span>
 			</div>';
+		}else{
+			$output[$count]['actions'] 					.= '
+					<a title="Reject Withdrawl Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawl_request_status&id='.$withdrawl_request['id'].'&status=rejected"><i class="fa fa-times"></i></a>
+				</span>
+			</div>';
+		}
 
 		// $count loop
 		$count++;
@@ -6320,4 +6331,18 @@ function ajax_withdrawl_requests()
 	}
 
 	json_output($data);
+}
+
+function withdrawl_request_status()
+{
+	global $conn, $global_settings;
+
+	$id 		= get('id');
+	$status 	= get('status');
+
+	$update = $conn->exec("UPDATE `withdrawl_requests` SET `status` = '".$status."' WHERE `id` = '".$id."' ");
+	
+    status_message('success',"Withdrawl Request has been updated.");
+
+	go($_SERVER['HTTP_REFERER']);
 }
