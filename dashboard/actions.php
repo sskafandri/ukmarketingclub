@@ -482,6 +482,11 @@ switch ($a)
 		ajax_products();
 		break;
 
+	// get withdrawl requests
+	case "ajax_withdrawl_requests":
+		ajax_withdrawl_requests();
+		break;
+
 	// get member commissions
 	case "ajax_member_commissions":
 		ajax_member_commissions();
@@ -6217,6 +6222,90 @@ function ajax_all_commissions()
 					</span>
 
 					<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=commission_reject&id='.$commission['id'].'"><i class="fa fa-times"></i></a>
+				</span>
+			</div>';
+
+		// $count loop
+		$count++;
+	}
+
+	if(isset($output)) {
+		$data['data'] = array_values($output);
+	}else{
+		$data['data'] = array();
+	}
+
+	json_output($data);
+}
+
+function ajax_withdrawl_requests()
+{
+	global $conn, $global_settings;
+
+	$count 				= 0;
+
+	header("Content-Type:application/json; charset=utf-8");
+
+	// get all commissions
+	$query 						= $conn->query("SELECT * FROM `withdrawl_requests` ");
+	$withdrawl_requests 		= $query->fetchAll(PDO::FETCH_ASSOC);
+
+	// get all customers
+	$query 						= $conn->query("SELECT `id`,`added`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+	$customers 					= $query->fetchAll(PDO::FETCH_ASSOC);
+	
+	// work with commissions
+	foreach($withdrawl_requests as $withdrawl_request){
+		$output[$count]							= $withdrawl_request;
+
+		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$withdrawl_request['id'].'" name="withdrawl_requests_ids[]" value="'.$withdrawl_request['id'].'" onclick="multi_options();"></center>';
+
+		$output[$count]['added'] 				= $withdrawl_request['added'];
+		$output[$count]['request_date'] 		= date("Y-m-d", $withdrawl_request['added']);
+
+		// status
+		if($withdrawl_request['status'] == 'approved') {
+			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">Approved</span>';
+		}elseif($withdrawl_request['status'] == 'pending'){
+			$output[$count]['status']					= '<span class="label label-default full-width" style="width: 100%;">Pending</span>';
+		}elseif($withdrawl_request['status'] == 'paid') {
+			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Paid</span>';
+		}elseif($withdrawl_request['status'] == 'rejected') {
+			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Rejected</span>';
+		}else{
+			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($withdrawl_request['status']).'</span>';
+		}
+
+		// get customer data
+		if($withdrawl_request['user_id'] == 0){
+			$output[$count]['member']					= 'Company Account';
+		}else{
+			foreach($customers as $customer){
+				if($withdrawl_request['user_id'] == $customer['id']){
+					$output[$count]['member']			= '<a href="dashboard.php?c=member&id='.$customer['id'].'">'.$customer['first_name'].' '.$customer['last_name'].'</a>';
+					break;
+				}
+			}
+		}
+		if(!isset($output[$count]['member'])){
+			$output[$count]['member']					= 'Unknown ID: '.$withdrawl_request['user_id'];
+		}
+
+		// commission amount
+		$output[$count]['amount'] 						= '£'.number_format($withdrawl_request['amount'], 2);
+
+		// order_id
+		$output[$count]['request_id'] 					= $withdrawl_request['id'];
+		$output[$count]['request_id_hidden']			= '<span class="hidden">'.stripslashes($withdrawl_request['id']).'</span>';
+
+		// build the actions menu options
+		$output[$count]['actions'] 						= '
+			<div class="btn-group">
+				<span class="pull-right">
+		';
+
+		$output[$count]['actions'] 						.= '
+					<a title="Delete Withdrawl Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=commission_reject&id='.$withdrawl_request['id'].'"><i class="fa fa-times"></i></a>
 				</span>
 			</div>';
 

@@ -499,7 +499,7 @@ desired effect
 
 	                <?php if($account_details['type'] == 'admin' || $account_details['type'] == 'dev') { ?>
                 		<li class="header">STAFF PANEL</li>
-	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product' || get('c') == 'all_commissions'){ ?>
+	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product' || get('c') == 'all_commissions' || get('c') == 'all_withdrawl_requests'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
@@ -720,6 +720,14 @@ desired effect
 				case "all_commissions":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						all_commissions();
+					}else{
+						home();
+					}
+					break;
+
+				case "all_commissions":
+					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
+						all_withdrawl_requests();
 					}else{
 						home();
 					}
@@ -1962,6 +1970,73 @@ desired effect
 										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
 										                <th class="no-sort hidden-xs" width="1px">Order Date</th>
 										                <th class="no-sort hidden-xs" width="1px">Release Date</th>
+										                <th class="no-sort" width="100px">Amount</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+										            </tr>
+										        </tfoot>
+										    </table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+            </div>
+        <?php } ?>
+
+        <?php function all_withdrawl_requests(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;            
+			?>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>
+                            	
+                <section class="content-header">
+                    <h1>Staff Panel - View All Withdrawl Requests <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">View All Withdrawl Requests</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					View All Withdrawl Requests
+		              				</h3>
+		              				<div class="pull-right">
+		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
+										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
+										<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Reset Filter</button>
+									</div>
+		            			</div>
+								<div class="box-body">
+									<div class="row">
+										<div class="col-lg-12">
+											<table id="withdrawl_requests" class="display " style="width:100%">
+										        <thead>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort" style="white-space: nowrap;">Member</th>
+										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
+										                <th class="no-sort" width="100px">Amount</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+										            </tr>
+										        </thead>
+										        <tfoot>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort" style="white-space: nowrap;">Member</th>
+										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
 										                <th class="no-sort" width="100px">Amount</th>
 										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 										            </tr>
@@ -3616,6 +3691,97 @@ desired effect
 
 				$("#search_missed").click(function() {
 					table.search("missed").draw();
+				});
+
+				$("#search_paid").click(function() {
+					table.search("paid").draw();
+				});
+
+				$("#search_reset").click(function() {
+					table.search("").draw();
+				});
+			     
+			    // Add event listener for opening and closing details
+			    $('#commissions tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
+			        }
+			    } );
+			} );
+    	</script>
+    <?php } ?>
+
+    <?php if(get('c') == 'all_withdrawl_requests') { ?>
+    	<script>
+			/* Formatting function for row details - modify as you need */
+			function format ( d ) {
+			    // `d` is the original data object for the row
+			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
+			        '<tr>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
+			            '<td valign="top" align="left">'+
+			            	'<strong>Withdrawl ID:</strong> '+d.id+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			    '</table>';
+			}
+
+			$('#checkAll').change(function () {
+			    $('.chk').prop('checked', this.checked);
+			    $('#multi_options_show').removeClass("hidden");
+			});
+
+			$(".chk").change(function () {
+			    if ($(".chk:checked").length == $(".chk").length) {
+			        $('#checkAll').prop('checked', 'checked');
+			    } else {
+			        $('#checkAll').prop('checked', false);
+			    }
+			});
+			 
+			$(document).ready(function() {
+			    var table = $('#withdrawl_requests').DataTable( {
+			        "ajax": "actions.php?a=ajax_withdrawl_requests",
+			        "iDisplayLength": 100,
+			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
+			        "columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No withdrawl requests found."
+					},
+			        "columns": [
+			        	{
+			                "className":      'details-control',
+			                "orderable":      false,
+			                "data":           "request_id_hidden",
+			                "defaultContent": ''
+			            },
+			            { "data": "status" },
+			            { "data": "member" },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "request_date"
+			            },
+			            { "data": "amount" },
+			            { "data": "actions" },
+			        ],
+			        "order": [[0, 'desc']]
+			    } );
+
+			    $("#search_pending").click(function() {
+					table.search("pending").draw();
 				});
 
 				$("#search_paid").click(function() {
