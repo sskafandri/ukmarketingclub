@@ -2415,23 +2415,15 @@ desired effect
 		              					Commissions
 		              				</h3>
 		            			</div>
+		            			<div class="pull-right">
+	              					<a href="actions.php?a=delete_all&type=streams" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('Are you sure?')">Delete All</a>
+									<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_stream_modal">New Input Stream</button>
+									<button type="button" class="btn btn-default btn-xs btn-flat" data-toggle="modal" data-target="#import_streams_modal">Import Input Streams</button>
+									<button type="button" class="btn btn-primary btn-xs btn-flat" data-toggle="modal" data-target="#new_output_stream_modal">New Output Stream</button>
+								</div>
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-12">
-											<div class="form-inline pull-right">
-												<!-- 
-												<a href="actions.php?a=export_m3u" class="btn btn-primary btn-flat">
-													<i class="fas fa-download"></i> Download Playlist
-												</a>
-												-->
-
-												<a href="actions.php?a=streams_restart_all" class="btn btn-warning btn-flat btn-xs" onclick="return confirm('Are you sure? \nPlease allow up to 5 minutes for all streams to restart.')">
-													<i class="fas fa-sync"></i> Restart All Streams
-												</a>
-											</div>
-
-											<br>
-											
 											<table id="commissions" class="display responsive nowrap" style="width:100%">
 										        <thead>
 										            <tr>
