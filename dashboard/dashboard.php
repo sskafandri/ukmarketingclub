@@ -2423,6 +2423,7 @@ desired effect
 		              					<button id="search_missed" type="button" class="btn btn-danger btn-xs btn-flat" >Missed</button>
 										<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
 										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
+										<button id="search_reset" type="button" class="btn btn-danger btn-xs btn-flat" >Reset Filter</button>
 									</div>
 		            			</div>
 								<div class="box-body">
@@ -3228,6 +3229,10 @@ desired effect
 
 				$("#search_paid").click(function() {
 					table.search("paid").draw();
+				});
+
+				$("#search_reset").click(function() {
+					table.search("").draw();
 				});
 			     
 			    // Add event listener for opening and closing details
