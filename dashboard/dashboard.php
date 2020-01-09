@@ -2012,7 +2012,6 @@ desired effect
 		              					View All Withdrawl Requests
 		              				</h3>
 		              				<div class="pull-right">
-		              					<h4>Filters:</h4> 
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
 		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
 										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
@@ -2022,7 +2021,7 @@ desired effect
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-12">
-											<table id="withdrawl_requests" class="display " style="width:100%">
+											<table id="withdrawl_requests" class="display" style="width:100%">
 										        <thead>
 										            <tr>
 										            	<th class="no-sort" width="1px"></th>
@@ -2350,32 +2349,22 @@ desired effect
 									<table id="example" class="display" style="width:100%">
 								        <thead>
 								            <tr>
-								                <th class="no-sort" width="1px">
-								                	<input type="checkbox" id="checkAll" />
-								                </th>
-								                <th class="no-sort" width="1px">Expand</th>
+								                <th class="no-sort" width="1px"></th>
 								                <th style="white-space: nowrap;" width="1px">Status</th>
 								                <th style="white-space: nowrap;" width="1px">Level</th>
 								                <th style="white-space: nowrap;">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-								                <th style="white-space: nowrap;" width="1px">Expires</th>
-								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 								            </tr>
 								        </thead>
 								        <tfoot>
 								            <tr>
-								                <th class="no-sort" width="1px">
-								                	<input type="checkbox" id="checkAll" />
-								                </th>
-								                <th class="no-sort" width="1px">Expand</th>
+								                <th class="no-sort" width="1px"></th>
 								                <th style="white-space: nowrap;" width="1px">Status</th>
 								                <th style="white-space: nowrap;" width="1px">Level</th>
 								                <th style="white-space: nowrap;">Name</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
-								                <th style="white-space: nowrap;" width="1px">Expires</th>
-								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 								            </tr>
 								        </tfoot>
 								    </table>
@@ -3474,7 +3463,6 @@ desired effect
 						"emptyTable": "No members found."
 					},
 			        "columns": [
-			        	{ "data": "checkbox"},
 			            {
 			                "className":      'details-control',
 			                "orderable":      false,
@@ -3485,11 +3473,9 @@ desired effect
 			            { "data": "level"},
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
-			            { "data": "upline" },
-			            { "data": "expire_date" },
-			            { "data": "actions" }
+			            { "data": "upline" }
 			        ],
-			        "order": [[3, "asc" ], [ 4, "asc" ]]
+			        "order": [[2, "asc" ], [ 3, "asc" ]]
 			    } );
 			     
 			    // Add event listener for opening and closing details
