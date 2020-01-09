@@ -6319,7 +6319,9 @@ function ajax_withdrawl_requests()
 				</span>
 			</div>';
 		}else{
-			$output[$count]['actions'] 					.= '';
+			$output[$count]['actions'] 					.= '
+				</span>
+			</div>';
 		}
 
 		// $count loop
