@@ -257,7 +257,6 @@ if($task == 'sync_databases'){
 	        '".strtolower($user['status'])."'
 	    )");
 
-
 		$update = $conn->exec("UPDATE `users` SET `status` = '".strtolower($user['status'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `first_name` = '".addslashes($user['firstname'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
