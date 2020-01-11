@@ -1562,7 +1562,7 @@ desired effect
 								<div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
-			              					Basic Contact Details
+			              					Basic Details
 			              				</h3>
 			            			</div>
 									<div class="box-body">
