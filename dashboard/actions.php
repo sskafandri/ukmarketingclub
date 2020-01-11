@@ -6424,7 +6424,7 @@ function ajax_withdrawals()
 		$output[$count]['added'] 				= $withdrawal_request['added'];
 		$output[$count]['request_date'] 		= date("Y-m-d", $withdrawal_request['added']);
 
-		if(!is_null($withdrawal_request['paid_date']){
+		if(!is_null($withdrawal_request['paid_date'])){
 			$output[$count]['paid_date'] 			= date("Y-m-d", $withdrawal_request['paid_date']);
 		}else{
 			$output[$count]['paid_date'] 			= '';
