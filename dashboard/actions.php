@@ -6270,7 +6270,6 @@ function ajax_withdrawal_requests()
 	global $conn, $global_settings;
 
 	$count 				= 0;
-	
 
 	header("Content-Type:application/json; charset=utf-8");
 

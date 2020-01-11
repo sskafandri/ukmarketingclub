@@ -552,7 +552,7 @@ desired effect
 			                    <?php } ?>
 			                    	<a href="dashboard.php?c=all_withdrawal_requests">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>View withdrawal Requests</span>
+			                        	<span>View Withdrawal Requests</span>
 			                        </a>
 			                    </li>
 							</ul>
@@ -2005,10 +2005,10 @@ desired effect
                 <div id="status_message"></div>
                             	
                 <section class="content-header">
-                    <h1>Staff Panel - View All withdrawal Requests <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - View All Withdrawal Requests <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">View All withdrawal Requests</li>
+                        <li class="active">View All Withdrawal Requests</li>
                     </ol>
                 </section>
 
@@ -2019,7 +2019,7 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					View All withdrawal Requests
+		              					View All Withdrawal Requests
 		              				</h3>
 		              				<div class="pull-right">
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
@@ -3750,7 +3750,7 @@ desired effect
 			        '<tr>'+
 			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
 			            '<td valign="top" align="left">'+
-			            	'<strong>withdrawal ID:</strong> '+d.id+' <br>'+
+			            	'<strong>Withdrawal ID:</strong> '+d.id+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';
