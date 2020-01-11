@@ -1,5 +1,47 @@
 <?php
 
+function get_withdrawls($member_id = '')
+{
+    global $conn, $global_settings, $whmcs;
+
+    if(empty($member_id)){
+        $member_id              = $_SESSION['account']['id'];
+    }
+
+    $member                     = $account_details;
+
+    // set commissions default
+    $data['total']              = '0';
+    $data['pending']            = '0';
+    $data['paid']               = '0';
+    $data['available']          = '0';
+
+    // get withdrawals
+    $query              = $conn->query("SELECT * FROM `withdrawal_requests` WHERE `user_id` = '".$member_id."' ");
+    $withdrawals        = $query->fetchAll(PDO::FETCH_ASSOC); 
+    
+    // work with commissions
+    foreach($withdrawals as $withdrawal){
+        $data['total']                          = $data['total'] + $withdrawal['amount'];
+
+        if($withdrawal['status'] == 'pending'){
+            $data['pending']                    = $data['pending'] + $withdrawal['amount'];
+        }
+        
+        if($withdrawal['status'] == 'paid'){
+            $data['paid']                       = $data['paid'] + $withdrawal['amount'];
+        }
+    }
+
+    // clean up commissions
+    $data['total']                       = number_format($data['total'], 2);
+    $data['pending']                     = number_format($data['pending'], 2);
+    $data['paid']                        = number_format($data['paid'], 2);
+    $data['available']                   = number_format($data['available'], 2);
+
+    return $data;
+}
+
 function get_commissions($member_id = '')
 {
     global $conn, $global_settings, $whmcs;
@@ -8,7 +50,7 @@ function get_commissions($member_id = '')
         $member_id              = $_SESSION['account']['id'];
     }
 
-    $member                 = $account_details;
+    $member                     = $account_details;
 
     // set commissions default
     $data['commissions']['total']               = '0';

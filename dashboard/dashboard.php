@@ -645,6 +645,17 @@ desired effect
 		                        </a>
 		                    </li>
 
+		                    <?php if(get('c') == 'my_withdrawals'){ ?>
+		                    	<li class="active">
+		                    <?php }else{ ?>
+		                    	<li>
+		                    <?php } ?>
+		                    	<a href="dashboard.php?c=my_withdrawals">
+		                        	<i class="fa fa-circle"></i> 
+		                        	<span>Withdrawl Requests</span>
+		                        </a>
+		                    </li>
+
 		                    <?php if(get('c') == 'visual_downline'){ ?>
 		                    	<li class="active">
 		                    <?php }else{ ?>
@@ -754,6 +765,10 @@ desired effect
 
 				case "table_downline":
 					table_downline();
+					break;
+
+				case "my_withdrawals":
+					my_withdrawals();
 					break;
 
 				// home
@@ -2583,6 +2598,148 @@ desired effect
             </div>
         <?php } ?>
 
+        <?php function my_withdrawals(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+            
+            	$withdrawls = get_withdrawls();
+			?>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>
+                            	
+                <section class="content-header">
+                    <h1>Withdrawals <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">Withdrawal</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-3 col-xs-6">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Total
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $withdrawls['total']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-3 col-xs-6">
+							<div class="box box-warning">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Available Balance
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $withdrawls['available']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-3 col-xs-6">
+							<div class="box box-warning">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Pending Payments
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $withdrawls['pending']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-3 col-xs-6">
+							<div class="box box-success">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Paid
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $withdrawls['paid']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-10">
+							<a href="dashboard.php?c=request_payout" class="btn btn-success btn-flat full-width" >Request a Payout</a>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<br>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Withdrawal
+		              				</h3>
+		              				<div class="pull-right">
+		              					<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
+		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
+		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending Payout</button>
+										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
+									</div>
+		            			</div>
+								<div class="box-body">
+									<div class="row">
+										<div class="col-lg-12">
+											<table id="withdrawal_requests" class="display" style="width:100%">
+										        <thead>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
+										                <th class="no-sort" width="100px">Amount</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+										            </tr>
+										        </thead>
+										        <tfoot>
+										            <tr>
+										            	<th class="no-sort" width="1px"></th>
+										                <th class="no-sort" width="1px">Status</th>
+										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
+										                <th class="no-sort" width="100px">Amount</th>
+										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+										            </tr>
+										        </tfoot>
+										    </table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+            </div>
+        <?php } ?>
+
         <?php function marketing_tools(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
@@ -3820,6 +3977,111 @@ desired effect
 			        	{ "data": "id" },
 			            { "data": "status" },
 			            { "data": "member" },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "request_date"
+			            },
+			            { "data": "amount" },
+			            { "data": "actions" },
+			        ],
+			        "order": [[0, 'desc']]
+			    } );
+
+			    $("#search_rejected").click(function() {
+					table.search("rejected").draw();
+				});
+
+				$("#search_pending").click(function() {
+					table.search("pending").draw();
+				});
+
+				$("#search_paid").click(function() {
+					table.search("paid").draw();
+				});
+
+				$("#search_reset").click(function() {
+					table.search("").draw();
+				});
+			     
+			    // Add event listener for opening and closing details
+			    $('#commissions tbody').on('click', 'td.details-control', function () {
+			        var tr = $(this).closest('tr');
+			        var row = table.row( tr );
+			 
+			        if ( row.child.isShown() ) {
+			            // This row is already open - close it
+			            row.child.hide();
+			            tr.removeClass('shown');
+			        }
+			        else {
+			            // Open this row
+			            row.child( format(row.data()) ).show();
+			            tr.addClass('shown');
+			        }
+			    } );
+			} );
+    	</script>
+    <?php } ?>
+
+    <?php if(get('c') == 'my_withdrawals') { ?>
+    	<script>
+			/* Formatting function for row details - modify as you need */
+			function format ( d ) {
+			    // `d` is the original data object for the row
+			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
+			        '<tr>'+
+			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
+			            '<td valign="top" align="left">'+
+			            	'<strong>Withdrawal ID:</strong> '+d.id+' <br>'+
+			            '</td>'+
+			        '</tr>'+
+			    '</table>';
+			}
+
+			$('#checkAll').change(function () {
+			    $('.chk').prop('checked', this.checked);
+			    $('#multi_options_show').removeClass("hidden");
+			});
+
+			$(".chk").change(function () {
+			    if ($(".chk:checked").length == $(".chk").length) {
+			        $('#checkAll').prop('checked', 'checked');
+			    } else {
+			        $('#checkAll').prop('checked', false);
+			    }
+			});
+			 
+			$(document).ready(function() {
+				$("#search_reset").click(function() {
+					table.search("").draw();
+				});
+
+				$("#search_pending").click(function() {
+					table.search("pending").draw();
+				});
+
+				$("#search_rejected").click(function() {
+					table.search("rejected").draw();
+				});
+
+				$("#search_paid").click(function() {
+					table.search("paid").draw();
+				});
+			     
+			    var table = $('#withdrawal_requests').DataTable( {
+			        "ajax": "actions.php?a=ajax_withdrawals",
+			        "iDisplayLength": 100,
+			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
+			        "columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No withdrawals found."
+					},
+			        "columns": [
+			        	{ "data": "id" },
+			            { "data": "status" },
 			            {
 			            	"className":      'hidden-xs',
 			            	"data": "request_date"
