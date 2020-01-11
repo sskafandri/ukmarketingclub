@@ -2466,6 +2466,7 @@ desired effect
 						</div>
 					</div>
 
+					<!--
 					<div class="row">
 						<div class="col-lg-6">
 							<a href="dashboard.php?c=my_withdrawals" class="btn btn-info btn-flat full-width" >View Withdrawal Requests</a>
@@ -2480,6 +2481,7 @@ desired effect
 							<br>
 						</div>
 					</div>
+					-->
 
 					<div class="row">
 						<div class="col-lg-12">
