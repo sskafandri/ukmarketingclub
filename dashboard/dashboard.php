@@ -2056,271 +2056,269 @@ desired effect
   			<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
 
   			<script id="code">
-			function init() {
-			if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
-			var $ = go.GraphObject.make;  // for conciseness in defining templates
+				function init() {
+				if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
+				var $ = go.GraphObject.make;  // for conciseness in defining templates
 
-			// some constants that will be reused within templates
-			var mt8 = new go.Margin(8, 0, 0, 0);
-			var mr8 = new go.Margin(0, 8, 0, 0);
-			var ml8 = new go.Margin(0, 0, 0, 8);
-			var roundedRectangleParams = {
-			parameter1: 2,  // set the rounded corner
-			spot1: go.Spot.TopLeft, spot2: go.Spot.BottomRight  // make content go all the way to inside edges of rounded corners
-			};
+				// some constants that will be reused within templates
+				var mt8 = new go.Margin(8, 0, 0, 0);
+				var mr8 = new go.Margin(0, 8, 0, 0);
+				var ml8 = new go.Margin(0, 0, 0, 8);
+				var roundedRectangleParams = {
+				parameter1: 2,  // set the rounded corner
+				spot1: go.Spot.TopLeft, spot2: go.Spot.BottomRight  // make content go all the way to inside edges of rounded corners
+				};
 
-			myDiagram =
-			$(go.Diagram, "myDiagramDiv",  // the DIV HTML element
-			  {
-			    // Put the diagram contents at the top center of the viewport
-			    initialDocumentSpot: go.Spot.TopCenter,
-			    initialViewportSpot: go.Spot.TopCenter,
-			    // OR: Scroll to show a particular node, once the layout has determined where that node is
-			    // "InitialLayoutCompleted": function(e) {
-			    //  var node = e.diagram.findNodeForKey(28);
-			    //  if (node !== null) e.diagram.commandHandler.scrollToPart(node);
-			    // },
-			    layout:
-			      $(go.TreeLayout,  // use a TreeLayout to position all of the nodes
-			        {
-			          isOngoing: false,  // don't relayout when expanding/collapsing panels
-			          treeStyle: go.TreeLayout.StyleLastParents,
-			          // properties for most of the tree:
-			          angle: 90,
-			          layerSpacing: 80,
-			          // properties for the "last parents":
-			          alternateAngle: 0,
-			          alternateAlignment: go.TreeLayout.AlignmentStart,
-			          alternateNodeIndent: 15,
-			          alternateNodeIndentPastParent: 1,
-			          alternateNodeSpacing: 15,
-			          alternateLayerSpacing: 40,
-			          alternateLayerSpacingParentOverlap: 1,
-			          alternatePortSpot: new go.Spot(0.001, 1, 20, 0),
-			          alternateChildPortSpot: go.Spot.Left
-			        })
-			  });
+				myDiagram =
+				$(go.Diagram, "myDiagramDiv",  // the DIV HTML element
+				  {
+				    // Put the diagram contents at the top center of the viewport
+				    initialDocumentSpot: go.Spot.TopCenter,
+				    initialViewportSpot: go.Spot.TopCenter,
+				    // OR: Scroll to show a particular node, once the layout has determined where that node is
+				    // "InitialLayoutCompleted": function(e) {
+				    //  var node = e.diagram.findNodeForKey(28);
+				    //  if (node !== null) e.diagram.commandHandler.scrollToPart(node);
+				    // },
+				    layout:
+				      $(go.TreeLayout,  // use a TreeLayout to position all of the nodes
+				        {
+				          isOngoing: false,  // don't relayout when expanding/collapsing panels
+				          treeStyle: go.TreeLayout.StyleLastParents,
+				          // properties for most of the tree:
+				          angle: 90,
+				          layerSpacing: 80,
+				          // properties for the "last parents":
+				          alternateAngle: 0,
+				          alternateAlignment: go.TreeLayout.AlignmentStart,
+				          alternateNodeIndent: 15,
+				          alternateNodeIndentPastParent: 1,
+				          alternateNodeSpacing: 15,
+				          alternateLayerSpacing: 40,
+				          alternateLayerSpacingParentOverlap: 1,
+				          alternatePortSpot: new go.Spot(0.001, 1, 20, 0),
+				          alternateChildPortSpot: go.Spot.Left
+				        })
+				  });
 
-			// This function provides a common style for most of the TextBlocks.
-			// Some of these values may be overridden in a particular TextBlock.
-			function textStyle(field) {
-			return [
-			  {
-			    font: "12px Roboto, sans-serif", stroke: "rgba(0, 0, 0, .60)",
-			    visible: false  // only show textblocks when there is corresponding data for them
-			  },
-			  new go.Binding("visible", field, function(val) { return val !== undefined; })
-			];
-			}
+				// This function provides a common style for most of the TextBlocks.
+				// Some of these values may be overridden in a particular TextBlock.
+				function textStyle(field) {
+				return [
+				  {
+				    font: "12px Roboto, sans-serif", stroke: "rgba(0, 0, 0, .60)",
+				    visible: false  // only show textblocks when there is corresponding data for them
+				  },
+				  new go.Binding("visible", field, function(val) { return val !== undefined; })
+				];
+				}
 
-			// define Converters to be used for Bindings
-			function theNationFlagConverter(nation) {
-			return "https://www.nwoods.com/images/emojiflags/" + nation + ".png";
-			}
+				// define Converters to be used for Bindings
+				function theNationFlagConverter(nation) {
+				return "https://www.nwoods.com/images/emojiflags/" + nation + ".png";
+				}
 
-			// define the Node template
-			myDiagram.nodeTemplate =
-			$(go.Node, "Auto",
-			  {
-			    locationSpot: go.Spot.TopCenter,
-			    isShadowed: true, shadowBlur: 1,
-			    shadowOffset: new go.Point(0, 1),
-			    shadowColor: "rgba(0, 0, 0, .14)",
-			    selectionAdornmentTemplate:  // selection adornment to match shape of nodes
-			      $(go.Adornment, "Auto",
-			        $(go.Shape, "RoundedRectangle", roundedRectangleParams,
-			          { fill: null, stroke: "#7986cb", strokeWidth: 3 }
-			        ),
-			        $(go.Placeholder)
-			      )  // end Adornment
-			  },
-			  $(go.Shape, "RoundedRectangle", roundedRectangleParams,
-			    { name: "SHAPE", fill: "#ffffff", strokeWidth: 0 },
-			    // bluish if highlighted, white otherwise
-			    new go.Binding("fill", "isHighlighted", function(h) { return h ? "#e8eaf6" : "#ffffff"; }).ofObject()
-			  ),
-			  $(go.Panel, "Vertical",
-			    $(go.Panel, "Vertical",
-			      { margin: 8 },
-			      $(go.Picture,  // flag image, only visible if a nation is specified
-			        { margin: mr8, visible: false, desiredSize: new go.Size(50, 50) },
-			        new go.Binding("source", "nation", theNationFlagConverter),
-			        new go.Binding("visible", "nation", function(nat) { return nat !== undefined; }),
-			      ),
-			      $(go.Panel, "Table",
-			        $(go.TextBlock,
-			          {
-			            row: 0, alignment: go.Spot.Left,
-			            font: "16px Roboto, sans-serif",
-			            stroke: "rgba(0, 0, 0, .87)",
-			            maxSize: new go.Size(160, NaN)
-			          },
-			          new go.Binding("text", "name")
-			        ),
-			        $(go.TextBlock, textStyle("title"),
-			          {
-			            row: 1, alignment: go.Spot.Left,
-			            maxSize: new go.Size(160, NaN)
-			          },
-			          new go.Binding("text", "title")
-			        ),
-			        
-			      ),
-			    ),
-			    $(go.Shape, "LineH",
-			      {
-			        stroke: "rgba(0, 0, 0, .60)", strokeWidth: 1,
-			        height: 1, stretch: go.GraphObject.Vertical
-			      },
-			      
-			    ),
-			    
-			  )
-			);
+				// define the Node template
+				myDiagram.nodeTemplate =
+				$(go.Node, "Auto",
+				  {
+				    locationSpot: go.Spot.TopCenter,
+				    isShadowed: true, shadowBlur: 1,
+				    shadowOffset: new go.Point(0, 1),
+				    shadowColor: "rgba(0, 0, 0, .14)",
+				    selectionAdornmentTemplate:  // selection adornment to match shape of nodes
+				      $(go.Adornment, "Auto",
+				        $(go.Shape, "RoundedRectangle", roundedRectangleParams,
+				          { fill: null, stroke: "#7986cb", strokeWidth: 3 }
+				        ),
+				        $(go.Placeholder)
+				      )  // end Adornment
+				  },
+				  $(go.Shape, "RoundedRectangle", roundedRectangleParams,
+				    { name: "SHAPE", fill: "#ffffff", strokeWidth: 0 },
+				    // bluish if highlighted, white otherwise
+				    new go.Binding("fill", "isHighlighted", function(h) { return h ? "#e8eaf6" : "#ffffff"; }).ofObject()
+				  ),
+				  $(go.Panel, "Vertical",
+				    $(go.Panel, "Vertical",
+				      { margin: 8 },
+				      $(go.Picture,  // flag image, only visible if a nation is specified
+				        { margin: mr8, visible: false, desiredSize: new go.Size(50, 50) },
+				        new go.Binding("source", "nation", theNationFlagConverter),
+				        new go.Binding("visible", "nation", function(nat) { return nat !== undefined; }),
+				      ),
+				      $(go.Panel, "Table",
+				        $(go.TextBlock,
+				          {
+				            row: 0, alignment: go.Spot.Left,
+				            font: "16px Roboto, sans-serif",
+				            stroke: "rgba(0, 0, 0, .87)",
+				            maxSize: new go.Size(160, NaN)
+				          },
+				          new go.Binding("text", "name")
+				        ),
+				        $(go.TextBlock, textStyle("title"),
+				          {
+				            row: 1, alignment: go.Spot.Left,
+				            maxSize: new go.Size(160, NaN)
+				          },
+				          new go.Binding("text", "title")
+				        ),
+				        
+				      ),
+				    ),
+				    $(go.Shape, "LineH",
+				      {
+				        stroke: "rgba(0, 0, 0, .60)", strokeWidth: 1,
+				        height: 1, stretch: go.GraphObject.Vertical
+				      },
+				    ),
+				  )
+				);
 
-			// define the Link template, a simple orthogonal line
-			myDiagram.linkTemplate =
-			$(go.Link, go.Link.Orthogonal,
-			  { corner: 5, selectable: false },
-			  $(go.Shape, { strokeWidth: 3, stroke: "#424242" }));  // dark gray, rounded corner links
+				// define the Link template, a simple orthogonal line
+				myDiagram.linkTemplate =
+				$(go.Link, go.Link.Orthogonal,
+				  { corner: 5, selectable: true },
+				  $(go.Shape, { strokeWidth: 3, stroke: "#424242" }));  // dark gray, rounded corner links
 
 
-			// set up the nodeDataArray, describing each person/position
-			var nodeDataArray = [
-				// level 0
-				{ key: 0, name: "Jamie Whittingham", title: "You" },
-				<?php $downline[1][] = $_SESSION['account']['id']; ?>
+				// set up the nodeDataArray, describing each person/position
+				var nodeDataArray = [
+					// level 0
+					{ key: 0, name: "Jamie Whittingham", title: "You" },
+					<?php $downline[1][] = $_SESSION['account']['id']; ?>
 
-				// level 1
-				<?php if(is_array($downline[1])) { ?>
-					<?php foreach($downline[1] as $level_1){ ?>
-		            	<?php foreach($customers as $customer){ ?>
-		            		<?php if($customer['upline_id'] == $level_1){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: 0, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
-			            		<?php $downline[2][] = $customer['id']; ?>
-			            	<?php } ?>
-			            <?php } ?>
-			        <?php } ?>
-			    <?php } ?>
+					// level 1
+					<?php if(is_array($downline[1])) { ?>
+						<?php foreach($downline[1] as $level_1){ ?>
+			            	<?php foreach($customers as $customer){ ?>
+			            		<?php if($customer['upline_id'] == $level_1){ ?>
+				            		{ key: <?php echo $customer['id']; ?>, boss: 0, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+				            		<?php $downline[2][] = $customer['id']; ?>
+				            	<?php } ?>
+				            <?php } ?>
+				        <?php } ?>
+				    <?php } ?>
 
-			    // level 2
-				<?php if(is_array($downline[2])) { ?>
-					<?php foreach($downline[2] as $level_2){ ?>
-		            	<?php foreach($customers as $customer){ ?>
-		            		<?php if($customer['upline_id'] == $level_2){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 2" },
-			            		<?php $downline[3][] = $customer['id']; ?>
-			            	<?php } ?>
-			            <?php } ?>
-			        <?php } ?>
-			    <?php } ?>
+				    // level 2
+					<?php if(is_array($downline[2])) { ?>
+						<?php foreach($downline[2] as $level_2){ ?>
+			            	<?php foreach($customers as $customer){ ?>
+			            		<?php if($customer['upline_id'] == $level_2){ ?>
+				            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 2" },
+				            		<?php $downline[3][] = $customer['id']; ?>
+				            	<?php } ?>
+				            <?php } ?>
+				        <?php } ?>
+				    <?php } ?>
 
-			    // level 3
-				<?php if(is_array($downline[3])) { ?>
-					<?php foreach($downline[3] as $level_3){ ?>
-		            	<?php foreach($customers as $customer){ ?>
-		            		<?php if($customer['upline_id'] == $level_3){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
-			            		<?php $downline[4][] = $customer['id']; ?>
-			            	<?php } ?>
-			            <?php } ?>
-			        <?php } ?>
-			    <?php } ?>
+				    // level 3
+					<?php if(is_array($downline[3])) { ?>
+						<?php foreach($downline[3] as $level_3){ ?>
+			            	<?php foreach($customers as $customer){ ?>
+			            		<?php if($customer['upline_id'] == $level_3){ ?>
+				            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+				            		<?php $downline[4][] = $customer['id']; ?>
+				            	<?php } ?>
+				            <?php } ?>
+				        <?php } ?>
+				    <?php } ?>
 
-			    // level 4
-				<?php if(is_array($downline[4])) { ?>
-					<?php foreach($downline[4] as $level_4){ ?>
-		            	<?php foreach($customers as $customer){ ?>
-		            		<?php if($customer['upline_id'] == $level_4){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
-			            		<?php $downline[5][] = $customer['id']; ?>
-			            	<?php } ?>
-			            <?php } ?>
-			        <?php } ?>
-			    <?php } ?>
+				    // level 4
+					<?php if(is_array($downline[4])) { ?>
+						<?php foreach($downline[4] as $level_4){ ?>
+			            	<?php foreach($customers as $customer){ ?>
+			            		<?php if($customer['upline_id'] == $level_4){ ?>
+				            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+				            		<?php $downline[5][] = $customer['id']; ?>
+				            	<?php } ?>
+				            <?php } ?>
+				        <?php } ?>
+				    <?php } ?>
 
-			    // level 5
-				<?php if(is_array($downline[5])) { ?>
-					<?php foreach($downline[5] as $level_5){ ?>
-		            	<?php foreach($customers as $customer){ ?>
-		            		<?php if($customer['upline_id'] == $level_5){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
-			            		<?php $downline[6][] = $customer['id']; ?>
-			            	<?php } ?>
-			            <?php } ?>
-			        <?php } ?>
-			    <?php } ?>
+				    // level 5
+					<?php if(is_array($downline[5])) { ?>
+						<?php foreach($downline[5] as $level_5){ ?>
+			            	<?php foreach($customers as $customer){ ?>
+			            		<?php if($customer['upline_id'] == $level_5){ ?>
+				            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+				            		<?php $downline[6][] = $customer['id']; ?>
+				            	<?php } ?>
+				            <?php } ?>
+				        <?php } ?>
+				    <?php } ?>
 
-			    // level 6
-				<?php if(is_array($downline[6])) { ?>
-					<?php foreach($downline[6] as $level_6){ ?>
-		            	<?php foreach($customers as $customer){ ?>
-		            		<?php if($customer['upline_id'] == $level_6){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
-			            		<?php $downline[7][] = $customer['id']; ?>
-			            	<?php } ?>
-			            <?php } ?>
-			        <?php } ?>
-			    <?php } ?>
+				    // level 6
+					<?php if(is_array($downline[6])) { ?>
+						<?php foreach($downline[6] as $level_6){ ?>
+			            	<?php foreach($customers as $customer){ ?>
+			            		<?php if($customer['upline_id'] == $level_6){ ?>
+				            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+				            		<?php $downline[7][] = $customer['id']; ?>
+				            	<?php } ?>
+				            <?php } ?>
+				        <?php } ?>
+				    <?php } ?>
 
-			    // level 7
-				<?php if(is_array($downline[7])) { ?>
-					<?php foreach($downline[7] as $level_7){ ?>
-		            	<?php foreach($customers as $customer){ ?>
-		            		<?php if($customer['upline_id'] == $level_7){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
-			            		<?php $downline[8][] = $customer['id']; ?>
-			            	<?php } ?>
-			            <?php } ?>
-			        <?php } ?>
-			    <?php } ?>
+				    // level 7
+					<?php if(is_array($downline[7])) { ?>
+						<?php foreach($downline[7] as $level_7){ ?>
+			            	<?php foreach($customers as $customer){ ?>
+			            		<?php if($customer['upline_id'] == $level_7){ ?>
+				            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+				            		<?php $downline[8][] = $customer['id']; ?>
+				            	<?php } ?>
+				            <?php } ?>
+				        <?php } ?>
+				    <?php } ?>
 
-	            	
-				// { key: 1, boss: 0, name: "Ian Orford", title: "Level 1" },
-				// { key: 2, boss: 1, name: "Amy Morgan", title: "Level 2" },
-				// { key: 3, boss: 1, name: "Vanessa Machin", title: "Level 2" },
-				// { key: 3, boss: 3, name: "Clair Machin", title: "Level 3" },
-			];
+		            	
+					// { key: 1, boss: 0, name: "Ian Orford", title: "Level 1" },
+					// { key: 2, boss: 1, name: "Amy Morgan", title: "Level 2" },
+					// { key: 3, boss: 1, name: "Vanessa Machin", title: "Level 2" },
+					// { key: 3, boss: 3, name: "Clair Machin", title: "Level 3" },
+				];
 
-			// create the Model with data for the tree, and assign to the Diagram
-			myDiagram.model =
-			$(go.TreeModel,
-			  {
-			    nodeParentKeyProperty: "boss",  // this property refers to the parent node data
-			    nodeDataArray: nodeDataArray
-			  });
+				// create the Model with data for the tree, and assign to the Diagram
+				myDiagram.model =
+				$(go.TreeModel,
+				  {
+				    nodeParentKeyProperty: "boss",  // this property refers to the parent node data
+				    nodeDataArray: nodeDataArray
+				  });
 
-			// Overview
-			myOverview =
-			$(go.Overview, "myOverviewDiv",  // the HTML DIV element for the Overview
-			  { observed: myDiagram, contentAlignment: go.Spot.Center });   // tell it which Diagram to show and pan
-			}
+				// Overview
+				myOverview =
+				$(go.Overview, "myOverviewDiv",  // the HTML DIV element for the Overview
+				  { observed: myDiagram, contentAlignment: go.Spot.Center });   // tell it which Diagram to show and pan
+				}
 
-			// the Search functionality highlights all of the nodes that have at least one data property match a RegExp
-			function searchDiagram() {  // called by button
-			var input = document.getElementById("mySearch");
-			if (!input) return;
-			input.focus();
+				// the Search functionality highlights all of the nodes that have at least one data property match a RegExp
+				function searchDiagram() {  // called by button
+				var input = document.getElementById("mySearch");
+				if (!input) return;
+				input.focus();
 
-			myDiagram.startTransaction("highlight search");
+				myDiagram.startTransaction("highlight search");
 
-			if (input.value) {
-			// search four different data properties for the string, any of which may match for success
-			// create a case insensitive RegExp from what the user typed
-			var regex = new RegExp(input.value, "i");
-			var results = myDiagram.findNodesByExample({ name: regex },
-			  { nation: regex },
-			  { title: regex },
-			  { headOf: regex });
-			myDiagram.highlightCollection(results);
-			// try to center the diagram at the first node that was found
-			if (results.count > 0) myDiagram.centerRect(results.first().actualBounds);
-			} else {  // empty string only clears highlighteds collection
-			myDiagram.clearHighlighteds();
-			}
+				if (input.value) {
+				// search four different data properties for the string, any of which may match for success
+				// create a case insensitive RegExp from what the user typed
+				var regex = new RegExp(input.value, "i");
+				var results = myDiagram.findNodesByExample({ name: regex },
+				  { nation: regex },
+				  { title: regex },
+				  { headOf: regex });
+				myDiagram.highlightCollection(results);
+				// try to center the diagram at the first node that was found
+				if (results.count > 0) myDiagram.centerRect(results.first().actualBounds);
+				} else {  // empty string only clears highlighteds collection
+				myDiagram.clearHighlighteds();
+				}
 
-			myDiagram.commitTransaction("highlight search");
-			}
+				myDiagram.commitTransaction("highlight search");
+				}
 			</script>
 
             <div class="content-wrapper">
