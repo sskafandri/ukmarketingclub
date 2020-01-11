@@ -6541,7 +6541,7 @@ function withdrawal_request_add()
         '".$member_id."',
         'pending',
         '".$amount."',
-        'Your withdrawal request has been submitted and will be paid shortly.'
+        'Your withdrawal request has been submitted and will be paid shortly'
     )");
 
     status_message('success',"Your withdrawal request has been submitted and will be paid shortly.");
