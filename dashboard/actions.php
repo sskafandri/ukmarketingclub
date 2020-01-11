@@ -530,8 +530,6 @@ switch ($a)
 		member_update();
 		break;
 
-		member_update
-
 // default		
 	default:
 		home();
