@@ -2353,7 +2353,8 @@ desired effect
 								                <th style="white-space: nowrap;" width="1px">Status</th>
 								                <th style="white-space: nowrap;" width="1px">Level</th>
 								                <th style="white-space: nowrap;" width="1px">Type</th>
-								                <th style="white-space: nowrap;">Name</th>
+								                <th style="white-space: nowrap;" width="250px">Name</th>
+								                <th style="white-space: nowrap;"></th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
 								            </tr>
@@ -2364,7 +2365,8 @@ desired effect
 								                <th style="white-space: nowrap;" width="1px">Status</th>
 								                <th style="white-space: nowrap;" width="1px">Level</th>
 								                <th style="white-space: nowrap;" width="1px">Type</th>
-								                <th style="white-space: nowrap;">Name</th>
+								                <th style="white-space: nowrap;" width="250px">Name</th>
+								                <th style="white-space: nowrap;"></th>
 								                <th class="no-sort" style="white-space: nowrap;" width="1px">Downline</th>
 								                <th class="no-sort" style="white-space: nowrap;" width="100px">Upline</th>
 								            </tr>
@@ -3490,6 +3492,7 @@ desired effect
 			            { "data": "level"},
 			            { "data": "account_type"},
 			            { "data": "full_name" },
+			            { "data": "" },
 			            { "data": "total_downline" },
 			            { "data": "upline" }
 			        ],
