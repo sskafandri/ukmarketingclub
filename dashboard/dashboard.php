@@ -2715,8 +2715,9 @@ desired effect
 										            <tr>
 										            	<th class="no-sort" width="1px"></th>
 										                <th class="no-sort" width="1px">Status</th>
-										                <th class="no-sort hidden-xs">Request Date</th>
-										                <th class="no-sort hidden-xs">Paid Date</th>
+										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
+										                <th class="no-sort hidden-xs" width="100px">Paid Date</th>
+										                <th class="no-sort hidden-xs"></th>
 										                <th class="no-sort" width="100px">Amount</th>
 										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 										            </tr>
@@ -2725,8 +2726,9 @@ desired effect
 										            <tr>
 										            	<th class="no-sort" width="1px"></th>
 										                <th class="no-sort" width="1px">Status</th>
-										                <th class="no-sort hidden-xs">Request Date</th>
-										                <th class="no-sort hidden-xs">Paid Date</th>
+										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
+										                <th class="no-sort hidden-xs" width="100px">Paid Date</th>
+										                <th class="no-sort hidden-xs"></th>
 										                <th class="no-sort" width="100px">Amount</th>
 										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 										            </tr>
@@ -4088,7 +4090,11 @@ desired effect
 			            	"className":      'hidden-xs',
 			            	"data": "request_date"
 			            },
-			            { "data": "paid_date" },
+			            {
+			            	"className":      'hidden-xs',
+			            	"data": "paid_date"
+			            },
+			            { "data": "" },
 			            { "data": "amount" },
 			            { "data": "actions" },
 			        ],
