@@ -6517,6 +6517,21 @@ function withdrawal_request_add()
 		go($_SERVER['HTTP_REFERER']);
 	}
 
+	if($amount < $global_settings['payout_min']){
+		$insert = $conn->exec("INSERT INTO `withdrawal_requests` 
+	        (`added`,`user_id`,`status`,`amount`,`comment`)
+	        VALUE
+	        ('".time()."',
+	        '".$member_id."',
+	        'rejected',
+	        '".$amount."',
+	        'You requested a £".$amount." withdrawl which is less than the system minimum of £".$global_settings['payout_min']."'
+	    )");
+
+		status_message('danger',"You requested a £".$amount." withdrawl which is less than the system minimum of £".$global_settings['payout_min']);
+		go($_SERVER['HTTP_REFERER']);
+	}
+
 	$insert = $conn->exec("INSERT INTO `withdrawal_requests` 
         (`added`,`user_id`,`status`,`amount`)
         VALUE
