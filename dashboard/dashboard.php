@@ -2191,7 +2191,7 @@ desired effect
 			        new go.Binding("text", "boss", function(boss) {
 			          var boss = myDiagram.model.findNodeDataForKey(boss);
 			          if (boss !== null) {
-			            return "Reporting to: " + boss.name;
+			            // return "Reporting to: " + boss.name;
 			          }
 			          return "";
 			        })
