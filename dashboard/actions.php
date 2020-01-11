@@ -6535,15 +6535,16 @@ function withdrawal_request_add()
 	}
 
 	$insert = $conn->exec("INSERT INTO `withdrawal_requests` 
-        (`added`,`user_id`,`status`,`amount`)
+	   	(`added`,`user_id`,`status`,`amount`,`comment`)
         VALUE
         ('".time()."',
         '".$member_id."',
         'pending',
-        '".$amount."'
+        '".$amount."',
+        'Your withdrawal request has been submitted and will be paid shortly.'
     )");
 
-    status_message('success',"Your withdrawal request has been submitted and will be reviewed shortly.");
+    status_message('success',"Your withdrawal request has been submitted and will be paid shortly.");
 	go($_SERVER['HTTP_REFERER']);
 }
 
