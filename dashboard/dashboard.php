@@ -1646,7 +1646,7 @@ desired effect
 															<div class="form-group">
 																<label class="col-md-2 control-label" for="first_name">Name</label>
 																<div class="col-md-5">
-																	<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($member['first_name']); ?>">
+																	<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($member['first_name']); ?>" read-only>
 																</div>
 																<div class="col-md-5">
 																	<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($member['last_name']); ?>">
