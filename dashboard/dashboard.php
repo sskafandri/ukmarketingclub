@@ -2684,7 +2684,9 @@ desired effect
 
 					<div class="row">
 						<div class="col-lg-12">
-							<?php if($withdrawls['available'] >= $global_settings['payout_min']){ ?>
+							<?php if(empty($account_details['bank_sort_code']) || empty($account_details['bank_account_number'])){ ?>
+								<a href="dashboard.php?c=my_account" class="btn btn-warning btn-flat full-width">Bank details required to process your request</a>
+							<?php }elseif($withdrawls['available'] >= $global_settings['payout_min']){ ?>
 								<button type="button" class="btn btn-success btn-flat full-width" data-toggle="modal" data-target="#request_payout">Withdrawal Request</button>
 							<?php }else{ ?>
 								<a href="" class="btn btn-warning btn-flat full-width" disabled>Min withdrawal amount is £<?php echo $global_settings['payout_min']; ?></a>
