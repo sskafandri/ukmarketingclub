@@ -2172,7 +2172,7 @@ desired effect
 			        stroke: "rgba(0, 0, 0, .60)", strokeWidth: 1,
 			        height: 1, stretch: go.GraphObject.Horizontal
 			      },
-			      new go.Binding("visible").ofObject("INFO")  // only visible when info is expanded
+			      
 			    ),
 			    $(go.Panel, "Vertical",
 			      {
