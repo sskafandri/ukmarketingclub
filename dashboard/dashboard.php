@@ -2089,7 +2089,7 @@ desired effect
 			          angle: 90,
 			          layerSpacing: 80,
 			          // properties for the "last parents":
-			          alternateAngle: 90,
+			          alternateAngle: 0,
 			          alternateAlignment: go.TreeLayout.AlignmentStart,
 			          alternateNodeIndent: 15,
 			          alternateNodeIndentPastParent: 1,
