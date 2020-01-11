@@ -2682,7 +2682,7 @@ desired effect
 					</div>
 
 					<div class="row">
-						<div class="col-lg-10">
+						<div class="col-lg-12">
 							<a href="dashboard.php?c=request_payout" class="btn btn-success btn-flat full-width" >Request a Payout</a>
 						</div>
 					</div>
@@ -2715,7 +2715,7 @@ desired effect
 										            <tr>
 										            	<th class="no-sort" width="1px"></th>
 										                <th class="no-sort" width="1px">Status</th>
-										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
+										                <th class="no-sort hidden-xs">Request Date</th>
 										                <th class="no-sort" width="100px">Amount</th>
 										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 										            </tr>
@@ -2724,7 +2724,7 @@ desired effect
 										            <tr>
 										            	<th class="no-sort" width="1px"></th>
 										                <th class="no-sort" width="1px">Status</th>
-										                <th class="no-sort hidden-xs" width="100px">Request Date</th>
+										                <th class="no-sort hidden-xs">Request Date</th>
 										                <th class="no-sort" width="100px">Amount</th>
 										                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 										            </tr>
