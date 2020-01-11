@@ -534,6 +534,10 @@ switch ($a)
 		member_update();
 		break;
 
+	case "withdrawal_request_add":
+		withdrawal_request_add();
+		break;
+
 // default		
 	default:
 		home();
@@ -6480,4 +6484,37 @@ function ajax_withdrawals()
 	}
 
 	json_output($data);
+}
+
+function withdrawal_request_add()
+{
+	global $conn, $global_settings;
+		
+	$member_id 			= $_SESSION['account']['id'];
+	$amount 			= post('amount');
+	$available 			= post('available');
+
+	if($amount > $available){
+		status_message('danger',"You requested £".$amount." which is more than your available balance of £".$available);
+		go($_SERVER['HTTP_REFERER']);
+	}
+
+	// check if mac is already in use
+	$query = $conn->query("SELECT `mag_id` FROM `mag_devices` WHERE `mac` = '".$mac_address."' ");
+	$existing_mag = $query->fetch(PDO::FETCH_ASSOC);
+	if(isset($existing_mag['mag_id'])){
+		status_message('danger',"MAC '".$_POST['mac_address']."' is already added to a customer.");
+	}else{
+		$insert = $conn->exec("INSERT INTO `mag_devices` 
+	        (`user_id`,`customer_id`,`mac`)
+	        VALUE
+	        ('1',
+	        '".$customer_id."',
+	        '".$mac_address."'
+	    )");
+
+	    $customer_id = $conn->lastInsertId();
+		status_message('success',"MAG Device has been added.");
+	}
+	go($_SERVER['HTTP_REFERER']);
 }

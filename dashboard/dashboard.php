@@ -2748,6 +2748,7 @@ desired effect
             </div>
 
             <form action="actions.php?a=withdrawal_request_add" class="form-horizontal form-bordered" method="post">
+				<input type="hidden" name="available" value="<?php echo $withdrawls['available']; ?>">
 				<div class="modal fade" id="request_payout" role="dialog">
 				    <div class="modal-dialog modal-lg">
 				        <div class="modal-content">
