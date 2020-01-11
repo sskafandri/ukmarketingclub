@@ -5334,7 +5334,7 @@ function ajax_downline()
 					$output[$count]['internal_notes']				= '<span class="">'.stripslashes($customer['internal_notes']).'</span>';
 					$output[$count]['internal_notes_hidden']		= '<span class="hidden">'.stripslashes($customer['internal_notes']).'</span>';
 
-					if($level == 1){
+					if($output[$count]['level'] == 1){
 						$output[$count]['additional_details']		= '
 							<tr>
 					            <td width="150px" valign="top">Additional Details</td>
