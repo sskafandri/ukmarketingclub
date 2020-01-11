@@ -2086,7 +2086,7 @@ desired effect
 			          isOngoing: false,  // don't relayout when expanding/collapsing panels
 			          treeStyle: go.TreeLayout.StyleLastParents,
 			          // properties for most of the tree:
-			          angle: 90,
+			          angle: 180,
 			          layerSpacing: 80,
 			          // properties for the "last parents":
 			          alternateAngle: 0,
