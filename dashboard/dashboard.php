@@ -2055,9 +2055,9 @@ desired effect
 		              				<div class="pull-right">
 										<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
+		              					<button id="search_cancelled" type="button" class="btn btn-danger btn-xs btn-flat" >Cancelled</button>
 		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending Payout</button>
 										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
-										<button id="search_cancelled" type="button" class="btn btn-danger btn-xs btn-flat" >Cancelled</button>
 									</div>
 		            			</div>
 								<div class="box-body">
@@ -2708,9 +2708,9 @@ desired effect
 		              				<div class="pull-right">
 		              					<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
+		              					<button id="search_cancelled" type="button" class="btn btn-danger btn-xs btn-flat" >Cancelled</button>
 		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending Payout</button>
 										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
-										<button id="search_cancelled" type="button" class="btn btn-danger btn-xs btn-flat" >Cancelled</button>
 									</div>
 		            			</div>
 								<div class="box-body">
