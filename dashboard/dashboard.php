@@ -2053,10 +2053,11 @@ desired effect
 		              					View All Withdrawal Requests
 		              				</h3>
 		              				<div class="pull-right">
+										<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
-		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
+		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending Payout</button>
 										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
-										<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Reset Filter</button>
+										<button id="search_cancelled" type="button" class="btn btn-danger btn-xs btn-flat" >Cancelled</button>
 									</div>
 		            			</div>
 								<div class="box-body">
@@ -4041,6 +4042,10 @@ desired effect
 
 				$("#search_reset").click(function() {
 					table.search("").draw();
+				});
+
+				$("#search_cancelled").click(function() {
+					table.search("cancelled").draw();
 				});
 			     
 			    // Add event listener for opening and closing details
