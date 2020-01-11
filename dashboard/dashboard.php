@@ -2064,30 +2064,15 @@ desired effect
 							    <div id="downline_chart">
 							        <div class="stiff-chart-inner">
 
-							            <div class="stiff-chart-level" data-level="00">
-							                <div class="stiff-main-parent">
-							                    <ul>
-				                    				<li data-parent="1_0">
-							                            <div class="the-chart">
-							                                <img src="<?php echo $account_details['avatar']; ?>" width="100px" height="100px" alt="">
-							                                <p>
-							                                	<strong><?php echo $account_details['first_name']; ?> <?php echo $account_details['last_name']; ?></strong> <br>
-							                                </p>
-							                            </div>
-							                        </li>	
-							                    </ul>
-							                </div>
-							            </div>
-
 							            <!-- downline level 1 -->
 							            <div class="stiff-chart-level" data-level="01">
-							                <div class="stiff-child" data-child-from="1_0">
+							                <div class="stiff-main-parent">
 							                    <ul>
 							                    	<?php 
 							                    		foreach($customers as $customer){
 							                    			if($customer['upline_id'] == $_SESSION['account']['id']){
 							                    				echo '
-								                    				<li data-parent="1_0">
+								                    				<li data-parent="1_'.$customer['id'].'">
 											                            <div class="the-chart">
 											                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
 											                                <p>
