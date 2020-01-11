@@ -3441,9 +3441,7 @@ desired effect
 			/* Formatting function for row details - modify as you need */
 			function format ( d ) {
 			    // `d` is the original data object for the row
-			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
-			        d.additional_details+
-			    '</table>';
+			    return d.additional_details;
 			}
 
 			$('#checkAll').change(function () {

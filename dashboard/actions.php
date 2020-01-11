@@ -5336,19 +5336,21 @@ function ajax_downline()
 
 					if($output[$count]['level'] == 1){
 						$output[$count]['additional_details']		= '
-							<tr>
-					            <td width="150px" valign="top">Additional Details</td>
-					            <td valign="top">
-					            	<strong>User ID:</strong>'.$output[$count]['id'].'<br>
-					            	<strong>Join Date:</strong>'.$output[$count]['join_date'].'<br>
-					            </td>
-					        </tr>
-					        <tr>
-					            <td width="150px" valign="top">Contact Details</td>
-					            <td valign="top">
-					            	<strong>Email:</strong>'.$output[$count]['email'].'<br>
-					            </td>
-					        </tr>
+							<table cellpadding="1" cellspacing="0" border="0" width="100%">
+								<tr>
+						            <td width="150px" valign="top">Additional Details</td>
+						            <td valign="top">
+						            	<strong>User ID:</strong>'.$output[$count]['id'].'<br>
+						            	<strong>Join Date:</strong>'.$output[$count]['join_date'].'<br>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td width="150px" valign="top">Contact Details</td>
+						            <td valign="top">
+						            	<strong>Email:</strong>'.$output[$count]['email'].'<br>
+						            </td>
+						        </tr>
+						    </table>
 						';
 					}else{
 						$output[$count]['additional_details']		= '';
