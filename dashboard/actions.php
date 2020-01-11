@@ -6471,6 +6471,8 @@ function ajax_withdrawals()
 			</div>';
 		}
 
+		$output[$count]['comments'] 					= stripslashes($withdrawal_request['comments']);
+
 		$output[$count]['blank'] 						= '';
 
 		// $count loop
