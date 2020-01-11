@@ -6512,7 +6512,7 @@ function withdrawal_request_add()
 	        '".$member_id."',
 	        'rejected',
 	        '".$amount."',
-	        'You requested a £".$amount." withdrawl which is more than your available balance of £".$available."'
+	        'You requested a £".$amount." withdrawal which is more than your available balance of £".$available."'
 	    )");
 
 		status_message('danger',"You requested a £".$amount." withdrawal which is more than your available balance of £".$available);
@@ -6527,10 +6527,10 @@ function withdrawal_request_add()
 	        '".$member_id."',
 	        'rejected',
 	        '".$amount."',
-	        'You requested a £".$amount." withdrawl which is less than the system minimum of £".$global_settings['payout_min']."'
+	        'You requested a £".$amount." withdrawal which is less than the system minimum of £".$global_settings['payout_min']."'
 	    )");
 
-		status_message('danger',"You requested a £".$amount." withdrawl which is less than the system minimum of £".$global_settings['payout_min']);
+		status_message('danger',"You requested a £".$amount." withdrawal which is less than the system minimum of £".$global_settings['payout_min']);
 		go($_SERVER['HTTP_REFERER']);
 	}
 

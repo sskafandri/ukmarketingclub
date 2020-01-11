@@ -652,7 +652,7 @@ desired effect
 		                    <?php } ?>
 		                    	<a href="dashboard.php?c=my_withdrawals">
 		                        	<i class="fa fa-circle"></i> 
-		                        	<span>Withdrawls</span>
+		                        	<span>Withdrawals</span>
 		                        </a>
 		                    </li>
 
@@ -2702,7 +2702,7 @@ desired effect
 											<label class="col-md-2 control-label" for="amount">Amount £</label>
 											<div class="col-md-10">
 												<input type="text" class="form-control" id="amount" name="amount" min="<?php echo $global_settings['payout_min']; ?>" placeholder="<?php echo $global_settings['payout_min']; ?>">
-												<small>Minimum Withdrawal / Payout Amount is set to £<?php echo $global_settings['payout_min']; ?></small>
+												<small>Minimum withdrawal amount is £<?php echo $global_settings['payout_min']; ?></small>
 											</div>
 										</div>
 									</div>
