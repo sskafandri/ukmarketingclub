@@ -794,7 +794,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=my_commissions" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
@@ -807,7 +807,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions&search=pending" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=my_commissions&search=pending" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
@@ -820,7 +820,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions&search=approved" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=my_commissions&search=approved" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
@@ -833,7 +833,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions&search=paid" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=my_commissions&search=paid" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
@@ -846,7 +846,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions&search=missed" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=my_commissions&search=missed" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
@@ -859,7 +859,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions&search=rejected" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=my_commissions&search=rejected" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
           			</div>
@@ -3549,7 +3549,7 @@ desired effect
     	</script>
     <?php } ?>
 
-    <?php if(get('c') == 'commissions') { ?>
+    <?php if(get('c') == 'my_commissions') { ?>
     	<script>
 			/* Formatting function for row details - modify as you need */
 			function format ( d ) {
