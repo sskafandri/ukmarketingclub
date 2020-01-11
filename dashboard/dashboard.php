@@ -2209,7 +2209,7 @@ desired effect
 
 			// set up the nodeDataArray, describing each person/position
 			var nodeDataArray = [
-			{ key: 0, name: "Ban Ki-moon 반기문", nation: "SouthKorea", title: "Secretary-General of the United Nations", headOf: "Secretariat" },
+			{ key: 0, name: "Jamie Whittingham", nation: "SouthKorea", title: "Secretary-General of the United Nations", headOf: "Secretariat" },
 			{ key: 1, boss: 0, name: "Patricia O'Brien", nation: "Ireland", title: "Under-Secretary-General for Legal Affairs and United Nations Legal Counsel", headOf: "Office of Legal Affairs" },
 			{ key: 3, boss: 1, name: "Peter Taksøe-Jensen", nation: "Denmark", title: "Assistant Secretary-General for Legal Affairs" },
 			{ key: 9, boss: 3, name: "Other Employees" },
