@@ -2186,16 +2186,7 @@ desired effect
 			      $(go.TextBlock, textStyle("headOf"),
 			        new go.Binding("text", "headOf", function(head) { return "Head of: " + head; })
 			      ),
-			      $(go.TextBlock, textStyle("boss"),
-			        new go.Binding("margin", "headOf", function(head) { return mt8; }), // some space above if there is also a headOf value
-			        new go.Binding("text", "boss", function(boss) {
-			          var boss = myDiagram.model.findNodeDataForKey(boss);
-			          if (boss !== null) {
-			            // return "Reporting to: " + boss.name;
-			          }
-			          return "";
-			        })
-			      )
+			      
 			    )
 			  )
 			);
