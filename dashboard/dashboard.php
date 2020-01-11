@@ -611,7 +611,7 @@ desired effect
 		                </ul>
 		            </li>
 
-                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline' || get('c') == 'commissions' || get('c') == 'marketing_tools'){ ?>
+                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline' || get('c') == 'my_commissions' || get('c') == 'marketing_tools'){ ?>
                     	<li class="active treeview menu-open">
                     <?php }else{ ?>
                     	<li class="treeview">
@@ -634,12 +634,12 @@ desired effect
 		                        </a>
 		                    </li>
 
-							<?php if(get('c') == 'commissions'){ ?>
+							<?php if(get('c') == 'my_commissions'){ ?>
 		                    	<li class="active">
 		                    <?php }else{ ?>
 		                    	<li>
 		                    <?php } ?>
-		                    	<a href="dashboard.php?c=commissions">
+		                    	<a href="dashboard.php?c=my_commissions">
 		                        	<i class="fa fa-circle"></i> 
 		                        	<span>Commissions</span>
 		                        </a>
@@ -744,8 +744,8 @@ desired effect
 					marketing_tools();
 					break;
 
-				case "commissions":
-					commissions();
+				case "my_commissions":
+					my_commissions();
 					break;
 
 				case "visual_downline":
@@ -2404,7 +2404,7 @@ desired effect
             </div>
         <?php } ?>
 
-        <?php function commissions(){ ?>
+        <?php function my_commissions(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
             
@@ -2519,7 +2519,7 @@ desired effect
 
 					<div class="row">
 						<div class="col-lg-6">
-							<button type="button" class="btn btn-info btn-flat full-width" >View Withdrawal Requests</button>
+							<a href="dashboard.php?c=my_withdrawals" class="btn btn-info btn-flat full-width" >View Withdrawal Requests</button>
 						</div>
 						<div class="col-lg-6">
 							<button type="button" class="btn btn-success btn-flat full-width" >Request Payout</button>
