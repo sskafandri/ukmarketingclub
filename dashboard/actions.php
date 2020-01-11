@@ -6495,6 +6495,16 @@ function withdrawal_request_add()
 	$available 			= post('available');
 
 	if($amount > $available){
+		$insert = $conn->exec("INSERT INTO `withdrawal_requests` 
+	        (`added`,`user_id`,`status`,`amount`,`comment`)
+	        VALUE
+	        ('".time()."',
+	        '".$member_id."',
+	        'rejected',
+	        '".$amount."',
+	        'You requested £".$amount." which is more than your available balance of £".$available."'
+	    )");
+
 		status_message('danger',"You requested £".$amount." which is more than your available balance of £".$available);
 		go($_SERVER['HTTP_REFERER']);
 	}
