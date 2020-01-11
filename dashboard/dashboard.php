@@ -1859,21 +1859,6 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
-							<div class="box box-success">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Paid
-		              				</h3>
-		            			</div>
-								<div class="box-body">
-									<center>
-										<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
-									</center>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-2 col-xs-6">
 							<div class="box box-danger">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
@@ -1902,6 +1887,21 @@ desired effect
 								</div>
 							</div>
 						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="box box-success">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Paid
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div class="row">
@@ -1915,9 +1915,9 @@ desired effect
 		              					<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
 		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
 		              					<button id="search_approved" type="button" class="btn btn-warning btn-xs btn-flat" >Approved</button>
-		              					<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
 		              					<button id="search_missed" type="button" class="btn btn-danger btn-xs btn-flat" >Missed</button>
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
+		              					<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
 									</div>
 		            			</div>
 								<div class="box-body">
@@ -2421,21 +2421,6 @@ desired effect
 						</div>
 
 						<div class="col-lg-2 col-xs-6">
-							<div class="box box-success">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Paid
-		              				</h3>
-		            			</div>
-								<div class="box-body">
-									<center>
-										<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
-									</center>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-2 col-xs-6">
 							<div class="box box-danger">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
@@ -2460,6 +2445,21 @@ desired effect
 								<div class="box-body">
 									<center>
 										<h3>£<?php echo $commissions['commissions']['rejected']; ?></h3>
+									</center>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-xs-6">
+							<div class="box box-success">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Paid
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<center>
+										<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
 									</center>
 								</div>
 							</div>
@@ -2494,9 +2494,9 @@ desired effect
 		              					<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
 		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
 		              					<button id="search_approved" type="button" class="btn btn-warning btn-xs btn-flat" >Approved</button>
-		              					<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
 		              					<button id="search_missed" type="button" class="btn btn-danger btn-xs btn-flat" >Missed</button>
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
+		              					<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
 									</div>
 		            			</div>
 								<div class="box-body">
