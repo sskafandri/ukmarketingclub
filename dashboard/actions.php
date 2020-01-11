@@ -538,8 +538,8 @@ switch ($a)
 		withdrawal_request_add();
 		break;
 
-	case "withdrawal_request_delete":
-		withdrawal_request_delete();
+	case "withdrawal_request_cancel":
+		withdrawal_request_cancel();
 		break;
 
 // default		
@@ -6466,7 +6466,7 @@ function ajax_withdrawals()
 
 		if($withdrawal_request['status'] == 'pending'){
 			$output[$count]['actions'] 					.= '
-					<a title="Reject withdrawal Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawal_request_delete&id='.$withdrawal_request['id'].'"><i class="fa fa-times"></i></a>
+					<a title="Cancel Withdrawal Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawal_request_cancel&id='.$withdrawal_request['id'].'"><i class="fa fa-times"></i></a>
 				</span>
 			</div>';
 		}else{
@@ -6511,7 +6511,7 @@ function withdrawal_request_add()
 	        'You requested a £".$amount." withdrawl which is more than your available balance of £".$available."'
 	    )");
 
-		status_message('danger',"You requested a£".$amount." withdrawal which is more than your available balance of £".$available);
+		status_message('danger',"You requested a £".$amount." withdrawal which is more than your available balance of £".$available);
 		go($_SERVER['HTTP_REFERER']);
 	}
 
@@ -6528,15 +6528,15 @@ function withdrawal_request_add()
 	go($_SERVER['HTTP_REFERER']);
 }
 
-function withdrawal_request_delete()
+function withdrawal_request_cancel()
 {
 	global $conn, $global_settings;
 		
 	$member_id 			= $_SESSION['account']['id'];
 	$id 				= get('id');
 
-	$delete = $conn->query("DELETE FROM `withdrawal_requests` WHERE `id` = '".$id."' AND `user_id` = '".$member_id."' ");
+	$delete = $conn->query("UPDATE `withdrawal_requests` SET `status` = 'cancelled' WHERE `id` = '".$id."' AND `user_id` = '".$member_id."' ");
 
-    status_message('success',"Your withdrawal request has been deleted and the funds transferred back to your available balance.");
+    status_message('success',"Your withdrawal request has been cancelled and the funds transferred back to your available balance.");
 	go($_SERVER['HTTP_REFERER']);
 }

@@ -2709,6 +2709,7 @@ desired effect
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
 		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending Payout</button>
 										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
+										<button id="search_cancelled" type="button" class="btn btn-danger btn-xs btn-flat" >Cancelled</button>
 									</div>
 		            			</div>
 								<div class="box-body">
@@ -4105,6 +4106,10 @@ desired effect
 
 				$("#search_paid").click(function() {
 					table.search("paid").draw();
+				});
+
+				$("#search_cancelled").click(function() {
+					table.search("cancelled").draw();
 				});
 			     
 			    var table = $('#withdrawal_requests').DataTable( {
