@@ -2515,12 +2515,12 @@ desired effect
 		              					Commissions
 		              				</h3>
 		              				<div class="pull-right">
+		              					<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
+		              					<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
+		              					<button id="search_approved" type="button" class="btn btn-warning btn-xs btn-flat" >Approved</button>
+		              					<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
 		              					<button id="search_missed" type="button" class="btn btn-danger btn-xs btn-flat" >Missed</button>
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
-										<button id="search_pending" type="button" class="btn btn-warning btn-xs btn-flat" >Pending</button>
-										<button id="search_approved" type="button" class="btn btn-warning btn-xs btn-flat" >Approved</button>
-										<button id="search_paid" type="button" class="btn btn-success btn-xs btn-flat" >Paid</button>
-										<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
 									</div>
 		            			</div>
 								<div class="box-body">
