@@ -41,6 +41,9 @@ function get_withdrawls($member_id = '')
     $data['paid']                        = number_format($data['paid'], 2);
     $data['available']                   = number_format($commissions['commissions']['approved'], 2);
 
+    $data['available']                   = ($data['available'] - $data['pending']);
+
+
     return $data;
 }
 
