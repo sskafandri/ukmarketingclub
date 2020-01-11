@@ -2265,7 +2265,7 @@ desired effect
 				</section>
             </div>
 
-            <script src="js/stiffChart.js"></script>
+            <!-- <script src="js/stiffChart.js"></script> -->
 			<script>
 				$(document).ready(function() {
 				  $('#downline_chart').stiffChart({
