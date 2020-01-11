@@ -2170,7 +2170,7 @@ desired effect
 			    $(go.Shape, "LineH",
 			      {
 			        stroke: "rgba(0, 0, 0, .60)", strokeWidth: 1,
-			        height: 1, stretch: go.GraphObject.Horizontal
+			        height: 1, stretch: go.GraphObject.Vertical
 			      },
 			      
 			    ),
