@@ -2140,7 +2140,7 @@ desired effect
 			    new go.Binding("fill", "isHighlighted", function(h) { return h ? "#e8eaf6" : "#ffffff"; }).ofObject()
 			  ),
 			  $(go.Panel, "Vertical",
-			    $(go.Panel, "Horizontal",
+			    $(go.Panel, "Vertical",
 			      { margin: 8 },
 			      $(go.Picture,  // flag image, only visible if a nation is specified
 			        { margin: mr8, visible: false, desiredSize: new go.Size(50, 50) },
