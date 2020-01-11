@@ -2718,7 +2718,9 @@ desired effect
 				            </div>
 				            <div class="modal-footer">
 				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				                <button type="submit" class="btn btn-success">Submit Request</button>
+				                <?php if(isset($pending_withdrawal['id'])){ ?>
+				                	<button type="submit" class="btn btn-success">Submit Request</button>
+				                <?php } ?>
 				            </div>
 				        </div>
 				    </div>
