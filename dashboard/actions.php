@@ -6523,3 +6523,17 @@ function withdrawal_request_add()
     status_message('success',"Your withdrawal request has been submitted and will be reviewed shortly.");
 	go($_SERVER['HTTP_REFERER']);
 }
+
+function withdrawal_request_add()
+{
+	global $conn, $global_settings;
+		
+	$member_id 			= $_SESSION['account']['id'];
+	$id 				= get('id');
+
+	$delete = $conn->query("DELETE FROM `withdrawal_requests` WHERE `id` = '".$id."' AND `user_id` = '".$member_id."' ");
+
+
+    status_message('success',"Your withdrawal request has been deleted and the funds transferred back to your available balance.");
+	go($_SERVER['HTTP_REFERER']);
+}
