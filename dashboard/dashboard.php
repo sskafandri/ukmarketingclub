@@ -1503,7 +1503,11 @@ desired effect
 			              					View All Members
 			              				</h3>
 			              				<div class="pull-right">
-			              					<!-- <button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button> -->
+			              					<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
+			              					<button id="search_active" type="button" class="btn btn-success btn-xs btn-flat" >Active</button>
+			              					<button id="search_suspended" type="button" class="btn btn-warning btn-xs btn-flat" >Suspended</button>
+			              					<button id="search_terminated" type="button" class="btn btn-danger btn-xs btn-flat" >Terminated</button>
+			              					<button id="search_closed" type="button" class="btn btn-danger btn-xs btn-flat" >Closed</button>
 										</div>
 			            			</div>
 									<div class="box-body">
@@ -3210,6 +3214,26 @@ desired effect
 			});
 			 
 			$(document).ready(function() {
+				$("#search_reset").click(function() {
+					table.search("").draw();
+				});
+
+				$("#search_active").click(function() {
+					table.search("Active").draw();
+				});
+
+				$("#search_suspended").click(function() {
+					table.search("suspended").draw();
+				});
+
+				$("#search_terminated").click(function() {
+					table.search("Terminated").draw();
+				});
+
+				$("#search_closed").click(function() {
+					table.search("Closed").draw();
+				});
+
 			    var table = $('#example').DataTable( {
 			        "order": [[2, 'asc']],
 			        "ajax": "actions.php?a=ajax_members",
