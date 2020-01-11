@@ -2539,6 +2539,9 @@ desired effect
         		global $conn, $globals, $global_settings, $account_details, $site;
             
             	$withdrawls 	= get_withdrawls();
+
+            	$query 						= $conn->query("SELECT `id` FROM `withdrawal_requests` WHERE `user_id` = '".$_SESSION['account']['id']."' AND `status` = 'pending' ");
+				$pending_withdrawal 		= $query->fetch(PDO::FETCH_ASSOC);
 			?>
 
             <div class="content-wrapper">
@@ -2621,6 +2624,8 @@ desired effect
 						<div class="col-lg-12">
 							<?php if(empty($account_details['bank_sort_code']) || empty($account_details['bank_account_number'])){ ?>
 								<a href="dashboard.php?c=my_account" class="btn btn-warning btn-flat full-width">Bank details required to process your request</a>
+							<?php }elseif(isset($pending_withdrawal['id'])){ ?>
+								<a href="" class="btn btn-warning btn-flat full-width" disabled>You already have a pending withdrawal request</a>
 							<?php }elseif($withdrawls['available'] >= $global_settings['payout_min']){ ?>
 								<button type="button" class="btn btn-success btn-flat full-width" data-toggle="modal" data-target="#request_payout">Withdrawal Request</button>
 							<?php }else{ ?>
