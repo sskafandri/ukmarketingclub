@@ -6504,29 +6504,22 @@ function withdrawal_request_add()
 	        '".$member_id."',
 	        'rejected',
 	        '".$amount."',
-	        'You requested £".$amount." which is more than your available balance of £".$available."'
+	        'You requested a £".$amount." withdrawl which is more than your available balance of £".$available."'
 	    )");
 
-		status_message('danger',"You requested £".$amount." which is more than your available balance of £".$available);
+		status_message('danger',"You requested a£".$amount." withdrawal which is more than your available balance of £".$available);
 		go($_SERVER['HTTP_REFERER']);
 	}
 
-	// check if mac is already in use
-	$query = $conn->query("SELECT `mag_id` FROM `mag_devices` WHERE `mac` = '".$mac_address."' ");
-	$existing_mag = $query->fetch(PDO::FETCH_ASSOC);
-	if(isset($existing_mag['mag_id'])){
-		status_message('danger',"MAC '".$_POST['mac_address']."' is already added to a customer.");
-	}else{
-		$insert = $conn->exec("INSERT INTO `mag_devices` 
-	        (`user_id`,`customer_id`,`mac`)
-	        VALUE
-	        ('1',
-	        '".$customer_id."',
-	        '".$mac_address."'
-	    )");
+	$insert = $conn->exec("INSERT INTO `withdrawal_requests` 
+        (`added`,`user_id`,`status`,`amount`)
+        VALUE
+        ('".time()."',
+        '".$member_id."',
+        'pending',
+        '".$amount."'
+    )");
 
-	    $customer_id = $conn->lastInsertId();
-		status_message('success',"MAG Device has been added.");
-	}
+    status_message('success',"Your withdrawal request has been submitted and will be reviewed shortly.");
 	go($_SERVER['HTTP_REFERER']);
 }
