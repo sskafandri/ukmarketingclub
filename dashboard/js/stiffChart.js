@@ -80,7 +80,8 @@
           });
 
           if (count !== 0) {
-            $(this).children('.the-chart').append('<div class="total-child">' + count + ' child(s)</div>');
+            // $(this).children('.the-chart').append('<div class="total-child">' + count + ' child(s)</div>');
+            $(this).children('.the-chart').append('<div class="total-child"View Downline</div>');
           }
         });
       }

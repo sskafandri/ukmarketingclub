@@ -2074,7 +2074,6 @@ desired effect
 											                                <p>
 											                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
 											                                	Level 1<br>
-											                                	<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 											                                </p>
 											                            </div>
 											                        </li>
