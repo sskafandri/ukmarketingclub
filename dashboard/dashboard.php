@@ -2072,7 +2072,6 @@ desired effect
 							                                <img src="<?php echo $account_details['avatar']; ?>" width="100px" height="100px" alt="">
 							                                <p>
 							                                	<strong><?php echo $account_details['first_name']; ?> <?php echo $account_details['last_name']; ?></strong> <br>
-							                                	Level 1<br>
 							                                </p>
 							                            </div>
 							                        </li>	
