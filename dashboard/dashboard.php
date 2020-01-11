@@ -2195,11 +2195,13 @@ desired effect
 				<?php if(is_array($downline[1])) { ?>
 					<?php foreach($downline[1] as $level_1){ ?>
 		            	<?php foreach($customers as $customer){ ?>
-		            		{ key: <?php echo $customer['id']; ?>, boss: 0, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
-		            		<?php $downline[2][] = $customer['id']; ?>
-		            	<?php } ?>
-		            <?php } ?>
-		        <?php } ?>
+		            		<?php if($customer['upline_id'] == $level_1){ ?>
+			            		{ key: <?php echo $customer['id']; ?>, boss: 0, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+			            		<?php $downline[2][] = $customer['id']; ?>
+			            	<?php } ?>
+			            <?php } ?>
+			        <?php } ?>
+			    <?php } ?>
 
 	            	
 				// { key: 1, boss: 0, name: "Ian Orford", title: "Level 1" },
