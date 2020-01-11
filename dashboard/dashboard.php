@@ -2684,9 +2684,9 @@ desired effect
 					<div class="row">
 						<div class="col-lg-12">
 							<?php if($withdrawls['available'] >= $global_settings['payout_min']){ ?>
-								<a href="dashboard.php?c=request_payout" class="btn btn-success btn-flat full-width" >Request a Payout</a>
+								<button type="button" class="btn btn-success btn-flat full-width" data-toggle="modal" data-target="#request_payout">Withdrawal Request</button>
 							<?php }else{ ?>
-								<a href="" class="btn btn-warning btn-flat full-width" disabled>Min Payout is £<?php echo $global_settings['payout_min']; ?></a>
+								<a href="" class="btn btn-warning btn-flat full-width" disabled>Min withdrawal amount is £<?php echo $global_settings['payout_min']; ?></a>
 							<?php } ?>
 						</div>
 					</div>
@@ -2746,6 +2746,37 @@ desired effect
 					</div>
 				</section>
             </div>
+
+            <form action="actions.php?a=withdrawal_request_add" class="form-horizontal form-bordered" method="post">
+				<div class="modal fade" id="request_payout" role="dialog">
+				    <div class="modal-dialog modal-lg">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal">&times;</button>
+				                <h4 class="modal-title">Withdrawal Request</h4>
+				            </div>
+				            <div class="modal-body">
+				            	<div class="row">
+					            	<div class="col-lg-12">
+						            	<div class="form-group">
+											<label class="col-md-2 control-label" for="amount">Amount £</label>
+											<div class="col-md-10">
+												<span id="manual_source_select">
+													<input type="text" class="form-control" id="amount" name="amount" placeholder="50.00">
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+				            </div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				                <button type="submit" class="btn btn-success">Submit Request</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</form>
         <?php } ?>
 
         <?php function marketing_tools(){ ?>
