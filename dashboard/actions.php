@@ -5200,7 +5200,7 @@ function ajax_downline()
 	}
 
 	// downline totals
-	$query 				= $conn->query("SELECT `id`,`added`,`status`,`first_name`,`last_name`,`email`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
+	$query 				= $conn->query("SELECT `id`,`added`,`status`,`type`,`first_name`,`last_name`,`email`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
 	$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	// set defaults
