@@ -2683,7 +2683,11 @@ desired effect
 
 					<div class="row">
 						<div class="col-lg-12">
-							<a href="dashboard.php?c=request_payout" class="btn btn-success btn-flat full-width" >Request a Payout</a>
+							<?php if($withdrawal['available'] >= $global_settings['payout_min']){ ?>
+								<a href="dashboard.php?c=request_payout" class="btn btn-success btn-flat full-width" >Request a Payout</a>
+							<?php }else{ ?>
+								<a href="" class="btn btn-warning btn-flat full-width" >Min Payout is £<?php echo $global_settings['payout_min']; ?></a>
+							<?php } ?>
 						</div>
 					</div>
 
