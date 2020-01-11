@@ -4965,11 +4965,15 @@ function ajax_members()
 			
 			// member status
 			if($customer['status'] == 'active') {
-				$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Enabled</span>';
+				$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Active</span>';
 			}elseif($customer['status'] == 'disabled') {
 				$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Disabled</span>';
 			}elseif($customer['status'] == 'suspended') {
-				$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Suspended</span>';
+				$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">Suspended</span>';
+			}elseif($customer['status'] == 'terminated') {
+				$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Terminated</span>';
+			}elseif($customer['status'] == 'closed') {
+				$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Closed</span>';
 			}else{
 				$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($customer['status']).'</span>';
 			}
