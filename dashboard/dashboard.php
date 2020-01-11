@@ -611,7 +611,7 @@ desired effect
 		                </ul>
 		            </li>
 
-                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline' || get('c') == 'my_commissions' || get('c') == 'marketing_tools'){ ?>
+                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline' || get('c') == 'my_commissions' || get('c') == 'my_withdrawals' || get('c') == 'marketing_tools'){ ?>
                     	<li class="active treeview menu-open">
                     <?php }else{ ?>
                     	<li class="treeview">
@@ -652,7 +652,7 @@ desired effect
 		                    <?php } ?>
 		                    	<a href="dashboard.php?c=my_withdrawals">
 		                        	<i class="fa fa-circle"></i> 
-		                        	<span>Withdrawl Requests</span>
+		                        	<span>Withdrawls</span>
 		                        </a>
 		                    </li>
 
