@@ -1550,7 +1550,7 @@ desired effect
 				$member 				= account_details($member_id);
 
 				// get all members for upline
-				$query 					= $conn->query("SELECT `id`,`first_name`,`last_name`,`email` FROM `users` WHERE `type` = 'affiliate' OR `type` = 'promoter' ");
+				$query 					= $conn->query("SELECT `id`,`first_name`,`last_name`,`email` FROM `users` WHERE `type` = 'affiliate' OR `type` = 'promoter' ORDER BY `first_name`,`last_name` ");
 				$all_members 			= $query->fetchAll(PDO::FETCH_ASSOC);
 
 				// get commissions data
