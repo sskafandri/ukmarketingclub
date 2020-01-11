@@ -2097,6 +2097,7 @@ desired effect
 			          alternateLayerSpacing: 40,
 			          alternateLayerSpacingParentOverlap: 1,
 			          alternatePortSpot: new go.Spot(0.001, 1, 20, 0),
+			          alternateChildPortSpot: go.Spot.Left
 			        })
 			  });
 
