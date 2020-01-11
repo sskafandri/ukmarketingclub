@@ -4129,7 +4129,7 @@ desired effect
 			            	"className":      'hidden-xs',
 			            	"data": "paid_date"
 			            },
-			            { "data": "comments" },
+			            { "data": "comment" },
 			            { "data": "amount" },
 			            { "data": "actions" },
 			        ],
