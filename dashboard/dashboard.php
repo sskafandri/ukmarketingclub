@@ -1549,6 +1549,10 @@ desired effect
             	// get member data
 				$member 				= account_details($member_id);
 
+				// get all members for upline
+				$query 					= $conn->query("SELECT `id`,`first_name`,`last_name`,`email` FROM `users` WHERE `type` = 'affiliate' OR `type` = 'promoter' ");
+				$all_members 			= $query->fetchAll(PDO::FETCH_ASSOC);
+
 				// get commissions data
 				$query 					= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
 				$commissions 			= $query->fetchAll(PDO::FETCH_ASSOC);
@@ -1665,7 +1669,13 @@ desired effect
 															<div class="form-group">
 																<label class="col-md-2 control-label" for="upline_id">Upline / Sponsor</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control" id="upline_id" name="upline_id" value="<?php echo stripslashes($member['email']); ?>">
+																	<select id="upline_id" name="upline_id" class="form-control select2">
+																		<?php foreach($all_members as $all_member){ ?>
+																			<option <?php if($member['upline_id']==$all_member['id']){echo"selected";} ?> value="<?php echo $all_member['id'];?>">
+																				<?php echo $all_member['first_name'].' '.$all_member['last_name'].' ('.$all_member['email'].')'; ?>
+																			</option>
+																		<?php } ?>
+																	</select>
 																</div>
 															</div>
 														</div>
