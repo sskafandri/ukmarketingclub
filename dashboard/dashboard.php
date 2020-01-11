@@ -3488,7 +3488,7 @@ desired effect
 			            },
 			            { "data": "status"},
 			            { "data": "level"},
-			            { "data": "type"},
+			            { "data": "account_type"},
 			            { "data": "full_name" },
 			            { "data": "total_downline" },
 			            { "data": "upline" }
