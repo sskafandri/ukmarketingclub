@@ -2176,18 +2176,7 @@ desired effect
 			      },
 			      new go.Binding("visible").ofObject("INFO")  // only visible when info is expanded
 			    ),
-			    $(go.Panel, "Vertical",
-			      {
-			        name: "INFO",  // identify to the PanelExpanderButton
-			        stretch: go.GraphObject.Horizontal,  // take up whole available width
-			        margin: 8,
-			        defaultAlignment: go.Spot.Left,  // thus no need to specify alignment on each element
-			      },
-			      $(go.TextBlock, textStyle("headOf"),
-			        new go.Binding("text", "headOf", function(head) { return "Head of: " + head; })
-			      ),
-			      
-			    )
+			    
 			  )
 			);
 
