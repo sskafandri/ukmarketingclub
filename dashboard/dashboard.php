@@ -3442,19 +3442,7 @@ desired effect
 			function format ( d ) {
 			    // `d` is the original data object for the row
 			    return '<table cellpadding="1" cellspacing="0" border="0" width="100%">'+
-			        '<tr>'+
-			            '<td width="150px" valign="top">Additional Details</td>'+
-			            '<td valign="top">'+
-			            	'<strong>User ID:</strong> '+d.id+' <br>'+
-			            	'<strong>Join Date:</strong> '+d.join_date+' <br>'+
-			            '</td>'+
-			        '</tr>'+
-			        '<tr>'+
-			            '<td width="150px" valign="top">Contact Details</td>'+
-			            '<td valign="top">'+
-			            	'<strong>Email:</strong> '+d.email+' <br>'+
-			            '</td>'+
-			        '</tr>'+
+			        d.additional_details+
 			    '</table>';
 			}
 
