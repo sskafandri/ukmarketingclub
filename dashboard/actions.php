@@ -5954,7 +5954,7 @@ function ajax_commissions()
 		}elseif($commission['status'] == 'pending' && $commission['qualified'] == 'yes'){
 			$output[$count]['status']					= '<span class="label label-info full-width" style="width: 100%;">Pending</span>';
 		}elseif($commission['status'] == 'pending' && $commission['qualified'] == 'no'){
-			$output[$count]['status']					= '<span class="label label-default full-width" style="width: 100%;">N/A</span>';
+			$output[$count]['status']					= '<span class="label label-danger full-width" style="width: 100%;">Missed</span>';
 		}elseif($commission['status'] == 'paid') {
 			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Paid</span>';
 		}elseif($commission['status'] == 'rejected') {

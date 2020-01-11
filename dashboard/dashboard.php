@@ -846,7 +846,7 @@ desired effect
 								<div class="icon">
 									<i class="fa fa-gbp"></i>
 								</div>
-								<a href="?c=commissions&search=no" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="?c=commissions&search=missed" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 
