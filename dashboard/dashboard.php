@@ -2183,7 +2183,6 @@ desired effect
 			        margin: 8,
 			        defaultAlignment: go.Spot.Left,  // thus no need to specify alignment on each element
 			      },
-			      
 			    )
 			  )
 			);
@@ -2197,11 +2196,11 @@ desired effect
 
 			// set up the nodeDataArray, describing each person/position
 			var nodeDataArray = [
-			{ key: 0, name: "Jamie Whittingham", title: "Level 0" },
-			{ key: 1, boss: 0, name: "Ian Orford", title: "Level 1" },
-			{ key: 2, boss: 1, name: "Amy Morgan", title: "Level 2" },
-			{ key: 3, boss: 1, name: "Vanessa Machin", title: "Level 2" },
-			
+				{ key: 0, name: "Jamie Whittingham", title: "Level 0" },
+				{ key: 1, boss: 0, name: "Ian Orford", title: "Level 1" },
+				{ key: 2, boss: 1, name: "Amy Morgan", title: "Level 2" },
+				{ key: 3, boss: 1, name: "Vanessa Machin", title: "Level 2" },
+				{ key: 3, boss: 3, name: "Clair Machin", title: "Level 3" },
 			];
 
 			// create the Model with data for the tree, and assign to the Diagram
