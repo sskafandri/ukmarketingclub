@@ -6423,6 +6423,7 @@ function ajax_withdrawals()
 
 		$output[$count]['added'] 				= $withdrawal_request['added'];
 		$output[$count]['request_date'] 		= date("Y-m-d", $withdrawal_request['added']);
+		$output[$count]['paid_date'] 			= date("Y-m-d", $withdrawal_request['paid_date']);
 
 		// status
 		if($withdrawal_request['status'] == 'approved') {
@@ -6436,7 +6437,6 @@ function ajax_withdrawals()
 		}else{
 			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($withdrawal_request['status']).'</span>';
 		}
-
 
 		// commission amount
 		$output[$count]['amount'] 						= '£'.number_format($withdrawal_request['amount'], 2);

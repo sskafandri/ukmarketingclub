@@ -4086,6 +4086,7 @@ desired effect
 			            	"className":      'hidden-xs',
 			            	"data": "request_date"
 			            },
+			            { "data": "paid_date" },
 			            { "data": "amount" },
 			            { "data": "actions" },
 			        ],
