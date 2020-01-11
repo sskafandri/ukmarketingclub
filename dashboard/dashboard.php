@@ -1687,8 +1687,8 @@ desired effect
 
 											<footer class="panel-footer">
 												<a href="dashboard.php?c=members" class="btn btn-default">Back</a>
-												<!-- <button type="submit" class="btn btn-success pull-right">Save Changes</button> -->
 												<a href="https://ublo.club/billing/admin/clientssummary.php?userid=<?php echo $member_id; ?>" target="_blank" class="btn btn-primary pull-right">View Full Profile</a>
+												<button type="submit" class="btn btn-success pull-right">Save Changes</button>
 											</footer>
 										</form>
 									</div>

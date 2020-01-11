@@ -526,6 +526,12 @@ switch ($a)
 		commission_reject();
 		break;
 
+	case "member_update":
+		member_update();
+		break;
+
+		member_update
+
 // default		
 	default:
 		home();
@@ -6372,4 +6378,18 @@ function withdrawal_request_status()
     status_message('success',"withdrawal Request has been updated.");
 
 	go($_SERVER['HTTP_REFERER']);
+}
+
+function member_update()
+{
+	global $conn, $global_settings;
+
+	$member_id 			= post('member_id');
+
+	$upline_id 			= post('upline_id');
+
+	$update = $conn->exec("UPDATE `users` SET `upline_id` = '".$upline_id."' WHERE `id` = '".$member_id."' ");
+
+    status_message('success',"Updates have been saved.");
+    go($_SERVER['HTTP_REFERER']);
 }
