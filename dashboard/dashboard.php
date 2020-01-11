@@ -2064,7 +2064,7 @@ desired effect
 							    <div id="downline_chart">
 							        <div class="stiff-chart-inner">
 
-							            <div class="stiff-chart-level" data-level="01">
+							            <div class="stiff-chart-level" data-level="00">
 							                <div class="stiff-main-parent">
 							                    <ul>
 				                    				<li data-parent="1_0">
@@ -2081,8 +2081,8 @@ desired effect
 							            </div>
 
 							            <!-- downline level 1 -->
-							            <div class="stiff-chart-level" data-level="00">
-							                <div class="stiff-main-parent">
+							            <div class="stiff-chart-level" data-level="01">
+							                <div class="stiff-child" data-child-from="1_0">
 							                    <ul>
 							                    	<?php 
 							                    		foreach($customers as $customer){
