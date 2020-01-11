@@ -2762,7 +2762,7 @@ desired effect
 											<label class="col-md-2 control-label" for="amount">Amount £</label>
 											<div class="col-md-10">
 												<span id="manual_source_select">
-													<input type="text" class="form-control" id="amount" name="amount" placeholder="50.00">
+													<input type="text" class="form-control" id="amount" name="amount" min="<?php echo $global_settings['payout_min']; ?>" placeholder="<?php echo $global_settings['payout_min']; ?>">
 												</span>
 											</div>
 										</div>
