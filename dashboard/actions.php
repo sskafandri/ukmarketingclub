@@ -5339,14 +5339,14 @@ function ajax_downline()
 							<tr>
 					            <td width="150px" valign="top">Additional Details</td>
 					            <td valign="top">
-					            	<strong>User ID:</strong>d.id+<br>
-					            	<strong>Join Date:</strong>d.join_date<br>
+					            	<strong>User ID:</strong>'.$output[$count]['id'].'<br>
+					            	<strong>Join Date:</strong>'.$output[$count]['join_date'].'<br>
 					            </td>
 					        </tr>
 					        <tr>
 					            <td width="150px" valign="top">Contact Details</td>
 					            <td valign="top">
-					            	<strong>Email:</strong>d.email<br>
+					            	<strong>Email:</strong>'.$output[$count]['email'].'<br>
 					            </td>
 					        </tr>
 						';
