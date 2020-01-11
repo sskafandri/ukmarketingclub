@@ -1588,6 +1588,10 @@ desired effect
 																				echo '<span class="label label-danger full-width" style="width: 100px%;">Disabled</span>';
 																			}elseif($member['status'] == 'suspended') {
 																				echo '<span class="label label-danger full-width" style="width: 100px%;">Suspended</span>';
+																			}elseif($member['status'] == 'terminated') {
+																				echo '<span class="label label-danger full-width" style="width: 100px%;">Terminated</span>';
+																			}elseif($member['status'] == 'cancelled') {
+																				echo '<span class="label label-danger full-width" style="width: 100px%;">Cancelled</span>';
 																			}else{
 																				echo '<span class="label label-warning full-width" style="width: 100px%;">'.ucfirst($member['status']).'</span>';
 																			}
