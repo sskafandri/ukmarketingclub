@@ -2187,11 +2187,23 @@ desired effect
 
 			// set up the nodeDataArray, describing each person/position
 			var nodeDataArray = [
-				{ key: 0, name: "Jamie Whittingham", title: "Level 0" },
-				{ key: 1, boss: 0, name: "Ian Orford", title: "Level 1" },
-				{ key: 2, boss: 1, name: "Amy Morgan", title: "Level 2" },
-				{ key: 3, boss: 1, name: "Vanessa Machin", title: "Level 2" },
-				{ key: 3, boss: 3, name: "Clair Machin", title: "Level 3" },
+				// level 0
+				{ key: 0, name: "Jamie Whittingham", title: "You" },
+				<?php $downline[1][] = $_SESSION['account']['id']; ?>
+
+				// level 1
+				<?php if(is_array($downline[1])) {foreach($downline[1] as $level_1){ ?>
+	            	<?php foreach($customers as $customer){ ?>
+	            		{ key: <?php echo $customer['id']; ?>, boss: 0, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+	            		<?php $downline[2][] = $customer['id']; ?>
+	            	<?php } ?>
+	            <?php } ?>
+
+	            	
+				// { key: 1, boss: 0, name: "Ian Orford", title: "Level 1" },
+				// { key: 2, boss: 1, name: "Amy Morgan", title: "Level 2" },
+				// { key: 3, boss: 1, name: "Vanessa Machin", title: "Level 2" },
+				// { key: 3, boss: 3, name: "Clair Machin", title: "Level 3" },
 			];
 
 			// create the Model with data for the tree, and assign to the Diagram
