@@ -482,13 +482,13 @@ switch ($a)
 		ajax_products();
 		break;
 
-	// get withdrawl requests
-	case "ajax_withdrawl_requests":
-		ajax_withdrawl_requests();
+	// get withdrawal requests
+	case "ajax_withdrawal_requests":
+		ajax_withdrawal_requests();
 		break;
 
-	case "withdrawl_request_status":
-		withdrawl_request_status();
+	case "withdrawal_request_status":
+		withdrawal_request_status();
 		break;
 
 	// get member commissions
@@ -6265,7 +6265,7 @@ function ajax_all_commissions()
 	json_output($data);
 }
 
-function ajax_withdrawl_requests()
+function ajax_withdrawal_requests()
 {
 	global $conn, $global_settings;
 
@@ -6274,56 +6274,56 @@ function ajax_withdrawl_requests()
 	header("Content-Type:application/json; charset=utf-8");
 
 	// get all commissions
-	$query 						= $conn->query("SELECT * FROM `withdrawl_requests` ");
-	$withdrawl_requests 		= $query->fetchAll(PDO::FETCH_ASSOC);
+	$query 						= $conn->query("SELECT * FROM `withdrawal_requests` ");
+	$withdrawal_requests 		= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	// get all customers
 	$query 						= $conn->query("SELECT `id`,`added`,`status`,`first_name`,`last_name`,`email`,`tel`,`expire_date`,`internal_notes`,`upline_id`,`total_downline` FROM `users` ");
 	$customers 					= $query->fetchAll(PDO::FETCH_ASSOC);
 	
 	// work with commissions
-	foreach($withdrawl_requests as $withdrawl_request){
-		$output[$count]							= $withdrawl_request;
+	foreach($withdrawal_requests as $withdrawal_request){
+		$output[$count]							= $withdrawal_request;
 
-		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$withdrawl_request['id'].'" name="withdrawl_requests_ids[]" value="'.$withdrawl_request['id'].'" onclick="multi_options();"></center>';
+		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$withdrawal_request['id'].'" name="withdrawal_requests_ids[]" value="'.$withdrawal_request['id'].'" onclick="multi_options();"></center>';
 
-		$output[$count]['added'] 				= $withdrawl_request['added'];
-		$output[$count]['request_date'] 		= date("Y-m-d", $withdrawl_request['added']);
+		$output[$count]['added'] 				= $withdrawal_request['added'];
+		$output[$count]['request_date'] 		= date("Y-m-d", $withdrawal_request['added']);
 
 		// status
-		if($withdrawl_request['status'] == 'approved') {
+		if($withdrawal_request['status'] == 'approved') {
 			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">Approved</span>';
-		}elseif($withdrawl_request['status'] == 'pending'){
+		}elseif($withdrawal_request['status'] == 'pending'){
 			$output[$count]['status']					= '<span class="label label-warning full-width" style="width: 100%;">Pending</span>';
-		}elseif($withdrawl_request['status'] == 'paid') {
+		}elseif($withdrawal_request['status'] == 'paid') {
 			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Paid</span>';
-		}elseif($withdrawl_request['status'] == 'rejected') {
+		}elseif($withdrawal_request['status'] == 'rejected') {
 			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Rejected</span>';
 		}else{
-			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($withdrawl_request['status']).'</span>';
+			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($withdrawal_request['status']).'</span>';
 		}
 
 		// get customer data
-		if($withdrawl_request['user_id'] == 0){
+		if($withdrawal_request['user_id'] == 0){
 			$output[$count]['member']					= 'Company Account';
 		}else{
 			foreach($customers as $customer){
-				if($withdrawl_request['user_id'] == $customer['id']){
+				if($withdrawal_request['user_id'] == $customer['id']){
 					$output[$count]['member']			= '<a href="dashboard.php?c=member&id='.$customer['id'].'">'.$customer['first_name'].' '.$customer['last_name'].'</a>';
 					break;
 				}
 			}
 		}
 		if(!isset($output[$count]['member'])){
-			$output[$count]['member']					= 'Unknown ID: '.$withdrawl_request['user_id'];
+			$output[$count]['member']					= 'Unknown ID: '.$withdrawal_request['user_id'];
 		}
 
 		// commission amount
-		$output[$count]['amount'] 						= '£'.number_format($withdrawl_request['amount'], 2);
+		$output[$count]['amount'] 						= '£'.number_format($withdrawal_request['amount'], 2);
 
 		// order_id
-		$output[$count]['request_id'] 					= $withdrawl_request['id'];
-		$output[$count]['request_id_hidden']			= '<span class="hidden">'.stripslashes($withdrawl_request['id']).'</span>';
+		$output[$count]['request_id'] 					= $withdrawal_request['id'];
+		$output[$count]['request_id_hidden']			= '<span class="hidden">'.stripslashes($withdrawal_request['id']).'</span>';
 
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
@@ -6331,14 +6331,14 @@ function ajax_withdrawl_requests()
 				<span class="pull-right">
 		';
 
-		if($withdrawl_request['status'] == 'rejected'){
+		if($withdrawal_request['status'] == 'rejected'){
 			$output[$count]['actions'] 					.= '
-					<a title="Reset Withdrawl Request" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawl_request_status&id='.$withdrawl_request['id'].'&status=pending"><i class="fa fa-times"></i></a>
+					<a title="Reset withdrawal Request" class="btn btn-warning btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawal_request_status&id='.$withdrawal_request['id'].'&status=pending"><i class="fa fa-times"></i></a>
 				</span>
 			</div>';
-		}elseif($withdrawl_request['status'] == 'pending'){
+		}elseif($withdrawal_request['status'] == 'pending'){
 			$output[$count]['actions'] 					.= '
-					<a title="Reject Withdrawl Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawl_request_status&id='.$withdrawl_request['id'].'&status=rejected"><i class="fa fa-times"></i></a>
+					<a title="Reject withdrawal Request" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=withdrawal_request_status&id='.$withdrawal_request['id'].'&status=rejected"><i class="fa fa-times"></i></a>
 				</span>
 			</div>';
 		}else{
@@ -6360,16 +6360,16 @@ function ajax_withdrawl_requests()
 	json_output($data);
 }
 
-function withdrawl_request_status()
+function withdrawal_request_status()
 {
 	global $conn, $global_settings;
 
 	$id 		= get('id');
 	$status 	= get('status');
 
-	$update = $conn->exec("UPDATE `withdrawl_requests` SET `status` = '".$status."' WHERE `id` = '".$id."' ");
+	$update = $conn->exec("UPDATE `withdrawal_requests` SET `status` = '".$status."' WHERE `id` = '".$id."' ");
 	
-    status_message('success',"Withdrawl Request has been updated.");
+    status_message('success',"withdrawal Request has been updated.");
 
 	go($_SERVER['HTTP_REFERER']);
 }

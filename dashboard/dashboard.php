@@ -499,7 +499,7 @@ desired effect
 
 	                <?php if($account_details['type'] == 'admin' || $account_details['type'] == 'dev') { ?>
                 		<li class="header">STAFF PANEL</li>
-	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product' || get('c') == 'all_commissions' || get('c') == 'all_withdrawl_requests'){ ?>
+	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product' || get('c') == 'all_commissions' || get('c') == 'all_withdrawal_requests'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
@@ -545,14 +545,14 @@ desired effect
 			                        </a>
 			                    </li>
 
-			                    <?php if(get('c') == 'all_withdrawl_requests'){ ?>
+			                    <?php if(get('c') == 'all_withdrawal_requests'){ ?>
 			                    	<li class="active">
 			                    <?php }else{ ?>
 			                    	<li>
 			                    <?php } ?>
-			                    	<a href="dashboard.php?c=all_withdrawl_requests">
+			                    	<a href="dashboard.php?c=all_withdrawal_requests">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>View Withdrawl Requests</span>
+			                        	<span>View withdrawal Requests</span>
 			                        </a>
 			                    </li>
 							</ul>
@@ -725,9 +725,9 @@ desired effect
 					}
 					break;
 
-				case "all_withdrawl_requests":
+				case "all_withdrawal_requests":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
-						all_withdrawl_requests();
+						all_withdrawal_requests();
 					}else{
 						home();
 					}
@@ -1660,6 +1660,14 @@ desired effect
 																	<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($member['email']); ?>" disabled>
 																</div>
 															</div>
+
+															<!-- upline -->
+															<div class="form-group">
+																<label class="col-md-2 control-label" for="upline_id">Upline / Sponsor</label>
+																<div class="col-md-10">
+																	<input type="text" class="form-control" id="upline_id" name="upline_id" value="<?php echo stripslashes($member['email']); ?>">
+																</div>
+															</div>
 														</div>
 													</section>
 												</div>
@@ -1987,7 +1995,7 @@ desired effect
             </div>
         <?php } ?>
 
-        <?php function all_withdrawl_requests(){ ?>
+        <?php function all_withdrawal_requests(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;            
 			?>
@@ -1997,10 +2005,10 @@ desired effect
                 <div id="status_message"></div>
                             	
                 <section class="content-header">
-                    <h1>Staff Panel - View All Withdrawl Requests <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - View All withdrawal Requests <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">View All Withdrawl Requests</li>
+                        <li class="active">View All withdrawal Requests</li>
                     </ol>
                 </section>
 
@@ -2011,7 +2019,7 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					View All Withdrawl Requests
+		              					View All withdrawal Requests
 		              				</h3>
 		              				<div class="pull-right">
 		              					<button id="search_rejected" type="button" class="btn btn-danger btn-xs btn-flat" >Rejected</button>
@@ -2023,7 +2031,7 @@ desired effect
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-12">
-											<table id="withdrawl_requests" class="display" style="width:100%">
+											<table id="withdrawal_requests" class="display" style="width:100%">
 										        <thead>
 										            <tr>
 										            	<th class="no-sort" width="1px"></th>
@@ -2496,7 +2504,7 @@ desired effect
 
 					<div class="row">
 						<div class="col-lg-6">
-							<button type="button" class="btn btn-info btn-flat full-width" >View Withdrawl Requests</button>
+							<button type="button" class="btn btn-info btn-flat full-width" >View withdrawal Requests</button>
 						</div>
 						<div class="col-lg-6">
 							<button type="button" class="btn btn-success btn-flat full-width" >Request Payout</button>
@@ -3733,7 +3741,7 @@ desired effect
     	</script>
     <?php } ?>
 
-    <?php if(get('c') == 'all_withdrawl_requests') { ?>
+    <?php if(get('c') == 'all_withdrawal_requests') { ?>
     	<script>
 			/* Formatting function for row details - modify as you need */
 			function format ( d ) {
@@ -3742,7 +3750,7 @@ desired effect
 			        '<tr>'+
 			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
 			            '<td valign="top" align="left">'+
-			            	'<strong>Withdrawl ID:</strong> '+d.id+' <br>'+
+			            	'<strong>withdrawal ID:</strong> '+d.id+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';
@@ -3762,8 +3770,8 @@ desired effect
 			});
 			 
 			$(document).ready(function() {
-			    var table = $('#withdrawl_requests').DataTable( {
-			        "ajax": "actions.php?a=ajax_withdrawl_requests",
+			    var table = $('#withdrawal_requests').DataTable( {
+			        "ajax": "actions.php?a=ajax_withdrawal_requests",
 			        "iDisplayLength": 100,
 			        "lengthMenu": [[10, 15, 25, 35, 50, 100, -1], [10, 15, 25, 35, 50, 100, "All"]],
 			        "columnDefs": [{
@@ -3771,7 +3779,7 @@ desired effect
 						"orderable": false,
 					}],
 					"language": {
-						"emptyTable": "No withdrawl requests found."
+						"emptyTable": "No withdrawal requests found."
 					},
 			        "columns": [
 			        	{ "data": "id" },
