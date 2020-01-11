@@ -2572,9 +2572,9 @@ desired effect
 										            	<th class="no-sort" width="1px"></th>
 										                <th class="no-sort" width="1px">Status</th>
 										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-										                <th class="no-sort hidden-xs">Order Date</th>
+										                <th class="no-sort hidden-xs" width="100px">Order Date</th>
 										                <th class="no-sort hidden-xs">Release Date</th>
-										                <th class="">Amount</th>
+										                <th class="" width="100px">Amount</th>
 										            </tr>
 										        </thead>
 										        <tfoot>
@@ -2582,9 +2582,9 @@ desired effect
 										            	<th class="no-sort" width="1px"></th>
 										                <th class="no-sort" width="1px">Status</th>
 										                <th class="no-sort hidden-xs" width="1px">Qualified</th>
-										                <th class="no-sort hidden-xs">Order Date</th>
+										                <th class="no-sort hidden-xs" width="100px">Order Date</th>
 										                <th class="no-sort hidden-xs">Release Date</th>
-										                <th class="">Amount</th>
+										                <th class="" width="100px">Amount</th>
 										            </tr>
 										        </tfoot>
 										    </table>
