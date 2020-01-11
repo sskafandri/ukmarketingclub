@@ -10,6 +10,8 @@ function get_withdrawls($member_id = '')
 
     $member                     = $account_details;
 
+    $commissions                = get_commissions();
+
     // set commissions default
     $data['total']              = '0';
     $data['pending']            = '0';
@@ -37,7 +39,7 @@ function get_withdrawls($member_id = '')
     $data['total']                       = number_format($data['total'], 2);
     $data['pending']                     = number_format($data['pending'], 2);
     $data['paid']                        = number_format($data['paid'], 2);
-    $data['available']                   = number_format($data['available'], 2);
+    $data['available']                   = number_format($commissions['approved'], 2);
 
     return $data;
 }

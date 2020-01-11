@@ -2602,7 +2602,7 @@ desired effect
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
             
-            	$withdrawls = get_withdrawls();
+            	$withdrawls 	= get_withdrawls();
 			?>
 
             <div class="content-wrapper">
