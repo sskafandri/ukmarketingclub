@@ -6467,6 +6467,8 @@ function ajax_withdrawals()
 			</div>';
 		}
 
+		$output[$count]['blank'] 						= '';
+
 		// $count loop
 		$count++;
 	}
