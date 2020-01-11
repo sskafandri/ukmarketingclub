@@ -538,6 +538,10 @@ switch ($a)
 		withdrawal_request_add();
 		break;
 
+	case "withdrawal_request_delete":
+		withdrawal_request_delete();
+		break;
+
 // default		
 	default:
 		home();
@@ -6524,7 +6528,7 @@ function withdrawal_request_add()
 	go($_SERVER['HTTP_REFERER']);
 }
 
-function withdrawal_request_add()
+function withdrawal_request_delete()
 {
 	global $conn, $global_settings;
 		
@@ -6532,7 +6536,6 @@ function withdrawal_request_add()
 	$id 				= get('id');
 
 	$delete = $conn->query("DELETE FROM `withdrawal_requests` WHERE `id` = '".$id."' AND `user_id` = '".$member_id."' ");
-
 
     status_message('success',"Your withdrawal request has been deleted and the funds transferred back to your available balance.");
 	go($_SERVER['HTTP_REFERER']);
