@@ -2101,7 +2101,6 @@ desired effect
 												                                <p>
 												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
 											                                		Level 2<br>
-											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -2130,7 +2129,6 @@ desired effect
 												                                <p>
 												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
 											                                		Level 3<br>
-											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -2159,7 +2157,6 @@ desired effect
 												                                <p>
 												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
 											                                		Level 4<br>
-											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -2188,7 +2185,6 @@ desired effect
 												                                <p>
 												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
 											                                		Level 5<br>
-											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -2217,7 +2213,6 @@ desired effect
 												                                <p>
 												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
 											                                		Level 6<br>
-											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
@@ -2246,7 +2241,6 @@ desired effect
 												                                <p>
 												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
 											                                		Level 7<br>
-											                                		<a href="dashboard.php?c=member&member_id='.$customer['id'].'" style="color:red">View Profile</a>
 												                                </p>
 												                            </div>
 												                        </li>
