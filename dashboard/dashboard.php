@@ -849,19 +849,6 @@ desired effect
 										</div>
 
 										<div class="col-lg-2 col-xs-6">
-											<div class="small-box bg-green">
-												<div class="inner">
-													<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
-													<p>Paid</p>
-												</div>
-												<div class="icon">
-													<i class="fa fa-gbp"></i>
-												</div>
-												<a href="?c=my_commissions&search=paid" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
-											</div>
-										</div>
-
-										<div class="col-lg-2 col-xs-6">
 											<div class="small-box bg-red">
 												<div class="inner">
 													<h3>£<?php echo $commissions['commissions']['missed']; ?></h3>
@@ -884,6 +871,19 @@ desired effect
 													<i class="fa fa-gbp"></i>
 												</div>
 												<a href="?c=my_commissions&search=rejected" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+											</div>
+										</div>
+
+										<div class="col-lg-2 col-xs-6">
+											<div class="small-box bg-green">
+												<div class="inner">
+													<h3>£<?php echo $commissions['commissions']['paid']; ?></h3>
+													<p>Paid</p>
+												</div>
+												<div class="icon">
+													<i class="fa fa-gbp"></i>
+												</div>
+												<a href="?c=my_commissions&search=paid" class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
 											</div>
 										</div>
 				          			</div>
