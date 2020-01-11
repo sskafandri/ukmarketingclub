@@ -1646,10 +1646,10 @@ desired effect
 															<div class="form-group">
 																<label class="col-md-2 control-label" for="first_name">Name</label>
 																<div class="col-md-5">
-																	<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($member['first_name']); ?>" read-only>
+																	<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($member['first_name']); ?>" disabled>
 																</div>
 																<div class="col-md-5">
-																	<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($member['last_name']); ?>">
+																	<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($member['last_name']); ?>" disabled>
 																</div>
 															</div>
 
@@ -1657,7 +1657,7 @@ desired effect
 															<div class="form-group">
 																<label class="col-md-2 control-label" for="email">Email</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($member['email']); ?>">
+																	<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($member['email']); ?>" disabled>
 																</div>
 															</div>
 														</div>
