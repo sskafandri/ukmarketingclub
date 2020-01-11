@@ -2164,9 +2164,7 @@ desired effect
 			          },
 			          new go.Binding("text", "title")
 			        ),
-			        $("PanelExpanderButton", "INFO",
-			          { row: 0, column: 1, rowSpan: 2, margin: ml8 }
-			        )
+			        
 			      ),
 			    ),
 			    $(go.Shape, "LineH",
