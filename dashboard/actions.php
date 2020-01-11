@@ -6538,6 +6538,7 @@ function withdrawal_request_cancel()
 	$id 				= get('id');
 
 	$delete = $conn->query("UPDATE `withdrawal_requests` SET `status` = 'cancelled' WHERE `id` = '".$id."' AND `user_id` = '".$member_id."' ");
+	$delete = $conn->query("UPDATE `withdrawal_requests` SET `comment` = 'Request cancelled on ".date("Y-m-d", time())." by member.' WHERE `id` = '".$id."' AND `user_id` = '".$member_id."' ");
 
     status_message('success',"Your withdrawal request has been cancelled and the funds transferred back to your available balance.");
 	go($_SERVER['HTTP_REFERER']);
