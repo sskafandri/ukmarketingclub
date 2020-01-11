@@ -2624,8 +2624,6 @@ desired effect
 						<div class="col-lg-12">
 							<?php if(empty($account_details['bank_sort_code']) || empty($account_details['bank_account_number'])){ ?>
 								<a href="dashboard.php?c=my_account" class="btn btn-warning btn-flat full-width">Bank details required to process your request</a>
-							<?php }elseif(isset($pending_withdrawal['id'])){ ?>
-								<a href="" class="btn btn-warning btn-flat full-width" disabled>You already have a pending withdrawal request</a>
 							<?php }elseif($withdrawls['available'] >= $global_settings['payout_min']){ ?>
 								<button type="button" class="btn btn-success btn-flat full-width" data-toggle="modal" data-target="#request_payout">Withdrawal Request</button>
 							<?php }else{ ?>
@@ -2703,13 +2701,18 @@ desired effect
 				            <div class="modal-body">
 				            	<div class="row">
 					            	<div class="col-lg-12">
-										<div class="form-group">
-											<label class="col-md-2 control-label" for="amount">Amount £</label>
-											<div class="col-md-10">
-												<input type="text" class="form-control" id="amount" name="amount" min="<?php echo $global_settings['payout_min']; ?>" placeholder="<?php echo $global_settings['payout_min']; ?>">
-												<small>Minimum withdrawal amount is £<?php echo $global_settings['payout_min']; ?></small>
+										<?php if(isset($pending_withdrawal['id'])){ ?>
+											<p>
+												You already have a withdrawal request pending. If you wish to request different payout amount, cancel your existing withdrawal request and submit a new withdrawal request.
+										<?php }else{ ?>
+											<div class="form-group">
+												<label class="col-md-2 control-label" for="amount">Amount £</label>
+												<div class="col-md-10">
+													<input type="text" class="form-control" id="amount" name="amount" min="<?php echo $global_settings['payout_min']; ?>" placeholder="<?php echo $global_settings['payout_min']; ?>">
+													<small>Minimum withdrawal amount is £<?php echo $global_settings['payout_min']; ?></small>
+												</div>
 											</div>
-										</div>
+										<?php } ?>
 									</div>
 								</div>
 				            </div>
