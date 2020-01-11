@@ -2519,10 +2519,10 @@ desired effect
 
 					<div class="row">
 						<div class="col-lg-6">
-							<a href="dashboard.php?c=my_withdrawals" class="btn btn-info btn-flat full-width" >View Withdrawal Requests</button>
+							<a href="dashboard.php?c=my_withdrawals" class="btn btn-info btn-flat full-width" >View Withdrawal Requests</a>
 						</div>
 						<div class="col-lg-6">
-							<button type="button" class="btn btn-success btn-flat full-width" >Request Payout</button>
+							<a href="dashboard.php?c=request_payout" class="btn btn-success btn-flat full-width" >Request a Payout</a>
 						</div>
 					</div>
 
