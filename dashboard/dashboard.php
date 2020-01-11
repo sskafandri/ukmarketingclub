@@ -1667,7 +1667,7 @@ desired effect
 
 															<!-- upline -->
 															<div class="form-group">
-																<label class="col-md-2 control-label" for="upline_id">Upline / Sponsor</label>
+																<label class="col-md-2 control-label" for="upline_id">Upline</label>
 																<div class="col-md-10">
 																	<select id="upline_id" name="upline_id" class="form-control select2">
 																		<?php foreach($all_members as $all_member){ ?>
