@@ -2203,6 +2203,18 @@ desired effect
 			        <?php } ?>
 			    <?php } ?>
 
+			    // level 2
+				<?php if(is_array($downline[2])) { ?>
+					<?php foreach($downline[2] as $level_2){ ?>
+		            	<?php foreach($customers as $customer){ ?>
+		            		<?php if($customer['upline_id'] == $level_2){ ?>
+			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+			            		<?php $downline[2][] = $customer['id']; ?>
+			            	<?php } ?>
+			            <?php } ?>
+			        <?php } ?>
+			    <?php } ?>
+
 	            	
 				// { key: 1, boss: 0, name: "Ian Orford", title: "Level 1" },
 				// { key: 2, boss: 1, name: "Amy Morgan", title: "Level 2" },
