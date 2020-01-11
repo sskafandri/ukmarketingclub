@@ -2758,12 +2758,11 @@ desired effect
 				            <div class="modal-body">
 				            	<div class="row">
 					            	<div class="col-lg-12">
-						            	<div class="form-group">
+										<div class="form-group">
 											<label class="col-md-2 control-label" for="amount">Amount £</label>
 											<div class="col-md-10">
-												<span id="manual_source_select">
-													<input type="text" class="form-control" id="amount" name="amount" min="<?php echo $global_settings['payout_min']; ?>" placeholder="<?php echo $global_settings['payout_min']; ?>">
-												</span>
+												<input type="text" class="form-control" id="amount" name="amount" min="<?php echo $global_settings['payout_min']; ?>" placeholder="<?php echo $global_settings['payout_min']; ?>">
+												<small>Minimum Withdrawal / Payout Amount is set to £<?php echo $global_settings['payout_min']; ?></small>
 											</div>
 										</div>
 									</div>
