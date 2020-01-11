@@ -6447,6 +6447,8 @@ function ajax_withdrawals()
 			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Paid</span>';
 		}elseif($withdrawal_request['status'] == 'rejected') {
 			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Rejected</span>';
+		}elseif($withdrawal_request['status'] == 'cancelled') {
+			$output[$count]['status'] 					= '<span class="label label-danger full-width" style="width: 100%;">Cancelled</span>';
 		}else{
 			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($withdrawal_request['status']).'</span>';
 		}
