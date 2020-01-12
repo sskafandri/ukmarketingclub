@@ -2054,29 +2054,12 @@ desired effect
   			
 			<script>
 		        window.onload = function () {
-		        	for (var i = 0; i < nodes.length; i++) {
-				        nodes[i].field_number_children = childCount(nodes[i].id);
-				    }
-
-				    function childCount(id) {
-				        let count = 0;
-				        for (var i = 0; i < nodes.length; i++) {
-				            if (nodes[i].pid == id) {
-				                count++;
-				                count += childCount(nodes[i].id);
-				            }
-				        }
-
-				        return count;
-				    }
-
-				    OrgChart.templates.rony.field_number_children = '<circle cx="60" cy="110" r="15" fill="#F57C00"></circle><text fill="#ffffff" x="60" y="115" text-anchor="middle">{val}</text>';
 
 		        	OrgChart.toolbarUI.expandAllIcon = '<img width="32" src=https://cdn.balkan.app/shared/expand.png />';
 				    OrgChart.toolbarUI.fitIcon = '<img width="32" src=https://cdn.balkan.app/shared/plan.png />';
 				    OrgChart.toolbarUI.zoomInIcon = '<img width="32" src=https://cdn.balkan.app/shared/zoom-out.png />';
 				    OrgChart.toolbarUI.zoomOutIcon = '<img width="32" src=https://cdn.balkan.app/shared/zoom-in.png />';    
-				    OrgChart.toolbarUI.layoutIcon = '<img width="32" src=https://cdn.balkan.app/shared/layout.png />';  
+				    // OrgChart.toolbarUI.layoutIcon = '<img width="32" src=https://cdn.balkan.app/shared/layout.png />';  
 
 		            var chart = new OrgChart(document.getElementById("tree"), {
 		                collapse: {
@@ -2124,8 +2107,8 @@ desired effect
 		                nodeBinding: {
 		                    img_0: "img",
 		                    field_0: "Name",
-		                    field_1: "Level",
-		                    field_number_children: "field_number_children",
+		                    field_1: "Level"
+		                    
 		                },
 		                zoom: true,
 		                nodes: [
