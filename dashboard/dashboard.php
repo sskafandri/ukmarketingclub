@@ -2219,8 +2219,8 @@ desired effect
 				            <?php $downline_next++; ?>
 						<?php } ?>
 
+						// example
 				        // { id: 2, pid: 1, name: "Lexie Cole", title: "QA Lead", email: "ava@domain.com", img: "https://cdn.balkan.app/shared/2.jpg" },
-				        
 				    ];
 
 				    for (var i = 0; i < nodes.length; i++) {
