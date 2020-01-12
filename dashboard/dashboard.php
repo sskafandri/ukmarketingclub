@@ -1795,7 +1795,7 @@ desired effect
 				    ];
 
 				    for (var i = 0; i < nodes.length; i++) {
-				        nodes[i].field_number_children = childCount(nodes[i].id);
+				        nodes[i].field_number_children_1 = childCount(nodes[i].id);
 				    }
 
 				    function childCount(id) {
@@ -1810,7 +1810,7 @@ desired effect
 				        return count;
 				    }
 
-				    OrgChart.templates.rony.field_number_children = '<circle cx="60" cy="110" r="15" fill="#F57C00"></circle><text fill="#ffffff" x="60" y="115" text-anchor="middle">{val}</text>';
+				    OrgChart.templates.rony.field_number_children_1 = '<circle cx="60" cy="110" r="15" fill="#F57C00"></circle><text fill="#ffffff" x="60" y="115" text-anchor="middle">{val}</text>';
 
 				    var chart = new OrgChart(document.getElementById("tree"), {
 				        template: "rony",
@@ -1821,7 +1821,7 @@ desired effect
 				            field_0: "Name",
 				            field_1: "Level",
 				            img_0: "img",
-				            field_number_children: "Total Download Members"
+				            field_number_children: "field_number_children_1"
 				        },
 				        nodes: nodes
 				    });
