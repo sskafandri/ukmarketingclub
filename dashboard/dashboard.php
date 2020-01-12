@@ -499,7 +499,7 @@ desired effect
 
 	                <?php if($account_details['type'] == 'admin' || $account_details['type'] == 'dev') { ?>
                 		<li class="header">STAFF PANEL</li>
-	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product' || get('c') == 'all_commissions' || get('c') == 'all_withdrawal_requests'){ ?>
+	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product' || get('c') == 'all_commissions' || get('c') == 'all_withdrawal_requests' || get('c') == 'all_visual_downline'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
@@ -520,6 +520,17 @@ desired effect
 			                    	<a href="dashboard.php?c=members">
 			                        	<i class="fa fa-circle"></i> 
 			                        	<span>View All Members</span>
+			                        </a>
+			                    </li>
+
+			                    <?php if(get('c') == 'all_visual_downline'){ ?>
+			                    	<li class="active">
+			                    <?php }else{ ?>
+			                    	<li>
+			                    <?php } ?>
+			                    	<a href="dashboard.php?c=all_visual_downline">
+			                        	<i class="fa fa-circle"></i> 
+			                        	<span>Visual Genealogy</span>
 			                        </a>
 			                    </li>
 
@@ -707,6 +718,14 @@ desired effect
 				case "members":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						members();
+					}else{
+						home();
+					}
+					break;
+
+				case "members":
+					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
+						all_visual_downline();
 					}else{
 						home();
 					}
@@ -1724,6 +1743,129 @@ desired effect
             </div>
         <?php } ?>
 
+        <?php function all_visual_downline(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+
+        		// get customers
+				$query 				= $conn->query("SELECT `id`,`status`,`avatar`,`first_name`,`last_name`,`email`,`upline_id` FROM `users` ");
+				$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
+
+				$downline_current	= 1;
+				$downline_next		= 2;
+				$max_downline 		= 500;
+			?>
+
+			<script src="https://balkangraph.com/js/latest/OrgChart.js"></script>
+
+			<style>
+				#tree {
+				    width: 100%;
+				    height: 100%;
+				}
+			</style>
+  			
+			<script>
+				window.onload = function () {
+				    var nodes = [
+				        // level 0
+	                    { id: 0, name: "Master Account", title: "Level 0", email: "admin", img: "img/avatar.png" },
+		                <?php $downline[1][]=$_SESSION['account']['id']; ?>
+
+		                // level 1
+	                    <?php for($x = 0; $x <= $max_downline; $x++) { ?>
+						    <?php if(is_array($downline[$downline_current])) { ?>
+		                    	<?php foreach($downline[$downline_current] as $level) { ?>
+		                    		<?php foreach($customers as $customer) { ?>
+		                    			<?php if($customer['upline_id']==$level) {?>
+				                        	// { id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level <?php echo $level; ?>", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
+
+				                        	{ id: <?php echo $customer['id']; ?>, pid: <?php echo $customer['upline_id']; ?>, name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level <?php echo $downline_current; ?>", email: "<?php if($downline_current == 1){ echo $customer['email']; }else{ echo 'hidden'; } ?>", img: "<?php echo $customer['avatar']; ?>" },
+				                    		<?php $downline[$downline_next][] = $customer['id']; ?>
+				                    	<?php } ?>
+				                    <?php } ?>
+				                <?php } ?>
+				            <?php } ?>
+				            <?php $downline_current++; ?>
+				            <?php $downline_next++; ?>
+						<?php } ?>
+
+				        // { id: 2, pid: 1, name: "Lexie Cole", title: "QA Lead", email: "ava@domain.com", img: "https://cdn.balkan.app/shared/2.jpg" },
+				        
+				    ];
+
+				    for (var i = 0; i < nodes.length; i++) {
+				        nodes[i].field_number_children = childCount(nodes[i].id);
+				    }
+
+				    function childCount(id) {
+				        let count = 0;
+				        for (var i = 0; i < nodes.length; i++) {
+				            if (nodes[i].pid == id) {
+				                count++;
+				                count += childCount(nodes[i].id);
+				            }
+				        }
+
+				        return count;
+				    }
+
+				    OrgChart.templates.rony.field_number_children = '<circle cx="60" cy="110" r="15" fill="#F57C00"></circle><text fill="#ffffff" x="60" y="115" text-anchor="middle">{val}</text>';
+
+				    var chart = new OrgChart(document.getElementById("tree"), {
+				        template: "rony",
+				        collapse: {
+				            level: 3
+				        },
+				        nodeBinding: {
+				            field_0: "name",
+				            field_1: "title",
+				            img_0: "img",
+				            field_number_children: "field_number_children"
+				        },
+				        nodes: nodes
+				    });
+				};
+			</script>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>   
+                            	
+                <section class="content-header">
+                    <h1>Visual Genealogy <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">Visual Genealogy</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-12 col-xs-12">
+							<div class="box box-primary no-padding">
+								<div class="box-header with-border">
+									<h3 class="box-title">
+										Visual Genealogy
+									</h3> 
+								</div>
+								<div class="box-body">
+									<p>You can drag your download genealogy tree around and navigate freely. You can zoom in and out using your mouse wheel or touchpad.
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div id="tree"></div>
+						</div>
+					</div>
+				</section>
+            </div>
+        <?php } ?>
+
         <?php function products(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
@@ -2151,610 +2293,6 @@ desired effect
 					</div>
 				</section>
             </div>
-        <?php } ?>
-
-        <?php function visual_downline_free(){ ?>
-        	<?php 
-        		global $conn, $globals, $global_settings, $account_details, $site;
-
-        		// get customers
-				$query 				= $conn->query("SELECT `id`,`status`,`avatar`,`first_name`,`last_name`,`upline_id` FROM `users` ");
-				$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
-			?>
-
-			<style type="text/css">
-				#myOverviewDiv {
-					position: absolute;
-					width: 200px;
-					height: 100px;
-					top: 10px;
-					left: 10px;
-					background-color: #f2f2f2;
-					z-index: 300; /* make sure its in front */
-					border: solid 1px #7986cb;
-				}
-			</style>
-
-			<script src="gojs/release/go.js"></script>
-  			<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
-
-  			<script id="code">
-				function init() {
-				    if (window.goSamples) goSamples(); // init for these samples -- you don't need to call this
-				    var $=go.GraphObject.make; // for conciseness in defining templates
-				    // some constants that will be reused within templates
-				    var mt8=new go.Margin(8, 0, 0, 0);
-				    var mr8=new go.Margin(0, 8, 0, 0);
-				    var ml8=new go.Margin(0, 0, 0, 8);
-				    var roundedRectangleParams= {
-				        parameter1: 2, // set the rounded corner
-				        spot1: go.Spot.TopLeft, spot2: go.Spot.BottomRight // make content go all the way to inside edges of rounded corners
-				    }
-				    ;
-				    myDiagram=$(go.Diagram, "myDiagramDiv", // the DIV HTML element
-				    {
-				        // Put the diagram contents at the top center of the viewport
-				        initialDocumentSpot: go.Spot.TopCenter, initialViewportSpot: go.Spot.TopCenter, // OR: Scroll to show a particular node, once the layout has determined where that node is
-				        // "InitialLayoutCompleted": function(e) {
-				        //  var node = e.diagram.findNodeForKey(28);
-				        //  if (node !== null) e.diagram.commandHandler.scrollToPart(node);
-				        // },
-				        layout: $(go.TreeLayout, // use a TreeLayout to position all of the nodes
-				        {
-				            isOngoing: false, // don't relayout when expanding/collapsing panels
-				            treeStyle: go.TreeLayout.StyleLastParents, // properties for most of the tree:
-				            angle: 90, layerSpacing: 80, // properties for the "last parents":
-				            alternateAngle: 0, alternateAlignment: go.TreeLayout.AlignmentStart, alternateNodeIndent: 15, alternateNodeIndentPastParent: 1, alternateNodeSpacing: 15, alternateLayerSpacing: 40, alternateLayerSpacingParentOverlap: 1, alternatePortSpot: new go.Spot(0.001, 1, 20, 0), alternateChildPortSpot: go.Spot.Left
-				        }
-				        )
-				    }
-				    );
-				    // This function provides a common style for most of the TextBlocks.
-				    // Some of these values may be overridden in a particular TextBlock.
-				    function textStyle(field) {
-				        return [ {
-				            font: "12px Roboto, sans-serif", stroke: "rgba(0, 0, 0, .60)", visible: false // only show textblocks when there is corresponding data for them
-				        }
-				        ,
-				        new go.Binding("visible", field, function(val) {
-				            return val !==undefined;
-				        }
-				        )];
-				    }
-				    // define Converters to be used for Bindings
-				    function theNationFlagConverter(nation) {
-				        return "https://www.nwoods.com/images/emojiflags/" + nation + ".png";
-				    }
-				    // define the Node template
-				    myDiagram.nodeTemplate=$(go.Node, "Auto", {
-				        locationSpot: go.Spot.TopCenter, isShadowed: true, shadowBlur: 1, shadowOffset: new go.Point(0, 1), shadowColor: "rgba(0, 0, 0, .14)", selectionAdornmentTemplate: // selection adornment to match shape of nodes
-				        $(go.Adornment, "Auto", $(go.Shape, "RoundedRectangle", roundedRectangleParams, {
-				            fill: null, stroke: "#7986cb", strokeWidth: 3
-				        }
-				        ), $(go.Placeholder)) // end Adornment
-				    }
-				    , $(go.Shape, "RoundedRectangle", roundedRectangleParams, {
-				        name: "SHAPE", fill: "#ffffff", strokeWidth: 0
-				    }
-				    , // bluish if highlighted, white otherwise
-				    new go.Binding("fill", "isHighlighted", function(h) {
-				        return h ? "#e8eaf6": "#ffffff";
-				    }
-				    ).ofObject()), $(go.Panel, "Vertical", $(go.Panel, "Horizontal", {
-				        margin: 8
-				    }
-				    , $(go.Picture, // flag image, only visible if a nation is specified
-				    {
-				        margin: mr8, visible: false, desiredSize: new go.Size(50, 50)
-				    }
-				    , new go.Binding("source", "nation", theNationFlagConverter), new go.Binding("visible", "nation", function(nat) {
-				        return nat !==undefined;
-				    }
-				    ), ), $(go.Panel, "Table", $(go.TextBlock, {
-				        row: 0, alignment: go.Spot.Left, font: "16px Roboto, sans-serif", stroke: "rgba(0, 0, 0, .87)", maxSize: new go.Size(160, NaN)
-				    }
-				    , new go.Binding("text", "name")), $(go.TextBlock, textStyle("title"), {
-				        row: 1, alignment: go.Spot.Left, maxSize: new go.Size(160, NaN)
-				    }
-				    , new go.Binding("text", "title")), ), ), $(go.Shape, "LineH", {
-				        stroke: "rgba(0, 0, 0, .60)", strokeWidth: 1, height: 1, stretch: go.GraphObject.Horizontal
-				    }
-				    , ), ));
-				    // define the Link template, a simple orthogonal line
-				    myDiagram.linkTemplate=$(go.Link, go.Link.Orthogonal, {
-				        corner: 5, selectable: false
-				    }
-				    , $(go.Shape, {
-				        strokeWidth: 3, stroke: "#424242"
-				    }
-				    )); // dark gray, rounded corner links
-				    // set up the nodeDataArray, describing each person/position
-				    var nodeDataArray=[ // level 0
-				    {
-				        key: 0, name: "Jamie Whittingham", title: "You"
-				    }
-				    ,
-				    <?php $downline[1][]=$_SESSION['account']['id'];
-				    ?> // level 1
-				    <?php if(is_array($downline[1])) {
-				        ?> <?php foreach($downline[1] as $level_1) {
-				            ?> <?php foreach($customers as $customer) {
-				                ?> <?php if($customer['upline_id']==$level_1) {
-				                    ?> {
-				                        key: <?php echo $customer['id'];
-				                        ?>,
-				                        boss: 0, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", Level: "Level 1"
-				                    }
-				                    ,
-				                    <?php $downline[2][]=$customer['id'];
-				                    ?> <?php
-				                }
-				                ?> <?php
-				            }
-				            ?> <?php
-				        }
-				        ?> <?php
-				    }
-				    ?> // level 2
-				    <?php if(is_array($downline[2])) {
-				        ?> <?php foreach($downline[2] as $level_2) {
-				            ?> <?php foreach($customers as $customer) {
-				                ?> <?php if($customer['upline_id']==$level_2) {
-				                    ?> {
-				                        key: <?php echo $customer['id'];
-				                        ?>,
-				                        boss: <?php echo $customer['upline_id'];
-				                        ?>,
-				                        name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 2"
-				                    }
-				                    ,
-				                    <?php $downline[3][]=$customer['id'];
-				                    ?> <?php
-				                }
-				                ?> <?php
-				            }
-				            ?> <?php
-				        }
-				        ?> <?php
-				    }
-				    ?> // level 3
-				    <?php if(is_array($downline[3])) {
-				        ?> <?php foreach($downline[3] as $level_3) {
-				            ?> <?php foreach($customers as $customer) {
-				                ?> <?php if($customer['upline_id']==$level_3) {
-				                    ?> {
-				                        key: <?php echo $customer['id'];
-				                        ?>,
-				                        boss: <?php echo $customer['upline_id'];
-				                        ?>,
-				                        name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 3"
-				                    }
-				                    ,
-				                    <?php $downline[4][]=$customer['id'];
-				                    ?> <?php
-				                }
-				                ?> <?php
-				            }
-				            ?> <?php
-				        }
-				        ?> <?php
-				    }
-				    ?> // level 4
-				    <?php if(is_array($downline[4])) {
-				        ?> <?php foreach($downline[4] as $level_4) {
-				            ?> <?php foreach($customers as $customer) {
-				                ?> <?php if($customer['upline_id']==$level_4) {
-				                    ?> {
-				                        key: <?php echo $customer['id'];
-				                        ?>,
-				                        boss: <?php echo $customer['upline_id'];
-				                        ?>,
-				                        name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 4"
-				                    }
-				                    ,
-				                    <?php $downline[5][]=$customer['id'];
-				                    ?> <?php
-				                }
-				                ?> <?php
-				            }
-				            ?> <?php
-				        }
-				        ?> <?php
-				    }
-				    ?> // level 5
-				    <?php if(is_array($downline[5])) {
-				        ?> <?php foreach($downline[5] as $level_5) {
-				            ?> <?php foreach($customers as $customer) {
-				                ?> <?php if($customer['upline_id']==$level_5) {
-				                    ?> {
-				                        key: <?php echo $customer['id'];
-				                        ?>,
-				                        boss: <?php echo $customer['upline_id'];
-				                        ?>,
-				                        name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 5"
-				                    }
-				                    ,
-				                    <?php $downline[6][]=$customer['id'];
-				                    ?> <?php
-				                }
-				                ?> <?php
-				            }
-				            ?> <?php
-				        }
-				        ?> <?php
-				    }
-				    ?> // level 6
-				    <?php if(is_array($downline[6])) {
-				        ?> <?php foreach($downline[6] as $level_6) {
-				            ?> <?php foreach($customers as $customer) {
-				                ?> <?php if($customer['upline_id']==$level_6) {
-				                    ?> {
-				                        key: <?php echo $customer['id'];
-				                        ?>,
-				                        boss: <?php echo $customer['upline_id'];
-				                        ?>,
-				                        name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 6"
-				                    }
-				                    ,
-				                    <?php $downline[7][]=$customer['id'];
-				                    ?> <?php
-				                }
-				                ?> <?php
-				            }
-				            ?> <?php
-				        }
-				        ?> <?php
-				    }
-				    ?> // level 7
-				    <?php if(is_array($downline[7])) {
-				        ?> <?php foreach($downline[7] as $level_7) {
-				            ?> <?php foreach($customers as $customer) {
-				                ?> <?php if($customer['upline_id']==$level_7) {
-				                    ?> {
-				                        key: <?php echo $customer['id'];
-				                        ?>,
-				                        boss: <?php echo $customer['upline_id'];
-				                        ?>,
-				                        name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 7"
-				                    }
-				                    ,
-				                    <?php $downline[8][]=$customer['id'];
-				                    ?> <?php
-				                }
-				                ?> <?php
-				            }
-				            ?> <?php
-				        }
-				        ?> <?php
-				    }
-				    ?> // { key: 1, boss: 0, name: "Ian Orford", title: "Level 1" },
-				    // { key: 2, boss: 1, name: "Amy Morgan", title: "Level 2" },
-				    // { key: 3, boss: 1, name: "Vanessa Machin", title: "Level 2" },
-				    // { key: 3, boss: 3, name: "Clair Machin", title: "Level 3" },
-				    ];
-				    // create the Model with data for the tree, and assign to the Diagram
-				    myDiagram.model=$(go.TreeModel, {
-				        nodeParentKeyProperty: "boss", // this property refers to the parent node data
-				        nodeDataArray: nodeDataArray
-				    }
-				    );
-				    // Overview
-				    myOverview=$(go.Overview, "myOverviewDiv", // the HTML DIV element for the Overview
-				    {
-				        observed: myDiagram, contentAlignment: go.Spot.Center
-				    }
-				    ); // tell it which Diagram to show and pan
-				}
-
-				// the Search functionality highlights all of the nodes that have at least one data property match a RegExp
-				function searchDiagram() {
-				    // called by button
-				    var input=document.getElementById("mySearch");
-				    if (!input) return;
-				    input.focus();
-				    myDiagram.startTransaction("highlight search");
-				    if (input.value) {
-				        // search four different data properties for the string, any of which may match for success
-				        // create a case insensitive RegExp from what the user typed
-				        var regex=new RegExp(input.value, "i");
-				        var results=myDiagram.findNodesByExample( {
-				            name: regex
-				        }
-				        , {
-				            nation: regex
-				        }
-				        , {
-				            title: regex
-				        }
-				        , {
-				            headOf: regex
-				        }
-				        );
-				        myDiagram.highlightCollection(results);
-				        // try to center the diagram at the first node that was found
-				        if (results.count > 0) myDiagram.centerRect(results.first().actualBounds);
-				    }
-				    else {
-				        // empty string only clears highlighteds collection
-				        myDiagram.clearHighlighteds();
-				    }
-				    myDiagram.commitTransaction("highlight search");
-				}
-			</script>
-
-            <div class="content-wrapper">
-				
-                <div id="status_message"></div>   
-                            	
-                <section class="content-header">
-                    <h1>Visual Genealogy <!-- <small>Optional description</small> --></h1>
-                    <ol class="breadcrumb">
-                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">Visual Genealogy</li>
-                    </ol>
-                </section>
-
-                <!-- Main content -->
-				<section class="content">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="chart-container">
-							    <div id="downline_chart">
-							        <div class="stiff-chart-inner">
-							        	<div id="sample" style="position: relative;">
-  										<div id="myDiagramDiv" style="background-color: #f2f2f2; border: solid 1px black; width: 100%; height: 700px"></div>
-							        </div>
-							    </div>
-							</div>
-						</div>
-					</div>
-				</section>
-            </div>
-        <?php } ?>
-
-        <?php function visual_downline_basic(){ ?>
-        	<?php 
-        		global $conn, $globals, $global_settings, $account_details, $site;
-
-        		// get customers
-				$query 				= $conn->query("SELECT `id`,`status`,`avatar`,`first_name`,`last_name`,`upline_id` FROM `users` ");
-				$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
-			?>
-
-			<link href="css/reset-html5.css" rel="stylesheet" media="screen" />
-			<link href="css/micro-clearfix.css" rel="stylesheet" media="screen" />
-			<link href="css/stiff-chart.css" rel="stylesheet" media="screen" />
-			<link href="css/custom.css" rel="stylesheet" media="screen" />
-
-            <div class="content-wrapper">
-				
-                <div id="status_message"></div>   
-                            	
-                <section class="content-header">
-                    <h1>Visual Genealogy <!-- <small>Optional description</small> --></h1>
-                    <ol class="breadcrumb">
-                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">Visual Genealogy</li>
-                    </ol>
-                </section>
-
-                <!-- Main content -->
-				<section class="content">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="chart-container">
-							    <div id="downline_chart">
-							        <div class="stiff-chart-inner">
-
-							            <!-- downline level 1 -->
-							            <div class="stiff-chart-level" data-level="01">
-							                <div class="stiff-main-parent">
-							                    <ul>
-							                    	<?php 
-							                    		foreach($customers as $customer){
-							                    			if($customer['upline_id'] == $_SESSION['account']['id']){
-							                    				echo '
-								                    				<li data-parent="1_'.$customer['id'].'">
-											                            <div class="the-chart">
-											                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
-											                                <p>
-											                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
-											                                	Level 1<br>
-											                                </p>
-											                            </div>
-											                        </li>
-							                    				';
-							                    				$downline[1][] = $customer['id'];
-							                    			}
-							                    		}
-							                    	?>
-							                    </ul>
-							                </div>
-							            </div>
-
-							            <!-- downline level 2 -->
-							            <?php if(is_array($downline[1])) {foreach($downline[1] as $level_2){ ?>
-							            	<div class="stiff-chart-level" data-level="02">
-								                <div class="stiff-child" data-child-from="1_<?php echo $level_2; ?>">
-								                	<ul>
-									                    <?php 
-								                    		foreach($customers as $customer){
-								                    			if($customer['upline_id'] == $level_2){
-								                    				echo '
-												                        <li data-parent="2_'.$customer['id'].'">
-												                            <div class="the-chart">
-												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
-												                                <p>
-												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
-											                                		Level 2<br>
-												                                </p>
-												                            </div>
-												                        </li>
-								                    				';
-								                    				$downline[2][] = $customer['id'];
-								                    			}
-								                    		}
-								                    	?>
-								                    </ul>
-								                </div>
-								            </div>
-								        <?php } } ?>
-
-								        <!-- downline level 3 -->
-							            <?php if(is_array($downline[2])) {foreach($downline[2] as $level_3){ ?>
-							            	<div class="stiff-chart-level" data-level="03">
-								                <div class="stiff-child" data-child-from="2_<?php echo $level_3; ?>">
-								                	<ul>
-									                    <?php 
-								                    		foreach($customers as $customer){
-								                    			if($customer['upline_id'] == $level_3){
-								                    				echo '
-												                        <li data-parent="3_'.$customer['id'].'">
-												                            <div class="the-chart">
-												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
-												                                <p>
-												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
-											                                		Level 3<br>
-												                                </p>
-												                            </div>
-												                        </li>
-								                    				';
-								                    				$downline[3][] = $customer['id'];
-								                    			}
-								                    		}
-								                    	?>
-								                    </ul>
-								                </div>
-								            </div>
-								        <?php } } ?>
-
-								        <!-- downline level 4 -->
-							            <?php if(is_array($downline[3])) {foreach($downline[3] as $level_4){ ?>
-							            	<div class="stiff-chart-level" data-level="04">
-								                <div class="stiff-child" data-child-from="3_<?php echo $level_4; ?>">
-								                	<ul>
-									                    <?php 
-								                    		foreach($customers as $customer){
-								                    			if($customer['upline_id'] == $level_4){
-								                    				echo '
-												                        <li data-parent="4_'.$customer['id'].'">
-												                            <div class="the-chart">
-												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
-												                                <p>
-												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
-											                                		Level 4<br>
-												                                </p>
-												                            </div>
-												                        </li>
-								                    				';
-								                    				$downline[4][] = $customer['id'];
-								                    			}
-								                    		}
-								                    	?>
-								                    </ul>
-								                </div>
-								            </div>
-								        <?php } } ?>
-
-								        <!-- downline level 5 -->
-							            <?php if(is_array($downline[4])) {foreach($downline[4] as $level_5){ ?>
-							            	<div class="stiff-chart-level" data-level="05">
-								                <div class="stiff-child" data-child-from="4_<?php echo $level_5; ?>">
-								                	<ul>
-									                    <?php 
-								                    		foreach($customers as $customer){
-								                    			if($customer['upline_id'] == $level_5){
-								                    				echo '
-												                        <li data-parent="5_'.$customer['id'].'">
-												                            <div class="the-chart">
-												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
-												                                <p>
-												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
-											                                		Level 5<br>
-												                                </p>
-												                            </div>
-												                        </li>
-								                    				';
-								                    				$downline[5][] = $customer['id'];
-								                    			}
-								                    		}
-								                    	?>
-								                    </ul>
-								                </div>
-								            </div>
-								        <?php } } ?>
-
-								        <!-- downline level 6 -->
-							            <?php if(is_array($downline[5])) {foreach($downline[5] as $level_6){ ?>
-							            	<div class="stiff-chart-level" data-level="06">
-								                <div class="stiff-child" data-child-from="5_<?php echo $level_6; ?>">
-								                	<ul>
-									                    <?php 
-								                    		foreach($customers as $customer){
-								                    			if($customer['upline_id'] == $level_6){
-								                    				echo '
-												                        <li data-parent="6_'.$customer['id'].'">
-												                            <div class="the-chart">
-												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
-												                                <p>
-												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
-											                                		Level 6<br>
-												                                </p>
-												                            </div>
-												                        </li>
-								                    				';
-								                    				$downline[6][] = $customer['id'];
-								                    			}
-								                    		}
-								                    	?>
-								                    </ul>
-								                </div>
-								            </div>
-								        <?php } } ?>
-
-								        <!-- downline level 7 -->
-							            <?php if(is_array($downline[6])) {foreach($downline[6] as $level_7){ ?>
-							            	<div class="stiff-chart-level" data-level="07">
-								                <div class="stiff-child" data-child-from="6_<?php echo $level_7; ?>">
-								                	<ul>
-									                    <?php 
-								                    		foreach($customers as $customer){
-								                    			if($customer['upline_id'] == $level_7){
-								                    				echo '
-												                        <li data-parent="7_'.$customer['id'].'">
-												                            <div class="the-chart">
-												                                <img src="'.$customer['avatar'].'" width="100px" height="100px" alt="">
-												                                <p>
-												                                	<strong>'.stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']).'</strong> <br>
-											                                		Level 7<br>
-												                                </p>
-												                            </div>
-												                        </li>
-								                    				';
-								                    				$downline[7][] = $customer['id'];
-								                    			}
-								                    		}
-								                    	?>
-								                    </ul>
-								                </div>
-								            </div>
-								        <?php } } ?>
-							        </div>
-							    </div>
-							</div>
-						</div>
-					</div>
-				</section>
-            </div>
-
-            <script src="js/stiffChart.js"></script>
-			<script>
-				$(document).ready(function() {
-				  $('#downline_chart').stiffChart({
-				    
-				  });
-				});
-			</script>
         <?php } ?>
 
         <?php function table_downline(){ ?>
