@@ -1568,7 +1568,7 @@ desired effect
                     <h1>Staff Panel - Member <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active"><a href="dashboard.php?c=members">View All Members</a></li>
+                        <li class="active"><a href="dashboard.php?c=members">All Members</a></li>
                         <li class="active">Member</li>
                     </ol>
                 </section>
@@ -1658,11 +1658,11 @@ desired effect
 												</div>
 											</div>
 
-											<footer class="panel-footer">
+											<div class="panel-footer">
 												<a href="dashboard.php?c=members" class="btn btn-default">Back</a>
 												<a href="https://ublo.club/billing/admin/clientssummary.php?userid=<?php echo $member_id; ?>" target="_blank" class="btn btn-primary">View Full Profile</a>
 												<button type="submit" class="btn btn-success pull-right">Save Changes</button>
-											</footer>
+											</div>
 										</form>
 									</div>
 								</div>
@@ -1926,6 +1926,128 @@ desired effect
 							</div>
 						</div>
 					</form>
+				</section>
+            </div>
+        <?php } ?>
+
+        <?php function product(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+            
+            	$product_id 			= get('id');
+
+				// get product information
+				$query 					= $conn->query("SELECT * FROM `shop_products` WHERE `id` = '".$product_id."' ");
+				$product 				= $query->fetchAll(PDO::FETCH_ASSOC);
+			?>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>
+                            	
+                <section class="content-header">
+                    <h1>Staff Panel - Product <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active"><a href="dashboard.php?c=products">All Products</a></li>
+                        <li class="active">Product</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Product Details
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<form action="actions.php?a=product_update" class="form-horizontal form-bordered" method="post">
+										<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+										<div class="row">
+											<div class="col-lg-12">
+												<section class="panel">
+													<div class="panel-body">
+														<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
+																<?php debug($member); ?>
+																<?php debug($commissions); ?>
+														<?php } ?>
+
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="account_status">Status</label>
+															<div class="col-md-10">
+																<span class="vcenter">
+																	<?php 
+																		if($member['status'] == 'active') {
+																			echo '<span class="label label-success full-width" style="width: 100px;">Active</span>';
+																		}elseif($member['status'] == 'disabled') {
+																			echo '<span class="label label-danger full-width" style="width: 100px%;">Disabled</span>';
+																		}elseif($member['status'] == 'suspended') {
+																			echo '<span class="label label-danger full-width" style="width: 100px%;">Suspended</span>';
+																		}elseif($member['status'] == 'terminated') {
+																			echo '<span class="label label-danger full-width" style="width: 100px%;">Terminated</span>';
+																		}elseif($member['status'] == 'cancelled') {
+																			echo '<span class="label label-danger full-width" style="width: 100px%;">Cancelled</span>';
+																		}else{
+																			echo '<span class="label label-warning full-width" style="width: 100px%;">'.ucfirst($member['status']).'</span>';
+																		}
+																	?>
+																</span>
+															</div>
+														</div>
+
+														<!-- name -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="first_name">Name</label>
+															<div class="col-md-5">
+																<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($member['first_name']); ?>" disabled>
+															</div>
+															<div class="col-md-5">
+																<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($member['last_name']); ?>" disabled>
+															</div>
+														</div>
+
+														<!-- email -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="email">Email</label>
+															<div class="col-md-10">
+																<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($member['email']); ?>" disabled>
+															</div>
+														</div>
+
+														<!-- upline -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="upline_id">Upline</label>
+															<div class="col-md-10">
+																<select id="upline_id" name="upline_id" class="form-control select2">
+																	<?php foreach($all_members as $all_member){ ?>
+																		<option <?php if($member['upline_id']==$all_member['id']){echo"selected";} ?> value="<?php echo $all_member['id'];?>">
+																			<?php echo $all_member['first_name'].' '.$all_member['last_name'].' ('.$all_member['email'].')'; ?>
+																		</option>
+																	<?php } ?>
+																</select>
+
+																<small>Pleaste note: changing the upline will move this member and their entire downline. All existing commissions will be paid but all commissions generate after the change will be paid to the new upline genealogy.</small>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+
+										<div class="box-footer">
+											<a href="dashboard.php?c=members" class="btn btn-default">Back</a>
+											<a href="https://ublo.club/billing/admin/clientssummary.php?userid=<?php echo $member_id; ?>" target="_blank" class="btn btn-primary">View Full Profile</a>
+											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 				</section>
             </div>
         <?php } ?>
