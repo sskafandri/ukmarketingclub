@@ -558,6 +558,17 @@ desired effect
 			                        	<span>All Products</span>
 			                        </a>
 			                    </li>
+
+			                    <?php if(get('c') == 'product_images'){ ?>
+			                    	<li class="active">
+			                    <?php }else{ ?>
+			                    	<li>
+			                    <?php } ?>
+			                    	<a href="dashboard.php?c=product_images">
+			                        	<i class="fa fa-circle"></i> 
+			                        	<span>Product Images</span>
+			                        </a>
+			                    </li>
 							</ul>
 						</li>
 
@@ -778,6 +789,14 @@ desired effect
 				case "product":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						product();
+					}else{
+						home();
+					}
+					break;
+
+				case "product_images":
+					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
+						product_images();
 					}else{
 						home();
 					}
@@ -2110,15 +2129,9 @@ desired effect
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
             
-            	$product_id 			= get('id');
-
-				// get product information
-				$query 					= $conn->query("SELECT * FROM `shop_products` WHERE `id` = '".$product_id."' ");
-				$product 				= $query->fetch(PDO::FETCH_ASSOC);
-
-				// get all products for jump menu
-				$query 					= $conn->query("SELECT * FROM `shop_products` ORDER BY `title` ");
-				$all_products 			= $query->fetchAll(PDO::FETCH_ASSOC);
+				// get product images
+				$query 					= $conn->query("SELECT * FROM `shop_product_images` ORDER BY `id` ");
+				$product_images 		= $query->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
             <div class="content-wrapper">
@@ -2126,11 +2139,10 @@ desired effect
                 <div id="status_message"></div>
                             	
                 <section class="content-header">
-                    <h1>Staff Panel - Product <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - Product Images <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active"><a href="dashboard.php?c=products">All Products</a></li>
-                        <li class="active">Product</li>
+                        <li class="active">Product Images</li>
                     </ol>
                 </section>
 
@@ -2165,55 +2177,11 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					Product Details
+		              					Product Images
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-									<form action="actions.php?a=product_update" class="form-horizontal form-bordered" method="post">
-										<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-										<div class="row">
-											<div class="col-lg-12">
-												<section class="panel">
-													<div class="panel-body">
-														<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
-																<?php debug($product); ?>
-														<?php } ?>
-
-														<!-- title -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="title">Title</label>
-															<div class="col-md-10">
-																<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($product['title']); ?>">
-															</div>
-														</div>
-
-														<!-- title_2 -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="title_2">Subtitle</label>
-															<div class="col-md-10">
-																<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
-															</div>
-														</div>
-
-														<!-- description -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="description">Description</label>
-															<div class="col-md-10">
-																<textarea id="description" name="description" rows="40" style="width: 100%;">
-																	<?php echo stripslashes($product['description']); ?>
-											                    </textarea>
-															</div>
-														</div>
-													</div>
-												</section>
-											</div>
-										</div>
-
-										<div class="box-footer">
-											<a href="dashboard.php?c=products" class="btn btn-default">Back</a>
-											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
-										</div>
-									</form>
+										<?php debug($product_images); ?>
 								</div>
 							</div>
 						</div>
@@ -3932,8 +3900,7 @@ desired effect
 				// instance, using default configuration.
 				CKEDITOR.replace("description",
 				{
-				     height: "350px",
-				     config.extraPlugins = 'uploadimage';
+				     height: "350px"
 				});
 			});
 
