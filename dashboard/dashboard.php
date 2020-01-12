@@ -1821,7 +1821,7 @@ desired effect
 				            field_0: "Name",
 				            field_1: "Level",
 				            img_0: "img",
-				            field_number_children_1: "field_number_children_1"
+				            field_number_children_1: "field_number_children"
 				        },
 				        nodes: nodes
 				    });
