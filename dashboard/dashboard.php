@@ -519,7 +519,7 @@ desired effect
 			                    <?php } ?>
 			                    	<a href="dashboard.php?c=members">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>View All Members</span>
+			                        	<span>All Members</span>
 			                        </a>
 			                    </li>
 
@@ -530,7 +530,7 @@ desired effect
 			                    <?php } ?>
 			                    	<a href="dashboard.php?c=all_visual_downline">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>Visual Genealogy</span>
+			                        	<span>Company Visual Genealogy</span>
 			                        </a>
 			                    </li>
 
@@ -541,7 +541,7 @@ desired effect
 			                    <?php } ?>
 			                    	<a href="dashboard.php?c=products">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>View All Products</span>
+			                        	<span>All Products</span>
 			                        </a>
 			                    </li>
 
@@ -552,7 +552,7 @@ desired effect
 			                    <?php } ?>
 			                    	<a href="dashboard.php?c=all_commissions">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>View All Commissions</span>
+			                        	<span>All Commissions</span>
 			                        </a>
 			                    </li>
 
@@ -563,7 +563,7 @@ desired effect
 			                    <?php } ?>
 			                    	<a href="dashboard.php?c=all_withdrawal_requests">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>View Withdrawal Requests</span>
+			                        	<span>Withdrawal Requests</span>
 			                        </a>
 			                    </li>
 							</ul>
@@ -1409,10 +1409,10 @@ desired effect
                 <div id="status_message"></div>   
                             	
                 <section class="content-header">
-                    <h1>Staff Panel - View All Members <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - All Members <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">View All Members</li>
+                        <li class="active">All Members</li>
                     </ol>
                 </section>
 
@@ -1465,7 +1465,7 @@ desired effect
 								<div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
-			              					View All Members
+			              					All Members
 			              				</h3>
 			              				<div class="pull-right">
 			              					<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
@@ -1833,10 +1833,10 @@ desired effect
                 <div id="status_message"></div>   
                             	
                 <section class="content-header">
-                    <h1>Visual Genealogy <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - Company Visual Genealogy <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">Visual Genealogy</li>
+                        <li class="active">Company Visual Genealogy</li>
                     </ol>
                 </section>
 
@@ -1851,15 +1851,11 @@ desired effect
 									</h3> 
 								</div>
 								<div class="box-body">
-									<p>You can drag your download genealogy tree around and navigate freely. You can zoom in and out using your mouse wheel or touchpad.
+									<p>You can drag your download genealogy tree around and navigate freely. You can zoom in and out using your mouse wheel or touchpad.</p>
+
+									<div id="tree"></div>
 								</div>
 							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-12">
-							<div id="tree"></div>
 						</div>
 					</div>
 				</section>
@@ -1876,10 +1872,10 @@ desired effect
                 <div id="status_message"></div>   
                             	
                 <section class="content-header">
-                    <h1>Staff Panel - View All Products <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - All Products <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">View All Products</li>
+                        <li class="active">All Products</li>
                     </ol>
                 </section>
 
@@ -1892,7 +1888,7 @@ desired effect
 								<div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
-			              					View All Products
+			              					All Products
 			              				</h3>
 			              				<div class="pull-right">
 			              					<!-- <button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_customer_modal">Add Customer</button> -->
@@ -1946,10 +1942,10 @@ desired effect
                 <div id="status_message"></div>
                             	
                 <section class="content-header">
-                    <h1>Staff Panel - View All Commissions <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - All Commissions <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">View All Commissions</li>
+                        <li class="active">All Commissions</li>
                     </ol>
                 </section>
 
@@ -2053,7 +2049,7 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					View All Commissions
+		              					All Commissions
 		              				</h3>
 		              				<div class="pull-right">
 		              					<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
@@ -2113,10 +2109,10 @@ desired effect
                 <div id="status_message"></div>
                             	
                 <section class="content-header">
-                    <h1>Staff Panel - View All Withdrawal Requests <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - All Withdrawal Requests <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">View All Withdrawal Requests</li>
+                        <li class="active">All Withdrawal Requests</li>
                     </ol>
                 </section>
 
@@ -2127,7 +2123,7 @@ desired effect
 							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
-		              					View All Withdrawal Requests
+		              					All Withdrawal Requests
 		              				</h3>
 		              				<div class="pull-right">
 										<button id="search_reset" type="button" class="btn btn-info btn-xs btn-flat" >Show All</button>
@@ -2285,12 +2281,6 @@ desired effect
 									<div id="tree"></div>
 								</div>
 							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-12">
-							
 						</div>
 					</div>
 				</section>
