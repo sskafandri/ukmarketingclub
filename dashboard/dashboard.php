@@ -2220,7 +2220,7 @@ desired effect
 					<?php foreach($downline[3] as $level_3){ ?>
 		            	<?php foreach($customers as $customer){ ?>
 		            		<?php if($customer['upline_id'] == $level_3){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 3" },
 			            		<?php $downline[4][] = $customer['id']; ?>
 			            	<?php } ?>
 			            <?php } ?>
@@ -2232,7 +2232,7 @@ desired effect
 					<?php foreach($downline[4] as $level_4){ ?>
 		            	<?php foreach($customers as $customer){ ?>
 		            		<?php if($customer['upline_id'] == $level_4){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 4" },
 			            		<?php $downline[5][] = $customer['id']; ?>
 			            	<?php } ?>
 			            <?php } ?>
@@ -2244,7 +2244,7 @@ desired effect
 					<?php foreach($downline[5] as $level_5){ ?>
 		            	<?php foreach($customers as $customer){ ?>
 		            		<?php if($customer['upline_id'] == $level_5){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 5" },
 			            		<?php $downline[6][] = $customer['id']; ?>
 			            	<?php } ?>
 			            <?php } ?>
@@ -2256,7 +2256,7 @@ desired effect
 					<?php foreach($downline[6] as $level_6){ ?>
 		            	<?php foreach($customers as $customer){ ?>
 		            		<?php if($customer['upline_id'] == $level_6){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 6" },
 			            		<?php $downline[7][] = $customer['id']; ?>
 			            	<?php } ?>
 			            <?php } ?>
@@ -2268,7 +2268,7 @@ desired effect
 					<?php foreach($downline[7] as $level_7){ ?>
 		            	<?php foreach($customers as $customer){ ?>
 		            		<?php if($customer['upline_id'] == $level_7){ ?>
-			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1" },
+			            		{ key: <?php echo $customer['id']; ?>, boss: <?php echo $customer['upline_id']; ?>, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 7" },
 			            		<?php $downline[8][] = $customer['id']; ?>
 			            	<?php } ?>
 			            <?php } ?>
