@@ -2083,7 +2083,7 @@ desired effect
 														<div class="form-group">
 															<label class="col-md-2 control-label" for="description">Description</label>
 															<div class="col-md-10">
-																<textarea id="description" name="description" rows="10" style="width: 100%;">
+																<textarea id="description" name="description" rows="20" style="width: 100%;">
 																	<?php echo stripslashes($product['description']); ?>
 											                    </textarea>
 															</div>
@@ -3812,6 +3812,19 @@ desired effect
 			    var profile_id = selectObject.value; 
 			    window.location.href = "dashboard.php?c=product&id="+profile_id;
 			}
+		</script>
+
+		<!-- CK Editor -->
+    	<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+
+    	<script>
+			$(function () {
+				// Replace the <textarea id="editor1"> with a CKEditor
+				// instance, using default configuration.
+				CKEDITOR.replace('description');
+				//bootstrap WYSIHTML5 - text editor
+				$(".textarea").wysihtml5();
+			});
 		</script>
 	<?php } ?>
 
