@@ -1612,7 +1612,7 @@ desired effect
 										<div class="form-group">
 											<label class="col-md-2 control-label" for="profile_id">Member Profile</label>
 											<div class="col-md-10">
-												<select id="profile_id" name="profile_id" class="form-control select2">
+												<select id="profile_id" name="profile_id" class="form-control select2" onchange="change_member_profile(this);">
 													<?php foreach($all_members as $all_member){ ?>
 														<option <?php if($member_id==$all_member['id']){echo"selected";} ?> value="<?php echo $all_member['id'];?>">
 															<?php echo $all_member['first_name'].' '.$all_member['last_name'].' ('.$all_member['email'].')'; ?>
@@ -3620,6 +3620,12 @@ desired effect
 
     <?php if(get('c') == 'member') { ?>
     	<script>
+    		function change_member_profile(selectObject) {
+			    var member_id = selectObject.value; 
+
+			    window.location.href = "dashboard.php?c=member&id="+member_id;
+			}
+
 			/* Formatting function for row details - modify as you need */
 			function format ( d ) {
 			    // `d` is the original data object for the row
