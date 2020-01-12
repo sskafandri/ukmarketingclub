@@ -2053,6 +2053,7 @@ desired effect
 		              				</h3>
 		            			</div>
 								<div class="box-body">
+									<?php debug($product); ?>
 									<form action="actions.php?a=product_update" class="form-horizontal form-bordered" method="post">
 										<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
 										<div class="row">
@@ -2094,7 +2095,7 @@ desired effect
 										</div>
 
 										<div class="box-footer">
-											<a href="dashboard.php?c=members" class="btn btn-default">Back</a>
+											<a href="dashboard.php?c=products" class="btn btn-default">Back</a>
 											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
 										</div>
 									</form>
