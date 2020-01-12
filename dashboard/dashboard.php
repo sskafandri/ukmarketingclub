@@ -512,7 +512,7 @@ desired effect
 							</a>
 							<ul class="treeview-menu">
 								<!-- <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
-								<?php if(get('c') == 'members'){ ?>
+								<?php if(get('c') == 'members' || get('c') == 'member'){ ?>
 			                    	<li class="active">
 			                    <?php }else{ ?>
 			                    	<li>
@@ -536,7 +536,7 @@ desired effect
 							</ul>
 						</li>
 
-						<?php if(et('c') == 'products' || get('c') == 'product'){ ?>
+						<?php if(get('c') == 'products' || get('c') == 'product'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
@@ -548,7 +548,7 @@ desired effect
 								</span>
 							</a>
 							<ul class="treeview-menu">
-								<?php if(get('c') == 'products'){ ?>
+								<?php if(get('c') == 'products' || get('c') == 'product'){ ?>
 			                    	<li class="active">
 			                    <?php }else{ ?>
 			                    	<li>
