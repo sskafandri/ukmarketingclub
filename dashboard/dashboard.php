@@ -3822,12 +3822,10 @@ desired effect
 			$(function () {
 				// Replace the <textarea id="editor1"> with a CKEditor
 				// instance, using default configuration.
-				CKEDITOR.replace('description');
-				CKEDITOR.editorConfig = function( config )
+				CKEDITOR.replace("description",
 				{
-				   // misc options
-				   config.height = '350px';
-				};
+				     height: "350px"
+				});
 			});
 		</script>
 	<?php } ?>
