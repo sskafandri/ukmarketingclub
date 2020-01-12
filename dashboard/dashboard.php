@@ -2078,6 +2078,16 @@ desired effect
 																<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
 															</div>
 														</div>
+
+														<!-- description -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="description">Description</label>
+															<div class="col-md-10">
+																<textarea id="description" name="description" rows="10" cols="80">
+																	<?php echo stripslashes($product['description']); ?>
+											                    </textarea>
+															</div>
+														</div>
 													</div>
 												</section>
 											</div>
