@@ -723,17 +723,17 @@ desired effect
 					}
 					break;
 
-				case "all_visual_downline":
+				case "member":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
-						all_visual_downline();
+						member();
 					}else{
 						home();
 					}
 					break;
 
-				case "member":
+				case "all_visual_downline":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
-						member();
+						all_visual_downline();
 					}else{
 						home();
 					}
