@@ -1780,7 +1780,7 @@ desired effect
 		                    			<?php if($customer['upline_id']==$level) {?>
 				                        	// { id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level <?php echo $level; ?>", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
 
-				                        	{ id: <?php echo $customer['id']; ?>, pid: <?php echo $customer['upline_id']; ?>, Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level <?php echo $downline_current; ?>", email: "<?php if($downline_current == 1){ echo $customer['email']; }else{ echo 'hidden'; } ?>", img: "<?php echo $customer['avatar']; ?>" },
+				                        	{ id: <?php echo $customer['id']; ?>, pid: <?php echo $customer['upline_id']; ?>, Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level <?php echo $downline_current; ?>", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
 				                    		<?php $downline[$downline_next][] = $customer['id']; ?>
 				                    	<?php } ?>
 				                    <?php } ?>
