@@ -1614,7 +1614,7 @@ desired effect
 											<div class="col-md-10">
 												<select id="profile_id" name="profile_id" class="form-control select2" onchange="change_member_profile(this);">
 													<?php foreach($all_members as $all_member){ ?>
-														<option <?php if($member_id==$all_member['id']){echo"selected";} ?> value="<?php echo $all_member['id'];?>">
+														<option value="<?php echo $all_member['id'];?>" <?php if($member_id==$all_member['id']){echo"selected";} ?>>
 															<?php echo $all_member['first_name'].' '.$all_member['last_name'].' ('.$all_member['email'].')'; ?>
 														</option>
 													<?php } ?>
@@ -1696,7 +1696,7 @@ desired effect
 																<div class="col-md-10">
 																	<select id="upline_id" name="upline_id" class="form-control select2">
 																		<?php foreach($all_members as $all_member){ ?>
-																			<option <?php if($member['upline_id']==$all_member['id']){echo"selected";} ?> value="<?php echo $all_member['id'];?>">
+																			<option value="<?php echo $all_member['id'];?>" <?php if($member['upline_id']==$all_member['id']){echo"selected";} ?>>
 																				<?php echo $all_member['first_name'].' '.$all_member['last_name'].' ('.$all_member['email'].')'; ?>
 																			</option>
 																		<?php } ?>
