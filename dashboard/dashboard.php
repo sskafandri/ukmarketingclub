@@ -2067,7 +2067,7 @@ desired effect
 		                    			<?php if($customer['upline_id']==$level) {?>
 				                        	// { id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level <?php echo $level; ?>", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
 
-				                        	{ id: <?php echo $customer['id']; ?>, pid: <?php echo $customer['upline_id']; ?>, name: "Lexie Cole", title: "QA Lead", email: "ava@domain.com", img: "https://cdn.balkan.app/shared/2.jpg" },
+				                        	{ id: <?php echo $customer['id']; ?>, pid: <?php echo $customer['upline_id']; ?>, name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "QA Lead", email: "ava@domain.com", img: "https://cdn.balkan.app/shared/2.jpg" },
 				                    		<?php $downline[$downline_next][] = $customer['id']; ?>
 				                    	<?php } ?>
 				                    <?php } ?>
