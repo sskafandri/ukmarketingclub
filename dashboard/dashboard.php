@@ -2060,65 +2060,22 @@ desired effect
 												<section class="panel">
 													<div class="panel-body">
 														<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
-																<?php debug($member); ?>
-																<?php debug($commissions); ?>
+																<?php debug($product); ?>
 														<?php } ?>
 
+														<!-- title -->
 														<div class="form-group">
-															<label class="col-md-2 control-label" for="account_status">Status</label>
+															<label class="col-md-2 control-label" for="title">Title</label>
 															<div class="col-md-10">
-																<span class="vcenter">
-																	<?php 
-																		if($member['status'] == 'active') {
-																			echo '<span class="label label-success full-width" style="width: 100px;">Active</span>';
-																		}elseif($member['status'] == 'disabled') {
-																			echo '<span class="label label-danger full-width" style="width: 100px%;">Disabled</span>';
-																		}elseif($member['status'] == 'suspended') {
-																			echo '<span class="label label-danger full-width" style="width: 100px%;">Suspended</span>';
-																		}elseif($member['status'] == 'terminated') {
-																			echo '<span class="label label-danger full-width" style="width: 100px%;">Terminated</span>';
-																		}elseif($member['status'] == 'cancelled') {
-																			echo '<span class="label label-danger full-width" style="width: 100px%;">Cancelled</span>';
-																		}else{
-																			echo '<span class="label label-warning full-width" style="width: 100px%;">'.ucfirst($member['status']).'</span>';
-																		}
-																	?>
-																</span>
+																<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($product['title']); ?>">
 															</div>
 														</div>
 
-														<!-- name -->
+														<!-- title_2 -->
 														<div class="form-group">
-															<label class="col-md-2 control-label" for="first_name">Name</label>
-															<div class="col-md-5">
-																<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo stripslashes($member['first_name']); ?>" disabled>
-															</div>
-															<div class="col-md-5">
-																<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo stripslashes($member['last_name']); ?>" disabled>
-															</div>
-														</div>
-
-														<!-- email -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="email">Email</label>
+															<label class="col-md-2 control-label" for="title_2">Title 2</label>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="email" name="email" value="<?php echo stripslashes($member['email']); ?>" disabled>
-															</div>
-														</div>
-
-														<!-- upline -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="upline_id">Upline</label>
-															<div class="col-md-10">
-																<select id="upline_id" name="upline_id" class="form-control select2">
-																	<?php foreach($all_members as $all_member){ ?>
-																		<option <?php if($member['upline_id']==$all_member['id']){echo"selected";} ?> value="<?php echo $all_member['id'];?>">
-																			<?php echo $all_member['first_name'].' '.$all_member['last_name'].' ('.$all_member['email'].')'; ?>
-																		</option>
-																	<?php } ?>
-																</select>
-
-																<small>Pleaste note: changing the upline will move this member and their entire downline. All existing commissions will be paid but all commissions generate after the change will be paid to the new upline genealogy.</small>
+																<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
 															</div>
 														</div>
 													</div>
@@ -2128,7 +2085,6 @@ desired effect
 
 										<div class="box-footer">
 											<a href="dashboard.php?c=members" class="btn btn-default">Back</a>
-											<a href="https://ublo.club/billing/admin/clientssummary.php?userid=<?php echo $member_id; ?>" target="_blank" class="btn btn-primary">View Full Profile</a>
 											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
 										</div>
 									</form>
