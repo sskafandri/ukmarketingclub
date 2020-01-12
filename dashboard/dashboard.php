@@ -3796,7 +3796,7 @@ desired effect
     	</script>
     <?php } ?>
 
-    <?php if(get('c') == 'products') { ?>
+    <?php if(get('c') == 'product') { ?>
     	<script>
     		function change_product_profile(selectObject) {
 			    var profile_id = selectObject.value; 
