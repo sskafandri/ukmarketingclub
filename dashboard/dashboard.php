@@ -2073,7 +2073,7 @@ desired effect
 
 														<!-- title_2 -->
 														<div class="form-group">
-															<label class="col-md-2 control-label" for="title_2">Title 2</label>
+															<label class="col-md-2 control-label" for="title_2">Subtitle</label>
 															<div class="col-md-10">
 																<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
 															</div>
