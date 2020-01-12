@@ -2061,7 +2061,7 @@ desired effect
 		                },
 		                nodes: [
 		                    // level 0
-		                    { id: "1", name: "<?php echo $account_details['first_name']; ?> <?php echo $account_details['last_name']; ?>", title: "Level 0", email: "<?php echo $account_details['email']; ?>", img: "<?php echo $account_details['avatar']; ?>" },
+		                    { id: "<?php echo $account_details['id']; ?>", name: "<?php echo $account_details['first_name']; ?> <?php echo $account_details['last_name']; ?>", title: "Level 0", email: "<?php echo $account_details['email']; ?>", img: "<?php echo $account_details['avatar']; ?>" },
 		                    <?php $downline[1][]=$_SESSION['account']['id']; ?>
 		                    
 		                    // level 1
@@ -2069,7 +2069,7 @@ desired effect
 		                    	<?php foreach($downline[1] as $level_1) { ?>
 		                    		<?php foreach($customers as $customer) { ?>
 		                    			<?php if($customer['upline_id']==$level_1) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "1", name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
+				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
 				                    		<?php $downline[2][]=$customer['id']; ?>
 				                    	<?php } ?>
 				                    <?php } ?>
@@ -2081,7 +2081,7 @@ desired effect
 		                    	<?php foreach($downline[2] as $level_2) { ?>
 		                    		<?php foreach($customers as $customer) { ?>
 		                    			<?php if($customer['upline_id']==$level_2) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "1", name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
+				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
 				                    		<?php $downline[3][]=$customer['id']; ?>
 				                    	<?php } ?>
 				                    <?php } ?>
