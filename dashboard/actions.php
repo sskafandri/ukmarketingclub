@@ -6114,11 +6114,9 @@ function ajax_products()
 	}
 	curl_close($ch);
 
-	// Decode response
+	// decode response
 	$whmcs_products = json_decode($response, true);
-
 	// debug($whmcs_products);
-
 	$whmcs_products = $whmcs_products['products']['product'];
 
 	foreach($whmcs_products as $product){
