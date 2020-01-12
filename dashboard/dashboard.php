@@ -2053,7 +2053,6 @@ desired effect
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-									<?php debug($product); ?>
 									<form action="actions.php?a=product_update" class="form-horizontal form-bordered" method="post">
 										<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
 										<div class="row">
@@ -3808,15 +3807,8 @@ desired effect
     <?php } ?>
 
     <?php if(get('c') == 'product') { ?>
-    	<script>
-    		function change_product_profile(selectObject) {
-			    var profile_id = selectObject.value; 
-			    window.location.href = "dashboard.php?c=product&id="+profile_id;
-			}
-		</script>
-
 		<!-- CK Editor -->
-    	<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+    	<script src="ckeditor/ckeditor.js"></script>
 
     	<script>
 			$(function () {
@@ -3827,6 +3819,11 @@ desired effect
 				     height: "350px"
 				});
 			});
+
+			function change_product_profile(selectObject) {
+			    var profile_id = selectObject.value; 
+			    window.location.href = "dashboard.php?c=product&id="+profile_id;
+			}
 		</script>
 	<?php } ?>
 
