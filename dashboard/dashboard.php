@@ -2050,9 +2050,21 @@ desired effect
   			
 			<script>
 		        window.onload = function () {
+		        	OrgChart.toolbarUI.expandAllIcon = '<img width="32" src=https://cdn.balkan.app/shared/expand.png />';
+				    OrgChart.toolbarUI.fitIcon = '<img width="32" src=https://cdn.balkan.app/shared/plan.png />';
+				    OrgChart.toolbarUI.zoomInIcon = '<img width="32" src=https://cdn.balkan.app/shared/zoom-out.png />';
+				    OrgChart.toolbarUI.zoomOutIcon = '<img width="32" src=https://cdn.balkan.app/shared/zoom-in.png />';    
+				    OrgChart.toolbarUI.layoutIcon = '<img width="32" src=https://cdn.balkan.app/shared/layout.png />';  
+
 		            var chart = new OrgChart(document.getElementById("tree"), {
 		                collapse: {
 			                level: 2,
+			            },
+			            toolbar: {
+			                layout: true,
+			                zoom: true,
+			                fit: true,
+			                expandAll: true
 			            },
 			            template: "isla",
 		                layout: OrgChart.mixed,
