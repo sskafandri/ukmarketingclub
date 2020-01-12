@@ -2070,7 +2070,7 @@ desired effect
 		                    		<?php foreach($customers as $customer) { ?>
 		                    			<?php if($customer['upline_id']==$level_1) {?>
 				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[2][]=$customer['id']; ?>
+				                    		<?php $downline[2][] = $customer['id']; ?>
 				                    	<?php } ?>
 				                    <?php } ?>
 				                <?php } ?>
@@ -2081,8 +2081,20 @@ desired effect
 		                    	<?php foreach($downline[2] as $level_2) { ?>
 		                    		<?php foreach($customers as $customer) { ?>
 		                    			<?php if($customer['upline_id']==$level_2) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[3][]=$customer['id']; ?>
+				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 2", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
+				                    		<?php $downline[3][] = $customer['id']; ?>
+				                    	<?php } ?>
+				                    <?php } ?>
+				                <?php } ?>
+				            <?php } ?>
+
+				            // level 3
+		                    <?php if(is_array($downline[3])) { ?>
+		                    	<?php foreach($downline[3] as $level_3) { ?>
+		                    		<?php foreach($customers as $customer) { ?>
+		                    			<?php if($customer['upline_id']==$level_3) {?>
+				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 3", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
+				                    		<?php $downline[4][] = $customer['id']; ?>
 				                    	<?php } ?>
 				                    <?php } ?>
 				                <?php } ?>
