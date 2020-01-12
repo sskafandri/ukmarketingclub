@@ -2199,7 +2199,7 @@ desired effect
 									</h3> 
 								</div>
 								<div class="box-body">
-									<p>
+									<p>You can drag your download genealogy tree around and navigate freely. You can zoom in and out using your mouse wheel or touchpad.
 								</div>
 							</div>
 						</div>
@@ -2207,21 +2207,6 @@ desired effect
 
 					<div class="row">
 						<div class="col-md-12">
-							<select style="position: absolute;right: 30px;top: 30px;color: #7a7a7a;font-size: 14px;padding: 10px;background-color: #F57C00;color: #ffffff;width: 100px;z-index:2;" id="selectTemplate">
-    <option>luba</option>
-    <option>olivia</option>
-    <option>derek</option>
-    <option>diva</option>
-    <option>mila</option>
-    <option>polina</option>
-    <option>mery</option>
-    <option>rony</option>
-    <option>belinda</option>
-    <option>ula</option>
-    <option>ana</option>
-    <option>isla</option>
-    <option>deborah</option>
-</select>
 							<div id="tree"></div>
 						</div>
 					</div>
