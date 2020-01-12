@@ -2069,7 +2069,7 @@ desired effect
 		                    	<?php foreach($downline[1] as $level_1) { ?>
 		                    		<?php foreach($customers as $customer) { ?>
 		                    			<?php if($customer['upline_id']==$level_1) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
+				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
 				                    		<?php $downline[2][] = $customer['id']; ?>
 				                    	<?php } ?>
 				                    <?php } ?>
@@ -2326,7 +2326,7 @@ desired effect
 				                    ?> {
 				                        key: <?php echo $customer['id'];
 				                        ?>,
-				                        boss: 0, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", title: "Level 1"
+				                        boss: 0, name: "<?php echo stripslashes($customer['first_name']).' '.stripslashes($customer['last_name']); ?>", Level: "Level 1"
 				                    }
 				                    ,
 				                    <?php $downline[2][]=$customer['id'];
