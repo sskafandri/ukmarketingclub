@@ -1619,8 +1619,6 @@ desired effect
 														</option>
 													<?php } ?>
 												</select>
-
-												<small>Pleaste note: changing the upline will move this member and their entire downline. All existing commissions will be paid but all commissions generate after the change will be paid to the new upline genealogy.</small>
 											</div>
 										</div>
 									</form>
@@ -3622,7 +3620,6 @@ desired effect
     	<script>
     		function change_member_profile(selectObject) {
 			    var member_id = selectObject.value; 
-
 			    window.location.href = "dashboard.php?c=member&id="+member_id;
 			}
 
