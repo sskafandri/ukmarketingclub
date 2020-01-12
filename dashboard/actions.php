@@ -6151,7 +6151,7 @@ function ajax_products()
 		$output[$count]['category']						= stripslashes($product_category['name']);
 
 		// get description
-		$query 											= $conn->query("SELECT * FROM `shop_products` WHERE `id` = '".$product['gid']."' ");
+		$query 											= $conn->query("SELECT * FROM `shop_products` WHERE `id` = '".$product['pid']."' ");
 		$product_details 								= $query->fetch(PDO::FETCH_ASSOC);
 
 		$output[$count]['description']					= stripslashes($product_details['description']);
