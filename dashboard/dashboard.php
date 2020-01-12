@@ -2062,9 +2062,9 @@ desired effect
 				    // OrgChart.toolbarUI.layoutIcon = '<img width="32" src=https://cdn.balkan.app/shared/layout.png />';  
 
 		            var chart = new OrgChart(document.getElementById("tree"), {
-		                collapse: {
-			                level: 2,
-			            },
+		                // collapse: {
+			            //     level: 2,
+			            // },
 			            toolbar: {
 			                layout: true,
 			                zoom: true,
