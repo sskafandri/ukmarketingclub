@@ -2053,65 +2053,8 @@ desired effect
 			</style>
   			
 			<script>
-		        window.onload = function () {
-
-		        	OrgChart.toolbarUI.expandAllIcon = '<img width="32" src=https://cdn.balkan.app/shared/expand.png />';
-				    OrgChart.toolbarUI.fitIcon = '<img width="32" src=https://cdn.balkan.app/shared/plan.png />';
-				    OrgChart.toolbarUI.zoomInIcon = '<img width="32" src=https://cdn.balkan.app/shared/zoom-out.png />';
-				    OrgChart.toolbarUI.zoomOutIcon = '<img width="32" src=https://cdn.balkan.app/shared/zoom-in.png />';    
-				    // OrgChart.toolbarUI.layoutIcon = '<img width="32" src=https://cdn.balkan.app/shared/layout.png />';  
-
-		            var chart = new OrgChart(document.getElementById("tree"), {
-		                // collapse: {
-			            //     level: 2,
-			            // },
-			            // toolbar: {
-			            //     layout: true,
-			            //     zoom: true,
-			            //     fit: true,
-			            //     expandAll: true
-			            // },
-			            nodeMouseClick: OrgChart.action.none,
-				        align: OrgChart.ORIENTATION,
-				        mouseScrool: OrgChart.action.xScroll,
-				        showXScroll: OrgChart.scroll.visible,
-				        onSearchClick: function (sender, nodeId) {
-
-				            sender.center(nodeId,     {
-				                parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
-				                childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS
-				            });
-
-				            return false;
-				        },
-				        onExpCollClick: function (sender, action, id, ids) {
-				            var node = sender.getBGNode(id);
-				            var centerId = id;
-				            var rippleId = id;
-				            if (action == OrgChart.COLLAPSE) {
-				                var node = sender.getBGNode(id);
-				                if (node.parent == null) return true;
-				                centerId = node.pid;
-				            }
-
-				            sender.center(centerId,     {
-				                parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
-				                childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS,
-				                rippleId: rippleId
-				            });
-
-				            return false;
-				        },
-			            template: "isla",
-		                layout: OrgChart.mixed,
-		                nodeBinding: {
-		                    img_0: "img",
-		                    field_0: "Name",
-		                    field_1: "Level"
-		                    
-		                },
-		                zoom: true,
-		                nodes: [
+				window.onload = function () {
+				    var nodes = nodes: [
 		                    // level 0
 		                    { id: "<?php echo $account_details['id']; ?>", Name: "<?php echo $account_details['first_name']; ?> <?php echo $account_details['last_name']; ?>", Level: "Level 0", email: "<?php echo $account_details['email']; ?>", img: "<?php echo $account_details['avatar']; ?>" },
 		                    <?php $downline[1][]=$_SESSION['account']['id']; ?>
@@ -2136,14 +2079,44 @@ desired effect
 		                    
 
 		                    // { id: "3", pid: "1", name: "Janae Barrett", title: "Technical Director", img: "https://cdn.balkan.app/shared/3.jpg" },
-		                ]
-		            });
-		            document.getElementById("selectTemplate").addEventListener("change", function () {
-		                chart.config.template = this.value;
-		                chart.draw();
-		            });
-		        }
-		    </script>
+		                ];
+
+
+				    for (var i = 0; i < nodes.length; i++) {
+				        nodes[i].field_number_children = childCount(nodes[i].id);
+				    }
+
+				    function childCount(id) {
+				        let count = 0;
+				        for (var i = 0; i < nodes.length; i++) {
+				            if (nodes[i].pid == id) {
+				                count++;
+				                count += childCount(nodes[i].id);
+				            }
+				        }
+
+				        return count;
+				    }
+
+				    OrgChart.templates.rony.field_number_children = '<circle cx="60" cy="110" r="15" fill="#F57C00"></circle><text fill="#ffffff" x="60" y="115" text-anchor="middle">{val}</text>';
+
+				    var chart = new OrgChart(document.getElementById("tree"), {
+				        template: "rony",
+				        collapse: {
+				            level: 3
+				        },
+				        nodeBinding: {
+				            field_0: "name",
+				            field_1: "title",
+				            img_0: "img",
+				            field_number_children: "field_number_children"
+				        },
+				        nodes: nodes
+				    });
+				};
+				        </script>
+
+			
 
             <div class="content-wrapper">
 				
