@@ -536,7 +536,7 @@ desired effect
 							</ul>
 						</li>
 
-						<?php if(get('c') == 'products' || get('c') == 'product'){ ?>
+						<?php if(get('c') == 'products' || get('c') == 'product' || get('c') == 'product_images'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
@@ -1991,6 +1991,122 @@ desired effect
         <?php } ?>
 
         <?php function product(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+            
+            	$product_id 			= get('id');
+
+				// get product information
+				$query 					= $conn->query("SELECT * FROM `shop_products` WHERE `id` = '".$product_id."' ");
+				$product 				= $query->fetch(PDO::FETCH_ASSOC);
+
+				// get all products for jump menu
+				$query 					= $conn->query("SELECT * FROM `shop_products` ORDER BY `title` ");
+				$all_products 			= $query->fetchAll(PDO::FETCH_ASSOC);
+			?>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>
+                            	
+                <section class="content-header">
+                    <h1>Staff Panel - Product <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active"><a href="dashboard.php?c=products">All Products</a></li>
+                        <li class="active">Product</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+								<div class="box-body">
+									<form class="form-horizontal form-bordered" >
+										<!-- upline -->
+										<div class="form-group">
+											<label class="col-md-2 control-label" for="profile_id">Product Profile</label>
+											<div class="col-md-10">
+												<select id="profile_id" name="profile_id" class="form-control select2" onchange="change_product_profile(this);">
+													<?php foreach($all_products as $all_product){ ?>
+														<option value="<?php echo $all_product['id'];?>" <?php if($product_id==$all_product['id']){echo"selected";} ?>>
+															<?php echo $all_product['title']; ?>
+														</option>
+													<?php } ?>
+												</select>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Product Details
+		              				</h3>
+		            			</div>
+								<div class="box-body">
+									<form action="actions.php?a=product_update" class="form-horizontal form-bordered" method="post">
+										<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+										<div class="row">
+											<div class="col-lg-12">
+												<section class="panel">
+													<div class="panel-body">
+														<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
+																<?php debug($product); ?>
+														<?php } ?>
+
+														<!-- title -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="title">Title</label>
+															<div class="col-md-10">
+																<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($product['title']); ?>">
+															</div>
+														</div>
+
+														<!-- title_2 -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="title_2">Subtitle</label>
+															<div class="col-md-10">
+																<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
+															</div>
+														</div>
+
+														<!-- description -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="description">Description</label>
+															<div class="col-md-10">
+																<textarea id="description" name="description" rows="40" style="width: 100%;">
+																	<?php echo stripslashes($product['description']); ?>
+											                    </textarea>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+
+										<div class="box-footer">
+											<a href="dashboard.php?c=products" class="btn btn-default">Back</a>
+											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+            </div>
+        <?php } ?>
+
+        <?php function product_images(){ ?>
         	<?php 
         		global $conn, $globals, $global_settings, $account_details, $site;
             
@@ -3816,7 +3932,8 @@ desired effect
 				// instance, using default configuration.
 				CKEDITOR.replace("description",
 				{
-				     height: "350px"
+				     height: "350px",
+				     config.extraPlugins = 'uploadimage';
 				});
 			});
 
