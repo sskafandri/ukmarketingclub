@@ -2062,7 +2062,7 @@ desired effect
 		                    field_1: "Level"
 		                    
 		                },
-		                zoom: false,
+		                zoom: true,
 		                nodes: [
 		                    // level 0
 		                    { id: "<?php echo $account_details['id']; ?>", Name: "<?php echo $account_details['first_name']; ?> <?php echo $account_details['last_name']; ?>", Level: "Level 0", email: "<?php echo $account_details['email']; ?>", img: "<?php echo $account_details['avatar']; ?>" },
