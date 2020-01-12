@@ -723,7 +723,7 @@ desired effect
 					}
 					break;
 
-				case "members":
+				case "all_visual_downline":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						all_visual_downline();
 					}else{
