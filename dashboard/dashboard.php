@@ -2143,8 +2143,9 @@ desired effect
 			    }
 			    )); // the gray link shape
 			    // here's the family data
-			    var nodeDataArray=[ {
-			        key: 0, name: "George V", gender: "M", birthYear: "1865", deathYear: "1936", reign: "1910-1936"
+			    var nodeDataArray=[ 
+			    {
+			        key: 0, name: "Jamie Whittingham", gender: "M"
 			    }
 			    ,
 			    {
