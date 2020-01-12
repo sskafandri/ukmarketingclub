@@ -1769,7 +1769,7 @@ desired effect
 				window.onload = function () {
 				    var nodes = [
 				        // level 0
-	                    { id: 0, name: "Master Account", title: "Level 0", email: "admin", img: "img/avatar.png" },
+	                    { id: 0, Name: "Master Account", Level: "Level 0", email: "admin", img: "img/avatar.png" },
 		                <?php $downline[1][] = 0; ?>
 
 		                // level 1
@@ -1780,7 +1780,7 @@ desired effect
 		                    			<?php if($customer['upline_id']==$level) {?>
 				                        	// { id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level <?php echo $level; ?>", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
 
-				                        	{ id: <?php echo $customer['id']; ?>, pid: <?php echo $customer['upline_id']; ?>, name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level <?php echo $downline_current; ?>", email: "<?php if($downline_current == 1){ echo $customer['email']; }else{ echo 'hidden'; } ?>", img: "<?php echo $customer['avatar']; ?>" },
+				                        	{ id: <?php echo $customer['id']; ?>, pid: <?php echo $customer['upline_id']; ?>, Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level <?php echo $downline_current; ?>", email: "<?php if($downline_current == 1){ echo $customer['email']; }else{ echo 'hidden'; } ?>", img: "<?php echo $customer['avatar']; ?>" },
 				                    		<?php $downline[$downline_next][] = $customer['id']; ?>
 				                    	<?php } ?>
 				                    <?php } ?>
@@ -1818,8 +1818,8 @@ desired effect
 				            level: 3
 				        },
 				        nodeBinding: {
-				            field_0: "name",
-				            field_1: "title",
+				            field_0: "Name",
+				            field_1: "Level",
 				            img_0: "img",
 				            field_number_children: "field_number_children"
 				        },
