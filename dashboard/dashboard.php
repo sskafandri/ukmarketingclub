@@ -2066,6 +2066,37 @@ desired effect
 			                fit: true,
 			                expandAll: true
 			            },
+			            nodeMouseClick: OrgChart.action.none,
+				        align: OrgChart.ORIENTATION,
+				        mouseScrool: OrgChart.action.xScroll,
+				        showXScroll: OrgChart.scroll.visible,
+				        onSearchClick: function (sender, nodeId) {
+
+				            sender.center(nodeId,     {
+				                parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
+				                childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS
+				            });
+
+				            return false;
+				        },
+				        onExpCollClick: function (sender, action, id, ids) {
+				            var node = sender.getBGNode(id);
+				            var centerId = id;
+				            var rippleId = id;
+				            if (action == OrgChart.COLLAPSE) {
+				                var node = sender.getBGNode(id);
+				                if (node.parent == null) return true;
+				                centerId = node.pid;
+				            }
+
+				            sender.center(centerId,     {
+				                parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
+				                childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS,
+				                rippleId: rippleId
+				            });
+
+				            return false;
+				        },
 			            template: "isla",
 		                layout: OrgChart.mixed,
 		                nodeBinding: {
