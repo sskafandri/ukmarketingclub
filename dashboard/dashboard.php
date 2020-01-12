@@ -2035,7 +2035,7 @@ desired effect
         		global $conn, $globals, $global_settings, $account_details, $site;
 
         		// get customers
-				$query 				= $conn->query("SELECT `id`,`status`,`avatar`,`first_name`,`last_name`,`upline_id` FROM `users` ");
+				$query 				= $conn->query("SELECT `id`,`status`,`avatar`,`first_name`,`last_name`,`email`,`upline_id` FROM `users` ");
 				$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
