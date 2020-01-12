@@ -530,7 +530,7 @@ desired effect
 			                    <?php } ?>
 			                    	<a href="dashboard.php?c=all_visual_downline">
 			                        	<i class="fa fa-circle"></i> 
-			                        	<span>Company Visual Genealogy</span>
+			                        	<span>Visual Genealogy</span>
 			                        </a>
 			                    </li>
 
@@ -1833,10 +1833,10 @@ desired effect
                 <div id="status_message"></div>   
                             	
                 <section class="content-header">
-                    <h1>Staff Panel - Company Visual Genealogy <!-- <small>Optional description</small> --></h1>
+                    <h1>Staff Panel - Visual Genealogy <!-- <small>Optional description</small> --></h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="active">Company Visual Genealogy</li>
+                        <li class="active">Visual Genealogy</li>
                     </ol>
                 </section>
 
