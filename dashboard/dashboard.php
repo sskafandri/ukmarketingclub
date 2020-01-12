@@ -2055,7 +2055,9 @@ desired effect
 			<script>
 				window.onload = function () {
 				    var nodes = [
-				        { id: 1, name: "Jack Hill", title: "Chairman and CEO", email: "amber@domain.com", img: "https://cdn.balkan.app/shared/1.jpg" },
+				        // level 0
+		                    { id: "1", Name: "<?php echo $account_details['first_name']; ?> <?php echo $account_details['last_name']; ?>", Level: "Level 0", email: "<?php echo $account_details['email']; ?>", img: "<?php echo $account_details['avatar']; ?>" },
+		                    <?php $downline[1][]=$_SESSION['account']['id']; ?>
 				        { id: 2, pid: 1, name: "Lexie Cole", title: "QA Lead", email: "ava@domain.com", img: "https://cdn.balkan.app/shared/2.jpg" },
 				        { id: 3, pid: 1, name: "Janae Barrett", title: "Technical Director", img: "https://cdn.balkan.app/shared/3.jpg" },
 				        { id: 4, pid: 1, name: "Aaliyah Webb", title: "Manager", email: "jay@domain.com", img: "https://cdn.balkan.app/shared/4.jpg" },
@@ -2106,9 +2108,7 @@ desired effect
 				        nodes: nodes
 				    });
 				};
-				        </script>
-
-			
+			</script>
 
             <div class="content-wrapper">
 				
