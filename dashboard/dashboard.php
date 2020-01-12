@@ -1770,7 +1770,7 @@ desired effect
 				    var nodes = [
 				        // level 0
 	                    { id: 0, name: "Master Account", title: "Level 0", email: "admin", img: "img/avatar.png" },
-		                <?php $downline[1][]=$_SESSION['account']['id']; ?>
+		                <?php $downline[1][] = 0; ?>
 
 		                // level 1
 	                    <?php for($x = 0; $x <= $max_downline; $x++) { ?>
@@ -2199,7 +2199,7 @@ desired effect
 				    var nodes = [
 				        // level 0
 	                    { id: <?php echo $account_details['id']; ?>, name: "<?php echo $account_details['first_name']; ?> <?php echo $account_details['last_name']; ?>", title: "Level 0", email: "<?php echo $account_details['email']; ?>", img: "<?php echo $account_details['avatar']; ?>" },
-		                <?php $downline[1][]=$_SESSION['account']['id']; ?>
+		                <?php $downline[1][] = $_SESSION['account']['id']; ?>
 
 		                // level 1
 	                    <?php for($x = 0; $x <= $max_downline; $x++) { ?>
