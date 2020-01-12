@@ -1604,6 +1604,32 @@ desired effect
                 <!-- Main content -->
 				<section class="content">
 					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+								<div class="box-body">
+									<form class="form-horizontal form-bordered" >
+										<!-- upline -->
+										<div class="form-group">
+											<label class="col-md-2 control-label" for="profile_id">Member Profile</label>
+											<div class="col-md-10">
+												<select id="profile_id" name="profile_id" class="form-control select2">
+													<?php foreach($all_members as $all_member){ ?>
+														<option <?php if($member_id==$all_member['id']){echo"selected";} ?> value="<?php echo $all_member['id'];?>">
+															<?php echo $all_member['first_name'].' '.$all_member['last_name'].' ('.$all_member['email'].')'; ?>
+														</option>
+													<?php } ?>
+												</select>
+
+												<small>Pleaste note: changing the upline will move this member and their entire downline. All existing commissions will be paid but all commissions generate after the change will be paid to the new upline genealogy.</small>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
 						<div class="col-lg-4">
 							<div class="col-lg-12">
 								<div class="box box-primary">
