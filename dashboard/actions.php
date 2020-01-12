@@ -6117,18 +6117,17 @@ function ajax_products()
 	// Decode response
 	$whmcs_products = json_decode($response, true);
 
-	debug($whmcs_products);
-	
+	// debug($whmcs_products);
+
 	$whmcs_products = $whmcs_products['products']['product'];
 
 	foreach($whmcs_products as $product){
 		// insert product to local db for additional features
 		$insert = $conn->exec("INSERT IGNORE INTO `shop_products` 
-	        (`id`,`added`,`status`,`title`,`price`)
+	        (`id`,`added`,`title`,`price`)
 	        VALUE
-	        ('".$product['id']."',
+	        ('".$product['pid']."',
 	        '".time()."',
-	        '".$product['status']."',
 	        '".$product['name']."',
 	        '".$product['pricing']['GBP']['monthly']."'
 	    )");
