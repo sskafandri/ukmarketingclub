@@ -2065,12 +2065,12 @@ desired effect
 		                // collapse: {
 			            //     level: 2,
 			            // },
-			            toolbar: {
-			                layout: true,
-			                zoom: true,
-			                fit: true,
-			                expandAll: true
-			            },
+			            // toolbar: {
+			            //     layout: true,
+			            //     zoom: true,
+			            //     fit: true,
+			            //     expandAll: true
+			            // },
 			            nodeMouseClick: OrgChart.action.none,
 				        align: OrgChart.ORIENTATION,
 				        mouseScrool: OrgChart.action.xScroll,
