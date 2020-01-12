@@ -2125,7 +2125,7 @@ desired effect
 		                    img_0: "img",
 		                    field_0: "Name",
 		                    field_1: "Level",
-		                    field_number_children: "field_number_children"
+		                    field_number_children: "field_number_children",
 		                },
 		                zoom: true,
 		                nodes: [
