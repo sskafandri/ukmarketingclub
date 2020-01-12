@@ -2051,7 +2051,7 @@ desired effect
 			<script>
 		        window.onload = function () {
 		            var chart = new OrgChart(document.getElementById("tree"), {
-		                template: "ula",
+		                template: "isla",
 		                layout: OrgChart.mixed,
 		                nodeBinding: {
 		                    img_0: "img",
