@@ -6074,6 +6074,80 @@ function ajax_commissions()
 	json_output($data);
 }
 
+function ajax_products_internal()
+{
+	global $conn, $global_settings;
+
+	$count 				= 0;
+
+	header("Content-Type:application/json; charset=utf-8");
+
+	// get all commissions
+	$query 				= $conn->query("SELECT * FROM `shop_products` ");
+	$products 			= $query->fetchAll(PDO::FETCH_ASSOC);
+	
+	// work with commissions
+	foreach($products as $product){
+		$output[$count]							= $product;
+
+		// checkbox 
+		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$product['id'].'" name="product_ids[]" value="'.$product['id'].'" onclick="multi_options();"></center>';
+
+		// added date
+		$output[$count]['added'] 				= date("Y-m-d", $product['added']);
+
+		// status
+		if($product['status'] == 'available') {
+			$output[$count]['status'] 					= '<span class="label label-success full-width" style="width: 100%;">Available</span>';
+		}elseif($commission['status'] == 'not_available') {
+			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">Not Available</span>';
+		}elseif($commission['status'] == 'out_of_stock') {
+			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">Out of Stock</span>';
+		}else{
+			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">'.ucfirst($commission['status']).'</span>';
+		}
+
+		// title
+		$output[$count]['title'] 						= stripslashes($product['title']);
+
+		// title_2
+		$output[$count]['title_2'] 						= stripslashes($product['title_2']);
+
+		// description
+		$output[$count]['description'] 					= stripslashes($product['description']);
+
+		// price
+		$output[$count]['price'] 						= '£'.number_format($product['price'], 2);
+
+		// price
+		if(empty($output[$count]['shipping']) || $output[$count]['shipping'] == '0' || $output[$count]['shipping'] == '0.0' || $output[$count]['shipping'] == '0.00')
+			$output[$count]['shipping'] 					= 'FREE';
+		}else{
+			$output[$count]['shipping'] 					= '£'.number_format($product['price'], 2);
+		}
+
+		// build the actions menu options
+		$output[$count]['actions'] 						= '
+			<div class="btn-group">
+				<span class="pull-right">
+					<a title="View / Edit Product" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=product&id='.$product['id'].'"><i class="fa fa-eye"></i></a>
+					<a title="View WHMCS Product" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/configproducts.php?action=edit&id='.$product['pid'].'" target="_blank"><i class="fa fa-dollar"></i></a>
+				</span>
+			</div>';
+
+		// $count loop
+		$count++;
+	}
+
+	if(isset($output)) {
+		$data['data'] = array_values($output);
+	}else{
+		$data['data'] = array();
+	}
+
+	json_output($data);
+}
+
 function ajax_products()
 {
 	global $conn, $global_settings;
@@ -6118,7 +6192,18 @@ function ajax_products()
 	$whmcs_products = json_decode($response, true);
 	$whmcs_products = $whmcs_products['products']['product'];
 
-	foreach($whmcs_products as $product) {
+	foreach($whmcs_products as $product){
+		// insert product to local db for additional features
+		$insert = $conn->exec("INSERT IGNORE INTO `shop_products` 
+	        (`id`,`added`,`status`,`title`,`price`)
+	        VALUE
+	        ('".$product['id']."',
+	        '".time()."',
+	        '".$product['status']."',
+	        '".$product['name']."',
+	        '".$product['pricing']['GBP']['monthly']."'
+	    )");
+
 		$output[$count] 								= $product;
 		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$product['pid'].'" name="product_ids[]" value="'.$product['pid'].'" onclick="multi_options();"></center>';
 
@@ -6143,9 +6228,8 @@ function ajax_products()
 		$output[$count]['actions'] 						= '
 			<div class="btn-group">
 				<span class="pull-right">
-					<a title="View / Edit Product" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/configproducts.php?action=edit&id='.$product['pid'].'" target="_blank"><i class="fa fa-cogs"></i></a>
-
-					<!-- <a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$product['pid'].'"><i class="fa fa-times"></i></a> -->
+					<a title="View / Edit Product" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=product&id='.$product['id'].'"><i class="fa fa-eye"></i></a>
+					<a title="View WHMCS Product" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/configproducts.php?action=edit&id='.$product['pid'].'" target="_blank"><i class="fa fa-dollar"></i></a>
 				</span>
 			</div>';
 
