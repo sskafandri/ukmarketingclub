@@ -2037,6 +2037,10 @@ desired effect
         		// get customers
 				$query 				= $conn->query("SELECT `id`,`status`,`avatar`,`first_name`,`last_name`,`email`,`upline_id` FROM `users` ");
 				$customers 			= $query->fetchAll(PDO::FETCH_ASSOC);
+
+				$downline_current	= 1;
+				$downline_next		= 2;
+				$max_downline 		= 7;
 			?>
 
 			<script src="https://balkangraph.com/js/latest/OrgChart.js"></script>
@@ -2112,100 +2116,20 @@ desired effect
 		                    <?php $downline[1][]=$_SESSION['account']['id']; ?>
 		                    
 		                    // level 1
-		                    <?php if(is_array($downline[1])) { ?>
-		                    	<?php foreach($downline[1] as $level_1) { ?>
-		                    		<?php foreach($customers as $customer) { ?>
-		                    			<?php if($customer['upline_id']==$level_1) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[2][] = $customer['id']; ?>
-				                    	<?php } ?>
-				                    <?php } ?>
-				                <?php } ?>
-				            <?php } ?>
-
-				            // level 2
-		                    <?php if(is_array($downline[2])) { ?>
-		                    	<?php foreach($downline[2] as $level_2) { ?>
-		                    		<?php foreach($customers as $customer) { ?>
-		                    			<?php if($customer['upline_id']==$level_2) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level 2", email: "Hidden", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[3][] = $customer['id']; ?>
-				                    	<?php } ?>
-				                    <?php } ?>
-				                <?php } ?>
-				            <?php } ?>
-
-				            // level 3
-		                    <?php if(is_array($downline[3])) { ?>
-		                    	<?php foreach($downline[3] as $level_3) { ?>
-		                    		<?php foreach($customers as $customer) { ?>
-		                    			<?php if($customer['upline_id']==$level_3) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level 3", email: "Hidden", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[4][] = $customer['id']; ?>
-				                    	<?php } ?>
-				                    <?php } ?>
-				                <?php } ?>
-				            <?php } ?>
-
-				            // level 4
-		                    <?php if(is_array($downline[4])) { ?>
-		                    	<?php foreach($downline[4] as $level_4) { ?>
-		                    		<?php foreach($customers as $customer) { ?>
-		                    			<?php if($customer['upline_id']==$level_4) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level 4", email: "Hidden", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[5][] = $customer['id']; ?>
-				                    	<?php } ?>
-				                    <?php } ?>
-				                <?php } ?>
-				            <?php } ?>
-
-				            // level 5
-		                    <?php if(is_array($downline[5])) { ?>
-		                    	<?php foreach($downline[5] as $level_5) { ?>
-		                    		<?php foreach($customers as $customer) { ?>
-		                    			<?php if($customer['upline_id']==$level_5) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level 5", email: "Hidden", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[6][] = $customer['id']; ?>
-				                    	<?php } ?>
-				                    <?php } ?>
-				                <?php } ?>
-				            <?php } ?>
-
-				            // level 5
-		                    <?php if(is_array($downline[5])) { ?>
-		                    	<?php foreach($downline[5] as $level_5) { ?>
-		                    		<?php foreach($customers as $customer) { ?>
-		                    			<?php if($customer['upline_id']==$level_5) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level 5", email: "Hidden", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[6][] = $customer['id']; ?>
-				                    	<?php } ?>
-				                    <?php } ?>
-				                <?php } ?>
-				            <?php } ?>
-
-				            // level 6
-		                    <?php if(is_array($downline[6])) { ?>
-		                    	<?php foreach($downline[6] as $level_6) { ?>
-		                    		<?php foreach($customers as $customer) { ?>
-		                    			<?php if($customer['upline_id']==$level_6) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level 6", email: "Hidden", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[7][] = $customer['id']; ?>
-				                    	<?php } ?>
-				                    <?php } ?>
-				                <?php } ?>
-				            <?php } ?>
-
-				            // level 7
-		                    <?php if(is_array($downline[7])) { ?>
-		                    	<?php foreach($downline[7] as $level_7) { ?>
-		                    		<?php foreach($customers as $customer) { ?>
-		                    			<?php if($customer['upline_id'] == $level_7) {?>
-				                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level 7", email: "Hidden", img: "<?php echo $customer['avatar']; ?>" },
-				                    		<?php $downline[8][] = $customer['id']; ?>
-				                    	<?php } ?>
-				                    <?php } ?>
-				                <?php } ?>
-				            <?php } ?>
+		                    <?php for($x = 0; $x <= $max_downline; $x++) { ?>
+							    <?php if(is_array($downline[$downline_current])) { ?>
+			                    	<?php foreach($downline[$downline_current] as $level) { ?>
+			                    		<?php foreach($customers as $customer) { ?>
+			                    			<?php if($customer['upline_id']==$level) {?>
+					                        	{ id: "<?php echo $customer['id']; ?>", pid: "<?php echo $customer['upline_id']; ?>", Name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", Level: "Level <?php echo $level; ?>", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
+					                    		<?php $downline[$downline_next][] = $customer['id']; ?>
+					                    	<?php } ?>
+					                    <?php } ?>
+					                <?php } ?>
+					            <?php } ?>
+					            <?php $downline_current++; ?>
+					            <?php $downline_next++; ?>
+							<?php } ?>
 
 		                    // { id: "2", pid: "1", name: "Ian Orford", title: "Level 1", email: "ian@ianorford.com", img: "https://cdn.balkan.app/shared/2.jpg" },
 		                    
