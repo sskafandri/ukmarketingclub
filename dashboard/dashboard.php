@@ -1998,7 +1998,11 @@ desired effect
 
 				// get product information
 				$query 					= $conn->query("SELECT * FROM `shop_products` WHERE `id` = '".$product_id."' ");
-				$product 				= $query->fetchAll(PDO::FETCH_ASSOC);
+				$product 				= $query->fetch(PDO::FETCH_ASSOC);
+
+				// get all products for jump menu
+				$query 					= $conn->query("SELECT * FROM `shop_products` ORDER BY `title` ");
+				$all_products 			= $query->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
             <div class="content-wrapper">
@@ -2016,6 +2020,30 @@ desired effect
 
                 <!-- Main content -->
 				<section class="content">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+								<div class="box-body">
+									<form class="form-horizontal form-bordered" >
+										<!-- upline -->
+										<div class="form-group">
+											<label class="col-md-2 control-label" for="profile_id">Product Profile</label>
+											<div class="col-md-10">
+												<select id="profile_id" name="profile_id" class="form-control select2" onchange="change_product_profile(this);">
+													<?php foreach($all_products as $all_product){ ?>
+														<option value="<?php echo $all_product['id'];?>" <?php if($product_id==$all_product['id']){echo"selected";} ?>>
+															<?php echo $all_product['title']; ?>
+														</option>
+													<?php } ?>
+												</select>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="box box-primary">
@@ -3811,6 +3839,15 @@ desired effect
 			} );
     	</script>
     <?php } ?>
+
+    <?php if(get('c') == 'products') { ?>
+    	<script>
+    		function change_product_profile(selectObject) {
+			    var profile_id = selectObject.value; 
+			    window.location.href = "dashboard.php?c=product&id="+profile_id;
+			}
+		</script>
+	<?php } ?>
 
     <?php if(get('c') == 'table_downline') { ?>
     	<script>
