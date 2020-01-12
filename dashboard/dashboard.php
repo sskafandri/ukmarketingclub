@@ -2076,6 +2076,18 @@ desired effect
 				                <?php } ?>
 				            <?php } ?>
 
+				            // level 2
+		                    <?php if(is_array($downline[2])) { ?>
+		                    	<?php foreach($downline[2] as $level_2) { ?>
+		                    		<?php foreach($customers as $customer) { ?>
+		                    			<?php if($customer['upline_id']==$level_2) {?>
+				                        	{ id: "<?php echo $customer['id']; ?>", pid: "1", name: "<?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?>", title: "Level 1", email: "<?php echo $customer['email']; ?>", img: "<?php echo $customer['avatar']; ?>" },
+				                    		<?php $downline[3][]=$customer['id']; ?>
+				                    	<?php } ?>
+				                    <?php } ?>
+				                <?php } ?>
+				            <?php } ?>
+
 		                    // { id: "2", pid: "1", name: "Ian Orford", title: "Level 1", email: "ian@ianorford.com", img: "https://cdn.balkan.app/shared/2.jpg" },
 		                    
 
