@@ -6120,17 +6120,29 @@ function ajax_products()
 	$whmcs_products = $whmcs_products['products']['product'];
 
 	foreach($whmcs_products as $product){
+		$output[$count] 								= $product;
+
+		// set pricing to price var
+		$output[$count]['price']['monthly']				= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['monthly']);
+		$output[$count]['price']['quarterly']			= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['quarterly']);
+		$output[$count]['price']['annually']			= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['annually']);
+
 		// insert product to local db for additional features
 		$insert = $conn->exec("INSERT IGNORE INTO `shop_products` 
-	        (`id`,`added`,`title`,`price`)
+	        (`id`,`added`,`title`,`price_month`,`price_year`)
 	        VALUE
 	        ('".$product['pid']."',
 	        '".time()."',
 	        '".$product['name']."',
-	        '".$product['pricing']['GBP']['monthly']."'
+	        '".$output[$count]['price']['monthly']."',
+	        '".$output[$count]['price']['annually']."'
 	    )");
 
-		$output[$count] 								= $product;
+	    // update the core values from whmcs
+	    $update = $conn->exec("UPDATE `shop_products` SET `title` = '".$product['name']."' 								WHERE `id` = '".$product['pid']."' ");
+	    $update = $conn->exec("UPDATE `shop_products` SET `price_month` = '".$output[$count]['price']['monthly']."' 	WHERE `id` = '".$product['pid']."' ");
+	    $update = $conn->exec("UPDATE `shop_products` SET `price_year` = '".$output[$count]['price']['annually']."' 	WHERE `id` = '".$product['pid']."' ");
+
 		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$product['pid'].'" name="product_ids[]" value="'.$product['pid'].'" onclick="multi_options();"></center>';
 
 		// get product category
@@ -6144,11 +6156,6 @@ function ajax_products()
 		}else{
 			$output[$count]['recurring']				= 'Recurring';
 		}
-
-		// set pricing to price var
-		$output[$count]['price']['monthly']				= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['monthly']);
-		$output[$count]['price']['quarterly']			= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['quarterly']);
-		$output[$count]['price']['annually']			= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['annually']);
 
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
