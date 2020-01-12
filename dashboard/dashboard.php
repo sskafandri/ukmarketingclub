@@ -1851,7 +1851,7 @@ desired effect
 									</h3> 
 								</div>
 								<div class="box-body">
-									<p>You can drag your download genealogy tree around and navigate freely. You can zoom in and out using your mouse wheel or touchpad.</p>
+									<p>You can drag your downline genealogy tree around and navigate freely. You can zoom in and out using your mouse wheel or touchpad.</p>
 
 									<div id="tree"></div>
 								</div>
@@ -2276,7 +2276,7 @@ desired effect
 									</h3> 
 								</div>
 								<div class="box-body">
-									<p>You can drag your download genealogy tree around and navigate freely. You can zoom in and out using your mouse wheel or touchpad.</p>
+									<p>You can drag your downline genealogy tree around and navigate freely. You can zoom in and out using your mouse wheel or touchpad.</p>
 
 									<div id="tree"></div>
 								</div>
