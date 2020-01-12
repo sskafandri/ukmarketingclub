@@ -775,6 +775,14 @@ desired effect
 					}
 					break;
 
+				case "product":
+					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
+						product();
+					}else{
+						home();
+					}
+					break;
+
 				case "all_commissions":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						all_commissions();
