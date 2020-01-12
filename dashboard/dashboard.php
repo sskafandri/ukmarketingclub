@@ -499,7 +499,7 @@ desired effect
 
 	                <?php if($account_details['type'] == 'admin' || $account_details['type'] == 'dev') { ?>
                 		<li class="header">STAFF PANEL</li>
-	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'products' || get('c') == 'product' || get('c') == 'all_commissions' || get('c') == 'all_withdrawal_requests' || get('c') == 'all_visual_downline'){ ?>
+	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'all_visual_downline'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
@@ -533,8 +533,22 @@ desired effect
 			                        	<span>Visual Genealogy</span>
 			                        </a>
 			                    </li>
+							</ul>
+						</li>
 
-			                    <?php if(get('c') == 'products'){ ?>
+						<?php if(et('c') == 'products' || get('c') == 'product'){ ?>
+	                    	<li class="active treeview menu-open">
+	                    <?php }else{ ?>
+	                    	<li class="treeview">
+	                    <?php } ?>
+							<a href="#">
+								<i class="fa fa-shopping-cart"></i> <span>Product Management</span>
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+							<ul class="treeview-menu">
+								<?php if(get('c') == 'products'){ ?>
 			                    	<li class="active">
 			                    <?php }else{ ?>
 			                    	<li>
@@ -544,8 +558,22 @@ desired effect
 			                        	<span>All Products</span>
 			                        </a>
 			                    </li>
+							</ul>
+						</li>
 
-			                    <?php if(get('c') == 'all_commissions'){ ?>
+						<?php if(get('c') == 'all_commissions' || get('c') == 'all_withdrawal_requests'){ ?>
+	                    	<li class="active treeview menu-open">
+	                    <?php }else{ ?>
+	                    	<li class="treeview">
+	                    <?php } ?>
+							<a href="#">
+								<i class="fa fa-dollar-sign"></i> <span>Financial Management</span>
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+							<ul class="treeview-menu">
+								<?php if(get('c') == 'all_commissions'){ ?>
 			                    	<li class="active">
 			                    <?php }else{ ?>
 			                    	<li>
