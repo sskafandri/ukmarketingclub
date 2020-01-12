@@ -6154,7 +6154,7 @@ function ajax_products()
 		$output[$count]['actions'] 						= '
 			<div class="btn-group">
 				<span class="pull-right">
-					<a title="View / Edit Product" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=product&id='.$product['id'].'"><i class="fa fa-eye"></i></a>
+					<a title="View / Edit Product" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=product&id='.$product['pid'].'"><i class="fa fa-eye"></i></a>
 					<a title="View WHMCS Product" class="btn btn-primary btn-flat btn-xs" href="https://ublo.club/billing/admin/configproducts.php?action=edit&id='.$product['pid'].'" target="_blank"><i class="fa fa-dollar"></i></a>
 				</span>
 			</div>';
