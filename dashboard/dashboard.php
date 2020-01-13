@@ -2195,13 +2195,13 @@ desired effect
 									<div class="box-body">
 										<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="" style="max-height: 125px;">
 									</div>
-									<div class="box-footer">
+									<div class="box-footer text-right">
 										<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
 											<i class="fa fa-eye"></i> 
 										</button>
-										<button type="button" class="btn btn-danger btn-xs btn-flat text-right" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
+										<a href="actions.php?a=product_image_delete&id=<?php echo $product_image['iDisplayLength']; ?>" class="btn btn-danger btn-xs btn-flat">
 											<i class="fa fa-times"></i> 
-										</button>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -2216,7 +2216,7 @@ desired effect
 										    			<div class="form-group">
 															<label class="col-md-2 control-label" for="image_url">Image URL:</label>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="image_url" name="image_url" value="<?php echo $global_settings['site_url'].'/dashboard/'.$product_image['path']; ?>">
+																<input type="text" class="form-control" id="image_url" name="image_url" value="<?php echo $global_settings['site_url'].'/dashboard/'.$product_image['path']; ?>" onClick="this.select();">
 															</div>
 														</div>
 										    		</form>
