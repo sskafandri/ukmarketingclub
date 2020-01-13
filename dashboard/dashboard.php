@@ -2212,7 +2212,14 @@ desired effect
 							            <div class="modal-body">
 							                <div class="row">
 										    	<div class="col-lg-12">
-										    		<form method="post">
+										    		<form class="form-horizontal">
+										    			<div class="form-group">
+															<label class="col-md-2 control-label" for="image_url">Image URL:</label>
+															<div class="col-md-10">
+																<input type="text" class="form-control" id="image_url" name="image_url" value="<?php echo $global_settings['site_url'].'/'.$product_image['path']; ?>">
+															</div>
+														</div>
+										    		</form>
 
 										    		<center>
 										    			<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="" style="max-height: 500px;">
