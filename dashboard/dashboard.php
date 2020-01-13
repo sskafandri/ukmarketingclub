@@ -2199,7 +2199,7 @@ desired effect
 										<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
 											<i class="fa fa-eye"></i> 
 										</button>
-										<button type="button" class="btn btn-danger btn-xs btn-flat pull-right" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
+										<button type="button" class="btn btn-danger btn-xs btn-flat text-right" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
 											<i class="fa fa-times"></i> 
 										</button>
 									</div>
