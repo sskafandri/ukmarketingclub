@@ -2089,7 +2089,7 @@ desired effect
 														<div class="form-group">
 															<label class="col-md-2 control-label" for="category_id">Category</label>
 															<div class="col-md-10">
-																<select id="category_id" name="category_id" class="form-control select2" onchange="change_product_profile(this);">
+																<select id="category_id" name="category_id" class="form-control">
 																	<?php foreach($categories as $category){ ?>
 																		<option value="<?php echo $category['id'];?>" <?php if($category['id']==$product['category_id']){echo"selected";} ?>>
 																			<?php echo $category['name']; ?>
