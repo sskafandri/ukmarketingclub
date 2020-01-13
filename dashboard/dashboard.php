@@ -2082,8 +2082,8 @@ desired effect
 										<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
 										<div class="row">
 											<div class="col-lg-12">
-												<!-- category -->
 												<div class="form-group">
+													<!-- category -->
 													<label class="col-md-1 control-label" for="category_id">Category</label>
 													<div class="col-md-3 col-xs-11">
 														<select id="category_id" name="category_id" class="form-control">
@@ -2093,6 +2093,11 @@ desired effect
 																</option>
 															<?php } ?>
 														</select>
+													</div>
+
+													<label class="col-md-1 control-label" for="title">Title</label>
+													<div class="col-md-3 col-xs-11">
+														<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($product['title']); ?>">
 													</div>
 												</div>
 
