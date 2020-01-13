@@ -2189,6 +2189,18 @@ desired effect
 					</div>
 
 					<div class="row">
+						<?php foreach($product_images as $product_image){ ?>
+							<div class="col-lg-1">
+								<div class="box box-primary">
+									<div class="box-body">
+										
+									</div>
+								</div>
+							</div>
+						<?php } ?>
+					</div>
+
+					<div class="row">
 						<div class="col-lg-12">
 							<div class="row">
 								<?php foreach($product_images as $product_image){ ?>
