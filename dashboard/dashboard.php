@@ -2085,7 +2085,7 @@ desired effect
 												<!-- category -->
 												<div class="form-group">
 													<label class="col-md-1 control-label" for="category_id">Category</label>
-													<div class="col-md-3">
+													<div class="col-md-3 col-xs-11">
 														<select id="category_id" name="category_id" class="form-control">
 															<?php foreach($categories as $category){ ?>
 																<option value="<?php echo $category['id'];?>" <?php if($category['id']==$product['category_id']){echo"selected";} ?>>
@@ -2099,7 +2099,7 @@ desired effect
 												<!-- title -->
 												<div class="form-group">
 													<label class="col-md-1 control-label" for="title">Title</label>
-													<div class="col-md-3">
+													<div class="col-md-3 col-xs-11">
 														<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($product['title']); ?>">
 													</div>
 												</div>
@@ -2107,7 +2107,7 @@ desired effect
 												<!-- title_2 -->
 												<div class="form-group">
 													<label class="col-md-1 control-label" for="title_2">Subtitle</label>
-													<div class="col-md-3">
+													<div class="col-md-3 col-xs-11">
 														<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
 													</div>
 												</div>
