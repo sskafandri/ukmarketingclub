@@ -2201,13 +2201,17 @@ desired effect
 										<?php foreach($product_images as $product_image){ ?>
 											<div class="col-lg-1">
 												<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="">
-												<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
-													<i class="fa fa-eye"></i> 
-												</button>
-
-												<button type="button" class="btn btn-danger btn-xs btn-flat pull-right" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
-													<i class="fa fa-times"></i> 
-												</button>
+												<div class="row">
+													<div class="col-lg-6">
+														<button type="button" class="btn btn-info btn-xs btn-flat pull-left" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
+															<i class="fa fa-eye"></i> 
+														</button>
+													</div>
+													<div class="col-lg-6">
+														<button type="button" class="btn btn-danger btn-xs btn-flat pull-right" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
+															<i class="fa fa-times"></i> 
+														</button>
+													</div>
 											</div>
 
 											<?php if($image_count == 12){ ?>
