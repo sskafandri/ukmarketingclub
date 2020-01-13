@@ -1637,8 +1637,8 @@ desired effect
 									<form class="form-horizontal form-bordered" >
 										<!-- upline -->
 										<div class="form-group">
-											<label class="col-md-2 control-label" for="profile_id">Member Profile</label>
-											<div class="col-md-10">
+											<label class="col-md-1 control-label" for="profile_id">Member Profile</label>
+											<div class="col-md-11">
 												<select id="profile_id" name="profile_id" class="form-control select2" onchange="change_member_profile(this);">
 													<?php foreach($all_members as $all_member){ ?>
 														<option value="<?php echo $all_member['id'];?>" <?php if($member_id==$all_member['id']){echo"selected";} ?>>
@@ -2049,8 +2049,8 @@ desired effect
 								<div class="box-body">
 									<form class="form-horizontal form-bordered" >
 										<div class="form-group">
-											<label class="col-md-2 control-label" for="profile_id">Product Profile</label>
-											<div class="col-md-10">
+											<label class="col-md-1 control-label" for="profile_id">Product Profile</label>
+											<div class="col-md-11">
 												<select id="profile_id" name="profile_id" class="form-control select2" onchange="change_product_profile(this);">
 													<?php foreach($all_products as $all_product){ ?>
 														<option value="<?php echo $all_product['id'];?>" <?php if($product_id==$all_product['id']){echo"selected";} ?>>
