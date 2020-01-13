@@ -2196,7 +2196,13 @@ desired effect
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-										<?php debug($product_images); ?>
+									<?php debug($product_images); ?>
+
+									<?php foreach($product_images as $product_image){ ?>
+										<div class="col-lg-3">
+											<img src="<?php echo $product_image['path']; ?>" alt="">
+										</div>
+									<?php } ?>
 								</div>
 							</div>
 						</div>
