@@ -6242,6 +6242,10 @@ function product_update()
 	$product_id 		= post('product_id');
 
 	$category_id 		= post('category_id');
+
+	$stars 				= post('stars');
+
+	$sale_icon 			= post('sale_icon');
 	
 	$title 				= post('title');
 	$title 				= addslashes($title);
@@ -6254,6 +6258,10 @@ function product_update()
 
 	$update = $conn->exec("UPDATE `shop_products` SET `category_id` = '".$category_id."' 			WHERE `id` = '".$product_id."' ");
 	$update = $conn->exec("UPDATE `whmcs`.`tblproducts` SET `gid` = '".$category_id."' 				WHERE `id` = '".$product_id."' ");
+
+	$update = $conn->exec("UPDATE `shop_products` SET `stars` = '".$stars."' 						WHERE `id` = '".$product_id."' ");
+
+	$update = $conn->exec("UPDATE `shop_products` SET `sale_icon` = '".$sale_icon."' 				WHERE `id` = '".$product_id."' ");
 
 	$update = $conn->exec("UPDATE `shop_products` SET `title` = '".$title."' 						WHERE `id` = '".$product_id."' ");
 	$update = $conn->exec("UPDATE `whmcs`.`tblproducts` SET `name` = '".$title."' 					WHERE `id` = '".$product_id."' ");

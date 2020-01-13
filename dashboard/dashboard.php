@@ -2095,9 +2095,30 @@ desired effect
 														</select>
 													</div>
 
+													<label class="col-md-1 control-label" for="stars">Stars</label>
+													<div class="col-md-3 col-xs-11">
+														<select id="stars" name="stars" class="form-control">
+															<option value="1" <?php if($product['stars']==1){echo"selected";} ?>>1</option>
+															<option value="2" <?php if($product['stars']==2){echo"selected";} ?>>2</option>
+															<option value="3" <?php if($product['stars']==3){echo"selected";} ?>>3</option>
+															<option value="4" <?php if($product['stars']==4){echo"selected";} ?>>4</option>
+															<option value="5" <?php if($product['stars']==5){echo"selected";} ?>>5</option>
+														</select>
+													</div>
+
+													<label class="col-md-1 control-label" for="sale_icon">Sale Icon</label>
+													<div class="col-md-3 col-xs-11">
+														<select id="sale_icon" name="sale_icon" class="form-control">
+															<option value="no" <?php if($product['sale_icon']=='no'){echo"selected";} ?>>No</option>
+															<option value="yes" <?php if($product['sale_icon']=='yes'){echo"selected";} ?>>Yes</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group">
 													<!-- title -->
 													<label class="col-md-1 control-label" for="title">Title</label>
-													<div class="col-md-3 col-xs-11">
+													<div class="col-md-5 col-xs-11">
 														<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($product['title']); ?>">
 													</div>
 
