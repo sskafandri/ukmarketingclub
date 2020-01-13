@@ -2211,7 +2211,7 @@ desired effect
 							        <div class="modal-content">
 							            <div class="modal-body">
 							                <div class="row">
-										    	<div class="col-lg-12">
+										    	<div class="col-lg-12 text-center">
 										    		<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="" style="max-height: 500px;">
 												</div>
 											</div>
