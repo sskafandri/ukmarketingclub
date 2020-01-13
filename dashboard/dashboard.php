@@ -2206,49 +2206,29 @@ desired effect
 								</div>
 							</div>
 
+							<div class="modal fade" id="view_image_<?php echo $product_image['id']; ?>" role="dialog">
+							    <div class="modal-dialog modal-lg">
+							        <div class="modal-content">
+							            <div class="modal-body">
+							                <div class="row">
+										    	<div class="col-lg-12">
+										    		<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="">
+												</div>
+											</div>
+							            </div>
+							            <div class="modal-footer">
+							                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+
 							<?php if($image_count == 12){ ?>
 								</div>
 								<div class="row">
 							<?php } ?>
 							<?php $image_count++; ?>
 						<?php } ?>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="row">
-								<?php foreach($product_images as $product_image){ ?>
-									<div class="col-lg-1">
-										<div class="box-body">
-											<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="">
-											
-											<div class="row">
-												<div class="col-lg-6">
-													<button type="button" class="btn btn-info btn-xs btn-flat pull-left" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
-														<i class="fa fa-eye"></i> 
-													</button>
-												</div>
-												<div class="col-lg-6">
-													<button type="button" class="btn btn-danger btn-xs btn-flat pull-right" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
-														<i class="fa fa-times"></i> 
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<?php if($image_count == 12){ ?>
-										</div>
-										<div class="row">
-									<?php } ?>
-									<?php $image_count++; ?>
-								<?php } ?>
-							</div>
-						</div>
-
-
-
-							
 					</div>
 				</section>
             </div>
