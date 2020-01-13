@@ -2193,7 +2193,7 @@ desired effect
 							<div class="col-lg-1">
 								<div class="box box-primary">
 									<div class="box-body">
-										
+										<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="">
 									</div>
 									<div class="box-footer">
 										<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
