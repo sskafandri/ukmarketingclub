@@ -2152,21 +2152,35 @@ desired effect
 						<div class="col-lg-12">
 							<div class="box box-primary">
 								<div class="box-body">
-									<form class="form-horizontal form-bordered" >
-										<!-- upline -->
-										<div class="form-group">
-											<label class="col-md-2 control-label" for="profile_id">Product Profile</label>
-											<div class="col-md-10">
-												<select id="profile_id" name="profile_id" class="form-control select2" onchange="change_product_profile(this);">
-													<?php foreach($all_products as $all_product){ ?>
-														<option value="<?php echo $all_product['id'];?>" <?php if($product_id==$all_product['id']){echo"selected";} ?>>
-															<?php echo $all_product['title']; ?>
-														</option>
-													<?php } ?>
-												</select>
-											</div>
-										</div>
-									</form>
+									<form name="upload_form" id="upload_form" enctype="multipart/form-data" method="post">
+	                                    To upload a photo, simple select the file you wish to upload and click the upload button.<br><br>
+	                                    
+                                        <div class="form-group">
+                                            <div class="col-lg-6 col-sm-6 col-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-primary btn-file">
+                                                            Browse&hellip; <input type="file" name="file1" id="file1" accept="image/*">
+                                                        </span>
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly>
+                                                </div>
+                                                <br>
+                                                <center>
+                                                    <progress id="progressBar" value="0" max="100" style="width:100%;"></progress>
+                                                    <span id="loaded_n_total"></span> <span id="status"></span>
+                                                </center>
+                                            </div>
+                                        </div>
+	                                    
+	                                    <br>
+	                                    
+	                                    <div class="row">
+	                                        <div class="col-sm-offset-2 col-sm-10">
+	                                            <input type="button" class="btn btn-success" value="Upload File" onclick="uploadFile()">
+	                                        </div>
+	                                    </div>
+	                                </form>
 								</div>
 							</div>
 						</div>
@@ -3910,6 +3924,81 @@ desired effect
 			}
 		</script>
 	<?php } ?>
+
+	<?php if(get('c') == 'product_images'){ ?>
+    	<script>
+			$(document).on('change', '.btn-file :file', function() {
+			  var input = $(this),
+				  numFiles = input.get(0).files ? input.get(0).files.length : 1,
+				  label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+			  input.trigger('fileselect', [numFiles, label]);
+			});
+			
+			$(document).ready( function() {
+				$('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+					
+					var input = $(this).parents('.input-group').find(':text'),
+						log = numFiles > 1 ? numFiles + ' files selected' : label;
+					
+					if( input.length ) {
+						input.val(log);
+					} else {
+						if( log ) alert(log);
+					}
+					
+				});
+			});
+		
+			function _(el){
+				return document.getElementById(el);
+			}
+
+			function uploadFile(){
+				var file = _("file1").files[0];
+				// alert(file.name+" | "+file.size+" | "+file.type);
+				var formdata = new FormData();
+				formdata.append("file1", file);
+				formdata.append("uid", uid);
+				var ajax = new XMLHttpRequest();
+				ajax.upload.addEventListener("progress", progressHandler, false);
+				ajax.addEventListener("load", completeHandler, false);
+				ajax.addEventListener("error", errorHandler, false);
+				ajax.addEventListener("abort", abortHandler, false);
+				ajax.open("POST", "actions.php?a=product_image_upload");
+				ajax.send(formdata);
+			}
+
+			function progressHandler(event){
+				_("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
+				var percent = (event.loaded / event.total) * 100;
+				_("progressBar").value = Math.round(percent);
+				_("status").innerHTML = Math.round(percent)+"% uploaded... please wait";
+			}
+
+			function completeHandler(event){
+				_("status").innerHTML = event.target.responseText;
+				_("progressBar").value = 0;
+				setTimeout(function() {
+					set_status_message('success', 'Photo has been updated.');
+					window.location = window.location;
+				}, 3000);
+			}
+
+			function errorHandler(event){
+				_("status").innerHTML = "Upload Failed";
+				setTimeout(function() {
+					$('#status').fadeOut('fast');
+				}, 10000);
+			}
+
+			function abortHandler(event){
+				_("status").innerHTML = "Upload Aborted";
+				setTimeout(function() {
+					$('#status').fadeOut('fast');
+				}, 10000);
+			}
+		</script>
+    <?php } ?>
 
     <?php if(get('c') == 'table_downline') { ?>
     	<script>

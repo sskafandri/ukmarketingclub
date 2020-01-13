@@ -46,427 +46,6 @@ switch ($a)
 		customer_delete();
 		break;
 
-
-	// mag functions
-	case "mag_add":
-		mag_add();
-		break;
-	
-	case "mag_update":
-		mag_update();
-		break;
-	
-	case "mag_delete":
-		mag_delete();
-		break;
-
-
-	// epg functions
-	case "epg_source_add":
-		epg_source_add();
-		break;
-	
-	case "epg_source_update":
-		epg_source_update();
-		break;
-	
-	case "epg_source_delete":
-		epg_source_delete();
-		break;
-
-	case "force_epg_update":
-		force_epg_update();
-		break;
-	
-
-	// reseller functions
-	case "reseller_add":
-		reseller_add();
-		break;
-
-	case "reseller_update":
-		reseller_update();
-		break;
-
-	case "reseller_delete":
-		reseller_delete();
-		break;
-
-
-	// stream functions
-	case "streams_restart_all":
-		streams_restart_all();
-		break;
-
-	case "streams_stop_all":
-		streams_stop_all();
-		break;
-
-	case "streams_start_all":
-		streams_start_all();
-		break;
-
-	case "ajax_streams_list":
-		ajax_streams_list();
-		break;
-
-	case "ajax_streams_list_test":
-		ajax_streams_list_test();
-		break;
-
-	case "ajax_stream":
-		ajax_stream();
-		break;
-
-	case "stream_update":
-		stream_update();
-		break;
-
-	case "stream_source_add":
-		stream_source_add();
-		break;
-
-	case "stream_source_update":
-		stream_source_update();
-		break;
-
-	case "stream_update_fingerprint":
-		stream_update_fingerprint();
-		break;
-
-	case "stream_update_dehash":
-		stream_update_dehash();
-		break;
-
-	case "stream_restart":
-		stream_restart();
-		break;
-
-	case "stream_stop":
-		stream_stop();
-		break;
-
-	case "stream_start":
-		stream_start();
-		break;
-
-	case "stream_add":
-		stream_add();
-		break;
-
-	case "stream_add_output":
-		stream_add_output();
-		break;
-
-	case "stream_multi_options":
-		stream_multi_options();
-		break;
-
-	case "cdn_stream_start":
-		cdn_stream_start();
-		break;
-
-	case "cdn_stream_stop":
-		cdn_stream_stop();
-		break;
-
-	case "stream_enable_format":
-		stream_enable_format();
-		break;
-
-	case "stream_disable_format":
-		stream_disable_format();
-		break;
-
-	case "export_m3u":
-		export_m3u();
-		break;
-
-	case "import_streams":
-		import_streams();
-		break;
-
-	case "inspect_m3u":
-		inspect_m3u();
-		break;
-
-	case "inspect_m3u_encoded":
-		inspect_m3u_encoded();
-		break;
-
-	case "inspect_remote_playlist":
-		inspect_remote_playlist();
-		break;
-
-	case "stream_delete":
-		stream_delete();
-		break;
-
-	case "bulk_update_sources":
-		bulk_update_sources();
-		break;
-
-
-	// tv series functions
-	case "tv_series_add":
-		tv_series_add();
-		break;
-
-	case "tv_series_update":
-		tv_series_update();
-		break;
-
-	case "tv_series_delete":
-		tv_series_delete();
-		break;
-
-	case "tv_series_episode_add":
-		tv_series_episode_add();
-		break;
-
-	case "tv_series_episode_delete":
-		tv_series_episode_delete();
-		break;
-
-	case "tv_series_episode_delete_all":
-		tv_series_episode_delete_all();
-		break;
-
-	case "tv_series_update_order":
-		tv_series_update_order();
-		break;
-
-	case "tv_series_start":
-		tv_series_start();
-		break;
-
-	case "tv_series_stop":
-		tv_series_stop();
-		break;
-
-
-	// channels functions
-	case "channel_add":
-		channel_add();
-		break;
-
-	case "channel_update":
-		channel_update();
-		break;
-
-	case "channel_delete":
-		channel_delete();
-		break;
-
-	case "channel_episode_add":
-		channel_episode_add();
-		break;
-
-	case "channel_episode_delete":
-		channel_episode_delete();
-		break;
-
-	case "channel_episode_scan_folder":
-		channel_episode_scan_folder();
-		break;
-
-	case "channel_update_order":
-		channel_update_order();
-		break;
-
-	case "channel_episode_delete_all":
-		channel_episode_delete_all();
-		break;
-
-	case "channel_start":
-		channel_start();
-		break;
-
-	case "channel_stop":
-		channel_stop();
-		break;
-
-	case "channels_stop_all":
-		channels_stop_all();
-		break;
-
-	case "channels_start_all":
-		channels_start_all();
-		break;
-
-	case "channel_multi_options":
-		channel_multi_options();
-		break;
-
-
-	// vod functions
-	case "vod_watch_add":
-		vod_watch_add();
-		break;
-
-	case "vod_watch_delete":
-		vod_watch_delete();
-		break;
-
-	case "vod_add":
-		vod_add();
-		break;
-
-	case "vod_update":
-		vod_update();
-		break;
-
-	case "vod_delete":
-		vod_delete();
-		break;
-
-
-	// stream categories
-	case "stream_category_add":
-		stream_category_add();
-		break;
-
-	case "stream_category_update":
-		stream_category_update();
-		break;
-
-	case "stream_category_delete":
-		stream_category_delete();
-		break;
-
-
-	// stream bouquets
-	case "bouquet_add":
-		bouquet_add();
-		break;
-
-	case "bouquet_update":
-		bouquet_update();
-		break;
-
-	case "bouquet_delete":
-		bouquet_delete();
-		break;
-
-	case "bouquet_streams_update":
-		bouquet_streams_update();
-		break;
-
-	case "bouquet_streams_order_update":
-		bouquet_streams_order_update();
-		break;
-
-
-	// transcoding profiles
-	case "transcoding_profile_add":
-		transcoding_profile_add();
-		break;
-
-	case "transcoding_profile_update":
-		transcoding_profile_update();
-		break;
-
-	case "transcoding_profile_delete":
-		transcoding_profile_delete();
-		break;
-
-	case "restart_transcoding_profile_streams":
-		restart_transcoding_profile_streams();
-		break;
-
-	// misc
-	case "analyse_stream":
-		analyse_stream();
-		break;
-
-	case "ajax_logs":
-		ajax_logs();
-		break;
-
-
-	// jobs
-	case "job_add":
-		job_add();
-		break;
-
-
-	// acl_rules
-	case "acl_rule_add":
-		acl_rule_add();
-		break;
-
-	case "acl_rule_update":
-		acl_rule_update();
-		break;
-
-	case "acl_rule_delete":
-		acl_rule_delete();
-		break;
-
-
-	// dns_add
-	case "dns_add":
-		dns_add();
-		break;
-
-	// dns_update
-	case "dns_update":
-		dns_update();
-		break;
-
-	// dns_delete
-	case "dns_delete":
-		dns_delete();
-		break;
-
-
-	// remote playlists
-	case "remote_playlist_add":
-		remote_playlist_add();
-		break;
-
-	case "remote_playlist_update":
-		remote_playlist_update();
-		break;
-
-	case "remote_playlist_delete":
-		remote_playlist_delete();
-		break;
-
-
-	// roku devices
-	case "roku_device_add":
-		roku_device_add();
-		break;
-
-	case "roku_device_update":
-		roku_device_update();
-		break;
-
-	case "roku_device_delete":
-		roku_device_delete();
-		break;
-
-
-	// playlist_checker
-	case "playlist_checker":
-		playlist_checker();
-		break;
-
-	case "ajax_stream_checker":
-		ajax_stream_checker();
-		break;
-
-
-	// xc_import
-	case "xc_import":
-		xc_import();
-		break;
-
-	case "xc_import_delete":
-		xc_import_delete();
-		break;
-
 	// my_account_update
 	case "my_account_update":
 		my_account_update();
@@ -540,6 +119,10 @@ switch ($a)
 
 	case "withdrawal_request_cancel":
 		withdrawal_request_cancel();
+		break;
+
+	case "product_image_upload":
+		product_image_upload();
 		break;
 
 // default		
@@ -6583,4 +6166,44 @@ function withdrawal_request_cancel()
 
     status_message('success',"Your withdrawal request has been cancelled and the funds transferred back to your available balance.");
 	go($_SERVER['HTTP_REFERER']);
+}
+
+function product_image_upload(){
+	global $conn, $whmcs, $site;
+
+	$fileName = $_FILES["file1"]["name"]; // The file name
+	
+	$fileName = str_replace('"', '', $fileName);
+	$fileName = str_replace("'", '', $fileName);
+	$fileName = str_replace(' ', '_', $fileName);
+	$fileName = str_replace(array('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '+', ';', ':', '\\', '|', '~', '`', ',', '<', '>', '/', '?', '§', '±',), '', $fileName);
+	// $fileName = $fileName . '.' . $fileExt;
+	
+	$fileTmpLoc = $_FILES["file1"]["tmp_name"]; // File in the PHP tmp folder
+	$fileType = $_FILES["file1"]["type"]; // The type of file it is
+	$fileSize = $_FILES["file1"]["size"]; // File size in bytes
+	$fileErrorMsg = $_FILES["file1"]["error"]; // 0 for false... and 1 for true
+	if (!$fileTmpLoc) { // if file not chosen
+		echo "Please select a photo to upload first.";
+		exit();
+	}
+
+	
+	// handle the uploaded file
+	if(move_uploaded_file($fileTmpLoc, "uploads/".$fileName)){
+		
+		// insert into the database
+		$insert = $conn->exec("INSERT INTO `shop_product_images` 
+	        (`path`)
+	        VALUE
+	        ('uploads/".$fileName."'
+	    )");
+		
+		// report
+		echo "<font color='#18B117'><b>Upload Complete</b></font>";
+		
+	}else{
+		echo "ERROR: Oops, something went very wrong. Please try again or contact support for more help.";
+		exit();
+	}	
 }
