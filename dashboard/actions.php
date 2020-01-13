@@ -6234,6 +6234,8 @@ function product_update()
 	global $conn, $global_settings;
 
 	$product_id 		= post('product_id');
+
+	$category_id 		= post('category_id');
 	
 	$title 				= post('title');
 	$title 				= addslashes($title);
@@ -6244,9 +6246,16 @@ function product_update()
 	$description 		= post('description');
 	$description 		= addslashes($description);
 
-	$update = $conn->exec("UPDATE `shop_products` SET `title` = '".$title."' 					WHERE `id` = '".$product_id."' ");
-	$update = $conn->exec("UPDATE `shop_products` SET `title_2` = '".$title_2."' 				WHERE `id` = '".$product_id."' ");
-	$update = $conn->exec("UPDATE `shop_products` SET `description` = '".$description."' 		WHERE `id` = '".$product_id."' ");
+	$update = $conn->exec("UPDATE `shop_products` SET `category_id` = '".$category_id."' 			WHERE `id` = '".$product_id."' ");
+	$update = $conn->exec("UPDATE `whmcs`.`tblproducts` SET `gid` = '".$category_id."' 				WHERE `id` = '".$product_id."' ");
+
+	$update = $conn->exec("UPDATE `shop_products` SET `title` = '".$title."' 						WHERE `id` = '".$product_id."' ");
+	$update = $conn->exec("UPDATE `whmcs`.`tblproducts` SET `name` = '".$title."' 					WHERE `id` = '".$product_id."' ");
+	
+	$update = $conn->exec("UPDATE `shop_products` SET `title_2` = '".$title_2."' 					WHERE `id` = '".$product_id."' ");
+	
+	$update = $conn->exec("UPDATE `shop_products` SET `description` = '".$description."' 			WHERE `id` = '".$product_id."' ");
+	$update = $conn->exec("UPDATE `whmcs`.`tblproducts` SET `description` = '".$description."' 		WHERE `id` = '".$product_id."' ");
 
     // log_add("[".$name."] has been updated.");
     status_message('success',"Product details have been updated and published.");

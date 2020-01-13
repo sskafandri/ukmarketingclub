@@ -2022,6 +2022,10 @@ desired effect
 				// get all products for jump menu
 				$query 					= $conn->query("SELECT * FROM `shop_products` ORDER BY `title` ");
 				$all_products 			= $query->fetchAll(PDO::FETCH_ASSOC);
+
+				// get all product categories
+				$query 					= $conn->query("SELECT * FROM `whmcs`.`tblproductgroups` ORDER BY `name` ");
+				$categories 			= $query->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
             <div class="content-wrapper">
@@ -2044,7 +2048,6 @@ desired effect
 							<div class="box box-primary">
 								<div class="box-body">
 									<form class="form-horizontal form-bordered" >
-										<!-- upline -->
 										<div class="form-group">
 											<label class="col-md-2 control-label" for="profile_id">Product Profile</label>
 											<div class="col-md-10">
@@ -2081,6 +2084,20 @@ desired effect
 														<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
 																<?php debug($product); ?>
 														<?php } ?>
+
+														<!-- category -->
+														<div class="form-group">
+															<label class="col-md-2 control-label" for="category_id">Category</label>
+															<div class="col-md-10">
+																<select id="category_id" name="category_id" class="form-control select2" onchange="change_product_profile(this);">
+																	<?php foreach($categories as $category){ ?>
+																		<option value="<?php echo $category['id'];?>" <?php if($category['id']==$product['category_id']){echo"selected";} ?>>
+																			<?php echo $category['name']; ?>
+																		</option>
+																	<?php } ?>
+																</select>
+															</div>
+														</div>
 
 														<!-- title -->
 														<div class="form-group">
