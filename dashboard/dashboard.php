@@ -2167,7 +2167,6 @@ desired effect
 		                                            </div>
 		                                        </div>
 		                                    </div>
-
 		                                    <div class="col-lg-6 col-xs-12">
 		                                    	<input type="button" class="btn btn-success" value="Upload File" onclick="uploadFile()">
 		                                    </div>
@@ -2199,6 +2198,9 @@ desired effect
 									<?php foreach($product_images as $product_image){ ?>
 										<div class="col-lg-1">
 											<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="">
+											<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
+												<i class="fa fa-eye"></i> 
+											</button>
 										</div>
 									<?php } ?>
 								</div>
