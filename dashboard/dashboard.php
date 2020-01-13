@@ -2132,6 +2132,8 @@ desired effect
 				// get product images
 				$query 					= $conn->query("SELECT * FROM `shop_product_images` ORDER BY `id` ");
 				$product_images 		= $query->fetchAll(PDO::FETCH_ASSOC);
+
+				$image_count 			= 1;
 			?>
 
             <div class="content-wrapper">
@@ -2195,14 +2197,22 @@ desired effect
 		              				</h3>
 		            			</div>
 								<div class="box-body">
-									<?php foreach($product_images as $product_image){ ?>
-										<div class="col-lg-1">
-											<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="">
-											<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
-												<i class="fa fa-eye"></i> 
-											</button>
-										</div>
-									<?php } ?>
+									<div class="row">
+										<?php foreach($product_images as $product_image){ ?>
+											<div class="col-lg-1">
+												<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="">
+												<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
+													<i class="fa fa-eye"></i> 
+												</button>
+											</div>
+
+											<?php if($image_count == 12){ ?>
+												</div>
+												<div class="row">
+											<?php } ?>
+											<?php $image_count++; ?>
+										<?php } ?>
+									</div>
 								</div>
 							</div>
 						</div>
