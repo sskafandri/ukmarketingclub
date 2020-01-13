@@ -5714,9 +5714,9 @@ function ajax_products()
 		$output[$count] 								= $product;
 
 		// set pricing to price var
-		$output[$count]['price']['monthly']				= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['monthly']);
-		$output[$count]['price']['quarterly']			= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['quarterly']);
-		$output[$count]['price']['annually']			= '£'.str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['annually']);
+		$output[$count]['price']['monthly']				= str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['monthly']);
+		$output[$count]['price']['quarterly']			= str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['quarterly']);
+		$output[$count]['price']['annually']			= str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['annually']);
 
 		// insert product to local db for additional features
 		$insert = $conn->exec("INSERT IGNORE INTO `shop_products` 
@@ -5753,6 +5753,10 @@ function ajax_products()
 		}else{
 			$output[$count]['recurring']				= 'Recurring';
 		}
+
+		$output[$count]['price']['monthly']				= '£'.$output[$count]['price']['monthly']
+		$output[$count]['price']['quarterly']			= '£'.$output[$count]['price']['quarterly']
+		$output[$count]['price']['annually']			= '£'.$output[$count]['price']['monthly']
 
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
