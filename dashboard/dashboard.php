@@ -3958,7 +3958,6 @@ desired effect
 				// alert(file.name+" | "+file.size+" | "+file.type);
 				var formdata = new FormData();
 				formdata.append("file1", file);
-				formdata.append("uid", uid);
 				var ajax = new XMLHttpRequest();
 				ajax.upload.addEventListener("progress", progressHandler, false);
 				ajax.addEventListener("load", completeHandler, false);
