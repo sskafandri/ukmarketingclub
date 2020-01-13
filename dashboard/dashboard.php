@@ -2212,6 +2212,7 @@ desired effect
 															<i class="fa fa-times"></i> 
 														</button>
 													</div>
+												</div>
 											</div>
 
 											<?php if($image_count == 12){ ?>
