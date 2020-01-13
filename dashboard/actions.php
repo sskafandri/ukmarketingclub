@@ -5754,9 +5754,9 @@ function ajax_products()
 			$output[$count]['recurring']				= 'Recurring';
 		}
 
-		$output[$count]['price']['monthly']				= '£'.$output[$count]['price']['monthly']
-		$output[$count]['price']['quarterly']			= '£'.$output[$count]['price']['quarterly']
-		$output[$count]['price']['annually']			= '£'.$output[$count]['price']['monthly']
+		$output[$count]['price']['monthly']				= '£'.$output[$count]['price']['monthly'];
+		$output[$count]['price']['quarterly']			= '£'.$output[$count]['price']['quarterly'];
+		$output[$count]['price']['annually']			= '£'.$output[$count]['price']['monthly'];
 
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
