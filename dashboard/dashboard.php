@@ -2154,30 +2154,31 @@ desired effect
 								<div class="box-body">
 									<form name="upload_form" id="upload_form" enctype="multipart/form-data" method="post">
 	                                    To upload a photo, simple select the file you wish to upload and click the upload button.<br><br>
-	                                    
-                                        <div class="form-group">
-                                            <div class="col-lg-6 col-sm-6 col-12">
-                                                <div class="input-group">
-                                                    <span class="input-group-btn">
-                                                        <span class="btn btn-primary btn-file">
-                                                            Browse&hellip; <input type="file" name="file1" id="file1" accept="image/*">
-                                                        </span>
-                                                    </span>
-                                                    <input type="text" class="form-control" readonly>
-                                                </div>
-                                                <br>
-                                                <center>
-                                                    <progress id="progressBar" value="0" max="100" style="width:100%;"></progress>
-                                                    <span id="loaded_n_total"></span> <span id="status"></span>
-                                                </center>
-                                            </div>
-                                        </div>
-	                                    
-	                                    <br>
-	                                    
 	                                    <div class="row">
-	                                        <div class="col-sm-offset-2 col-sm-10">
-	                                            <input type="button" class="btn btn-success" value="Upload File" onclick="uploadFile()">
+	                                    	<div class="col-lg-6 col-xs-12">
+		                                        <div class="form-group">
+		                                            <div class="input-group">
+		                                                <span class="input-group-btn">
+		                                                    <span class="btn btn-primary btn-file">
+		                                                        Browse&hellip; <input type="file" name="file1" id="file1" accept="image/*">
+		                                                    </span>
+		                                                </span>
+		                                                <input type="text" class="form-control" readonly>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+
+		                                    <div class="col-lg-6 col-xs-12">
+		                                    	<input type="button" class="btn btn-success" value="Upload File" onclick="uploadFile()">
+		                                    </div>
+		                                </div>
+	                                
+	                                	<div class="row">
+		                                    <div class="col-lg-6 col-xs-12">
+	                                            <center>
+	                                                <progress id="progressBar" value="0" max="100" style="width:100%;"></progress>
+	                                                <span id="loaded_n_total"></span> <span id="status"></span>
+	                                            </center>
 	                                        </div>
 	                                    </div>
 	                                </form>
