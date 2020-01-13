@@ -2199,7 +2199,7 @@ desired effect
 									<?php debug($product_images); ?>
 
 									<?php foreach($product_images as $product_image){ ?>
-										<div class="col-lg-3">
+										<div class="col-lg-1">
 											<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="">
 										</div>
 									<?php } ?>
