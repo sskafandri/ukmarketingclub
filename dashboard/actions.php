@@ -129,6 +129,10 @@ switch ($a)
 		product_image_delete();
 		break;
 
+	case "product_update":
+		product_update();
+		break;
+
 // default		
 	default:
 		home();
@@ -6223,4 +6227,29 @@ function product_image_delete()
 
 	status_message('success',"Product image has been deleted.");
 	go($_SERVER['HTTP_REFERER']);
+}
+
+function product_update()
+{
+	global $conn, $global_settings;
+
+	$product_id 		= post('product_id');
+	
+	$title 				= post('title');
+	$title 				= addslashes($title);
+
+	$title_2 			= post('title_2');
+	$title_2 			= addslashes($title_2);
+
+	$description 		= post('description');
+	$description 		= addslashes($description);
+
+	$update = $conn->exec("UPDATE `global_settings` SET `config_value` = '".$cms_domain_name."' 	WHERE `config_name` = 'cms_domain_name' ");
+	$update = $conn->exec("UPDATE `global_settings` SET `config_value` = '".$cms_ip."' 				WHERE `config_name` = 'cms_ip' ");
+	$update = $conn->exec("UPDATE `global_settings` SET `config_value` = '".$cms_name."' 			WHERE `config_name` = 'cms_name' ");
+	$update = $conn->exec("UPDATE `global_settings` SET `config_value` = '".$master_token."' 		WHERE `config_name` = 'master_token' ");
+
+    // log_add("[".$name."] has been updated.");
+    status_message('success',"Product details have been updated and published.");
+    go($_SERVER['HTTP_REFERER']);
 }
