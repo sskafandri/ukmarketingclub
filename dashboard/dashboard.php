@@ -2205,6 +2205,12 @@ desired effect
 									</div>
 								</div>
 							</div>
+
+							<?php if($image_count == 12){ ?>
+								</div>
+								<div class="row">
+							<?php } ?>
+							<?php $image_count++; ?>
 						<?php } ?>
 					</div>
 
