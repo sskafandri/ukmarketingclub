@@ -2114,9 +2114,9 @@ desired effect
 											<div class="col-lg-12">
 												<!-- description -->
 												<div class="form-group">
-													<label class="col-md-2 control-label" for="description">Description</label>
-													<div class="col-md-10">
-														<textarea id="description" name="description" rows="40" style="width: 100%;">
+													<label class="col-md-1 control-label" for="description">Description</label>
+													<div class="col-md-11">
+														<textarea id="description" name="description" cols="80" rows="40" style="width: 100%;">
 															<?php echo stripslashes($product['description']); ?>
 									                    </textarea>
 													</div>
