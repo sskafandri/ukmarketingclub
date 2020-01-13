@@ -2199,7 +2199,7 @@ desired effect
 										<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
 											<i class="fa fa-eye"></i> 
 										</button>
-										<a href="actions.php?a=product_image_delete&id=<?php echo $product_image['iDisplayLength']; ?>" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('ThAre you sure?')">
+										<a href="actions.php?a=product_image_delete&id=<?php echo $product_image['id']; ?>" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('ThAre you sure?')">
 											<i class="fa fa-times"></i> 
 										</a>
 									</div>
