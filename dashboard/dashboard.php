@@ -2124,7 +2124,7 @@ desired effect
 
 													<!-- title_2 -->
 													<label class="col-md-1 control-label" for="title_2">Subtitle</label>
-													<div class="col-md-3 col-xs-11">
+													<div class="col-md-5 col-xs-11">
 														<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
 													</div>
 												</div>
