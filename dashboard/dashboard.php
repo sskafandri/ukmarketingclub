@@ -2193,7 +2193,7 @@ desired effect
 							<div class="col-lg-1">
 								<div class="box box-primary">
 									<div class="box-body">
-										<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="">
+										<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="" style="max-height: 150px;">
 									</div>
 									<div class="box-footer">
 										<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#view_image_<?php echo $product_image['id']; ?>">
@@ -2211,8 +2211,10 @@ desired effect
 							        <div class="modal-content">
 							            <div class="modal-body">
 							                <div class="row">
-										    	<div class="col-lg-12 text-center">
-										    		<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="" style="max-height: 500px;">
+										    	<div class="col-lg-12">
+										    		<center>
+										    			<img src="<?php echo $product_image['path']; ?>" class="img-responsive" alt="" style="max-height: 500px;">
+										    		</center>
 												</div>
 											</div>
 							            </div>
