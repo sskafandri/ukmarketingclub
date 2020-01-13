@@ -125,6 +125,10 @@ switch ($a)
 		product_image_upload();
 		break;
 
+	case "product_image_delete":
+		product_image_delete();
+		break;
+
 // default		
 	default:
 		home();
@@ -6206,4 +6210,17 @@ function product_image_upload(){
 		echo "ERROR: Oops, something went very wrong. Please try again or contact support for more help.";
 		exit();
 	}	
+}
+
+function product_image_delete()
+{
+	global $conn, $global_settings;
+
+	$image_id = get('id');
+
+	// delete the database record
+	$delete = $conn->query("DELETE FROM `shop_product_images` WHERE `id` = '".$image_id."' ");
+
+	status_message('success',"Product image has been deleted.");
+	go($_SERVER['HTTP_REFERER']);
 }
