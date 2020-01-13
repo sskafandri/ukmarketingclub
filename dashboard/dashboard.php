@@ -2099,19 +2099,21 @@ desired effect
 															</div>
 														</div>
 
-														<!-- title -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="title">Title</label>
-															<div class="col-md-5">
-																<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($product['title']); ?>">
+														<div class="row">
+															<!-- title -->
+															<div class="form-group">
+																<label class="col-md-2 control-label" for="title">Title</label>
+																<div class="col-md-5">
+																	<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($product['title']); ?>">
+																</div>
 															</div>
-														</div>
 
-														<!-- title_2 -->
-														<div class="form-group">
-															<label class="col-md-2 control-label" for="title_2">Subtitle</label>
-															<div class="col-md-5">
-																<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
+															<!-- title_2 -->
+															<div class="form-group">
+																<label class="col-md-2 control-label" for="title_2">Subtitle</label>
+																<div class="col-md-5">
+																	<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
+																</div>
 															</div>
 														</div>
 
