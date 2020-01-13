@@ -5720,19 +5720,21 @@ function ajax_products()
 
 		// insert product to local db for additional features
 		$insert = $conn->exec("INSERT IGNORE INTO `shop_products` 
-	        (`id`,`added`,`title`,`price_month`,`price_year`)
+	        (`id`,`added`,`title`,`price_month`,`price_year`,`category_id`)
 	        VALUE
 	        ('".$product['pid']."',
 	        '".time()."',
 	        '".$product['name']."',
 	        '".$output[$count]['price']['monthly']."',
-	        '".$output[$count]['price']['annually']."'
+	        '".$output[$count]['price']['annually']."',
+	        '".$product['gid']."'
 	    )");
 
 	    // update the core values from whmcs
 	    $update = $conn->exec("UPDATE `shop_products` SET `title` = '".$product['name']."' 								WHERE `id` = '".$product['pid']."' ");
 	    $update = $conn->exec("UPDATE `shop_products` SET `price_month` = '".$output[$count]['price']['monthly']."' 	WHERE `id` = '".$product['pid']."' ");
 	    $update = $conn->exec("UPDATE `shop_products` SET `price_year` = '".$output[$count]['price']['annually']."' 	WHERE `id` = '".$product['pid']."' ");
+	    $update = $conn->exec("UPDATE `shop_products` SET `category_id` = '".$output[$count]['gid']."' 					WHERE `id` = '".$product['pid']."' ");
 
 		$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$product['pid'].'" name="product_ids[]" value="'.$product['pid'].'" onclick="multi_options();"></center>';
 
