@@ -2181,7 +2181,7 @@ desired effect
 									</div>
 		            			</div>
 								<div class="box-body">
-									<table id="linked_products" class="table table-bordered table-striped">
+									<table id="linked_products_table" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th class="no-sort" style="white-space: nowrap;">Product</th>
@@ -4132,7 +4132,7 @@ desired effect
 			}
 
 			$(function () {
-				$('#linked_products').DataTable({
+				$('#linked_products_table').DataTable({
 					"order": [[ 0, "asc" ]],
 					"columnDefs": [{
 						"targets"  : 'no-sort',
