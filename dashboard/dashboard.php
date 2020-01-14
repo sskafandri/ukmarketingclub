@@ -2167,8 +2167,11 @@ desired effect
 																<div class="form-group">
 																	<!-- linked products -->
 																	<label class="col-md-2 control-label" for="linked_product">Linked Product</label>
-																	<div class="col-md-10 col-xs-11">
+																	<div class="col-md-9">
 																		<input type="text" class="form-control" id="linked_product" name="linked_product" value="<?php echo stripslashes($all_product['title']); ?>">
+																	</div>
+																	<div class="col-md-1">
+																		<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm('Are you sure?')" href="actions.php?a=product_linked_delete&id=<?php echo $linked_product['id']; ?>"><i class="fa fa-times"></i></a>
 																	</div>
 																</div>
 															</div>
