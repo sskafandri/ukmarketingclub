@@ -2082,7 +2082,7 @@ desired effect
 			            			</div>
 									<div class="box-body">
 										<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
-												<?php debug($product); ?>
+												<?php debug($linked_products); ?>
 										<?php } ?>
 											
 										<div class="row">
