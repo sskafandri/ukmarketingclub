@@ -2114,11 +2114,11 @@ desired effect
 														</select>
 													</div>
 
-													<label class="col-md-1 control-label" for="sale_icon">Primary Product</label>
+													<label class="col-md-1 control-label" for="homepage">Homepage Product</label>
 													<div class="col-md-2 col-xs-11">
-														<select id="sale_icon" name="sale_icon" class="form-control">
-															<option value="no" <?php if($product['sale_icon']=='no'){echo"selected";} ?>>No</option>
-															<option value="yes" <?php if($product['sale_icon']=='yes'){echo"selected";} ?>>Yes</option>
+														<select id="homepage" name="homepage" class="form-control">
+															<option value="no" <?php if($product['homepage']=='no'){echo"selected";} ?>>No</option>
+															<option value="yes" <?php if($product['homepage']=='yes'){echo"selected";} ?>>Yes</option>
 														</select>
 													</div>
 												</div>
