@@ -2213,9 +2213,11 @@ desired effect
 											<div class="col-md-10">
 												<select id="secondary_id" name="secondary_id" class="form-control select2">
 													<?php foreach($all_products as $all_product){ ?>
-														<option value="<?php echo $all_product['id'];?>">
-															<?php echo $all_product['title']; ?>
-														</option>
+														<?php if($product_id != $all_product['id'] || $all_product['homepage'] == 'no'){ ?>
+															<option value="<?php echo $all_product['id'];?>">
+																<?php echo $all_product['title']; ?>
+															</option>
+														<?php } ?>
 													<?php } ?>
 												</select>
 												<small>Select a product to link.</small>
