@@ -2198,6 +2198,8 @@ desired effect
 																	<?php echo stripslashes($all_product['title']); ?>
 																</td>
 																<td style="vertical-align: middle;">
+																	<a title="View / Edit Product" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=product&id=<?php echo stripslashes($linked_product['secondary']); ?>">
+																		<i class="fa fa-eye"></i>
 																	<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm('Are you sure?')" href="actions.php?a=product_linked_delete&id=<?php echo stripslashes($linked_product['id']); ?>">
 																		<i class="fa fa-times"></i>
 																	</a>
