@@ -2066,20 +2066,21 @@ desired effect
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="box box-primary">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Product Details
-		              				</h3>
-		            			</div>
-								<div class="box-body">
-									<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
-											<?php debug($product); ?>
-									<?php } ?>
-									<form action="actions.php?a=product_update" class="form-horizontal form-bordered" method="post">
-										<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+					<form action="actions.php?a=product_update" class="form-horizontal form-bordered" method="post">
+						<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
+			              					Product Details
+			              				</h3>
+			            			</div>
+									<div class="box-body">
+										<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
+												<?php debug($product); ?>
+										<?php } ?>
+											
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="form-group">
@@ -2152,16 +2153,14 @@ desired effect
 												</div>
 											</div>
 										</div>
-
-										<div class="box-footer">
-											<a href="dashboard.php?c=products" class="btn btn-default">Back</a>
-											<button type="submit" class="btn btn-success pull-right">Save Changes</button>
-										</div>
-									</form>
+									</div>
+									<div class="box-footer">
+										<a href="dashboard.php?c=products" class="btn btn-default">Back</a>
+										<button type="submit" class="btn btn-success pull-right">Save Changes</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 				</section>
             </div>
         <?php } ?>
