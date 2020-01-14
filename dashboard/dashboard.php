@@ -2159,31 +2159,6 @@ desired effect
 												</div>
 											</div>
 										</div>
-
-										<div class="row">
-											<?php if(is_array($linked_products)){ ?>
-												<?php foreach($linked_products as $linked_product){ ?>
-													<?php foreach($all_products as $all_product){ ?>
-														<?php if($linked_product['secondary'] == $all_product['id']){ ?>
-															<div class="col-lg-12">
-																<div class="form-group">
-																	<!-- linked products -->
-																	<label class="col-md-2 control-label" for="linked_product">Linked Product</label>
-																	<div class="col-md-9">
-																		<input type="text" class="form-control" id="linked_product" name="linked_product" value="<?php echo stripslashes($all_product['title']); ?>">
-																	</div>
-																	<div class="col-md-1">
-																		<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm('Are you sure?')" href="actions.php?a=product_linked_delete&id=<?php echo $linked_product['id']; ?>"><i class="fa fa-times"></i></a>
-																	</div>
-																</div>
-															</div>
-
-															<?php break; ?>
-														<?php } ?>
-													<?php } ?>
-												<?php } ?>
-											<?php } ?>
-										</div>
 									</div>
 									<div class="box-footer">
 										<a href="dashboard.php?c=products" class="btn btn-default">Back</a>
@@ -2193,6 +2168,51 @@ desired effect
 							</div>
 						</div>
 					</form>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Linked Products
+		              				</h3>
+		              				<div class="pull-right">
+		              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_linked_product">Link Product</button>
+									</div>
+		            			</div>
+								<div class="box-body">
+									<div class="row">
+										<?php if(is_array($linked_products)){ ?>
+											<?php foreach($linked_products as $linked_product){ ?>
+												<?php foreach($all_products as $all_product){ ?>
+													<?php if($linked_product['secondary'] == $all_product['id']){ ?>
+														<div class="col-lg-12">
+															<div class="form-group">
+																<!-- linked products -->
+																<label class="col-md-2 control-label" for="linked_product">Linked Product</label>
+																<div class="col-md-9">
+																	<input type="text" class="form-control" id="linked_product" name="linked_product" value="<?php echo stripslashes($all_product['title']); ?>">
+																</div>
+																<div class="col-md-1">
+																	<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm('Are you sure?')" href="actions.php?a=product_linked_delete&id=<?php echo $linked_product['id']; ?>"><i class="fa fa-times"></i></a>
+																</div>
+															</div>
+														</div>
+
+														<?php break; ?>
+													<?php } ?>
+												<?php } ?>
+											<?php } ?>
+										<?php } ?>
+									</div>
+								</div>
+								<div class="box-footer">
+									<a href="dashboard.php?c=products" class="btn btn-default">Back</a>
+									<button type="submit" class="btn btn-success pull-right">Save Changes</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</section>
             </div>
 
