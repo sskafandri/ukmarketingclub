@@ -2021,7 +2021,7 @@ desired effect
 
 				// get linked products
 				$query 					= $conn->query("SELECT * FROM `shop_products_linked` WHERE `primary` = '".$product_id."' ");
-				$linked_products 		= $query->fetch(PDO::FETCH_ASSOC);
+				$linked_products 		= $query->fetchAll(PDO::FETCH_ASSOC);
 
 				// get all products for jump menu
 				$query 					= $conn->query("SELECT * FROM `shop_products` ORDER BY `title` ");
