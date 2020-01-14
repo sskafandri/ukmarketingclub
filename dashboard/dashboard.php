@@ -2085,7 +2085,7 @@ desired effect
 												<div class="form-group">
 													<!-- category -->
 													<label class="col-md-1 control-label" for="category_id">Category</label>
-													<div class="col-md-3 col-xs-11">
+													<div class="col-md-2 col-xs-11">
 														<select id="category_id" name="category_id" class="form-control">
 															<?php foreach($categories as $category){ ?>
 																<option value="<?php echo $category['id'];?>" <?php if($category['id']==$product['category_id']){echo"selected";} ?>>
@@ -2096,7 +2096,7 @@ desired effect
 													</div>
 
 													<label class="col-md-1 control-label" for="stars">Stars</label>
-													<div class="col-md-3 col-xs-11">
+													<div class="col-md-2 col-xs-11">
 														<select id="stars" name="stars" class="form-control">
 															<option value="1" <?php if($product['stars']==1){echo"selected";} ?>>1</option>
 															<option value="2" <?php if($product['stars']==2){echo"selected";} ?>>2</option>
@@ -2107,7 +2107,15 @@ desired effect
 													</div>
 
 													<label class="col-md-1 control-label" for="sale_icon">Sale Icon</label>
-													<div class="col-md-3 col-xs-11">
+													<div class="col-md-2 col-xs-11">
+														<select id="sale_icon" name="sale_icon" class="form-control">
+															<option value="no" <?php if($product['sale_icon']=='no'){echo"selected";} ?>>No</option>
+															<option value="yes" <?php if($product['sale_icon']=='yes'){echo"selected";} ?>>Yes</option>
+														</select>
+													</div>
+
+													<label class="col-md-1 control-label" for="sale_icon">Primary Product</label>
+													<div class="col-md-2 col-xs-11">
 														<select id="sale_icon" name="sale_icon" class="form-control">
 															<option value="no" <?php if($product['sale_icon']=='no'){echo"selected";} ?>>No</option>
 															<option value="yes" <?php if($product['sale_icon']=='yes'){echo"selected";} ?>>Yes</option>
