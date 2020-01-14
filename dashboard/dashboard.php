@@ -2019,6 +2019,10 @@ desired effect
 				$query 					= $conn->query("SELECT * FROM `shop_products` WHERE `id` = '".$product_id."' ");
 				$product 				= $query->fetch(PDO::FETCH_ASSOC);
 
+				// get linked products
+				$query 					= $conn->query("SELECT * FROM `shop_products_links` WHERE `primary` = '".$product_id."' ");
+				$linked_products 		= $query->fetch(PDO::FETCH_ASSOC);
+
 				// get all products for jump menu
 				$query 					= $conn->query("SELECT * FROM `shop_products` ORDER BY `title` ");
 				$all_products 			= $query->fetchAll(PDO::FETCH_ASSOC);
@@ -2152,6 +2156,26 @@ desired effect
 													</div>
 												</div>
 											</div>
+										</div>
+
+										<div class="row">
+											<?php foreach($linked_products as $linked_product){ ?>
+												<?php foreach($all_products as $all_product){ ?>
+													<?php if($linked_product['secondary'] == $all_product['id']){ ?>
+														<div class="col-lg-12">
+															<div class="form-group">
+																<!-- linked products -->
+																<label class="col-md-2 control-label" for="linked_product">Linked Product</label>
+																<div class="col-md-10 col-xs-11">
+																	<input type="text" class="form-control" id="linked_product" name="linked_product" value="<?php echo stripslashes($all_product['title']); ?>">
+																</div>
+															</div>
+														</div>
+
+														<?php break; ?>
+													<?php } ?>
+												<?php } ?>
+											<?php } ?>
 										</div>
 									</div>
 									<div class="box-footer">
