@@ -2079,7 +2079,7 @@ desired effect
 			              					Product Details
 			              				</h3>
 			              				<div class="pull-right">
-			              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_linked_product">Link Product</button>
+			              					
 										</div>
 			            			</div>
 									<div class="box-body">
