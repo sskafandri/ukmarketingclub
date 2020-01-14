@@ -3103,12 +3103,12 @@ desired effect
 		                        <div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
-			              					Retail Affiliate Links
+			              					Retail Link For Sharing (B2C)
 			              				</h3>
 			            			</div>
 									<div class="box-body">
 										<p>
-											These sharing options are for end user / retail customers only and redirects to the www.ublo.club website.
+											The link below is for sharing with retail customers only and redirects to the www.ublo.club website.
 										</p>
 										<form class="form-horizontal">
 			                                <div class="form-group">
@@ -3118,6 +3118,23 @@ desired effect
 			                                        <small></small>
 			                                    </div>
 			                                </div>
+
+			                                <strong><font color="red">IMPORTANT:</font></strong> <br>
+			                                <br>
+											Under the Tobacco Directive 2016, you are not allowed to promote the Ublo product range online in any way including but not limited to, Facebook, Twitter, Instagram, YouTube, Internet Marketing, Email marketing, Text marketing. <br>
+											<br>
+											Your custom link can only be used in offline marketing activities as described below; <br>
+											<br>
+											• outdoor advertising, including digital outdoor advertising <br>
+											• posters on public transport (not leaving the UK) <br>
+											• cinema <br>
+											• direct hard copy mail <br>
+											• leaflets <br>
+											• business cards <br>
+											• private, bespoke correspondence between you and a consumer <br>
+											• media which are targeted exclusively to the trade <br>
+											<br>
+											All media, leaflets, business cards etc must be compliant under the Tobacco Directive 2016 <br>
 
 			                                <!--
 			                                <div class="form-group">
