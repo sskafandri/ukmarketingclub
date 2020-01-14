@@ -6292,8 +6292,8 @@ function product_linked_add()
 {
 	global $conn, $global_settings;
 
-	$product_id 		= get('product_id');
-	$secondary_id 		= get('secondary_id');
+	$product_id 		= post('product_id');
+	$secondary_id 		= post('secondary_id');
 
 	$insert = $conn->exec("INSERT INTO `shop_products_linked` 
         (`primary`,`secondary`)
