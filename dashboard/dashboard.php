@@ -2159,20 +2159,22 @@ desired effect
 										</div>
 
 										<div class="row">
-											<?php foreach($linked_products as $linked_product){ ?>
-												<?php foreach($all_products as $all_product){ ?>
-													<?php if($linked_product['secondary'] == $all_product['id']){ ?>
-														<div class="col-lg-12">
-															<div class="form-group">
-																<!-- linked products -->
-																<label class="col-md-2 control-label" for="linked_product">Linked Product</label>
-																<div class="col-md-10 col-xs-11">
-																	<input type="text" class="form-control" id="linked_product" name="linked_product" value="<?php echo stripslashes($all_product['title']); ?>">
+											<?php if(is_array($linked_products)){ ?>
+												<?php foreach($linked_products as $linked_product){ ?>
+													<?php foreach($all_products as $all_product){ ?>
+														<?php if($linked_product['secondary'] == $all_product['id']){ ?>
+															<div class="col-lg-12">
+																<div class="form-group">
+																	<!-- linked products -->
+																	<label class="col-md-2 control-label" for="linked_product">Linked Product</label>
+																	<div class="col-md-10 col-xs-11">
+																		<input type="text" class="form-control" id="linked_product" name="linked_product" value="<?php echo stripslashes($all_product['title']); ?>">
+																	</div>
 																</div>
 															</div>
-														</div>
 
-														<?php break; ?>
+															<?php break; ?>
+														<?php } ?>
 													<?php } ?>
 												<?php } ?>
 											<?php } ?>
