@@ -133,6 +133,10 @@ switch ($a)
 		product_update();
 		break;
 
+	case "product_linked_add":
+		product_linked_add();
+		break;
+
 	case "product_linked_delete":
 		product_linked_delete();
 		break;
@@ -6281,6 +6285,23 @@ function product_update()
 
     // log_add("[".$name."] has been updated.");
     status_message('success',"Product details have been updated and published.");
+    go($_SERVER['HTTP_REFERER']);
+}
+
+function product_linked_add()
+{
+	global $conn, $global_settings;
+
+	$product_id 		= get('product_id');
+	$secondary_id 		= get('secondary_id');
+
+	$insert = $conn->exec("INSERT INTO `shop_products_linked` 
+        (`primary`,`secondary`)
+        VALUE
+        ('".$product_id."','".$secondary_id."')"
+    );
+
+    status_message('success',"Product has been linked.");
     go($_SERVER['HTTP_REFERER']);
 }
 
