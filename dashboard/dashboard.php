@@ -2181,34 +2181,35 @@ desired effect
 									</div>
 		            			</div>
 								<div class="box-body">
-									<div class="row">
-										<?php if(is_array($linked_products)){ ?>
-											<?php foreach($linked_products as $linked_product){ ?>
-												<?php foreach($all_products as $all_product){ ?>
-													<?php if($linked_product['secondary'] == $all_product['id']){ ?>
-														<div class="col-lg-12">
-															<div class="form-group">
-																<!-- linked products -->
-																<label class="col-md-2 control-label" for="linked_product">Linked Product</label>
-																<div class="col-md-9">
-																	<input type="text" class="form-control" id="linked_product" name="linked_product" value="<?php echo stripslashes($all_product['title']); ?>">
-																</div>
-																<div class="col-md-1">
-																	<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm('Are you sure?')" href="actions.php?a=product_linked_delete&id=<?php echo $linked_product['id']; ?>"><i class="fa fa-times"></i></a>
-																</div>
-															</div>
-														</div>
-
-														<?php break; ?>
+									<table id="linked_products" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th class="no-sort" style="white-space: nowrap;">Product</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php if(is_array($linked_products)){ ?>
+												<?php foreach($linked_products as $linked_product){ ?>
+													<?php foreach($all_products as $all_product){ ?>
+														<?php if($linked_product['secondary'] == $all_product['id']){ ?>
+																<tr>
+																	<td>
+																		<?php echo stripslashes($all_product['title']); ?>
+																	</td>
+																	<td style="vertical-align: middle;">
+																		<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=product_linked_delete&id=<?php echo stripslashes($all_product['id']); ?>">
+																			<i class="fa fa-times"></i>
+																		</a>
+																	</td>
+																</tr>
+															<?php break; ?>
+														<?php } ?>
 													<?php } ?>
 												<?php } ?>
 											<?php } ?>
-										<?php } ?>
-									</div>
-								</div>
-								<div class="box-footer">
-									<a href="dashboard.php?c=products" class="btn btn-default">Back</a>
-									<button type="submit" class="btn btn-success pull-right">Save Changes</button>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
@@ -4111,6 +4112,7 @@ desired effect
     <?php } ?>
 
     <?php if(get('c') == 'product') { ?>
+
 		<!-- CK Editor -->
     	<script src="ckeditor/ckeditor.js"></script>
 
@@ -4128,6 +4130,30 @@ desired effect
 			    var profile_id = selectObject.value; 
 			    window.location.href = "dashboard.php?c=product&id="+profile_id;
 			}
+
+			$(function () {
+				$('#linked_products').DataTable({
+					"order": [[ 0, "asc" ]],
+					"columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No linked products."
+					},
+			  		"paging": false,
+			  		"processing": true,
+			  		"lengthChange": false,
+			  		"searching": false,
+			  		"ordering": true,
+			  		"info": false,
+			  		"autoWidth": false,
+					"iDisplayLength": 100,
+					search: {
+					   search: '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>'
+					}
+				});
+		  	});
 		</script>
 	<?php } ?>
 
