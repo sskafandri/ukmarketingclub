@@ -1816,7 +1816,6 @@ desired effect
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</section>
             </div>
@@ -2079,6 +2078,9 @@ desired effect
 			              				<h3 class="box-title">
 			              					Product Details
 			              				</h3>
+			              				<div class="pull-right">
+			              					<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#new_linked_product">Link Product</button>
+										</div>
 			            			</div>
 									<div class="box-body">
 										<?php if(isset($_GET['dev']) && $_GET['dev'] == 'yes') { ?>
@@ -2190,8 +2192,46 @@ desired effect
 								</div>
 							</div>
 						</div>
+					</form>
 				</section>
             </div>
+
+            <form action="actions.php?a=product_linked_add" class="form-horizontal form-bordered" method="post">
+				<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+				<div class="modal fade" id="new_linked_product" role="dialog">
+				    <div class="modal-dialog modal-lg">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal">&times;</button>
+				                <h4 class="modal-title">Add Linked Product</h4>
+				            </div>
+				            <div class="modal-body">
+				            	<div class="row">
+					            	<div class="col-lg-12">
+										<div class="form-group">
+											<label class="col-md-2 control-label" for="amount">Product</label>
+											<div class="col-md-10">
+												<select id="secondary_id" name="secondary_id" class="form-control select2">
+													<?php foreach($all_products as $all_product){ ?>
+														<option value="<?php echo $all_product['id'];?>">
+															<?php echo $all_product['title']; ?>
+														</option>
+													<?php } ?>
+												</select>
+												<small>Select a product to link.</small>
+											</div>
+										</div>
+									</div>
+								</div>
+				            </div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				                <button type="submit" class="btn btn-success">Link Products</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</form>
         <?php } ?>
 
         <?php function product_images(){ ?>
@@ -4677,14 +4717,6 @@ desired effect
     <?php } ?>
 
     <?php include('inc/help_modals.php'); ?>
-
-    <?php if($account_details['cms_terms_accepted'] == 'no'){ ?>
-		<script>
-			// $(window).on('load',function(){
-		        // $('#modal-terms').modal({backdrop: 'static', keyboard: false});
-		    // });
-		</script>
-	<?php } ?>
 
 	<script>
 		$(function() {
