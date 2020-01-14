@@ -133,6 +133,10 @@ switch ($a)
 		product_update();
 		break;
 
+	case "product_linked_delete":
+		product_linked_delete();
+		break;
+
 // default		
 	default:
 		home();
@@ -6278,4 +6282,17 @@ function product_update()
     // log_add("[".$name."] has been updated.");
     status_message('success',"Product details have been updated and published.");
     go($_SERVER['HTTP_REFERER']);
+}
+
+function product_linked_delete()
+{
+	global $conn, $global_settings;
+
+	$product_id = get('id');
+
+	// delete the database record
+	$delete = $conn->query("DELETE FROM `shop_products_linked` WHERE `id` = '".$product_id."' ");
+
+	status_message('success',"Linked product has been deleted..");
+	go($_SERVER['HTTP_REFERER']);
 }

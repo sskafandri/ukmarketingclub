@@ -2193,16 +2193,16 @@ desired effect
 												<?php foreach($linked_products as $linked_product){ ?>
 													<?php foreach($all_products as $all_product){ ?>
 														<?php if($linked_product['secondary'] == $all_product['id']){ ?>
-																<tr>
-																	<td>
-																		<?php echo stripslashes($all_product['title']); ?>
-																	</td>
-																	<td style="vertical-align: middle;">
-																		<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=product_linked_delete&id=<?php echo stripslashes($all_product['id']); ?>">
-																			<i class="fa fa-times"></i>
-																		</a>
-																	</td>
-																</tr>
+															<tr>
+																<td>
+																	<?php echo stripslashes($all_product['title']); ?>
+																</td>
+																<td style="vertical-align: middle;">
+																	<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=product_linked_delete&id=<?php echo stripslashes($linked_product['id']); ?>">
+																		<i class="fa fa-times"></i>
+																	</a>
+																</td>
+															</tr>
 															<?php break; ?>
 														<?php } ?>
 													<?php } ?>
