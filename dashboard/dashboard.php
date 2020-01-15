@@ -2100,6 +2100,7 @@ desired effect
 																</option>
 															<?php } ?>
 														</select>
+														<small>Set the product category.</small>
 													</div>
 
 													<label class="col-md-1 control-label" for="stars">Stars</label>
