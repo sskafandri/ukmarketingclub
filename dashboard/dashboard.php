@@ -2190,8 +2190,8 @@ desired effect
 											<div class="col-lg-12">
 												<div class="form-group">
 													<!-- image_main -->
-													<div class="col-md-2 col-xs-11">
-														<select id="image_main" name="image_main" class="form-control">
+													<div class="col-md-12 col-xs-12">
+														<select id="image_main" name="image_main" class="form-control select2">
 															<?php foreach($product_images as $product_image){ ?>
 																<option value="<?php echo $product_image['id'];?>" <?php if('https://ukmarketingclub.com/'.$product_image['path']==$product['image_main']){echo"selected";} ?>>
 																	<?php echo $product_image['path']; ?>
