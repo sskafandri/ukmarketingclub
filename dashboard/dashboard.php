@@ -2072,7 +2072,7 @@ desired effect
 					<form action="actions.php?a=product_update" class="form-horizontal form-bordered" method="post">
 						<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
 						<div class="row">
-							<div class="col-lg-12">
+							<div class="col-lg-9">
 								<div class="box box-primary">
 			            			<div class="box-header">
 			              				<h3 class="box-title">
@@ -2088,7 +2088,7 @@ desired effect
 										<?php } ?>
 											
 										<div class="row">
-											<div class="col-lg-9">
+											<div class="col-lg-12">
 												<div class="form-group">
 													<!-- category -->
 													<label class="col-md-1 control-label" for="category_id">Category</label>
@@ -2163,6 +2163,22 @@ desired effect
 									<div class="box-footer">
 										<a href="dashboard.php?c=products" class="btn btn-default">Back</a>
 										<button type="submit" class="btn btn-success pull-right">Save Changes</button>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-3">
+								<div class="form-group">
+									<!-- category -->
+									<label class="col-md-1 control-label" for="image_main">Main Image</label>
+									<div class="col-md-2 col-xs-11">
+										<select id="image_main" name="image_main" class="form-control">
+											<?php foreach($categories as $category){ ?>
+												<option value="<?php echo $category['id'];?>" <?php if($category['id']==$product['category_id']){echo"selected";} ?>>
+													<?php echo $category['name']; ?>
+												</option>
+											<?php } ?>
+										</select>
 									</div>
 								</div>
 							</div>
