@@ -2194,7 +2194,7 @@ desired effect
 														<select id="image_main" name="image_main" class="form-control">
 															<?php foreach($product_images as $product_image){ ?>
 																<option value="<?php echo $product_image['id'];?>" <?php if('https://ukmarketingclub.com/'.$product_image['path']==$product['image_main']){echo"selected";} ?>>
-																	<?php echo $product_image['path'];
+																	<?php echo $product_image['path']; ?>
 																</option>
 															<?php } ?>
 														</select>
