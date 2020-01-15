@@ -2201,6 +2201,12 @@ desired effect
 													</div>
 												</div>
 											</div>
+
+											<?php if(!empty($product['image_main'])){ ?>
+												<div class="col-lg-12">
+													<img src="<?php echo $product['image_main']; ?>" alt="" width="100%">
+												</div>
+											<?php } ?>
 										</div>
 									</div>
 									<div class="box-footer">
