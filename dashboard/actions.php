@@ -4772,7 +4772,7 @@ function ajax_member_commissions()
 
 		$output[$count]['actions'] 						.= '
 					<span class="hidden-xs">
-						<a title="View Order" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank"><i class="fa fa-shopping-cart"></i></a>
+						<!-- <a title="View Order" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank"><i class="fa fa-shopping-cart"></i></a> -->
 					</span>
 
 					<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=commission_reject&id='.$commission['id'].'"><i class="fa fa-times"></i></a>
@@ -5653,7 +5653,7 @@ function ajax_commissions()
 
 		$output[$count]['actions'] 						.= '
 					<span class="hidden-xs">
-						<a title="View Order" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank"><i class="fa fa-shopping-cart"></i></a>
+						<!-- <a title="View Order" class="btn btn-info btn-flat btn-xs" href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank"><i class="fa fa-shopping-cart"></i></a> -->
 					</span>
 
 					<a title="Reject Commission" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This will reject this commission for this member. Are you sure?\')" href="actions.php?a=commission_reject&id='.$commission['id'].'"><i class="fa fa-times"></i></a>
