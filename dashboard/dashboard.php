@@ -2111,6 +2111,7 @@ desired effect
 															<option value="4" <?php if($product['stars']==4){echo"selected";} ?>>4</option>
 															<option value="5" <?php if($product['stars']==5){echo"selected";} ?>>5</option>
 														</select>
+														<small>Number of stars for this product.</small>
 													</div>
 
 													<label class="col-md-1 control-label" for="sale_icon">Sale Icon</label>
@@ -2119,6 +2120,7 @@ desired effect
 															<option value="no" <?php if($product['sale_icon']=='no'){echo"selected";} ?>>No</option>
 															<option value="yes" <?php if($product['sale_icon']=='yes'){echo"selected";} ?>>Yes</option>
 														</select>
+														<small>Show the sale icon for this product.</small>
 													</div>
 
 													<label class="col-md-1 control-label" for="homepage">Primary</label>
@@ -2127,7 +2129,7 @@ desired effect
 															<option value="no" <?php if($product['homepage']=='no'){echo"selected";} ?>>No</option>
 															<option value="yes" <?php if($product['homepage']=='yes'){echo"selected";} ?>>Yes</option>
 														</select>
-														<small>Is this a primary product</small>
+														<small>Is this a primary product.</small>
 													</div>
 												</div>
 
