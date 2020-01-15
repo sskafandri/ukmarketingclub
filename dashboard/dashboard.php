@@ -2029,6 +2029,10 @@ desired effect
 				// get all product categories
 				$query 					= $conn->query("SELECT * FROM `whmcs`.`tblproductgroups` ORDER BY `name` ");
 				$categories 			= $query->fetchAll(PDO::FETCH_ASSOC);
+
+				// get product images
+				$query 					= $conn->query("SELECT * FROM `shop_product_images` ORDER BY `id` ");
+				$product_images 		= $query->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
             <div class="content-wrapper">
@@ -2187,10 +2191,10 @@ desired effect
 												<div class="form-group">
 													<!-- image_main -->
 													<div class="col-md-2 col-xs-11">
-														<select id="category_id" name="category_id" class="form-control">
-															<?php foreach($categories as $category){ ?>
-																<option value="<?php echo $category['id'];?>" <?php if($category['id']==$product['category_id']){echo"selected";} ?>>
-																	<?php echo $category['name']; ?>
+														<select id="image_main" name="image_main" class="form-control">
+															<?php foreach($product_images as $product_image){ ?>
+																<option value="<?php echo $product_image['id'];?>" <?php if('https://ukmarketingclub.com/'.$product_image['path']==$product['image_main']){echo"selected";} ?> style="background-image:url(<?php echo 'https://ukmarketingclub.com/'.$product_image['path']; ?>);">>
+																	
 																</option>
 															<?php } ?>
 														</select>
