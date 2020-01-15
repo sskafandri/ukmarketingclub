@@ -6256,6 +6256,8 @@ function product_update()
 	$sale_icon 			= post('sale_icon');
 
 	$homepage 			= post('homepage');
+
+	$image_main 		= post('image_main');
 	
 	$title 				= post('title');
 	$title 				= addslashes($title);
@@ -6280,6 +6282,8 @@ function product_update()
 	
 	$update = $conn->exec("UPDATE `shop_products` SET `title_2` = '".$title_2."' 					WHERE `id` = '".$product_id."' ");
 	
+	$update = $conn->exec("UPDATE `shop_products` SET `image_main` = 'https://ukmarketingclub.com/dashboard/".$image_main."' 				WHERE `id` = '".$product_id."' ");
+
 	$update = $conn->exec("UPDATE `shop_products` SET `description` = '".$description."' 			WHERE `id` = '".$product_id."' ");
 	$update = $conn->exec("UPDATE `whmcs`.`tblproducts` SET `description` = '".$description."' 		WHERE `id` = '".$product_id."' ");
 
