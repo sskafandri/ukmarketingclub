@@ -2144,22 +2144,6 @@ desired effect
 													</div>
 												</div>
 											</div>
-
-											<div class="col-lg-9">
-												<div class="form-group">
-													<!-- category -->
-													<label class="col-md-1 control-label" for="image_main">Main Image</label>
-													<div class="col-md-2 col-xs-11">
-														<select id="image_main" name="image_main" class="form-control">
-															<?php foreach($categories as $category){ ?>
-																<option value="<?php echo $category['id'];?>" <?php if($category['id']==$product['category_id']){echo"selected";} ?>>
-																	<?php echo $category['name']; ?>
-																</option>
-															<?php } ?>
-														</select>
-													</div>
-												</div>
-											</div>
 										</div>
 
 										<div class="row">
