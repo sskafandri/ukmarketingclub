@@ -813,6 +813,14 @@ desired effect
 					}
 					break;
 
+				case "faqs":
+					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
+						faqs();
+					}else{
+						home();
+					}
+					break;
+
 				case "all_commissions":
 					if($account_details['type'] == 'admin' || $account_details['type'] == 'staff' || $account_details['type'] == 'dev'){
 						all_commissions();
@@ -2433,6 +2441,157 @@ desired effect
 							<?php } ?>
 							<?php $image_count++; ?>
 						<?php } ?>
+					</div>
+				</section>
+            </div>
+        <?php } ?>
+
+        <?php function faqs(){ ?>
+        	<?php 
+        		global $conn, $globals, $global_settings, $account_details, $site;
+            
+				// get product images
+				$query 					= $conn->query("SELECT * FROM `shop_faq` ORDER BY `order` ");
+				$faqs 					= $query->fetchAll(PDO::FETCH_ASSOC);
+
+				$image_count 			= 1;
+			?>
+
+            <div class="content-wrapper">
+				
+                <div id="status_message"></div>
+                            	
+                <section class="content-header">
+                    <h1>Staff Panel - Shop FAQs <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="active">Shop FAQs</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+								<div class="box-body">
+									<form enctype="multipart/form-data" method="post">
+	                                    <div class="row">
+	                                    	<div class="col-lg-6 col-xs-12">
+		                                        <div class="form-group">
+		                                            <div class="input-group">
+		                                                <span class="input-group-btn">
+		                                                    <span class="btn btn-primary btn-file">
+		                                                        Browse&hellip; <input type="file" name="file1" id="file1" accept="image/*">
+		                                                    </span>
+		                                                </span>
+		                                                <input type="text" class="form-control" readonly>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                    <div class="col-lg-6 col-xs-12">
+		                                    	<input type="button" class="btn btn-success" value="Upload File" onclick="uploadFile()">
+		                                    </div>
+		                                </div>
+	                                
+	                                	<div class="row">
+		                                    <div class="col-lg-6 col-xs-12">
+	                                            <center>
+	                                                <progress id="progressBar" value="0" max="100" style="width:100%;"></progress>
+	                                                <span id="loaded_n_total"></span> <span id="status"></span>
+	                                            </center>
+	                                        </div>
+	                                    </div>
+	                                </form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="box box-primary">
+		            			<div class="box-header">
+		              				<h3 class="box-title">
+		              					Shop FAQs
+		              					<a href="#" data-toggle="modal" data-target="#help_streams">
+											<i class="fas fa-question-circle"></i>
+										</a>
+		              				</h3>
+		              				<div class="pull-right">
+										<button type="button" class="btn btn-primary btn-xs btn-flat" data-toggle="modal" data-target="#new_output_stream_modal">Add Output Stream</button>
+									</div>
+		            			</div>
+								<div class="box-body">
+									<table id="faqs" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th class="no-sort" style="white-space: nowrap;">Question</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+												foreach($faqs as $faq) {
+													echo '
+														<tr>
+															<td>
+																'.$customer_ip['ip_address'].'
+															</td>
+															<td style="vertical-align: middle;">
+																<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=customer_ip_delete&customer_ip_id='.$customer_ip['id'].'">
+																	<i class="fa fa-times"></i>
+																</a>
+															</td>
+														</tr>
+
+														<form action="actions.php?a=faq_update" class="form-horizontal form-bordered" method="post">
+															<input type="hidden" name="faq_id" value="'.$faq['id'].'">
+															<div class="modal fade" id="faq_update_modal_'.$faq['id'].'" role="dialog">
+															    <div class="modal-dialog">
+															        <div class="modal-content">
+															            <div class="modal-header">
+															                <button type="button" class="close" data-dismiss="modal">&times;</button>
+															                <h4 class="modal-title">Ipdate FAQ</h4>
+															            </div>
+															            <div class="modal-body">
+															                <div class="row">
+																		    	<div class="col-lg-12">
+																				    <div class="form-group">
+																						<label class="col-md-2 control-label" for="first_name">Name</label>
+																						<div class="col-md-5">
+																							<input type="text" class="form-control" id="first_name" name="first_name" placeholder="Joe">
+																						</div>
+																						<div class="col-md-5">
+																							<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Bloggs">
+																						</div>
+																					</div>
+
+																					<div class="form-group">
+																						<label class="col-md-2 control-label" for="email">Email</label>
+																						<div class="col-md-10">
+																							<input type="text" class="form-control" id="email" name="email" value="" placeholder="joe.bloggs@gmail.com">
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+															            </div>
+															            <div class="modal-footer">
+															                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+															                <button type="submit" class="btn btn-success">Add Customer</button>
+															            </div>
+															        </div>
+															    </div>
+															</div>
+														</form>
+													';
+												}
+											?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
 					</div>
 				</section>
             </div>
