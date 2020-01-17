@@ -536,13 +536,13 @@ desired effect
 							</ul>
 						</li>
 
-						<?php if(get('c') == 'products' || get('c') == 'product' || get('c') == 'product_images'){ ?>
+						<?php if(get('c') == 'products' || get('c') == 'product' || get('c') == 'product_images' || get('c') == 'faqs' || get('c') == 'faq'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
 	                    <?php } ?>
 							<a href="#">
-								<i class="fa fa-shopping-cart"></i> <span>Product Management</span>
+								<i class="fa fa-shopping-cart"></i> <span>Shop Management</span>
 								<span class="pull-right-container">
 									<i class="fa fa-angle-left pull-right"></i>
 								</span>
@@ -567,6 +567,17 @@ desired effect
 			                    	<a href="dashboard.php?c=product_images">
 			                        	<i class="fa fa-circle"></i> 
 			                        	<span>Product Images</span>
+			                        </a>
+			                    </li>
+
+			                    <?php if(get('c') == 'faqs' || get('c') == 'faq'){ ?>
+			                    	<li class="active">
+			                    <?php }else{ ?>
+			                    	<li>
+			                    <?php } ?>
+			                    	<a href="dashboard.php?c=faqs">
+			                        	<i class="fa fa-circle"></i> 
+			                        	<span>FAQs</span>
 			                        </a>
 			                    </li>
 							</ul>
