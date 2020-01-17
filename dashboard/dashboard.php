@@ -2527,7 +2527,7 @@ desired effect
 										<thead>
 											<tr>
 												<th class="no-sort" style="white-space: nowrap;">Question</th>
-								                <th class="no-sort" style="white-space: nowrap;" width="25px">Actions</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -2561,7 +2561,15 @@ desired effect
 																				    <div class="form-group">
 																						<label class="col-md-2 control-label" for="title">Question</label>
 																						<div class="col-md-10">
-																							<input type="text" class="form-control" id="title" name="title" value="'.$faq['description'].'">
+																							<input type="text" class="form-control" id="title" name="title" value="'.stripslashes($faq['title']).'">
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-lg-12">
+																				    <div class="form-group">
+																						<label class="col-md-2 control-label" for="description">Answer</label>
+																						<div class="col-md-10">
+																							<input type="text" class="form-control" id="description" name="description" value="'.stripslashes($faq['description']).'">
 																						</div>
 																					</div>
 																				</div>
