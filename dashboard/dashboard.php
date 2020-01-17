@@ -2527,7 +2527,7 @@ desired effect
 										<thead>
 											<tr>
 												<th class="no-sort" style="white-space: nowrap;">Question</th>
-								                <th class="no-sort" style="white-space: nowrap;" width="50px">Actions</th>
+								                <th class="no-sort" width="50px">Actions</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -4449,6 +4449,39 @@ desired effect
 			}
 		</script>
     <?php } ?>
+
+    <?php if(get('c') == 'faqs') { ?>
+    	<script>
+			function change_product_profile(selectObject) {
+			    var profile_id = selectObject.value; 
+			    window.location.href = "dashboard.php?c=product&id="+profile_id;
+			}
+
+			$(function () {
+				$('#faqs').DataTable({
+					"order": [[ 0, "asc" ]],
+					"columnDefs": [{
+						"targets"  : 'no-sort',
+						"orderable": false,
+					}],
+					"language": {
+						"emptyTable": "No FAQs."
+					},
+			  		"paging": false,
+			  		"processing": true,
+			  		"lengthChange": false,
+			  		"searching": false,
+			  		"ordering": true,
+			  		"info": false,
+			  		"autoWidth": false,
+					"iDisplayLength": 100,
+					search: {
+					   search: '<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>'
+					}
+				});
+		  	});
+		</script>
+	<?php } ?>
 
     <?php if(get('c') == 'table_downline') { ?>
     	<script>
