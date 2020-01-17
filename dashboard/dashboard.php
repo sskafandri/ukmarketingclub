@@ -2540,7 +2540,7 @@ desired effect
 															</td>
 															<td style="vertical-align: middle;">
 																<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#faq_update_modal_'.$faq['id'].'"><i class="fa fa-eye"></i></button>
-																<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=customer_ip_delete&customer_ip_id='.$customer_ip['id'].'">
+																<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=faq_delete&id='.$faq['id'].'">
 																	<i class="fa fa-times"></i>
 																</a>
 															</td>
