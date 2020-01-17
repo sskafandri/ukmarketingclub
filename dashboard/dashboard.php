@@ -2527,7 +2527,7 @@ desired effect
 										<thead>
 											<tr>
 												<th class="no-sort" style="white-space: nowrap;">Question</th>
-								                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
+								                <th class="no-sort" style="white-space: nowrap;" width="25px">Actions</th>
 											</tr>
 										</thead>
 										<tbody>
