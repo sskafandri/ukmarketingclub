@@ -2519,7 +2519,7 @@ desired effect
 										</a>
 		              				</h3>
 		              				<div class="pull-right">
-										<button type="button" class="btn btn-primary btn-xs btn-flat" data-toggle="modal" data-target="#new_output_stream_modal">Add Output Stream</button>
+										<button type="button" class="btn btn-success btn-xs btn-flat" data-toggle="modal" data-target="#faq_add">Add FAQ</button>
 									</div>
 		            			</div>
 								<div class="box-body">
@@ -2536,9 +2536,10 @@ desired effect
 													echo '
 														<tr>
 															<td>
-																'.$customer_ip['ip_address'].'
+																'.stripslashes($faq['title']).'
 															</td>
 															<td style="vertical-align: middle;">
+																<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#faq_update_modal_'.$faq['id'].'"><i class="fa fa-eye"></i></button>
 																<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=customer_ip_delete&customer_ip_id='.$customer_ip['id'].'">
 																	<i class="fa fa-times"></i>
 																</a>
@@ -2558,19 +2559,9 @@ desired effect
 															                <div class="row">
 																		    	<div class="col-lg-12">
 																				    <div class="form-group">
-																						<label class="col-md-2 control-label" for="first_name">Name</label>
-																						<div class="col-md-5">
-																							<input type="text" class="form-control" id="first_name" name="first_name" placeholder="Joe">
-																						</div>
-																						<div class="col-md-5">
-																							<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Bloggs">
-																						</div>
-																					</div>
-
-																					<div class="form-group">
-																						<label class="col-md-2 control-label" for="email">Email</label>
+																						<label class="col-md-2 control-label" for="title">Question</label>
 																						<div class="col-md-10">
-																							<input type="text" class="form-control" id="email" name="email" value="" placeholder="joe.bloggs@gmail.com">
+																							<input type="text" class="form-control" id="title" name="title" value="'.$faq['description'].'">
 																						</div>
 																					</div>
 																				</div>
@@ -2578,7 +2569,7 @@ desired effect
 															            </div>
 															            <div class="modal-footer">
 															                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-															                <button type="submit" class="btn btn-success">Add Customer</button>
+															                <button type="submit" class="btn btn-success">Save Changes</button>
 															            </div>
 															        </div>
 															    </div>
