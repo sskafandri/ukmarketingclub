@@ -2527,8 +2527,8 @@ desired effect
 																						<label class="col-sm-2 control-label">Website</label>
 																						<div class="col-sm-10">
 																							<select id="website" name="website" class="form-control">
-																								<option value="ublo.club" >ublo.club</option>
-																								<option value="ukmarketingclub.com" >ukmarketingclub.com</option>
+																								<option value="ublo.club" '.($faq['website']=='ublo.club'?'selected':'').'>ublo.club</option>
+																								<option value="ukmarketingclub.com" '.($faq['website']=='ukmarketingclub.com'?'selected':'').'>ukmarketingclub.com</option>
 																							</select>
 																						</div>
 																					</div>
@@ -2545,7 +2545,7 @@ desired effect
 																				    <div class="form-group">
 																						<label class="col-md-2 control-label" for="description">Answer</label>
 																						<div class="col-md-10">
-																							<textarea id="description" name="description" cols="80" rows="5" style="width: 100%;">'.stripslashes($faq['description']).'</textarea>
+																							
 																						</div>
 																					</div>
 																				</div>
