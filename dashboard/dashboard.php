@@ -4558,7 +4558,7 @@ desired effect
     	<script>
 			$(function () {
 				$('#faqs_table').DataTable({
-					"order": [[ 0, "asc" ]],
+					"order": [[ 0, "asc" ], [ 1, "asc" ]],
 					"columnDefs": [{
 						"targets"  : 'no-sort',
 						"orderable": false,
