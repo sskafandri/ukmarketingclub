@@ -4428,13 +4428,8 @@ desired effect
 		</script>
     <?php } ?>
 
-    <?php if(get('c') == 'faqs_1') { ?>
+	<?php if(get('c') == 'faqs') { ?>
     	<script>
-			function change_faq_profile(selectObject) {
-			    var profile_id = selectObject.value; 
-			    window.location.href = "dashboard.php?c=faqs&id="+profile_id;
-			}
-
 			$(function () {
 				$('#faqs').DataTable({
 					"order": [[ 0, "asc" ]],
@@ -4443,7 +4438,7 @@ desired effect
 						"orderable": false,
 					}],
 					"language": {
-						"emptyTable": "No FAQs."
+						"emptyTable": "No FAQs found."
 					},
 			  		"paging": false,
 			  		"processing": true,
@@ -4458,8 +4453,8 @@ desired effect
 					}
 				});
 		  	});
-		</script>
-	<?php } ?>
+    	</script>
+    <?php } ?>
 
     <?php if(get('c') == 'table_downline') { ?>
     	<script>
