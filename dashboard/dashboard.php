@@ -2682,7 +2682,7 @@ desired effect
 									    <div class="form-group">
 											<label class="col-md-2 control-label" for="description">Answer</label>
 											<div class="col-md-10">
-												<textarea class="textarea" id="description" name="description" cols="80" rows="5"></textarea>
+												<textarea class="textarea" id="description" name="description" cols="80" rows="5" style="width: 100%;"></textarea>
 											</div>
 										</div>
 									</div>
@@ -2732,7 +2732,7 @@ desired effect
 										    <div class="form-group">
 												<label class="col-md-2 control-label" for="description">Answer</label>
 												<div class="col-md-10">
-													<textarea class="textarea" id="description" name="description" cols="80" rows="5"><?php echo stripslashes($faq['description']); ?></textarea>
+													<textarea class="textarea" id="description" name="description" cols="80" rows="5" style="width: 100%;"><?php echo stripslashes($faq['description']); ?></textarea>
 												</div>
 											</div>
 										</div>
