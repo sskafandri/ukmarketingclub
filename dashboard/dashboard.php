@@ -4564,7 +4564,7 @@ desired effect
 				// instance, using default configuration.
 				CKEDITOR.replace("description",
 				{
-				     height: "50px"
+				     height: "250px"
 				});
 			});
 
