@@ -2608,7 +2608,7 @@ desired effect
 									</div>
 		            			</div>
 								<div class="box-body">
-									<table id="faqs_table" class="table table-bordered table-striped">
+									<table id="faqs_table" class="table">
 										<thead>
 											<tr>
 												<th class="no-sort" width="150px">Website</th>
