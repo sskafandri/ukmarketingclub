@@ -2511,7 +2511,7 @@ desired effect
 															</td>
 														</tr>
 
-														<form action="actions.php?a=faq_update" class="form-horizontal form-bordered" method="post">
+														<form action="actions.php?a=faq_update" class="form-horizontal" method="post">
 															<input type="hidden" name="faq_id" value="'.$faq['id'].'">
 															<div class="modal fade" id="faq_update_modal_'.$faq['id'].'" role="dialog">
 															    <div class="modal-dialog">
@@ -3847,52 +3847,6 @@ desired effect
     <?php } ?>
 
     <?php if(get('c') == 'home' || get('c') == 'staging') { ?>
-    	<!-- jvectormap  -->
-		<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-		<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-
-		<script>
-			/* jVector Maps
-		   * ------------
-		   * Create a world map with markers
-		   */
-
-			$('#world-map-markers').vectorMap( {
-			    map: 'world_mill_en', normalizeFunction: 'polynomial', hoverOpacity: 0.7, hoverColor: false, backgroundColor: 'transparent', regionStyle: {
-			        initial: {
-			            fill: 'rgba(210, 214, 222, 1)', 'fill-opacity': 1, stroke: 'none', 'stroke-width': 0, 'stroke-opacity': 1
-			        }, 
-			        hover: {
-			            'fill-opacity': 0.7, cursor: 'pointer'
-			        }, 
-			        selected: {
-			            fill: 'yellow'
-			        }, 
-			        selectedHover: {}
-			    }, 
-			    markerStyle: {
-			        initial: {
-			            fill: '#00a65a', stroke: '#111'
-			        }
-			    }, 
-			    markers : [
-			    	<?php
-						$query = $conn->query("SELECT `wan_ip_address`,`name` FROM `headend_servers` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
-						$headends = $query->fetchAll(PDO::FETCH_ASSOC);
-
-						foreach($headends as $headend) {
-							$geo = geoip($headend['wan_ip_address']);
-							?>
-							{ latLng: [<?php echo $geo['latitude']; ?>, <?php echo $geo['longitude']; ?>], name: '<?php echo stripslashes($headend['name']); ?>' },
-							<?php
-						}
-					?>
-			    ]
-			}
-
-			);
-		</script>
-
 		<script>
     		function dashboard_quick_stats(stat, div) {
 	    		$.ajax({
