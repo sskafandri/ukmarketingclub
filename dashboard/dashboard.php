@@ -984,6 +984,126 @@ desired effect
 							</div>
 						</div>
 					</div>
+
+					<div class="row">
+							<div class="col-lg-6">
+		                        <div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
+			              					Retail Link For Sharing (B2C)
+			              				</h3>
+			            			</div>
+									<div class="box-body">
+										<p>
+											The link below is for sharing with retail customers only and redirects to the www.ublo.club website.
+										</p>
+										<form class="form-horizontal">
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">ublo.club</label>
+			                                    <div class="col-sm-9">
+			                                        <input type="text" name="affiliate_link_1" id="affiliate_link_1" class="form-control" value="https://ublo.club/aff.php?username=<?php echo $account_details['affiliate_username']; ?>">
+			                                        <small></small>
+			                                    </div>
+			                                </div>
+
+			                                <strong><font color="red">IMPORTANT:</font></strong> <br>
+			                                <br>
+											Under the Tobacco Directive 2016, you are not allowed to promote the Ublo product range online in any way including but not limited to, Facebook, Twitter, Instagram, YouTube, Internet Marketing, Email marketing, Text marketing. <br>
+											<br>
+											Your custom link can only be used in offline marketing activities as described below; <br>
+											<br>
+											• outdoor advertising, including digital outdoor advertising <br>
+											• posters on public transport (not leaving the UK) <br>
+											• cinema <br>
+											• direct hard copy mail <br>
+											• leaflets <br>
+											• business cards <br>
+											• private, bespoke correspondence between you and a consumer <br>
+											• media which are targeted exclusively to the trade <br>
+											<br>
+											All media, leaflets, business cards etc must be compliant under the Tobacco Directive 2016 <br>
+
+			                                <!--
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
+			                                    <div class="col-sm-9">
+			                                        <button id="btn_shareFB_retail" class="btn_shareFB"><i></i><span>Share</span></button>
+			                                        <small></small>
+			                                    </div>
+			                                </div>
+
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Twitter</label>
+			                                    <div class="col-sm-9">
+			                                        <button id="btn_shareTWI_retail" class="btn_shareTWI"><i></i><span>Tweet</span></button>
+			                                        <small></small>
+			                                    </div>
+			                                </div>
+			                            	-->
+			                            </form>
+		                            </div>
+		                        </div>
+		                    </div>
+
+							<div class="col-lg-6">
+		                        <div class="box box-primary">
+			            			<div class="box-header">
+			              				<h3 class="box-title">
+			              					Independent Business Owner (IBO) Link For Sharing (B2B)
+			              				</h3>
+			            			</div>
+									<div class="box-body">
+										<p>
+											The Link below is for sharing with people interested in the business opportunity.
+										</p>
+										<form action="" method="post" class="form-horizontal">
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
+			                                    <div class="col-sm-9">
+			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="http://ukmarketingclub.com/?ref=<?php echo $account_details['affiliate_username']; ?>">
+			                                        <small></small>
+			                                    </div>
+			                                </div>
+
+			                                <strong><font color="red">IMPORTANT:</font></strong> <br>
+											<br>
+											Under the Tobacco Directive 2016, you are not allowed to indirectly promote the Ublo product range online in any way including but not limited to, Facebook, Twitter, Instagram, YouTube, Internet Marketing, Email marketing, Text marketing. <br>
+											<br>
+											Your custom link can only be used in offline marketing activities as described below; <br>
+											<br>
+											• outdoor advertising, including digital outdoor advertising <br>
+											• posters on public transport (not leaving the UK) <br>
+											• cinema <br>
+											• direct hard copy mail <br>
+											• leaflets <br>
+											• business cards <br>
+											• private, bespoke correspondence between you and a potential IBO <br>
+											• media which are targeted exclusively to the trade <br>
+											<br>
+											All media, leaflets, business cards etc must be compliant under the Tobacco Directive 2016 <br>
+
+			                                <!--
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Facebook</label>
+			                                    <div class="col-sm-9">
+			                                        <button id="btn_shareFB_mlm" class="btn_shareFB"><i></i><span>Share</span></button>
+			                                        <small></small>
+			                                    </div>
+			                                </div>
+
+			                                <div class="form-group">
+			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">Twitter</label>
+			                                    <div class="col-sm-9">
+			                                        <button id="btn_shareTWI_mlm" class="btn_shareTWI"><i></i><span>Tweet</span></button>
+			                                        <small></small>
+			                                    </div>
+			                                </div>
+			                            	-->
+			                            </form>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
 				</section>
             </div>
         <?php } ?>
@@ -2484,7 +2604,7 @@ desired effect
 									</div>
 		            			</div>
 								<div class="box-body">
-									<table id="faqs" class="table table-bordered table-striped">
+									<table id="faqs_table" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th class="no-sort" width="150px">Website</th>
