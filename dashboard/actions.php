@@ -141,6 +141,22 @@ switch ($a)
 		product_linked_delete();
 		break;
 
+	case "product_linked_delete":
+		product_linked_delete();
+		break;
+
+	case "faq_add":
+		faq_add();
+		break;
+
+	case "faq_update":
+		faq_update();
+		break;
+
+	case "faq_delete":
+		faq_delete();
+		break;
+
 // default		
 	default:
 		home();
@@ -6328,11 +6344,12 @@ function faq_add()
 
 	$title 				= post('title');
 	$description 		= post('description');
+	$website 			= post('website');
 
 	$insert = $conn->exec("INSERT INTO `shop_faq` 
-        (`title`,`description`)
+        (`title`,`description`,`website`)
         VALUE
-        ('".$title."','".$sdescriptionndary_id."')"
+        ('".$title."','".$description."','".$website."')"
     );
 
     status_message('success',"FAQ has been added.");
@@ -6347,9 +6364,11 @@ function faq_update()
 
 	$title 				= post('title');
 	$description 		= post('description');
+	$website 			= post('website');
 
 	$update = $conn->exec("UPDATE `shop_faq` SET `title` = '".$title."' 							WHERE `id` = '".$faq_id."' ");
 	$update = $conn->exec("UPDATE `shop_faq` SET `description` = '".$description."' 				WHERE `id` = '".$faq_id."' ");
+	$update = $conn->exec("UPDATE `shop_faq` SET `website` = '".$website."' 						WHERE `id` = '".$faq_id."' ");
 
     // log_add("[".$name."] has been updated.");
     status_message('success',"FAQ has been updated and published.");
