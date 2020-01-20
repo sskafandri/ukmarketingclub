@@ -4431,7 +4431,7 @@ desired effect
 	<?php if(get('c') == 'faqs') { ?>
     	<script>
 			$(function () {
-				$('#faqs').DataTable({
+				$('#faqs_table').DataTable({
 					"order": [[ 0, "asc" ]],
 					"columnDefs": [{
 						"targets"  : 'no-sort',
