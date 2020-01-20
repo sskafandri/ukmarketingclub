@@ -2582,7 +2582,7 @@ desired effect
 									    <div class="form-group">
 											<label class="col-md-2 control-label" for="description">Answer</label>
 											<div class="col-md-10">
-												<textarea id="description" name="description" cols="80" rows="40" style="width: 100%;"></textarea>
+												<textarea id="description" name="description" cols="80" rows="5" style="width: 100%;"></textarea>
 											</div>
 										</div>
 									</div>
