@@ -112,6 +112,9 @@ $account_details = account_details($_SESSION['account']['id']);
 		<link rel="stylesheet" type="text/css" href="https://www.highcharts.com/media/com_demo/css/highslide.css" />
 	<?php } ?>
 
+	<!-- bootstrap wysihtml5 - text editor -->
+  	<link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -4555,6 +4558,15 @@ desired effect
     <?php } ?>
 
 	<?php if(get('c') == 'faqs') { ?>
+		<!-- Bootstrap WYSIHTML5 -->
+		<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+		<script>
+			$(function () {
+				$('.textarea').wysihtml5()
+			})
+		</script>
+
     	<script>
 			$(function () {
 				$('#faqs_table').DataTable({
