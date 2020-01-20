@@ -2651,7 +2651,7 @@ desired effect
 
             <form action="actions.php?a=faq_add" class="form-horizontal form-bordered" method="post">
 				<div class="modal fade" id="faq_add" role="dialog">
-				    <div class="modal-dialog">
+				    <div class="modal-dialog model-lg">
 				        <div class="modal-content">
 				            <div class="modal-header">
 				                <button type="button" class="close" data-dismiss="modal">&times;</button>
