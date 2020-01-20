@@ -2527,8 +2527,8 @@ desired effect
 																						<label class="col-sm-2 control-label">Website</label>
 																						<div class="col-sm-10">
 																							<select id="website" name="website" class="form-control">
-																								<option value="ublo.club" '.($faq['website']=='ublo.club'?'selected':'').'>ublo.club</option>
-																								<option value="ukmarketingclub.com" '.($faq['website']=='ukmarketingclub.com'?'selected':'').'>ukmarketingclub.com</option>
+																								<option value="ublo.club" >ublo.club</option>
+																								<option value="ukmarketingclub.com" >ukmarketingclub.com</option>
 																							</select>
 																						</div>
 																					</div>
