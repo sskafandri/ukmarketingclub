@@ -2679,7 +2679,7 @@ desired effect
 									    <div class="form-group">
 											<label class="col-md-2 control-label" for="description">Answer</label>
 											<div class="col-md-10">
-												<textarea id="description" name="description" cols="80" rows="5" style="width: 100%;"></textarea>
+												<textarea class="textarea" id="description" name="description" cols="80" rows="5"></textarea>
 											</div>
 										</div>
 									</div>
@@ -2729,7 +2729,7 @@ desired effect
 										    <div class="form-group">
 												<label class="col-md-2 control-label" for="description">Answer</label>
 												<div class="col-md-10">
-													<textarea id="description" name="description" cols="80" rows="5" style="width: 100%;"><?php echo stripslashes($faq['description']); ?></textarea>
+													<textarea class="textarea" id="description" name="description" cols="80" rows="5"><?php echo stripslashes($faq['description']); ?></textarea>
 												</div>
 											</div>
 										</div>
@@ -4555,19 +4555,7 @@ desired effect
     <?php } ?>
 
 	<?php if(get('c') == 'faqs') { ?>
-		<!-- CK Editor -->
-    	<script src="ckeditor/ckeditor.js"></script>
-
     	<script>
-			$(function () {
-				// Replace the <textarea id="editor1"> with a CKEditor
-				// instance, using default configuration.
-				CKEDITOR.replace("description",
-				{
-				     height: "250px"
-				});
-			});
-
 			$(function () {
 				$('#faqs_table').DataTable({
 					"order": [[ 0, "asc" ], [ 1, "asc" ]],
