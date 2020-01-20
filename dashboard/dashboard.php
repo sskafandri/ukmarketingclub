@@ -2487,6 +2487,7 @@ desired effect
 									<table id="faqs" class="table table-bordered table-striped">
 										<thead>
 											<tr>
+												<th class="no-sort" width="150px">Website</th>
 												<th class="no-sort">Question</th>
 								                <th class="no-sort" width="50px">Actions</th>
 											</tr>
@@ -2496,6 +2497,9 @@ desired effect
 												foreach($faqs as $faq) {
 													echo '
 														<tr>
+															<td>
+																'.stripslashes($faq['website']).'
+															</td>
 															<td>
 																'.stripslashes($faq['title']).'
 															</td>
