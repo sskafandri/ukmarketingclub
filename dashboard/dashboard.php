@@ -2634,55 +2634,6 @@ desired effect
 																</a>
 															</td>
 														</tr>
-
-														<form action="actions.php?a=faq_update" class="form-horizontal" method="post">
-															<input type="hidden" name="faq_id" value="'.$faq['id'].'">
-															<div class="modal fade" id="faq_update_modal_'.$faq['id'].'" role="dialog">
-															    <div class="modal-dialog">
-															        <div class="modal-content">
-															            <div class="modal-header">
-															                <button type="button" class="close" data-dismiss="modal">&times;</button>
-															                <h4 class="modal-title">Ipdate FAQ</h4>
-															            </div>
-															            <div class="modal-body">
-															                <div class="row">
-															                	<div class="col-lg-12">
-															                		<div class="form-group">
-																						<label class="col-sm-2 control-label">Website</label>
-																						<div class="col-sm-10">
-																							<select id="website" name="website" class="form-control">
-																								<option value="ublo.club" '.($faq['website']=='ublo.club'?'selected':'').'>ublo.club</option>
-																								<option value="ukmarketingclub.com" '.($faq['website']=='ukmarketingclub.com'?'selected':'').'>ukmarketingclub.com</option>
-																							</select>
-																						</div>
-																					</div>
-																				</div>
-																		    	<div class="col-lg-12">
-																				    <div class="form-group">
-																						<label class="col-md-2 control-label" for="title">Question</label>
-																						<div class="col-md-10">
-																							<input type="text" class="form-control" id="title" name="title" value="'.stripslashes($faq['title']).'" required>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="col-lg-12">
-																				    <div class="form-group">
-																						<label class="col-md-2 control-label" for="description">Answer</label>
-																						<div class="col-md-10">
-																							
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-															            </div>
-															            <div class="modal-footer">
-															                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-															                <button type="submit" class="btn btn-success">Save Changes</button>
-															            </div>
-															        </div>
-															    </div>
-															</div>
-														</form>
 													';
 												}
 											?>
@@ -2742,6 +2693,57 @@ desired effect
 				    </div>
 				</div>
 			</form>
+
+			<?php foreach($faqs as $faq){ ?>
+				<form action="actions.php?a=faq_update" class="form-horizontal" method="post">
+					<input type="hidden" name="faq_id" value="<?php echo $faq['id']; ?>">
+					<div class="modal fade" id="faq_update_modal_<?php echo $faq['id']; ?>" role="dialog">
+					    <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <button type="button" class="close" data-dismiss="modal">&times;</button>
+					                <h4 class="modal-title">Update FAQ</h4>
+					            </div>
+					            <div class="modal-body">
+					                <div class="row">
+					                	<div class="col-lg-12">
+					                		<div class="form-group">
+												<label class="col-sm-2 control-label">Website</label>
+												<div class="col-sm-10">
+													<select id="website" name="website" class="form-control">
+														<option value="ublo.club" <?php if($faq['website']=='ublo.club'){echo 'selected';} ?>>ublo.club</option>
+														<option value="ukmarketingclub.com" <?php if($faq['website']=='ukmarketingclub.com'){echo 'selected';} ?>>ukmarketingclub.com</option>
+													</select>
+												</div>
+											</div>
+										</div>
+								    	<div class="col-lg-12">
+										    <div class="form-group">
+												<label class="col-md-2 control-label" for="title">Question</label>
+												<div class="col-md-10">
+													<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($faq['title']); ?>" required>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12">
+										    <div class="form-group">
+												<label class="col-md-2 control-label" for="description">Answer</label>
+												<div class="col-md-10">
+													<textarea id="description" name="description" cols="80" rows="40" style="width: 100%;"><?php echo stripslashes($faq['description']); ?></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+					            </div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					                <button type="submit" class="btn btn-success">Save Changes</button>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</form>
+			<?php } ?>
         <?php } ?>
 
         <?php function all_commissions(){ ?>
