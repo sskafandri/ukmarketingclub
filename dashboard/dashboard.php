@@ -4555,7 +4555,19 @@ desired effect
     <?php } ?>
 
 	<?php if(get('c') == 'faqs') { ?>
+		<!-- CK Editor -->
+    	<script src="ckeditor/ckeditor.js"></script>
+
     	<script>
+			$(function () {
+				// Replace the <textarea id="editor1"> with a CKEditor
+				// instance, using default configuration.
+				CKEDITOR.replace("description",
+				{
+				     height: "50px"
+				});
+			});
+
 			$(function () {
 				$('#faqs_table').DataTable({
 					"order": [[ 0, "asc" ], [ 1, "asc" ]],
