@@ -2474,43 +2474,6 @@ desired effect
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="box box-primary">
-								<div class="box-body">
-									<form enctype="multipart/form-data" method="post">
-	                                    <div class="row">
-	                                    	<div class="col-lg-6 col-xs-12">
-		                                        <div class="form-group">
-		                                            <div class="input-group">
-		                                                <span class="input-group-btn">
-		                                                    <span class="btn btn-primary btn-file">
-		                                                        Browse&hellip; <input type="file" name="file1" id="file1" accept="image/*">
-		                                                    </span>
-		                                                </span>
-		                                                <input type="text" class="form-control" readonly>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-lg-6 col-xs-12">
-		                                    	<input type="button" class="btn btn-success" value="Upload File" onclick="uploadFile()">
-		                                    </div>
-		                                </div>
-	                                
-	                                	<div class="row">
-		                                    <div class="col-lg-6 col-xs-12">
-	                                            <center>
-	                                                <progress id="progressBar" value="0" max="100" style="width:100%;"></progress>
-	                                                <span id="loaded_n_total"></span> <span id="status"></span>
-	                                            </center>
-	                                        </div>
-	                                    </div>
-	                                </form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="box box-primary">
 		            			<div class="box-header">
 		              				<h3 class="box-title">
 		              					Shop FAQs
@@ -2569,7 +2532,9 @@ desired effect
 																				    <div class="form-group">
 																						<label class="col-md-2 control-label" for="description">Answer</label>
 																						<div class="col-md-10">
-																							<input type="text" class="form-control" id="description" name="description" value="'.stripslashes($faq['description']).'">
+																							<textarea id="description" name="description" cols="80" rows="40" style="width: 100%;">
+																								'.stripslashes($faq['description']).'
+																							</textarea>
 																						</div>
 																					</div>
 																				</div>
@@ -2594,6 +2559,43 @@ desired effect
 					</div>
 				</section>
             </div>
+
+            <form action="actions.php?a=faq_add" class="form-horizontal form-bordered" method="post">
+				<div class="modal fade" id="faw_add" role="dialog">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal">&times;</button>
+				                <h4 class="modal-title">Add FAQ</h4>
+				            </div>
+				            <div class="modal-body">
+				                <div class="row">
+							    	<div class="col-lg-12">
+									    <div class="form-group">
+											<label class="col-md-2 control-label" for="title">Question</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" id="title" name="title">
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-12">
+									    <div class="form-group">
+											<label class="col-md-2 control-label" for="description">Answer</label>
+											<div class="col-md-10">
+												<textarea id="description" name="description" cols="80" rows="40" style="width: 100%;"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+				            </div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				                <button type="submit" class="btn btn-success">Add FAQ</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</form>
         <?php } ?>
 
         <?php function all_commissions(){ ?>
