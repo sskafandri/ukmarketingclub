@@ -2561,7 +2561,7 @@ desired effect
             </div>
 
             <form action="actions.php?a=faq_add" class="form-horizontal form-bordered" method="post">
-				<div class="modal fade" id="faw_add" role="dialog">
+				<div class="modal fade" id="faq_add" role="dialog">
 				    <div class="modal-dialog">
 				        <div class="modal-content">
 				            <div class="modal-header">
@@ -4454,9 +4454,9 @@ desired effect
 
     <?php if(get('c') == 'faqs') { ?>
     	<script>
-			function change_product_profile(selectObject) {
+			function change_faq_profile(selectObject) {
 			    var profile_id = selectObject.value; 
-			    window.location.href = "dashboard.php?c=product&id="+profile_id;
+			    window.location.href = "dashboard.php?c=faqs&id="+profile_id;
 			}
 
 			$(function () {
