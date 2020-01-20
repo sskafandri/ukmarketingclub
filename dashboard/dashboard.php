@@ -986,6 +986,9 @@ desired effect
 					</div>
 
 					<div class="row">
+						<?php if(empty($account_details['affiliate_username'])){ ?>
+	                		<div class="callout callout-danger lead"><p>You need to set your public affiliate username under <a href="dashboard.php?c=my_account">Account Settings</a></p></div>
+						<?php }else{ ?>
 							<div class="col-lg-6">
 		                        <div class="box box-primary">
 			            			<div class="box-header">
@@ -1103,7 +1106,8 @@ desired effect
 		                            </div>
 		                        </div>
 		                    </div>
-		                </div>
+		                <?php } ?>
+	                </div>
 				</section>
             </div>
         <?php } ?>
