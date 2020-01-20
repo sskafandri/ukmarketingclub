@@ -2501,7 +2501,7 @@ desired effect
 															</td>
 															<td style="vertical-align: middle;">
 																<button type="button" class="btn btn-info btn-xs btn-flat" data-toggle="modal" data-target="#faq_update_modal_'.$faq['id'].'"><i class="fa fa-eye"></i></button>
-																<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=faq_delete&id='.$faq['id'].'">
+																<a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'Are you sure?\')" href="actions.php?a=faq_delete&faq_id='.$faq['id'].'">
 																	<i class="fa fa-times"></i>
 																</a>
 															</td>
@@ -2518,11 +2518,22 @@ desired effect
 															            </div>
 															            <div class="modal-body">
 															                <div class="row">
+															                	<div class="col-lg-12">
+															                		<div class="form-group">
+																						<label class="col-sm-3 control-label">Website</label>
+																						<div class="col-sm-9">
+																							<select id="website" name="website" class="form-control">
+																								<option value="ublo.club" '.($faq['website']=='ublo.club'?'selected':'').'>ublo.club</option>
+																								<option value="ukmarketingclub.com" '.($faq['website']=='ukmarketingclub.com'?'selected':'').'>ukmarketingclub.com</option>
+																							</select>
+																						</div>
+																					</div>
+																				</div>
 																		    	<div class="col-lg-12">
 																				    <div class="form-group">
 																						<label class="col-md-2 control-label" for="title">Question</label>
 																						<div class="col-md-10">
-																							<input type="text" class="form-control" id="title" name="title" value="'.stripslashes($faq['title']).'">
+																							<input type="text" class="form-control" id="title" name="title" value="'.stripslashes($faq['title']).'" required>
 																						</div>
 																					</div>
 																				</div>
@@ -2566,11 +2577,22 @@ desired effect
 				            </div>
 				            <div class="modal-body">
 				                <div class="row">
+				                	<div class="col-lg-12">
+				                		<div class="form-group">
+											<label class="col-sm-3 control-label">Website</label>
+											<div class="col-sm-9">
+												<select id="website" name="website" class="form-control">
+													<option value="ublo.club">ublo.club</option>
+													<option value="ukmarketingclub.com">ukmarketingclub.com</option>
+												</select>
+											</div>
+										</div>
+									</div>
 							    	<div class="col-lg-12">
 									    <div class="form-group">
 											<label class="col-md-2 control-label" for="title">Question</label>
 											<div class="col-md-10">
-												<input type="text" class="form-control" id="title" name="title">
+												<input type="text" class="form-control" id="title" name="title" required="">
 											</div>
 										</div>
 									</div>

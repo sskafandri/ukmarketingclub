@@ -6318,6 +6318,53 @@ function product_linked_delete()
 	// delete the database record
 	$delete = $conn->query("DELETE FROM `shop_products_linked` WHERE `id` = '".$product_id."' ");
 
-	status_message('success',"Linked product has been deleted..");
+	status_message('success',"Linked product has been deleted.");
+	go($_SERVER['HTTP_REFERER']);
+}
+
+function faq_add()
+{
+	global $conn, $global_settings;
+
+	$title 				= post('title');
+	$description 		= post('description');
+
+	$insert = $conn->exec("INSERT INTO `shop_faq` 
+        (`title`,`description`)
+        VALUE
+        ('".$title."','".$sdescriptionndary_id."')"
+    );
+
+    status_message('success',"FAQ has been added.");
+    go($_SERVER['HTTP_REFERER']);
+}
+
+function faq_update()
+{
+	global $conn, $global_settings;
+
+	$faq_id 			= post('faq_id');
+
+	$title 				= post('title');
+	$description 		= post('description');
+
+	$update = $conn->exec("UPDATE `shop_faq` SET `title` = '".$title."' 							WHERE `id` = '".$faq_id."' ");
+	$update = $conn->exec("UPDATE `shop_faq` SET `description` = '".$description."' 				WHERE `id` = '".$faq_id."' ");
+
+    // log_add("[".$name."] has been updated.");
+    status_message('success',"FAQ has been updated and published.");
+    go($_SERVER['HTTP_REFERER']);
+}
+
+function faq_delete()
+{
+	global $conn, $global_settings;
+
+	$faq_id = get('faq_id');
+
+	// delete the database record
+	$delete = $conn->query("DELETE FROM `shop_faq` WHERE `id` = '".$faq_id."' ");
+
+	status_message('success',"FAQ has been deleted.");
 	go($_SERVER['HTTP_REFERER']);
 }
