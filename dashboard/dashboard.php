@@ -2179,7 +2179,7 @@ desired effect
 												<div class="form-group">
 													<label class="col-md-1 control-label" for="description">Description</label>
 													<div class="col-md-11">
-														<textarea id="description" name="description" cols="80" rows="40" style="width: 100%;">
+														<textarea id="description" name="description" cols="80" rows="5" style="width: 100%;">
 															<?php echo stripslashes($product['description']); ?>
 									                    </textarea>
 													</div>
