@@ -4428,7 +4428,7 @@ desired effect
 		</script>
     <?php } ?>
 
-    <?php if(get('c') == 'faqs') { ?>
+    <?php if(get('c') == 'faqs_1') { ?>
     	<script>
 			function change_faq_profile(selectObject) {
 			    var profile_id = selectObject.value; 
