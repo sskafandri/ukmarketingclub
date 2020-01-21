@@ -2213,7 +2213,7 @@ desired effect
 												<select id="profile_id" name="profile_id" class="form-control select2" onchange="change_product_profile(this);">
 													<?php foreach($all_products as $all_product){ ?>
 														<option value="<?php echo $all_product['id'];?>" <?php if($product_id==$all_product['id']){echo"selected";} ?>>
-															<?php if($all_product['homepage']=='yes'){echo'Primary';}else{echo'Secondary';} ?> - <?php echo $all_product['title']; ?>
+															<?php echo $all_product['title']; ?> - <?php if($all_product['homepage']=='yes'){echo'Primary';}else{echo'Secondary';} ?> Product
 														</option>
 													<?php } ?>
 												</select>
