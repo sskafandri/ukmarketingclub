@@ -6280,6 +6280,8 @@ function product_update()
 
 	$homepage 			= post('homepage');
 
+	$hidden 			= post('hidden');
+
 	$image_main 		= post('image_main');
 	
 	$title 				= post('title');
@@ -6299,6 +6301,8 @@ function product_update()
 	$update = $conn->exec("UPDATE `shop_products` SET `sale_icon` = '".$sale_icon."' 				WHERE `id` = '".$product_id."' ");
 
 	$update = $conn->exec("UPDATE `shop_products` SET `homepage` = '".$homepage."' 					WHERE `id` = '".$product_id."' ");
+
+	$update = $conn->exec("UPDATE `shop_products` SET `hidden` = '".$hidden."' 						WHERE `id` = '".$product_id."' ");
 
 	$update = $conn->exec("UPDATE `shop_products` SET `title` = '".$title."' 						WHERE `id` = '".$product_id."' ");
 	$update = $conn->exec("UPDATE `whmcs`.`tblproducts` SET `name` = '".$title."' 					WHERE `id` = '".$product_id."' ");

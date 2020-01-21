@@ -2288,14 +2288,24 @@ desired effect
 												<div class="form-group">
 													<!-- title -->
 													<label class="col-md-1 control-label" for="title">Title</label>
-													<div class="col-md-5 col-xs-11">
+													<div class="col-md-3 col-xs-11">
 														<input type="text" class="form-control" id="title" name="title" value="<?php echo stripslashes($product['title']); ?>">
 													</div>
 
 													<!-- title_2 -->
 													<label class="col-md-1 control-label" for="title_2">Subtitle</label>
-													<div class="col-md-5 col-xs-11">
+													<div class="col-md-3 col-xs-11">
 														<input type="text" class="form-control" id="title_2" name="title_2" value="<?php echo stripslashes($product['title_2']); ?>">
+													</div>
+
+													<!-- hidden -->
+													<label class="col-md-1 control-label" for="hidden">Hidden</label>
+													<div class="col-md-2 col-xs-11">
+														<select id="hidden" name="hidden" class="form-control">
+															<option value="no" <?php if($product['hidden']=='no'){echo"selected";} ?>>No</option>
+															<option value="yes" <?php if($product['hidden']=='yes'){echo"selected";} ?>>Yes</option>
+														</select>
+														<small>Is this a primary product.</small>
 													</div>
 												</div>
 											</div>
