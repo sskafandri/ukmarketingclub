@@ -1504,7 +1504,7 @@ desired effect
 														<hr>
 													</div>
 												';
-												$badge_count = 0;
+												$badge_count = 1;
 											}else{
 												$badge_count++;
 											}
