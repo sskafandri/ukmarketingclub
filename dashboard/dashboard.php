@@ -1482,7 +1482,7 @@ desired effect
 											echo '
 												<div class="col-sm-2">
 													<center>
-														<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'" data-toggle="tooltip" data-placement="bottom" title="'.$badge['description'].'" width="76%" style="filter: grayscale(100%);"> <br>
+														<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'" data-toggle="tooltip" data-placement="bottom" title="'.$badge['description'].'" width="76%" style="filter: grayscale(100%); opacity: 25%;"> <br>
 														<h4><strong>'.stripslashes($badge['name']).'</strong></h4>
 													</center>
 												</div>
