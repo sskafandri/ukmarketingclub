@@ -1016,9 +1016,20 @@ if($task == 'user_badges'){
 		// get orders for this user
 		$orders = get_whmcs_orders($user['id']);
 
-		debug($orders);
-		die();
+		// find IBO
+		foreach($orders['lineitems']['lineitem'] as $order_item){
+			if($order_item['product_id'] == 1){
+				// we found the IBO, add the badge
+				$insert = $conn->exec("INSERT IGNORE INTO `user_badges` 
+			        (`user_id`,`badge_id`)
+			        VALUE
+			        ('".$user['id']."',
+		        	'0'
+			    )");
 
+				break;
+			}
+		}
 	}
 
 	console_output("Finished.");
