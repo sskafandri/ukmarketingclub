@@ -1018,10 +1018,7 @@ if($task == 'user_badges'){
 
 		debug($orders);
 		die();
-		// find the IBO
-		foreach($orders as $order){
-			if($order)
-		}
+
 	}
 
 	console_output("Finished.");
