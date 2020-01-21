@@ -5737,13 +5737,6 @@ function ajax_products()
 	foreach($whmcs_products as $product){
 		$output[$count] 								= $product;
 
-		// primary or secondary
-		if($product['homepage'] == 'yes'){
-			$output[$count]['type']						= 'Primary';
-		}else{
-			$output[$count]['type']						= 'Secondary';
-		}
-
 		// set pricing to price var
 		$output[$count]['price']['monthly']				= str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['monthly']);
 		$output[$count]['price']['quarterly']			= str_replace('-1.00', '0.00', $output[$count]['pricing']['GBP']['quarterly']);
@@ -5791,6 +5784,13 @@ function ajax_products()
 		$output[$count]['price']['quarterly']			= '£'.$output[$count]['price']['quarterly'];
 		$output[$count]['price']['annually']			= '£'.$output[$count]['price']['monthly'];
 
+		// primary or secondary
+		if($product['homepage'] == 'yes'){
+			$output[$count]['type']						= 'Primary';
+		}else{
+			$output[$count]['type']						= 'Secondary';
+		}
+		
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
 			<div class="btn-group">
