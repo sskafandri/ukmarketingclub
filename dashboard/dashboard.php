@@ -1475,38 +1475,30 @@ desired effect
 								<div class="box-body">
 									<?php
 										$badge_count 	= 1;
-										$query 			= $conn->query("SELECT * FROM `user_badges` WHERE `user_id` = '".$_SESSION['account']['id']."' ");
+										$query 			= $conn->query("SELECT * FROM `badges`ORDER BY `order` ");
 										$badges 		= $query->fetchAll(PDO::FETCH_ASSOC);
 
-										if(isset($badges[0]['id'])){
-											foreach($badges as $badge_bits){
+										foreach($badges as $badge){
+											echo '
+												<div class="col-sm-2">
+													<center>
+														<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'" data-toggle="tooltip" data-placement="bottom" title="'.$badge['description'].'"> <br>
+														<h4><strong>'.stripslashes($badge['name']).'</strong></h4>
+													</center>
+												</div>
+											';
 
-												$query 		= $conn->query("SELECT * FROM `badges` WHERE `id` = '".$badge_bits['badge_id']."' ");
-												$badge 		= $query->fetch(PDO::FETCH_ASSOC);
-												
+											if($badge_count == 6){
 												echo '
-													<div class="col-sm-2">
-														<center>
-															<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'" data-toggle="tooltip" data-placement="bottom" title="'.$badge['description'].'"> <br>
-															<h4><strong>'.stripslashes($badge['name']).'</strong></h4>
-														</center>
+													<div class="row">
+														<br>
+														<hr>
 													</div>
 												';
-
-												if($badge_count == 6){
-													echo '
-														<div class="row">
-															<br>
-															<hr>
-														</div>
-													';
-													$badge_count = 0;
-												}else{
-													$badge_count++;
-												}
+												$badge_count = 0;
+											}else{
+												$badge_count++;
 											}
-										}else{
-											echo '<center><h3>:( No Badges Yet</h3></center>';
 										}
 									?>
 	                            </div>
