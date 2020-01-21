@@ -1479,10 +1479,19 @@ desired effect
 										$badges 		= $query->fetchAll(PDO::FETCH_ASSOC);
 
 										foreach($badges as $badge){
+											// check if user has this badge
+											$query 			= $conn->query("SELECT `id` FROM `user_badges` WHERE `user_id` = '".$_SESSION['account']['id']."' AND `badge_id` = '".$badge['id']."' ");
+											$has_badge 		= $query->fetch(PDO::FETCH_ASSOC);
+											if(isset($has_badge['id'])){
+												$badge_css = '';
+											}else{
+												$badge_css = 'filter: grayscale(100%); opacity: 25%;';
+											}
+
 											echo '
 												<div class="col-sm-2">
 													<center>
-														<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'" data-toggle="tooltip" data-placement="bottom" title="'.$badge['description'].'" width="76%" style="filter: grayscale(100%); opacity: 25%;"> <br>
+														<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'" data-toggle="tooltip" data-placement="bottom" title="'.$badge['description'].'" width="76%" style="'.$badge_css.'"> <br>
 														<h4><strong>'.stripslashes($badge['name']).'</strong></h4>
 													</center>
 												</div>
