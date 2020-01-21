@@ -1295,9 +1295,13 @@ function account_details($id)
         $results['avatar']                  = get_gravatar($results['email']);
 
         // get highest ranking badge
-        $query              = $conn->query("SELECT * FROM `user_badges` WHERE `user_id` = '$id' ORDER BY `rank` DESC LIMIT 1");
-        $top_badge          = $query->fetchAll(PDO::FETCH_ASSOC);
-        if(isset($top_badge['id'])){
+        $query              = $conn->query("SELECT * FROM `user_badges` WHERE `user_id` = '".$id."' ORDER BY `rank` DESC LIMIT 1");
+        $top_badge_raw      = $query->fetch(PDO::FETCH_ASSOC);
+        if(isset($top_badge_raw['id'])){
+            // get the badge details
+            $query              = $conn->query("SELECT * FROM `badges` WHERE `id` = '".$top_badge_raw['id']."' ");
+            $top_badge          = $query->fetch(PDO::FETCH_ASSOC);
+
             $results['badge']['name']               = stripslashes($top_badge['name']);
             $results['badge']['description']        = stripslashes($top_badge['description']);
             $results['badge']['image']              = $top_badge['image'];

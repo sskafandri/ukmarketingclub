@@ -469,7 +469,7 @@ desired effect
 			          	<p><?php echo $account_details['first_name'].' '.$account_details['last_name']; ?></p>
 			          	<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 
-			          	<?php if(){ ?>
+			          	<?php if(!empty($account_details['badge']['name'])){ ?>
 			          		<center>
 			          			<img src="badges/<?php echo $account_details['badge']['image']; ?>" alt="<?php echo $account_details['badge']['name']; ?>.'" data-toggle="tooltip" data-placement="bottom" title="<?php echo $account_details['badge']['description']; ?>" width="100%"> <br>
 								<h2><strong><?php echo $account_details['badge']['name']; ?></strong></h2>
