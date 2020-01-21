@@ -489,6 +489,7 @@ desired effect
 		          				<img src="badges/<?php echo $account_details['badge']['image']; ?>" alt="<?php echo $account_details['badge']['name']; ?>.'" data-toggle="tooltip" data-placement="bottom" title="<?php echo $account_details['badge']['description']; ?>" width="50%"> <br>
 								<!-- <h2><strong><?php echo $account_details['badge']['name']; ?></strong></h2> -->
 							</a>
+							<br>
 						</center>
 		          	<?php } ?>
 
