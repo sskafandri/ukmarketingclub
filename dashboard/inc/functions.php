@@ -1299,7 +1299,7 @@ function account_details($id)
         $top_badge_raw      = $query->fetch(PDO::FETCH_ASSOC);
         if(isset($top_badge_raw['id'])){
             // get the badge details
-            $query              = $conn->query("SELECT * FROM `badges` WHERE `id` = '".$top_badge_raw['id']."' ");
+            $query              = $conn->query("SELECT * FROM `badges` WHERE `id` = '".$top_badge_raw['badge_id']."' ");
             $top_badge          = $query->fetch(PDO::FETCH_ASSOC);
 
             $results['badge']['name']               = stripslashes($top_badge['name']);
