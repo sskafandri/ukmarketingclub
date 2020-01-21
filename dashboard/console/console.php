@@ -1032,6 +1032,8 @@ if($task == 'user_badges'){
 			        	'0'
 				    )");
 
+				    console_output("- Badge: IBO");
+
 					break 2;
 				}
 			}
@@ -1066,6 +1068,8 @@ if($task == 'user_badges'){
 		        ('".$user['id']."',
 	        	'1'
 		    )");
+
+		    console_output("- Badge: 1 Star IBO");
 		}
 
 		//////////////////////////////////////////////////
@@ -1097,6 +1101,8 @@ if($task == 'user_badges'){
 		        ('".$user['id']."',
 	        	'2'
 		    )");
+
+		    console_output("- Badge: 2 Star IBO");
 		}
 
 		//////////////////////////////////////////////////
@@ -1128,11 +1134,13 @@ if($task == 'user_badges'){
 		        ('".$user['id']."',
 	        	'3'
 		    )");
+
+		    console_output("- Badge: 3 Star IBO");
 		}
 
 		//////////////////////////////////////////////////
 		// find 4 star IBO
-		$badge_to_add['4_star_ibo']['needed_score']		= 3;
+		$badge_to_add['4_star_ibo']['needed_score']		= 4;
 		$badge_to_add['4_star_ibo']['score']			= 0;
 
 		// get
@@ -1159,11 +1167,13 @@ if($task == 'user_badges'){
 		        ('".$user['id']."',
 	        	'4'
 		    )");
+
+		    console_output("- Badge: 4 Star IBO");
 		}
 
 		//////////////////////////////////////////////////
 		// find 5 star IBO
-		$badge_to_add['5_star_ibo']['needed_score']		= 3;
+		$badge_to_add['5_star_ibo']['needed_score']		= 5;
 		$badge_to_add['5_star_ibo']['score']			= 0;
 
 		// get
@@ -1190,8 +1200,9 @@ if($task == 'user_badges'){
 		        ('".$user['id']."',
 	        	'5'
 		    )");
-		}
 
+		    console_output("- Badge: 5 Star IBO");
+		}
 	}
 
 	console_output("Finished.");
