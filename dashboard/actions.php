@@ -5791,6 +5791,15 @@ function ajax_products()
 			$output[$count]['type']						= 'Secondary';
 		}
 
+		// get product points
+		$query 											= $conn->query("SELECT `points` FROM `products_to_points` WHERE `product_id` = '".$product['pid']."' ");
+		$product_points 								= $query->fetch(PDO::FETCH_ASSOC);
+		if(isset($product_points['id'])){
+			$output[$count]['points'] 					= $product_points['points'];
+		}else{
+			$output[$count]['points'] 					= 0;
+		}
+		
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
 			<div class="btn-group">
