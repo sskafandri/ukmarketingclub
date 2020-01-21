@@ -1009,7 +1009,7 @@ if($task == 'user_badges'){
 	console_output("Award badges to users.");
 	
 	// get all users
-	$query 				= $conn->query("SELECT `id`,`upline_id`,`first_name`,`last_name` FROM `users` WHERE `id` = '1' ");
+	$query 				= $conn->query("SELECT `id`,`upline_id`,`first_name`,`last_name` FROM `users` ");
 	$users 				= $query->fetchAll(PDO::FETCH_ASSOC);
 
 	foreach($users as $user){
@@ -1033,6 +1033,8 @@ if($task == 'user_badges'){
 				}
 			}
 		}
+
+		
 	}
 
 	console_output("Finished.");
