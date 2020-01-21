@@ -6283,6 +6283,8 @@ function product_update()
 	$hidden 			= post('hidden');
 
 	$image_main 		= post('image_main');
+
+	$points 			= post('points');
 	
 	$title 				= post('title');
 	$title 				= addslashes($title);
@@ -6313,6 +6315,19 @@ function product_update()
 
 	$update = $conn->exec("UPDATE `shop_products` SET `description` = '".$description."' 			WHERE `id` = '".$product_id."' ");
 	$update = $conn->exec("UPDATE `whmcs`.`tblproducts` SET `description` = '".$description."' 		WHERE `id` = '".$product_id."' ");
+
+	// handle the points for this product
+	$query 					= $conn->query("SELECT * FROM `products_to_points` WHERE `product_id` = '".$product_id."' ");
+	$product_points 		= $query->fetch(PDO::FETCH_ASSOC);
+	if(isset($product_points['id'])){
+		$update = $conn->exec("UPDATE `products_to_points` SET `points` = '".$points."' 		WHERE `product_id` = '".$product_id."' ");
+	}else{
+		$insert = $conn->exec("INSERT INTO `products_to_points` 
+	        (`product_id`,`points`)
+	        VALUE
+	        ('".$product_id."','".$points."')"
+	    );
+	}
 
     // log_add("[".$name."] has been updated.");
     status_message('success',"Product details have been updated and published.");

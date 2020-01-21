@@ -2180,6 +2180,10 @@ desired effect
 				// get product images
 				$query 					= $conn->query("SELECT * FROM `shop_product_images` ORDER BY `id` ");
 				$product_images 		= $query->fetchAll(PDO::FETCH_ASSOC);
+
+				// get product points
+				$query 					= $conn->query("SELECT * FROM `products_to_points` WHERE `product_id` = '".$product_id."' ");
+				$product_points 		= $query->fetch(PDO::FETCH_ASSOC);
 			?>
 
             <div class="content-wrapper">
@@ -2300,12 +2304,19 @@ desired effect
 
 													<!-- hidden -->
 													<label class="col-md-1 control-label" for="hidden">Hidden</label>
-													<div class="col-md-3 col-xs-11">
+													<div class="col-md-1 col-xs-11">
 														<select id="hidden" name="hidden" class="form-control">
 															<option value="no" <?php if($product['hidden']=='no'){echo"selected";} ?>>No</option>
 															<option value="yes" <?php if($product['hidden']=='yes'){echo"selected";} ?>>Yes</option>
 														</select>
 														<small>Hide this product?</small>
+													</div>
+
+													<!-- points -->
+													<label class="col-md-1 control-label" for="points">Points</label>
+													<div class="col-md-1 col-xs-11">
+														<input type="text" class="form-control" id="points" name="points" value="<?php echo stripslashes($product_points['points']); ?>">
+														<small>Qualification points</small>
 													</div>
 												</div>
 											</div>
