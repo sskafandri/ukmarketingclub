@@ -1023,7 +1023,7 @@ if($task == 'user_badges'){
 		foreach($orders as $order){
 			foreach($order['lineitems']['lineitem'] as $order_item){
 				console_output("- Product: ".$order_item['order_details']['product_id']." | ".$order_item['product']);
-				if($order_item['order_details']['product_id'] == 1){
+				if($order_item['order_details']['product_id'] == 2){
 					// we found the IBO, add the badge
 					$insert = $conn->exec("INSERT IGNORE INTO `user_badges` 
 				        (`user_id`,`badge_id`)
