@@ -5782,7 +5782,7 @@ function ajax_products()
 
 		$output[$count]['price']['monthly']				= '£'.$output[$count]['price']['monthly'];
 		$output[$count]['price']['quarterly']			= '£'.$output[$count]['price']['quarterly'];
-		$output[$count]['price']['annually']			= '£'.$output[$count]['price']['monthly'];
+		$output[$count]['price']['annually']			= $output[$count]['price']['monthly'];
 
 		// primary or secondary
 		if($product_details['homepage'] == 'yes'){
