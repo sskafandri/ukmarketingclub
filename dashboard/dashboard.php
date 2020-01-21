@@ -2123,6 +2123,7 @@ desired effect
 									            <tr>
 									                <th class="no-sort" width="1px"></th>
 									                <th class="no-sort" width="150px" style="white-space: nowrap;">Category</th>
+									                <th class="no-sort" width="150px" style="white-space: nowrap;">Type</th>
 									                <th class="no-sort" style="white-space: nowrap;">Name</th>
 									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
 									                <th class="no-sort" width="1px">Monthly</th>
@@ -2135,6 +2136,7 @@ desired effect
 									            <tr>
 									                <th class="no-sort" width="1px"></th>
 									                <th class="no-sort" width="150px" style="white-space: nowrap;">Category</th>
+									                <th class="no-sort" width="150px" style="white-space: nowrap;">Type</th>
 									                <th class="no-sort" style="white-space: nowrap;">Name</th>
 									                <th class="no-sort hidden-xs" style="white-space: nowrap;" width="100px">Recurring</th>
 									                <th class="no-sort" width="1px">Monthly</th>
@@ -4403,6 +4405,7 @@ desired effect
 			                "defaultContent": ''
 			            },
 			            { "data": "category" },
+			            { "data": "type" },
 			            { "data": "name" },
 			            {
 			            	"className":      'hidden-xs',
@@ -4413,7 +4416,7 @@ desired effect
 			            { "data": "price.annually" },
 			            { "data": "actions" }
 			        ],
-			        "order": [[1, 'asc'], [2, 'asc']]
+			        "order": [[1, 'asc'], [2, 'asc'], [3, 'asc']]
 			    } );
 			     
 			    // Add event listener for opening and closing details
