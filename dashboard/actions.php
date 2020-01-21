@@ -5794,7 +5794,7 @@ function ajax_products()
 		// get product points
 		$query 											= $conn->query("SELECT `points` FROM `products_to_points` WHERE `product_id` = '".$product['pid']."' ");
 		$product_points 								= $query->fetch(PDO::FETCH_ASSOC);
-		if(isset($product_points['id'])){
+		if(isset($product_points['points'])){
 			$output[$count]['points'] 					= $product_points['points'];
 		}else{
 			$output[$count]['points'] 					= 0;
