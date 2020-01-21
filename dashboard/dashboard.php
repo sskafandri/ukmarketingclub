@@ -502,44 +502,7 @@ desired effect
 
 	                <?php if($account_details['type'] == 'admin' || $account_details['type'] == 'dev') { ?>
                 		<li class="header">STAFF PANEL</li>
-	                    <?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'all_visual_downline'){ ?>
-	                    	<li class="active treeview menu-open">
-	                    <?php }else{ ?>
-	                    	<li class="treeview">
-	                    <?php } ?>
-							<a href="#">
-								<i class="fa fa-users"></i> <span>Member Management</span>
-								<span class="pull-right-container">
-									<i class="fa fa-angle-left pull-right"></i>
-								</span>
-							</a>
-							<ul class="treeview-menu">
-								<!-- <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
-								<?php if(get('c') == 'members' || get('c') == 'member'){ ?>
-			                    	<li class="active">
-			                    <?php }else{ ?>
-			                    	<li>
-			                    <?php } ?>
-			                    	<a href="dashboard.php?c=members">
-			                        	<i class="fa fa-circle"></i> 
-			                        	<span>All Members</span>
-			                        </a>
-			                    </li>
-
-			                    <?php if(get('c') == 'all_visual_downline'){ ?>
-			                    	<li class="active">
-			                    <?php }else{ ?>
-			                    	<li>
-			                    <?php } ?>
-			                    	<a href="dashboard.php?c=all_visual_downline">
-			                        	<i class="fa fa-circle"></i> 
-			                        	<span>Visual Genealogy</span>
-			                        </a>
-			                    </li>
-							</ul>
-						</li>
-
-						<?php if(get('c') == 'products' || get('c') == 'product' || get('c') == 'product_images' || get('c') == 'faqs' || get('c') == 'faq'){ ?>
+	                    <?php if(get('c') == 'products' || get('c') == 'product' || get('c') == 'product_images' || get('c') == 'faqs' || get('c') == 'faq'){ ?>
 	                    	<li class="active treeview menu-open">
 	                    <?php }else{ ?>
 	                    	<li class="treeview">
@@ -581,6 +544,42 @@ desired effect
 			                    	<a href="dashboard.php?c=faqs">
 			                        	<i class="fa fa-circle"></i> 
 			                        	<span>FAQs</span>
+			                        </a>
+			                    </li>
+							</ul>
+						</li>
+						<?php if(get('c') == 'members' || get('c') == 'member' || get('c') == 'all_visual_downline'){ ?>
+	                    	<li class="active treeview menu-open">
+	                    <?php }else{ ?>
+	                    	<li class="treeview">
+	                    <?php } ?>
+							<a href="#">
+								<i class="fa fa-users"></i> <span>Member Management</span>
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+							<ul class="treeview-menu">
+								<!-- <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
+								<?php if(get('c') == 'members' || get('c') == 'member'){ ?>
+			                    	<li class="active">
+			                    <?php }else{ ?>
+			                    	<li>
+			                    <?php } ?>
+			                    	<a href="dashboard.php?c=members">
+			                        	<i class="fa fa-circle"></i> 
+			                        	<span>All Members</span>
+			                        </a>
+			                    </li>
+
+			                    <?php if(get('c') == 'all_visual_downline'){ ?>
+			                    	<li class="active">
+			                    <?php }else{ ?>
+			                    	<li>
+			                    <?php } ?>
+			                    	<a href="dashboard.php?c=all_visual_downline">
+			                        	<i class="fa fa-circle"></i> 
+			                        	<span>Visual Genealogy</span>
 			                        </a>
 			                    </li>
 							</ul>
