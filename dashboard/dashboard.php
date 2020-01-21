@@ -2130,6 +2130,7 @@ desired effect
 									                <th class="no-sort" width="1px">Monthly</th>
 									                <th class="no-sort" width="1px">Quarterly</th>
 									                <th class="no-sort" width="1px">Annually</th>
+									                <th class="no-sort" width="1px">Pts</th>
 									                <th class="no-sort text-right" style="white-space: nowrap;" width="1px">Actions</th>
 									            </tr>
 									        </thead>
@@ -2143,6 +2144,7 @@ desired effect
 									                <th class="no-sort" width="1px">Monthly</th>
 									                <th class="no-sort" width="1px">Quarterly</th>
 									                <th class="no-sort" width="1px">Annually</th>
+									                <th class="no-sort" width="1px">Pts</th>
 									                <th class="no-sort" style="white-space: nowrap;" width="1px">Actions</th>
 									            </tr>
 									        </tfoot>
@@ -4437,6 +4439,7 @@ desired effect
 			            { "data": "price.monthly" },
 			            { "data": "price.quarterly" },
 			            { "data": "price.annually" },
+			            { "data": "points" },
 			            { "data": "actions" }
 			        ],
 			        "order": [[1, 'asc'], [2, 'asc'], [3, 'asc']]
