@@ -485,11 +485,11 @@ desired effect
                 <ul class="sidebar-menu">
                 	<?php if(!empty($account_details['badge']['name'])){ ?>
 		          		<center>
-		          			<img src="badges/<?php echo $account_details['badge']['image']; ?>" alt="<?php echo $account_details['badge']['name']; ?>.'" data-toggle="tooltip" data-placement="bottom" title="<?php echo $account_details['badge']['description']; ?>" width="100%"> <br>
-							<h2><strong><?php echo $account_details['badge']['name']; ?></strong></h2>
+		          			<img src="badges/<?php echo $account_details['badge']['image']; ?>" alt="<?php echo $account_details['badge']['name']; ?>.'" data-toggle="tooltip" data-placement="bottom" title="<?php echo $account_details['badge']['description']; ?>" width="50%"> <br>
+							<!-- <h2><strong><?php echo $account_details['badge']['name']; ?></strong></h2> -->
 						</center>
 		          	<?php } ?>
-		          	
+
                 	<?php if($account_details['email'] == 'jamie.whittingham@gmail.com') { ?>
                 		<li class="header">DEV NAVIGATION</li>
 	                    <?php if(get('c') == 'test'){ ?>
