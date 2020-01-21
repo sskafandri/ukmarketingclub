@@ -1294,6 +1294,19 @@ function account_details($id)
         $results['account_type']            = $results['type'];
         $results['avatar']                  = get_gravatar($results['email']);
 
+        // get highest ranking badge
+        $query              = $conn->query("SELECT * FROM `user_badges` WHERE `user_id` = '$id' ORDER BY `rank` DESC LIMIT 1");
+        $top_badge          = $query->fetchAll(PDO::FETCH_ASSOC);
+        if(isset($top_badge['id'])){
+            $results['badge']['name']               = stripslashes($top_badge['name']);
+            $results['badge']['description']        = stripslashes($top_badge['description']);
+            $results['badge']['image']              = $top_badge['image'];
+        }else{
+            $results['badge']['name']               = '';
+            $results['badge']['description']        = '';
+            $results['badge']['image']              = '';
+        }
+
         return $results;
     } else {
         // error
