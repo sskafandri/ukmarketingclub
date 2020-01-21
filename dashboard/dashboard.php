@@ -887,6 +887,10 @@ desired effect
 					my_withdrawals();
 					break;
 
+				case "compensation_plan":
+					compensation_plan();
+					break;
+
 				// home
 				default:
 					home();
