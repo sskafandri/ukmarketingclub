@@ -1029,7 +1029,7 @@ if($task == 'user_badges'){
 			        	'0'
 				    )");
 
-					break;
+					break 2;
 				}
 			}
 		}
