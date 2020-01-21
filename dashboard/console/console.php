@@ -1004,3 +1004,25 @@ if($task == 'activate_affiliates'){
 
 	console_output("Finished.");
 }
+
+if($task == 'user_badges'){
+	console_output("Award badges to users.");
+	
+	// get all users
+	$query 				= $conn->query("SELECT `id`,`upline_id`,`first_name`,`last_name` FROM `users` WHERE `id` = '1' ");
+	$users 				= $query->fetchAll(PDO::FETCH_ASSOC);
+
+	foreach($users as $user){
+		// get orders for this user
+		$orders = get_whmcs_orders($user['id']);
+
+		debug($orders);
+		die();
+		// find the IBO
+		foreach($orders as $order){
+			if($order)
+		}
+	}
+
+	console_output("Finished.");
+}
