@@ -1497,12 +1497,8 @@ desired effect
 												</div>
 											';
 
-											if($badge_count == 6){
+											if($badge_count == 5){
 												echo '
-													<div class="row">
-														<br>
-														<hr>
-													</div>
 													<div class="row">
 														<br>
 														<hr>
