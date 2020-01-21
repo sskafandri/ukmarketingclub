@@ -1018,6 +1018,7 @@ if($task == 'user_badges'){
 		// get orders for this user
 		$orders = get_whmcs_orders($user['id']);
 
+		//////////////////////////////////////////////////
 		// find IBO
 		foreach($orders as $order){
 			foreach($order['lineitems']['lineitem'] as $order_item){
@@ -1036,7 +1037,39 @@ if($task == 'user_badges'){
 			}
 		}
 
+		//////////////////////////////////////////////////
 		// find 1 star IBO
+		$badge_to_add['1_star_ibo']['needed_score']		= 1;
+		$badge_to_add['1_star_ibo']['score']			= 0;
+
+		// get
+		$query 				= $conn->query("SELECT `id`,`upline_id` FROM `users` WHERE `upline_id` = '".$user['id']."' ");
+		$downlines 			= $query->fetchAll(PDO::FETCH_ASSOC);
+		if(isset($downlines[0]['id'])){
+			// loop over the downline and find everyone with a qualifying badge
+			foreach($downlines as $downline){
+				// check this user for qualifying badge
+				$query 				= $conn->query("SELECT `id` FROM `user_badges` WHERE `user_id` = '".$downline['id']."' AND `badge_id` = '0' ");
+				$existing_badge 	= $query->fetch(PDO::FETCH_ASSOC);
+				if(isset($existing_badge['id'])){
+					$badge_to_add['1_star_ibo']['score']++;
+				}
+			}
+		}
+
+		// check the score
+		if($badge_to_add['1_star_ibo']['score'] >= $badge_to_add['1_star_ibo']['needed_score']){
+			// we found 2 IBOs, add the badge
+			$insert = $conn->exec("INSERT IGNORE INTO `user_badges` 
+		        (`user_id`,`badge_id`)
+		        VALUE
+		        ('".$user['id']."',
+	        	'1'
+		    )");
+		}
+
+		//////////////////////////////////////////////////
+		// find 2 star IBO
 		$badge_to_add['1_star_ibo']['needed_score']		= 2;
 		$badge_to_add['1_star_ibo']['score']			= 0;
 
@@ -1065,6 +1098,8 @@ if($task == 'user_badges'){
 	        	'1'
 		    )");
 		}
+
+
 
 	}
 
