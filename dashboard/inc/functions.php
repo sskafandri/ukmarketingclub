@@ -1,5 +1,9 @@
 <?php
 
+function sort_array_by_title($a, $b) {
+    return strnatcmp($a["title"], $b["title"]);
+}
+
 function get_withdrawls($member_id = '')
 {
     global $conn, $global_settings, $whmcs;

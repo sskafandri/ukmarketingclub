@@ -2172,6 +2172,7 @@ desired effect
 				// get all products for jump menu
 				$query 					= $conn->query("SELECT * FROM `shop_products` ORDER BY `title` ");
 				$all_products 			= $query->fetchAll(PDO::FETCH_ASSOC);
+				usort($all_products, 'sort_array_by_title');
 
 				// get all product categories
 				$query 					= $conn->query("SELECT * FROM `whmcs`.`tblproductgroups` ORDER BY `name` ");
