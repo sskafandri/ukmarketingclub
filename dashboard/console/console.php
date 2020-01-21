@@ -1017,17 +1017,19 @@ if($task == 'user_badges'){
 		$orders = get_whmcs_orders($user['id']);
 
 		// find IBO
-		foreach($orders['lineitems']['lineitem'] as $order_item){
-			if($order_item['product_id'] == 1){
-				// we found the IBO, add the badge
-				$insert = $conn->exec("INSERT IGNORE INTO `user_badges` 
-			        (`user_id`,`badge_id`)
-			        VALUE
-			        ('".$user['id']."',
-		        	'0'
-			    )");
+		foreach($orders as $order){
+			foreach($order['lineitems']['lineitem'] as $order_item){
+				if($order_item['product_id'] == 1){
+					// we found the IBO, add the badge
+					$insert = $conn->exec("INSERT IGNORE INTO `user_badges` 
+				        (`user_id`,`badge_id`)
+				        VALUE
+				        ('".$user['id']."',
+			        	'0'
+				    )");
 
-				break;
+					break;
+				}
 			}
 		}
 	}
