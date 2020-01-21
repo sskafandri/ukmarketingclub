@@ -5785,12 +5785,12 @@ function ajax_products()
 		$output[$count]['price']['annually']			= '£'.$output[$count]['price']['monthly'];
 
 		// primary or secondary
-		if($product['homepage'] == 'yes'){
+		if($product_details['homepage'] == 'yes'){
 			$output[$count]['type']						= 'Primary';
 		}else{
 			$output[$count]['type']						= 'Secondary';
 		}
-		
+
 		// build the actions menu options
 		$output[$count]['actions'] 						= '
 			<div class="btn-group">
