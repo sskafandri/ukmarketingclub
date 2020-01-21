@@ -1497,7 +1497,21 @@ desired effect
 												</div>
 											';
 
-
+											if($badge_count == 6){
+												echo '
+													<div class="row">
+														<br>
+														<hr>
+													</div>
+													<div class="row">
+														<br>
+														<hr>
+													</div>
+												';
+												$badge_count = 0;
+											}else{
+												$badge_count++;
+											}
 										}
 									?>
 	                            </div>
