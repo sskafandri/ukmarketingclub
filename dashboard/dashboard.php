@@ -485,8 +485,10 @@ desired effect
                 <ul class="sidebar-menu">
                 	<?php if(!empty($account_details['badge']['name'])){ ?>
 		          		<center>
-		          			<img src="badges/<?php echo $account_details['badge']['image']; ?>" alt="<?php echo $account_details['badge']['name']; ?>.'" data-toggle="tooltip" data-placement="bottom" title="<?php echo $account_details['badge']['description']; ?>" width="50%"> <br>
-							<!-- <h2><strong><?php echo $account_details['badge']['name']; ?></strong></h2> -->
+		          			<a href="dashboard.php?c=compensation_plan">
+		          				<img src="badges/<?php echo $account_details['badge']['image']; ?>" alt="<?php echo $account_details['badge']['name']; ?>.'" data-toggle="tooltip" data-placement="bottom" title="<?php echo $account_details['badge']['description']; ?>" width="50%"> <br>
+								<!-- <h2><strong><?php echo $account_details['badge']['name']; ?></strong></h2> -->
+							</a>
 						</center>
 		          	<?php } ?>
 
@@ -681,7 +683,7 @@ desired effect
 		                </ul>
 		            </li>
 
-                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline' || get('c') == 'my_commissions' || get('c') == 'my_withdrawals' || get('c') == 'marketing_tools'){ ?>
+                    <?php if(get('c') == 'visual_downline' || get('c') == 'table_downline' || get('c') == 'my_commissions' || get('c') == 'my_withdrawals' || get('c') == 'marketing_tools' || get('c') == 'compensation_plan'){ ?>
                     	<li class="active treeview menu-open">
                     <?php }else{ ?>
                     	<li class="treeview">
@@ -745,6 +747,17 @@ desired effect
 		                    	<a href="dashboard.php?c=table_downline">
 		                        	<i class="fa fa-circle"></i> 
 		                        	<span>Table Genealogy</span>
+		                        </a>
+		                    </li>
+
+		                    <?php if(get('c') == 'compensation_plan'){ ?>
+		                    	<li class="active">
+		                    <?php }else{ ?>
+		                    	<li>
+		                    <?php } ?>
+		                    	<a href="dashboard.php?c=compensation_plan">
+		                        	<i class="fa fa-circle"></i> 
+		                        	<span>Compensation Plan</span>
 		                        </a>
 		                    </li>
 						</ul>
@@ -1470,53 +1483,6 @@ desired effect
 											?>
 										</tbody>
 									</table>
-	                            </div>
-	                        </div>
-
-	                        <div class="box box-primary">
-		            			<div class="box-header">
-		              				<h3 class="box-title">
-		              					Badges
-		              				</h3>
-		            			</div>
-								<div class="box-body">
-									<?php
-										$badge_count 	= 1;
-										$query 			= $conn->query("SELECT * FROM `badges`ORDER BY `order` ");
-										$badges 		= $query->fetchAll(PDO::FETCH_ASSOC);
-
-										foreach($badges as $badge){
-											// check if user has this badge
-											$query 			= $conn->query("SELECT `id` FROM `user_badges` WHERE `user_id` = '".$_SESSION['account']['id']."' AND `badge_id` = '".$badge['id']."' ");
-											$has_badge 		= $query->fetch(PDO::FETCH_ASSOC);
-											if(isset($has_badge['id'])){
-												$badge_css = '';
-											}else{
-												$badge_css = 'filter: grayscale(100%); opacity: 25%;';
-											}
-
-											echo '
-												<div class="col-sm-2">
-													<center>
-														<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'" data-toggle="tooltip" data-placement="bottom" title="'.stripslashes($badge['description']).'" width="76%" style="'.$badge_css.'"> <br>
-														<h4><strong>'.stripslashes($badge['name']).'</strong></h4>
-													</center>
-												</div>
-											';
-
-											if($badge_count == 6){
-												echo '
-													<div class="row">
-														<br>
-														<hr>
-													</div>
-												';
-												$badge_count = 1;
-											}else{
-												$badge_count++;
-											}
-										}
-									?>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -3745,6 +3711,78 @@ desired effect
 			        </div>
 			    </div>
 			</div>
+        <?php } ?>
+
+        <?php function compensation_plan(){ ?>
+        	<?php 
+        		global $conn, $global_settings, $account_details, $site;
+            ?>
+
+            <div class="content-wrapper">
+            
+            	<div id="status_message"></div>
+                
+                <section class="content-header">
+                    <h1>Compensation Plan <!-- <small>Optional description</small> --></h1>
+                    <ol class="breadcrumb">
+                        <li><a href="dashboard">Dashboard</a></li>
+                        <li class="active">Compensation Plan</li>
+                    </ol>
+                </section>
+    
+                <section class="content">
+					<div class="row">
+						<div class="col-lg-6 col-xs-12">
+							<div class="box box-primary no-padding">
+								<div class="box-header with-border">
+									<h3 class="box-title">
+										Ranks
+									</h3> 
+								</div>
+								<div class="box-body">
+					                <?php
+										$badge_count 	= 1;
+										$query 			= $conn->query("SELECT * FROM `badges`ORDER BY `order` ");
+										$badges 		= $query->fetchAll(PDO::FETCH_ASSOC);
+
+										foreach($badges as $badge){
+											// check if user has this badge
+											$query 			= $conn->query("SELECT `id` FROM `user_badges` WHERE `user_id` = '".$_SESSION['account']['id']."' AND `badge_id` = '".$badge['id']."' ");
+											$has_badge 		= $query->fetch(PDO::FETCH_ASSOC);
+											if(isset($has_badge['id'])){
+												$badge_css = '';
+											}else{
+												$badge_css = 'filter: grayscale(100%); opacity: 25%;';
+											}
+
+											echo '
+												<div class="col-sm-2">
+													<center>
+														<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'" data-toggle="tooltip" data-placement="bottom" title="'.stripslashes($badge['description']).'" width="76%" style="'.$badge_css.'"> <br>
+														<h4><strong>'.stripslashes($badge['name']).'</strong></h4>
+													</center>
+												</div>
+											';
+
+											if($badge_count == 6){
+												echo '
+													<div class="row">
+														<br>
+														<hr>
+													</div>
+												';
+												$badge_count = 1;
+											}else{
+												$badge_count++;
+											}
+										}
+									?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+            </div>
         <?php } ?>
 
         <?php function staging(){ ?>
