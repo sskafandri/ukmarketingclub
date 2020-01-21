@@ -2305,7 +2305,7 @@ desired effect
 															<option value="no" <?php if($product['hidden']=='no'){echo"selected";} ?>>No</option>
 															<option value="yes" <?php if($product['hidden']=='yes'){echo"selected";} ?>>Yes</option>
 														</select>
-														<small>Is this a primary product.</small>
+														<small>Hide this product?</small>
 													</div>
 												</div>
 											</div>
