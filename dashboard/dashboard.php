@@ -1492,12 +1492,12 @@ desired effect
 												<div class="col-sm-2">
 													<center>
 														<img src="badges/'.$badge['image'].'" alt="'.$badge['name'].'" data-toggle="tooltip" data-placement="bottom" title="'.$badge['description'].'" width="76%" style="'.$badge_css.'"> <br>
-														<h4><strong>'.stripslashes($badge['name']).'</strong></h4>
+														<h4><strong>'.$badge_count.' '.stripslashes($badge['name']).'</strong></h4>
 													</center>
 												</div>
 											';
 
-											if($badge_count == 5){
+											if($badge_count == 6){
 												echo '
 													<div class="row">
 														<br>
