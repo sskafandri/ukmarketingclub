@@ -171,22 +171,6 @@ switch ($a)
 		break;
 }
 
-function whmcs_billing()
-{
-				$whmcsurl 			= "https://ublo.club/billing/dologin.php";
-				$autoauthkey 		= "admin1372";
-				$email 				= $_SESSION['account']['email'];
-				
-				$timestamp 			= time(); 
-				$goto 				= "clientarea.php?action=invoices";
-				
-				$hash 				= sha1($email.$timestamp.$autoauthkey);
-				
-				$url 				= $whmcsurl."?email=$email&timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
-				
-				header("Location: $url");
-}
-
 function home(){
 	die('access denied to function name ' . $_GET['a']);
 }
@@ -6453,4 +6437,36 @@ function faq_delete()
 
 	status_message('success',"FAQ has been deleted.");
 	go($_SERVER['HTTP_REFERER']);
+}
+
+function whmcs_billing()
+{
+	$whmcsurl 			= "https://ublo.club/billing/dologin.php";
+	$autoauthkey 		= "admin1372";
+	$email 				= $_SESSION['account']['email'];
+	
+	$timestamp 			= time(); 
+	$goto 				= "clientarea.php?action=invoices";
+	
+	$hash 				= sha1($email.$timestamp.$autoauthkey);
+	
+	$url 				= $whmcsurl."?email=$email&timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
+	
+	header("Location: $url");
+}
+
+function whmcs_support()
+{
+	$whmcsurl 			= "https://ublo.club/billing/dologin.php";
+	$autoauthkey 		= "admin1372";
+	$email 				= $_SESSION['account']['email'];
+	
+	$timestamp 			= time(); 
+	$goto 				= "supporttickets.php";
+	
+	$hash 				= sha1($email.$timestamp.$autoauthkey);
+	
+	$url 				= $whmcsurl."?email=$email&timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
+	
+	header("Location: $url");
 }

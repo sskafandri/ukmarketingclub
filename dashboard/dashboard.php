@@ -664,13 +664,13 @@ desired effect
 						</a>
 						<ul class="treeview-menu">
 		                    <li>
-		                    	<a href="actions.php?a=whmcs_billing">
+		                    	<a href="actions.php?a=whmcs_billing" target="_blank">
 		                        	<i class="fa fa-circle"></i> 
 		                        	<span>Billing</span>
 		                        </a>
 		                    </li>
 		                    <li>
-		                    	<a href="actions.php?a=whmcs_support">
+		                    	<a href="actions.php?a=whmcs_support" target="_blank">
 		                        	<i class="fa fa-circle"></i> 
 		                        	<span>Support Tickets</span>
 		                        </a>
