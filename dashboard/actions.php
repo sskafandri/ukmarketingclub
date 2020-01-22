@@ -6378,7 +6378,11 @@ function faq_add()
 	global $conn, $global_settings;
 
 	$title 				= post('title');
+	$title 				= addslashes($title);
+
 	$description 		= post('description');
+	$description 		= addslashes($description);
+	
 	$website 			= post('website');
 
 	$insert = $conn->exec("INSERT INTO `shop_faq` 
@@ -6398,7 +6402,11 @@ function faq_update()
 	$faq_id 			= post('faq_id');
 
 	$title 				= post('title');
+	$title 				= addslashes($title);
+
 	$description 		= post('description');
+	$description 		= addslashes($description);
+
 	$website 			= post('website');
 
 	$update = $conn->exec("UPDATE `shop_faq` SET `title` = '".$title."' 							WHERE `id` = '".$faq_id."' ");
