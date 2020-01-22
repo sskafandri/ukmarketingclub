@@ -131,7 +131,8 @@ if($results["result"]=="success"){
 				$hash 				= sha1($email.$timestamp.$autoauthkey);
 				
 				$url 				= $whmcsurl."?email=$email&amp;timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
-				go($url);
+				
+				header("Location: $url");
 			}else{
 				$_SESSION['logged_in']					= true;
 				$_SESSION['account']['id']				= $client_data['userid'];

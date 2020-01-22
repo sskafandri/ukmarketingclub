@@ -664,23 +664,25 @@ desired effect
 						</a>
 						<ul class="treeview-menu">
 		                    <li>
-		                    	<a href="dashboard.php?c=billing">
+		                    	<a href="actions.php?a=whmcs_billing">
 		                        	<i class="fa fa-circle"></i> 
 		                        	<span>Billing</span>
 		                        </a>
 		                    </li>
 		                    <li>
-		                    	<a href="dashboard.php?c=support">
+		                    	<a href="actions.php?a=whmcs_support">
 		                        	<i class="fa fa-circle"></i> 
 		                        	<span>Support Tickets</span>
 		                        </a>
 		                    </li>
-		                    <li>
-		                    	<a href="dashboard.php?c=knowledgebase">
-		                        	<i class="fa fa-circle"></i> 
-		                        	<span>Knowledgebase</span>
-		                        </a>
-		                    </li>
+		                    <!--
+			                    <li>
+			                    	<a href="actions.php?a=whmcs_knowledgebase">
+			                        	<i class="fa fa-circle"></i> 
+			                        	<span>Knowledgebase</span>
+			                        </a>
+			                    </li>
+			                -->
 		                </ul>
 		            </li>
 

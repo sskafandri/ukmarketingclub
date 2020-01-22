@@ -157,10 +157,34 @@ switch ($a)
 		faq_delete();
 		break;
 
+	case "whmcs_billing":
+		whmcs_billing();
+		break;
+
+	case "whmcs_support":
+		whmcs_support();
+		break;
+
 // default		
 	default:
 		home();
 		break;
+}
+
+function whmcs_billing()
+{
+				$whmcsurl 			= "https://ublo.club/billing/dologin.php";
+				$autoauthkey 		= "admin1372";
+				$email 				= $_SESSION['account']['email'];
+				
+				$timestamp 			= time(); 
+				$goto 				= "clientarea.php?action=invoices";
+				
+				$hash 				= sha1($email.$timestamp.$autoauthkey);
+				
+				$url 				= $whmcsurl."?email=$email&amp;timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
+				
+				header("Location: $url");
 }
 
 function home(){
@@ -6382,7 +6406,7 @@ function faq_add()
 
 	$description 		= post('description');
 	$description 		= addslashes($description);
-	
+
 	$website 			= post('website');
 
 	$insert = $conn->exec("INSERT INTO `shop_faq` 
