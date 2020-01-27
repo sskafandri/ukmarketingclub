@@ -30,5 +30,5 @@ if(!isset($affiliate['id'])){
 	$affiliate['id'] = 1;
 }
 
-header("Location: https://ublo.club/billing/aff.php?aff=".$affiliate['id']);
+header("Location: https://ukmarketing.com);
 ?>
