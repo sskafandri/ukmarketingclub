@@ -2,6 +2,6 @@
 
 session_start();
 
-session_destory();
+session_destroy();
 
 echo 'sessions reset';
