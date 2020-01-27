@@ -247,10 +247,14 @@ function get_affiliate($affiliate_username)
 {
     global $conn, $global_settings;
 
-    $query      = $conn->query("SELECT `id`,`email`,`affiliate_username`,`affiliate_first_name`,`affiliate_last_name`,`affiliate_email`,`affiliate_tel` FROM `users` WHERE `affiliate_username` = '".$affiliate_username."' ");
-    $affiliate  = $query->fetch(PDO::FETCH_ASSOC);
+    if(!empty($affiliate_username)){
+        $query      = $conn->query("SELECT `id`,`email`,`affiliate_username`,`affiliate_first_name`,`affiliate_last_name`,`affiliate_email`,`affiliate_tel` FROM `users` WHERE `affiliate_username` = '".$affiliate_username."' ");
+        $affiliate  = $query->fetch(PDO::FETCH_ASSOC);
 
-    $affiliate['avatar'] = get_gravatar($affiliate['email']);
+        $affiliate['avatar'] = get_gravatar($affiliate['email']);
+    }else{
+        $affiliate = array();
+    }
 
     return $affiliate;
 }
