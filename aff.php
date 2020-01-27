@@ -1,7 +1,7 @@
 <?php
-date_default_timezone_set('UTC');
-
 session_start();
+
+date_default_timezone_set('UTC');
 
 if(isset($_GET['dev']) && $_GET['dev'] == 'yes'){
 	error_reporting(E_ALL);
