@@ -17,6 +17,9 @@ include('/home/ukmarketingclub/public_html/dashboard/inc/functions.php');
 // get affiliate username
 $username 		= get('username');
 
+debug($_GET);
+die();
+
 // convert username to userid
 // $query      	= $conn->query("SELECT `id` FROM `users` WHERE `affiliate_username` = '".$username."' ");
 // $user      	 	= $query->fetch(PDO::FETCH_ASSOC);
