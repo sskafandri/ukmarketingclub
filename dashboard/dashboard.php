@@ -3654,22 +3654,21 @@ desired effect
 			                                    </div>
 			                                </div>
 
-			                                <strong><font color="red">IMPORTANT:</font></strong> <br>
+											<strong><font color="red">IMPORTANT:</font></strong> <br>
 											<br>
-											Under the Tobacco Directive 2016, you are not allowed to indirectly promote the Ublo product range online in any way including but not limited to, Facebook, Twitter, Instagram, YouTube, Internet Marketing, Email marketing, Text marketing. <br>
+											Under the Tobacco Directive 2016, you are not allowed to indirectly promote any vaping products online in any way including but not limited to, Facebook, Twitter, Instagram, YouTube, Internet Marketing, Email marketing, Text marketing.<br>
 											<br>
-											Your custom link can only be used in offline marketing activities as described below; <br>
+											What this means for you is that you cannot share the business opportunity online whereby the wording used could be construed as directly or indirectly advertising vaping or vape products.<br>
 											<br>
-											• outdoor advertising, including digital outdoor advertising <br>
-											• posters on public transport (not leaving the UK) <br>
-											• cinema <br>
-											• direct hard copy mail <br>
-											• leaflets <br>
-											• business cards <br>
-											• private, bespoke correspondence between you and a potential IBO <br>
-											• media which are targeted exclusively to the trade <br>
+											<u>Some examples of what would be illegal:</u><br>
+											<i class="fas fa-times" style="color:red"></i> Make money with vape juice<br>
+											<i class="fas fa-times" style="color:red"></i> Do you Vape?<br>
+											<i class="fas fa-times" style="color:red"></i> Make money with Ublo<br>
 											<br>
-											All media, leaflets, business cards etc must be compliant under the Tobacco Directive 2016 <br>
+											<u>Some examples of what would be acceptable:</u><br>
+											<i class="fas fa-check" style="color:green"></i> Are you looking to start a Home Based Business in a lucrative and growing market?<br>
+											<i class="fas fa-check" style="color:green"></i> Are you looking for a part-time, full-time income working from home?<br>
+											<i class="fas fa-check" style="color:green"></i> Would you like your own business for as little as £79.90 in a growing market, full training and support provided?<br>
 
 			                                <!--
 			                                <div class="form-group">
