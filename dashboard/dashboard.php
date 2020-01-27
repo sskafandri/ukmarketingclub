@@ -1092,7 +1092,7 @@ desired effect
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
 			                                    <div class="col-sm-9">
-			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="http://ukmarketingclub.com/<?php echo $account_details['affiliate_username']; ?>">
+			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/<?php echo $account_details['affiliate_username']; ?>">
 			                                        <small></small>
 			                                    </div>
 			                                </div>
@@ -3650,7 +3650,7 @@ desired effect
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
 			                                    <div class="col-sm-9">
-			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="http://ukmarketingclub.com/<?php echo $account_details['affiliate_username']; ?>">
+			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/<?php echo $account_details['affiliate_username']; ?>">
 			                                        <small></small>
 			                                    </div>
 			                                </div>
@@ -3890,7 +3890,7 @@ desired effect
     <script>
     	function share_on_facebook(){
 			var el = document.getElementById('share_facebook_iframe');
-			el.src = 'https://www.facebook.com/sharer.php?u=http://www.domain.ro/url.html';
+			el.src = 'https://www.facebook.com/sharer.php?u=https://www.domain.ro/url.html';
 		}
 
 		$(document).ready(function() {
@@ -3900,7 +3900,7 @@ desired effect
 			top    = ($(window).height() - height) / 2,
 			// url    = location.href,
 			url_retail   	= 'https://ublo.club/<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
-			url_mlm   		= 'http://ukmarketingclub.com/<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
+			url_mlm   		= 'https://ukmarketingclub.com/<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
 			opts   			= 'status=1' +
 			',width='  + width  +
 			',height=' + height +
