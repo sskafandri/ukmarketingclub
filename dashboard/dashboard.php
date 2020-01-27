@@ -1104,7 +1104,6 @@ desired effect
 											What this means for you is that you cannot share the business opportunity online whereby the wording used could be construed as directly or indirectly advertising vaping or vape products.<br>
 											<br>
 											Some examples of what would be illegal<br>
-											<br>
 											<i class="fas fa-times" style="color:red"></i> Make money with vape juice<br>
 											<i class="fas fa-times" style="color:red"></i> Do you Vape?<br>
 											<i class="fas fa-times" style="color:red"></i> Make money with Ublo<br>
