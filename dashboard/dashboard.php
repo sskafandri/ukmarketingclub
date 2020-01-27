@@ -1103,13 +1103,12 @@ desired effect
 											<br>
 											What this means for you is that you cannot share the business opportunity online whereby the wording used could be construed as directly or indirectly advertising vaping or vape products.<br>
 											<br>
-											Some examples of what would be illegal<br>
+											<u>Some examples of what would be illegal:</u><br>
 											<i class="fas fa-times" style="color:red"></i> Make money with vape juice<br>
 											<i class="fas fa-times" style="color:red"></i> Do you Vape?<br>
 											<i class="fas fa-times" style="color:red"></i> Make money with Ublo<br>
 											<br>
-											<br>
-											Some examples of what would be acceptable<br>
+											<u>Some examples of what would be acceptable:</u><br>
 											<i class="fas fa-check" style="color:green"></i> Are you looking to start a Home Based Business in a lucrative and growing market?<br>
 											<i class="fas fa-check" style="color:green"></i> Are you looking for a part-time, full-time income working from home?<br>
 											<i class="fas fa-check" style="color:green"></i> Would you like your own business for as little as £79.90 in a growing market, full training and support provided?<br>
