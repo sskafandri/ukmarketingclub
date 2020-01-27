@@ -26,9 +26,11 @@ $user      	 	= $query->fetch(PDO::FETCH_ASSOC);
 $query      	= $conn->query("SELECT `id` FROM `whmcs`.`tblaffiliates` WHERE `clientid` = '".$user['id']."' ");
 $affiliate 		= $query->fetch(PDO::FETCH_ASSOC);
 
-if(!isset($affiliate['id'])){
-	$affiliate['id'] = 1;
+if(isset($affiliate['id'])){
+	$_SESSION['ref'] = $username;
 }
+
+$_SESSION['ref'] = $username;
 
 header("Location: https://ukmarketingclub.com");
 ?>
