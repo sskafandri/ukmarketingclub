@@ -282,7 +282,9 @@ function register(){
 			$hash 				= sha1($email.$timestamp.$autoauthkey);
 			
 			$url 				= $whmcsurl."?email=$email&timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
-			go($url);
+			
+			header("Location: $url");
+			exit;
 		}else{
 			status_message('danger',"Unable to place order with billing platform.");
     		go($_SERVER['HTTP_REFERER']);
