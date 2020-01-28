@@ -2160,6 +2160,10 @@ desired effect
 				$query 					= $conn->query("SELECT * FROM `whmcs`.`tblproductgroups` ORDER BY `name` ");
 				$categories 			= $query->fetchAll(PDO::FETCH_ASSOC);
 
+				// get all sub categories
+				$query 					= $conn->query("SELECT * FROM `shop_categories` ORDER BY `name` ");
+				$sub_categories 		= $query->fetchAll(PDO::FETCH_ASSOC);
+
 				// get product images
 				$query 					= $conn->query("SELECT * FROM `shop_product_images` ORDER BY `id` ");
 				$product_images 		= $query->fetchAll(PDO::FETCH_ASSOC);
@@ -2239,6 +2243,19 @@ desired effect
 															<?php } ?>
 														</select>
 														<small>Set the product category.</small>
+													</div>
+
+													<!-- sub category -->
+													<label class="col-md-1 control-label" for="sub_category_id">Category</label>
+													<div class="col-md-2 col-xs-11">
+														<select id="sub_category_id" name="sub_category_id" class="form-control">
+															<?php foreach($sub_categories as $sub_category){ ?>
+																<option value="<?php echo $sub_category['id'];?>" <?php if($sub_category['id']==$product['sub_category_id']){echo"selected";} ?>>
+																	<?php echo $sub_category['name']; ?>
+																</option>
+															<?php } ?>
+														</select>
+														<small>Set the sub category.</small>
 													</div>
 
 													<label class="col-md-1 control-label" for="stars">Stars</label>
