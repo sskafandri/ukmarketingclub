@@ -2246,7 +2246,7 @@ desired effect
 													</div>
 
 													<!-- sub category -->
-													<label class="col-md-1 control-label" for="sub_category_id">Category</label>
+													<label class="col-md-1 control-label" for="sub_category_id">Sub Category</label>
 													<div class="col-md-2 col-xs-11">
 														<select id="sub_category_id" name="sub_category_id" class="form-control">
 															<?php foreach($sub_categories as $sub_category){ ?>
