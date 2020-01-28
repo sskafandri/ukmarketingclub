@@ -3863,7 +3863,7 @@ desired effect
 					echo 'Page generated in '.$total_time.' seconds.';
 				?>
             </div>
-            <strong>Copyright &copy; <?php echo date("Y", time()); ?> <a href="https://www.ubloclub.co.uk">UBlo Club</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; <?php echo date("Y", time()); ?> <a href="https://www.ukmarketingclub.com">UK Marketing Club</a>.</strong> All rights reserved.
         </footer>
 
         <!-- Create the tabs -->
