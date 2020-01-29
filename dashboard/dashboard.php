@@ -3802,6 +3802,19 @@ desired effect
 								</div>
 							</div>
 						</div>
+
+						<div class="col-lg-6 col-xs-12">
+							<div class="box box-primary no-padding">
+								<div class="box-header with-border">
+									<h3 class="box-title">
+										Documents
+									</h3> 
+								</div>
+								<div class="box-body">
+
+								</div>
+							</div>
+						</div>
 					</div>
 				</section>
             </div>
