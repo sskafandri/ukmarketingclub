@@ -7,4 +7,4 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 # RewriteRule ^users/(\d+)*$ ./profile.php?id=$1
 # RewriteRule ^threads/(\d+)*$ ./thread.php?id=$1
  
-RewriteRule ^(.*)$ ./aff.php?username=$1
+RewriteRule ^(.*)$ /aff.php?username=$1
