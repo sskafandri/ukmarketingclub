@@ -4941,6 +4941,8 @@ function ajax_downline()
 					$output[$count] 								= $customer;
 					$output[$count]['level']						= $value;
 					$output[$count]['account_type']					= ucfirst($customer['type']);
+					$output[$count]['account_type'] 				= str_replace('Promoter', 'IBO', $customer['type']);
+					
 					$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
 					
 					if($customer['status'] == 'active') {
@@ -5663,7 +5665,7 @@ function ajax_commissions()
 				if($customer['type'] == 'customer'){
 					$output[$count]['customer']['type'] = 'Customer';
 				}else{
-					$output[$count]['customer']['type'] = 'Promoter';
+					$output[$count]['customer']['type'] = 'IBO';
 				}
 				break;
 			}
