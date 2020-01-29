@@ -4772,7 +4772,7 @@ desired effect
 			            	'<strong>Order Date:</strong> '+d.order_date+' <br>'+
 
 			            	'<strong>Sale Type::</strong> '+d.customer.type+' <br>'+
-			            	'<strong>Customer:</strong> '+d.customer.full_name+' <br>'+
+			            	'<strong>Name:</strong> '+d.customer.full_name+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';
