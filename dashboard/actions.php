@@ -4941,8 +4941,8 @@ function ajax_downline()
 					$output[$count] 								= $customer;
 					$output[$count]['level']						= $value;
 					$output[$count]['account_type']					= ucfirst($customer['type']);
-					$output[$count]['account_type'] 				= str_replace('Promoter', 'IBO', $customer['type']);
-					
+					$output[$count]['account_type'] 				= str_replace('Promoter', 'IBO', $output[$count]['account_type']);
+
 					$output[$count]['checkbox']						= '<center><input type="checkbox" class="chk" id="checkbox_'.$customer['id'].'" name="customer_ids[]" value="'.$customer['id'].'" onclick="multi_options();"></center>';
 					
 					if($customer['status'] == 'active') {
