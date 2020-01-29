@@ -3811,11 +3811,13 @@ desired effect
 									</h3> 
 								</div>
 								<div class="box-body">
-									<div class="col-sm-2">
-										<a href="../assets/UK_Marketing_Club_Compensation_Plan_V1.0.pdf" target="_blank">
-											<img src="../images/kissclipart-pdf-download-icon-png-clipart-computer-icons-clip-f6164044c3775b3f.png" width="50%" height="" alt=""><br>
-											<h4><strong>Compensation Plan</strong></h4>
-										</a>
+									<div class="col-sm-3">
+										<center>
+											<a href="../assets/UK_Marketing_Club_Compensation_Plan_V1.0.pdf" target="_blank">
+												<img src="../images/kissclipart-pdf-download-icon-png-clipart-computer-icons-clip-f6164044c3775b3f.png" width="50%" height="" alt=""><br>
+												<h4><strong>Compensation Plan</strong></h4>
+											</a>
+										</center>
 									</div>
 								</div>
 							</div>
