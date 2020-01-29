@@ -3811,7 +3811,9 @@ desired effect
 									</h3> 
 								</div>
 								<div class="box-body">
-
+									<a href="../assets/UK_Marketing_Club_Compensation_Plan_V1.0.pdf" target="_blank">
+										<img src="../images/kissclipart-pdf-download-icon-png-clipart-computer-icons-clip-f6164044c3775b3f.png" width="250px" height="" alt="">
+									</a>
 								</div>
 							</div>
 						</div>
