@@ -5653,13 +5653,14 @@ function ajax_commissions()
 		foreach($customers as $customer){
 			if($commission['customer_id'] == $customer['id']){
 				if($customer['upline_id'] == $_SESSION['account']['id']){
-					$output[$count]['qualified']['customer']['full_name'] = $customer['first_name'].' '.$customer['last_name'];
+					$output[$count]['customer']['full_name'] 	= $customer['first_name'].' '.$customer['last_name'];
+					// $output[$count]['customer']['level']		= 1;
 				}else{
-					$output[$count]['qualified']['customer']['full_name'] = 'GDPR Protected';
+					$output[$count]['customer']['full_name'] = 'GDPR Protected';
 				}
 
 				if($customer['type'] == 'customer'){
-					$output[$count]['qualified']['customer']['type'] = 'Customer';
+					$output[$count]['customer']['type'] = 'Customer';
 				}else{
 					$output[$count]['qualified']['customer']['type'] = 'Promoter';
 				}
