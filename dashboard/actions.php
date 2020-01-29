@@ -5659,7 +5659,7 @@ function ajax_commissions()
 					$output[$count]['customer']['level']		= 1;
 				}else{
 					$output[$count]['customer']['full_name'] 	= $customer['first_name'].' '.$customer['last_name'];
-					$output[$count]['customer']['level']		= 'Level Commission';
+					$output[$count]['customer']['level']		= 'Team Commission';
 				}
 
 				if($customer['type'] == 'customer'){
