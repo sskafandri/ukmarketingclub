@@ -17,5 +17,5 @@ include('/home/ukmarketingclub/public_html/dashboard/inc/functions.php');
 // get affiliate username
 $_SESSION['affiliate_username'] 		= get('username');
 
-header("Location: https://ukmarketingclub.com");
+header("Location: https://ukmarketingclub.com/index.php");
 ?>
