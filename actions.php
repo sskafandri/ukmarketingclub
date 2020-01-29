@@ -268,21 +268,25 @@ function register(){
 
 		if($results["result"]=="success"){
 			// order placed
-			$order_id 				= $results['orderid'];
-			$invoice_id 			= $results['invoiceid'];
+			$order_id 			= $results['orderid'];
+			$invoice_id 		= $results['invoiceid'];
 
 			// redirect to invoice for payment
-			$whmcsurl 			= "https://ublo.club/billing/dologin.php";
-			$autoauthkey 		= "admin1372";
-			$email 				= $email;
+			$whmcsurl 				= "https://ublo.club/billing/dologin.php";
+			$autoauthkey 			= "admin1372";
+			$email 					= $email;
 			
-			$timestamp 			= time(); 
-			$goto 				= "viewinvoice.php?id=".$invoice_id;
+			$timestamp 				= time(); 
+			$goto 					= "viewinvoice.php?id=".$invoice_id;
 			
-			$hash 				= sha1($email.$timestamp.$autoauthkey);
+			$hash 					= sha1($email.$timestamp.$autoauthkey);
 			
-			$url 				= $whmcsurl."?email=$email&timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
-			
+			$url 					= $whmcsurl."?email=$email&timestamp=$timestamp&hash=$hash&goto=".urlencode($goto);
+
+			// empty_cart();
+
+			// echo "URL: ".$url;
+
 			header("Location: $url");
 			exit;
 		}else{
