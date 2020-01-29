@@ -4769,8 +4769,10 @@ desired effect
 			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
 			            '<td valign="top" align="left">'+
 			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
-			            	'<strong>Order ID:</strong> '+d.int_order_id+' <br>'+
 			            	'<strong>Order Date:</strong> '+d.order_date+' <br>'+
+
+			            	'<strong>Sale Type::</strong> '+d.customer.type+' <br>'+
+			            	'<strong>Customer:</strong> '+d.customer.full_name+' <br>'+
 			            '</td>'+
 			        '</tr>'+
 			    '</table>';

@@ -5598,6 +5598,10 @@ function ajax_commissions()
 
 	header("Content-Type:application/json; charset=utf-8");
 
+	// get all users
+	$query 				= $conn->query("SELECT * FROM `users` ");
+	$customers 			= $query->fetchAll(PDO::FETCH_ASSOC); 
+
 	// get all commissions
 	$query 				= $conn->query("SELECT * FROM `commissions` WHERE `user_id` = '".$member_id."' ");
 	$commissions 		= $query->fetchAll(PDO::FETCH_ASSOC); 
@@ -5643,6 +5647,24 @@ function ajax_commissions()
 			$output[$count]['qualified'] 					= '<span class="label label-success full-width" style="width: 100%;">Yes</span>';
 		}elseif($commission['qualified'] == 'no') {
 			$output[$count]['qualified']					= '<span class="label label-danger full-width" style="width: 100%;">No</span>';
+		}
+
+		// get customer details for this order
+		foreach($customers as $customer){
+			if($commission['customer_id'] == $customer['id']){
+				if($customer['upline_id'] == $_SESSION['account']['id']){
+					$output[$count]['qualified']['customer']['full_name'] = $customer['first_name'].' '.$customer['last_name'];
+				}else{
+					$output[$count]['qualified']['customer']['full_name'] = 'GDPR Protected';
+				}
+
+				if($customer['type'] == 'customer'){
+					$output[$count]['qualified']['customer']['type'] = 'Customer';
+				}else{
+					$output[$count]['qualified']['customer']['type'] = 'Promoter';
+				}
+				break;
+			}
 		}
 
 		// build the actions menu options
