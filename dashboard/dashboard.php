@@ -490,6 +490,12 @@ desired effect
 								<!-- <h2><strong><?php echo $account_details['badge']['name']; ?></strong></h2> -->
 							</a>
 							<br>
+
+							<?php if( $account_details['promoter_qualified'] == 'yes' ) { ?>
+								<div class="callout callout-success lead">Qualified</div>
+							<?php } else { ?>
+								<div class="callout callout-danger lead">Not Qualified</div>
+							<?php } ?>
 						</center>
 		          	<?php } ?>
 
