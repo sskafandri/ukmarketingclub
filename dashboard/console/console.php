@@ -664,9 +664,9 @@ if($task == 'get_client_products'){
 	// Decode response
 	$results = json_decode($response, true);
 
-	debug($results);
+	// debug($results);
 
-	die();
+	// die();
 
 	// reorder the orders because whmcs is retarded
 	$orders = array_reverse($results['orders']['order']);
