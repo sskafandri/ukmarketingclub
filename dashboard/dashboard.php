@@ -1092,7 +1092,7 @@ desired effect
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
 			                                    <div class="col-sm-9">
-			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/b2b/<?php echo $account_details['affiliate_username']; ?>">
+			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/b2b/<?php echo $account_details['affiliate_username']; ?>" onClick="this.setSelectionRange(0, this.value.length)">
 			                                        <small></small>
 			                                    </div>
 			                                </div>
@@ -3607,7 +3607,7 @@ desired effect
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_1" class="col-sm-3 control-label">ublo.club</label>
 			                                    <div class="col-sm-9">
-			                                        <input type="text" name="affiliate_link_1" id="affiliate_link_1" class="form-control" value="https://ublo.club/<?php echo $account_details['affiliate_username']; ?>">
+			                                        <input type="text" name="affiliate_link_1" id="affiliate_link_1" class="form-control" value="https://ublo.club/<?php echo $account_details['affiliate_username']; ?>" onClick="this.setSelectionRange(0, this.value.length)">
 			                                        <small></small>
 			                                    </div>
 			                                </div>
@@ -3666,7 +3666,7 @@ desired effect
 			                                <div class="form-group">
 			                                    <label for="affiliate_link_2" class="col-sm-3 control-label">ukmarketingclub.com</label>
 			                                    <div class="col-sm-9">
-			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/b2b/<?php echo $account_details['affiliate_username']; ?>">
+			                                        <input type="text" name="affiliate_link_2" id="affiliate_link_2" class="form-control" value="https://ukmarketingclub.com/b2b/<?php echo $account_details['affiliate_username']; ?>" onClick="this.setSelectionRange(0, this.value.length)">
 			                                        <small></small>
 			                                    </div>
 			                                </div>
