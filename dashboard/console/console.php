@@ -264,6 +264,9 @@ if($task == 'sync_databases'){
 		$update = $conn->exec("UPDATE `users` SET `last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `email` = '".addslashes($user['email'])."' WHERE `id` = '".$user['id']."' ");
 
+		$update = $conn->exec("UPDATE `users` SET `affiliate_first_name` = '".addslashes($user['firstname'])."' WHERE `id` = '".$user['id']."' ");
+		$update = $conn->exec("UPDATE `users` SET `affiliate_last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
+
 		console_output("-> Getting User Products");
 
 		// Set post values
