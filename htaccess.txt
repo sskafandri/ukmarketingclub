@@ -4,4 +4,5 @@ RewriteEngine On
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
  
-RewriteRule ^(.*)$ /aff.php?username=$1 [R,L]
+RewriteRule ^([0-9a-zA-Z-_]+)$ /aff.php?username=$1 [R,L]
+
