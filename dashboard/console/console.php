@@ -297,7 +297,7 @@ if($task == 'sync_databases'){
 		// cycle products for qualifying product
 		foreach($results['products']['product'] as $product){
 			// find the right product
-			if($product['pid'] == 2){
+			if($product['pid'] == 1){
 				console_output("- -> Qualifying Product Found.");
 				console_output("- -> Status: ".$product['status']);
 				console_output("- -> Renew Date: ".$product['nextduedate']);
