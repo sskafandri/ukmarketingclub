@@ -223,6 +223,8 @@ if($task == 'sync_databases'){
 	    'username' => $username,
 	    'password' => $password,
 	    'action' => 'GetClients',
+	    'limitstart' => '0',
+	    'limitnum' => '10000',
 	    'responsetype' => 'json',
 	);
 
