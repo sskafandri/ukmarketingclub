@@ -53,9 +53,11 @@ curl_close($ch);
 
 $results = json_decode($data, true);
 
-// debug($whmcs);
+debug($whmcs);
 
-// debug($results);
+debug($results);
+
+die();
 
 if($results["result"]=="success"){
     // login confirmed
