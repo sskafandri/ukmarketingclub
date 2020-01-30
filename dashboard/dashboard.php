@@ -469,11 +469,7 @@ desired effect
 			          	<p><?php echo $account_details['first_name'].' '.$account_details['last_name']; ?></p>
 			          	<!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
 
-		          		<?php if( $account_details['promoter_qualified'] == 'yes' ) { ?>
-							<a href="#"><i class="fa fa-circle text-success"></i> Qualified</a>
-						<?php } else { ?>
-							<a href="#"><i class="fa fa-circle text-danger"></i> Not Qualified</a>
-						<?php } ?>
+		          		
 			        </div>
 			    </div>
 			    <!--
