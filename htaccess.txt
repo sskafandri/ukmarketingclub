@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-RewriteRule ^(.*)$ /aff.php?username=$1 [R,L]
+RewriteRule ^user/(.*)$ /aff.php?username=$1 [R,L]
 
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
