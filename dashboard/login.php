@@ -59,12 +59,12 @@ $results = json_decode($data, true);
 
 // die();
 
-if($results["result"]=="success"){
+if($results["result"] == "success"){
     // login confirmed
 	
-	$_SESSION['account']['id'] 		= $results['userid'];
-	$_SESSION['account']['email'] 	= $email;
-	$user_id 						= $results['userid'];
+	$_SESSION['account']['id'] 			= $results['userid'];
+	$_SESSION['account']['email'] 		= $email;
+	$user_id 							= $results['userid'];
 
 	// lets get client details
 	$postfields["username"] 			= $whmcs['username'];
@@ -145,10 +145,13 @@ if($results["result"]=="success"){
 			}
 		}
 	}
-	
-	// login rejected due to now having the right product
-	status_message('danger', 'You do not have a valid license.');
-	go($site['url'].'?c=login');
+
+	$_SESSION['logged_in']					= true;
+	$_SESSION['account']['id']				= $client_data['userid'];
+	// $_SESSION['account']['type']			= $user['type'];	
+
+	status_message('success', 'Login successful');
+	go($site['url'].'dashboard/dashboard.php?c=home');
 }else{
 	// login rejected
 	status_message('danger', 'Incorrect Login details');
