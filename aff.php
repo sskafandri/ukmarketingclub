@@ -17,5 +17,6 @@ include('/home/ukmarketingclub/public_html/dashboard/inc/functions.php');
 // get affiliate username
 $_SESSION['affiliate_username'] 		= get('username');
 
-header("Location: https://ukmarketingclub.com/");
+header("HTTP/1.1 301 Moved Permanently");
+header("Location: https://ukmarketingclub.com/",true,301);
 ?>
