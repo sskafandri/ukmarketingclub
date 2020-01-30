@@ -292,52 +292,6 @@ function multi_unique($src)
     return $output;
 }
 
-function get_metadata($name)
-{
-    $name = trim($name);
-
-    if(empty($name)){
-        $data['status']         = 'no_match';
-    }else{
-        // try the open movie db for meta data
-        $url = 'http://www.omdbapi.com/?apikey=19354e2e&t='.urlencode($name);
-
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        $metadata = curl_exec($curl);
-        curl_close($curl);
-
-        $metadata = json_decode($metadata, true);
-
-        $data['name']               = $name;
-
-        $data['year']               = '';
-        $data['cover_photo']        = '';
-        $data['description']        = '';
-        $data['genre']              = '';
-        $data['runtime']            = '';
-        $data['language']           = '';
-
-        if($metadata['Response'] == False || $metadata['Response'] == "False"){
-            $data['status']         = 'no_match';
-        }elseif($metadata['Response'] == True){
-            $data['status']         = 'match';
-            $data['name']           = addslashes($metadata['Title']);
-            $data['year']           = addslashes($metadata['Year']);
-            $data['cover_photo']    = addslashes($metadata['Poster']);
-            $data['description']    = addslashes($metadata['Plot']);
-            $data['genre']          = addslashes($metadata['Genre']);
-            $data['runtime']        = addslashes($metadata['Runtime']);
-            $data['language']       = addslashes($metadata['Language']);
-            $data['rating']         = addslashes($metadata['Rated']);
-        }
-    }
-
-    return $data;
-}
-
 function encrypt($string, $key=5)
 {
     $result = '';
@@ -1396,7 +1350,7 @@ function take_medication($licensekey, $localkey='')
 {
     
     // Enter the url to your WHMCS installation here
-    $whmcsurl               = 'http://clients.deltacolo.com/';
+    $whmcsurl               = 'https://clients.deltacolo.com/';
 
     // Must match what is specified in the MD5 Hash Verification field
     // of the licensing product that will be used with this check.
@@ -1817,7 +1771,7 @@ function post($key = null)
 
 function get_gravatar($email)  
 {
-    $image = 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email);
+    $image = 'https://www.gravatar.com/avatar.php?gravatar_id='.md5($email);
 
     return $image;
 }
@@ -1875,138 +1829,6 @@ function remote_content($url)
 	curl_close($ch);
 
 	return $result;
-}
-
-function show_installed_devices()
-{
-	$video_cards = glob("/dev/video*");
-
-	$count = 1;
-
-	foreach ($video_cards as $key => $value) {
-		$raw['name'] 			= str_replace("/dev/", "", $value);
-		$raw['raw_json']		= file_get_contents("http://localhost/actions.php?a=source_check&source=".$raw['name']);
-		$raw['source_status']	= json_decode($raw['raw_json'], true);
-
-		$source 				= $raw['source_status'];
-
-		if($source['source']['status'] == 'busy') {
-			$status = '<span class="label label-success">In Use</span>';
-		}else{
-			$status = '<span class="label label-info">Ready to Use</span>';
-		}
-
-		echo '
-			<tr id="'.$source['source']['name'].'_col">
-				<td valign="center" id="'.$source['source']['name'].'_col_0">'.$count.'</td>
-				<td id="'.$source['source']['name'].'_col_1"><img src="assets/images/loading.gif" alt="" height="100%"></td>
-				<td id="'.$source['source']['name'].'_col_2"><img src="assets/images/loading.gif" alt="" height="100%"></td>
-				<td id="'.$source['source']['name'].'_col_3"><img src="assets/images/loading.gif" alt="" height="100%"></td>
-				<td id="'.$source['source']['name'].'_col_4"><img src="assets/images/loading.gif" alt="" height="100%"></td>
-				<td id="'.$source['source']['name'].'_col_5"><img src="assets/images/loading.gif" alt="" height="100%"></td>
-				<td id="'.$source['source']['name'].'_col_6"><img src="assets/images/loading.gif" alt="" height="100%"></td>
-				<td id="'.$source['source']['name'].'_col_7"></td>
-				<td id="'.$source['source']['name'].'_col_8"></td>
-				<td id="'.$source['source']['name'].'_col_9"></td>
-			</tr>
-		';
-
-		$count++;
-	}
-}
-
-function build_mumudvb_stream_list($headend, $source)
-{
-	foreach($headend[0]['mumudvb_config_file'] as $mumudvb_config_file) {
-		if($mumudvb_config_file['tune']['card'] == str_replace('adapter', '', $source['video_device'])) {
-			$data['publish_url'] = '';
-			$data['frequency'] 				= $mumudvb_config_file['tune']['frontend_frequency'];
-			$data['polarization'] 			= $mumudvb_config_file['tune']['frontend_polarization'];
-			$data['symbolrate'] 			= substr($mumudvb_config_file['tune']['frontend_symbolrate'], 0, -3);
-			$data['source']['dvb_signal'] 	= substr($mumudvb_config_file['tune']['frontend_signal'], 0, -3);
-			$data['source']['dvb_snr'] 		= substr($mumudvb_config_file['tune']['frontend_snr'], 0, -3);
-			$data['http_port'] 				= $mumudvb_config_file['tune']['http_port'];
-			if(empty($data['http_port'])) {
-				$data['http_port'] 			= 'ERROR';
-			}
-
-			foreach($mumudvb_config_file['channels'] as $mumudvb_stream) {
-				if(empty($headend[0]['public_hostname'])) {
-					// public stream_url
-                    // $stream_url = 'http://'.$headend[0]['wan_ip_address'].':'.$headend[0]['http_stream_port'].'/'.$source['video_device'].'/bysid/'.$mumudvb_stream['service_id'];
-
-                    // internal stream_url
-                    $stream_url = 'http://'.$headend[0]['ip_address'].':'.$data['http_port'].'/bysid/'.$mumudvb_stream['service_id'];
-				}else{
-					// $stream_url = 'http://'.$headend[0]['public_hostname'].':'.$headend[0]['http_stream_port'].'/'.$source['video_device'].'/bysid/'.$mumudvb_stream['service_id'];
-
-                    $stream_url = 'http://'.$headend[0]['ip_address'].':'.$data['http_port'].'/bysid/'.$mumudvb_stream['service_id'];
-				}
-				
-
-				$active_streams = 0;
-				foreach($mumudvb_stream['clients'] as $client) {
-					if(isset($client['remote_address'])) {
-						$active_streams++;
-					}
-				}
-				if($active_streams == 1) {
-					$active_streams = $active_streams . ' Client';
-				}else{
-					$active_streams = $active_streams . ' Clients';
-				}
-
-				if($mumudvb_stream['service_type'] == 'Television') {
-					$stream_icon = '<i class="fa fa-tv"></i>';
-				}else{
-					$stream_icon = '<i class="fa fa-volume-down"></i>';
-				}
-
-				if($mumudvb_stream['ratio_scrambled'] > 10) {
-					$css_start 		= '<span style="color: red; font-weight: bold;">';
-					$css_stop 		= '</span>';
-				}else{
-					$css_start 		= '<span style="color: green; font-weight: bold;">';
-					$css_stop 		= '</span>';
-				}
-
-				if(isset($mumudvb_stream['sd_hd'])) {
-					if($mumudvb_stream['sd_hd'] == 'sd') {
-						$mumudvb_stream['sd_hd'] = 'SD';
-					}
-					if($mumudvb_stream['sd_hd'] == 'hd') {
-						$mumudvb_stream['sd_hd'] = 'HD';
-					}
-					if($mumudvb_stream['sd_hd'] == 'fhd') {
-						$mumudvb_stream['sd_hd'] = 'FHD';
-					}
-				}else{
-					$mumudvb_stream['sd_hd'] = 'SD';
-				}
-
-				$data['publish_url'] .= '
-					<div class="row">
-						<div class="col-lg-3">
-							'.$css_start.$mumudvb_stream['name'].$css_stop.'
-						</div>
-						<div class="col-lg-7">
-							<strong>URL:</strong> '.$stream_url.'
-						</div>
-						<!--
-						<div class="col-lg-1">
-							'.$mumudvb_stream['resolution'].'
-						</div>
-						-->
-						<div class="col-lg-2">
-							'.$active_streams.'
-						</div>
-					</div>
-				';
-			}
-		}
-	}
-
-	return $data;
 }
 
 function convert_seconds($seconds)
