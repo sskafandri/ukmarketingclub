@@ -1328,19 +1328,21 @@ desired effect
 	                                        </div>
 	                                    </div>
 
-	                                    <div class="form-group">
-	                                        <label for="affiliate_email" class="col-sm-3 control-label">Email</label>
-	                                        <div class="col-sm-9">
-	                                            <input type="text" name="affiliate_email" id="affiliate_email" class="form-control" value="<?php echo $account_details['affiliate_email']; ?>">
-	                                        </div>
-	                                    </div>
+	                                    <!--
+		                                    <div class="form-group">
+		                                        <label for="affiliate_email" class="col-sm-3 control-label">Email</label>
+		                                        <div class="col-sm-9">
+		                                            <input type="text" name="affiliate_email" id="affiliate_email" class="form-control" value="<?php echo $account_details['affiliate_email']; ?>">
+		                                        </div>
+		                                    </div>
 
-	                                    <div class="form-group">
-	                                        <label for="affiliate_tel" class="col-sm-3 control-label">Phone</label>
-	                                        <div class="col-sm-9">
-	                                            <input type="text" name="affiliate_tel" id="affiliate_tel" class="form-control" value="<?php echo $account_details['affiliate_tel']; ?>">
-	                                        </div>
-	                                    </div>
+		                                    <div class="form-group">
+		                                        <label for="affiliate_tel" class="col-sm-3 control-label">Phone</label>
+		                                        <div class="col-sm-9">
+		                                            <input type="text" name="affiliate_tel" id="affiliate_tel" class="form-control" value="<?php echo $account_details['affiliate_tel']; ?>">
+		                                        </div>
+		                                    </div>
+		                                -->
 		                            </div>
 		                            <div class="box-footer">
 		                            	<div class="col-sm-12">
