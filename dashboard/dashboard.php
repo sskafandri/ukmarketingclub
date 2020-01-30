@@ -467,11 +467,12 @@ desired effect
 			        </div>
 			        <div class="pull-left info">
 			          	<p><?php echo $account_details['first_name'].' '.$account_details['last_name']; ?></p>
-			          	<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+			          	<!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
+
 		          		<?php if( $account_details['promoter_qualified'] == 'yes' ) { ?>
-							<div class="callout callout-success lead">Qualified</div>
+							<a href="#"><i class="fa fa-circle text-success"></i> Qualified</a>
 						<?php } else { ?>
-							<div class="callout callout-danger lead">Not Qualified</div>
+							<a href="#"><i class="fa fa-circle text-danger"></i> Not Qualified</a>
 						<?php } ?>
 			        </div>
 			    </div>
