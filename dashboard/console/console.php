@@ -297,7 +297,7 @@ if($task == 'sync_databases'){
 		// cycle products for qualifying product
 		foreach($results['products']['product'] as $product){
 			// find the right product
-			if($product['pid'] == 1){
+			if($product['pid'] == 2){
 				console_output("- -> Qualifying Product Found.");
 				console_output("- -> Status: ".$product['status']);
 				console_output("- -> Renew Date: ".$product['nextduedate']);
@@ -311,6 +311,7 @@ if($task == 'sync_databases'){
 				console_output("- -> Remaining Days: ".$remaining_days." days");
 
 				$update = $conn->exec("UPDATE `users` SET `expire_date` = '".$product['nextduedate']."' WHERE `id` = '".$user['id']."' ");
+				$update = $conn->exec("UPDATE `users` SET `promoter_qualified` = 'yes' WHERE `id` = '".$user['id']."' ");
 
 				break;
 			}
@@ -369,7 +370,7 @@ if($task == 'get_orders'){
 		$upline     = $query->fetch(PDO::FETCH_ASSOC);
 
 		// is this the first order from this customer
-		$query      			= $conn->query("SELECT `id` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
+		$query      			= $conn->query("SELECT `id`,`paymentstatus` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
 		$existing_customer     	= $query->fetch(PDO::FETCH_ASSOC);
 		if(isset($existing_customer['id'])){
 			$first_order = 'no';
@@ -427,11 +428,15 @@ if($task == 'get_orders'){
 		        '".$commission."'
 		    )");
     	}else{
+    		if( $order['paymentstatus'] == 'Paid' && $existing_order['paymentstatus'] != 'Paid' ) {
+
+    		}
+
     		// update payment status for each order
     		$update = $conn->exec("UPDATE `orders` SET `paymentstatus` = '".$order['paymentstatus']."' WHERE `id` = '".$existing_order['id']."' ");
 
     		// add the order to commissions if marked as paid
-		    if($order['paymentstatus'] == 'Paid'){
+		    if( $order['paymentstatus'] == 'Paid' ){
 		    	// get upline details for working out commissions
 		    	
 		    	// upline 1
@@ -628,6 +633,7 @@ if($task == 'get_orders'){
 	console_output("Finished.");
 }
 
+// pending delete
 if($task == 'get_client_products'){
 	console_output("Get WHMCS User Products.");
 
@@ -664,9 +670,9 @@ if($task == 'get_client_products'){
 	// Decode response
 	$results = json_decode($response, true);
 
-	// debug($results);
+	debug($results);
 
-	// die();
+	die();
 
 	// reorder the orders because whmcs is retarded
 	$orders = array_reverse($results['orders']['order']);
