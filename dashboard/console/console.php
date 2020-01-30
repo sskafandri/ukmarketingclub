@@ -264,8 +264,15 @@ if($task == 'sync_databases'){
 		$update = $conn->exec("UPDATE `users` SET `last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
 		$update = $conn->exec("UPDATE `users` SET `email` = '".addslashes($user['email'])."' WHERE `id` = '".$user['id']."' ");
 
-		$update = $conn->exec("UPDATE `users` SET `affiliate_first_name` = '".addslashes($user['firstname'])."' WHERE `id` = '".$user['id']."' ");
-		$update = $conn->exec("UPDATE `users` SET `affiliate_last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
+		$query      		= $conn->query("SELECT * FROM `users` WHERE `id` = '".$user['id']."' ");
+		$existing_user     	= $query->fetch(PDO::FETCH_ASSOC);
+
+		if( empty( $existing_user['affiliate_first_name'] ) ) {
+			$update = $conn->exec("UPDATE `users` SET `affiliate_first_name` = '".addslashes($user['firstname'])."' WHERE `id` = '".$user['id']."' ");
+		}
+		if( empty( $existing_user['affiliate_last_name'] ) ) {
+			$update = $conn->exec("UPDATE `users` SET `affiliate_last_name` = '".addslashes($user['lastname'])."' WHERE `id` = '".$user['id']."' ");
+		}
 
 		console_output("-> Getting User Products");
 
