@@ -1,5 +1,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
+
+RewriteRule ^(.*)$ /aff.php?username=$1 [R,L]
+
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
