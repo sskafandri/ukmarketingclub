@@ -391,12 +391,7 @@ desired effect
 |---------------------------------------------------------|
 -->
 
-<?php if( $account_details['promoter_qualified'] == 'yes' ) { ?>
-	<body onload="init()" class="hold-transition skin-blue sidebar-mini">
-<?php } else { ?>
-	<body onload="init()" class="hold-transition skin-red sidebar-mini">
-<?php } ?>
-
+<body onload="init()" class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
             <a href="dashboard.php" class="logo">
