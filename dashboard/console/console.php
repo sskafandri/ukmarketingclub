@@ -374,7 +374,7 @@ if($task == 'get_orders'){
 
 		// check if existing or new order
 		console_output("- SQL: SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' LIMIT 1");
-		$query      			= $conn->query("SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' LIMIT 1");
+		$query      			= $conn->query("SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' ");
     	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
     	if(isset($existing_order['id'])){
 			$first_order = 'no';
@@ -436,7 +436,8 @@ if($task == 'get_orders'){
 
     	if(!isset($existing_order['id'])){
     		// new order, process it
-    		console_output("ID: ".$order['id']." | ".$order['ordernum'].' '.$order['name']);
+    		//console_output("ID: ".$order['id']." | ".$order['ordernum'].' '.$order['name']);
+    		console_output("- Creating New Order"):
 
     		// add the order to orders
     		$insert = $conn->exec("INSERT INTO `orders` 
@@ -455,6 +456,7 @@ if($task == 'get_orders'){
 		        '".$commission."'
 		    )");
     	}else{
+    		console_output("- Calulating Commissions"):
     		if( $order['paymentstatus'] == 'Paid' && $existing_order['paymentstatus'] != 'Paid' ) {
 
     		}
