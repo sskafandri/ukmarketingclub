@@ -413,11 +413,11 @@ if($task == 'get_orders'){
 
         // calculate commissions - first_order == yes gets a 20% additional rreward
         if($first_order == 'yes'){
-			$commission 			= number_format( ($commission_amount / 100 * 25), );
-			$commission_upline 		= number_format( ($commission_amount / 100 * 5), );
+			$commission 			= number_format( ($commission_amount / 100 * 25), 2 );
+			$commission_upline 		= number_format( ($commission_amount / 100 * 5), 2 );
 		}else{
-			$commission 			= number_format( ($commission_amount / 100 * 5), 2);
-			$commission_upline 		= number_format( ($commission_amount / 100 * 5), );
+			$commission 			= number_format( ($commission_amount / 100 * 5), 2 );
+			$commission_upline 		= number_format( ($commission_amount / 100 * 5), 2 );
 		}
 
 		console_output("- Base Commission Amount: ".$commission_amount);
