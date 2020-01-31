@@ -386,7 +386,7 @@ if($task == 'get_orders'){
 		$query      					= $conn->query("SELECT `id` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
 		$existing_customer_orders     	= $query->fetchAll(PDO::FETCH_ASSOC);
 		$total_existing_customer_orders = count($existing_customer_orders);
-		if($total_existing_customer_orders > 1)){
+		if($total_existing_customer_orders > 1){
 			$first_order = 'no';
 		}else{
 			$first_order = 'yes';
