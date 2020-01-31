@@ -176,6 +176,7 @@ function register(){
 	$postfields['noemail']			= true;
 	$postfields['skipvalidation']	= true;
 
+	$postfields['groupid'] 			= 2;
 	$postfields['firstname'] 		= $first_name;
     $postfields['lastname'] 		= $last_name;
     $postfields['email']			= $email;
