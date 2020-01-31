@@ -1276,7 +1276,7 @@ function account_details($id)
     }   
 }
 
-function console_output($data)
+function console_output($data = "")
 {
 	$timestamp = date("Y-m-d H:i:s", time());
 	echo "[" . $timestamp . "] - " . $data . "\n";
