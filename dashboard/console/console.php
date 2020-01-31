@@ -376,13 +376,6 @@ if($task == 'get_orders'){
 		console_output("- SQL: SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' LIMIT 1");
 		$query      			= $conn->query("SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' ");
     	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
-    	if(isset($existing_order['id'])){
-			$first_order = 'no';
-		}else{
-			$first_order = 'yes';
-		}
-
-        console_output("- First Order: ".$first_order);
 
     	// generate data for orders and commissions
     	// get the upline record
@@ -390,15 +383,15 @@ if($task == 'get_orders'){
 		$upline     = $query->fetch(PDO::FETCH_ASSOC);
 
 		// is this the first order from this customer
-		/*
-		$query      			= $conn->query("SELECT `id`,`paymentstatus` FROM `orders` WHERE `user_id` = '".$order['userid']."' LIMIT 1");
-		$existing_customer     	= $query->fetch(PDO::FETCH_ASSOC);
-		if(isset($existing_customer['id'])){
+		$query      					= $conn->query("SELECT `id` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
+		$existing_customer_orders     	= $query->fetchAll(PDO::FETCH_ASSOC);
+		$total_existing_customer_orders = count($existing_customer_orders);
+		if($total_existing_customer_orders > 1)){
 			$first_order = 'no';
 		}else{
 			$first_order = 'yes';
 		}
-		*/
+		console_output("- First Order: ".$first_order);
 
 		// search for business builder pack and remove it from commission
 		$remove_business_builder_pack = false;
@@ -437,7 +430,7 @@ if($task == 'get_orders'){
     	if(!isset($existing_order['id'])){
     		// new order, process it
     		//console_output("ID: ".$order['id']." | ".$order['ordernum'].' '.$order['name']);
-    		console_output("- Creating New Order");
+    		console_output("- Action: Creating New Order");
 
     		// add the order to orders
     		$insert = $conn->exec("INSERT INTO `orders` 
@@ -456,7 +449,7 @@ if($task == 'get_orders'){
 		        '".$commission."'
 		    )");
     	}else{
-    		console_output("- Calulating Commissions");
+    		console_output("- Action: Calulating Commissions");
 
     		if( $order['paymentstatus'] == 'Paid' && $existing_order['paymentstatus'] != 'Paid' ) {
 
