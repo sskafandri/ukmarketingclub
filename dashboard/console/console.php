@@ -381,6 +381,8 @@ if($task == 'get_orders'){
 			$first_order = 'yes';
 		}
 
+        console_output("- First Order: ".$first_order);
+
     	// generate data for orders and commissions
     	// get the upline record
 		$query      = $conn->query("SELECT * FROM `users` WHERE `id` = '".$order['userid']."' ");
@@ -415,7 +417,6 @@ if($task == 'get_orders'){
         }
 
         console_output("- Order Amount: ".$order['amount']);
-        console_output("- Base Commission Amount: ".$commission_amount);
 
         // calculate commissions - first_order == yes gets a 20% additional rreward
         if($first_order == 'yes'){
@@ -425,6 +426,9 @@ if($task == 'get_orders'){
 			$commission 			= ($commission_amount / 100 * 5);
 			$commission_upline 		= ($commission_amount / 100 * 5);
 		}
+
+		console_output("- Base Commission Amount: ".$commission_amount);
+		console_output("- Upline Commission Amount: ".$commission_upline);
 
 		// make it human readable
 		$commission = number_format($commission, 2, '.', '');
