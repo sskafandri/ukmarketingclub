@@ -412,6 +412,9 @@ if($task == 'get_orders'){
         	$commission_amount = $order['amount'];
         }
 
+        console_output("- Order Amount: ".$order['amount']);
+        console_output("- Base Commission Amount: ".$commission_amount);
+
         // calculate commissions - first_order == yes gets a 20% additional rreward
         if($first_order == 'yes'){
 			$commission 			= ($commission_amount / 100 * 25);
