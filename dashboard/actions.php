@@ -4751,7 +4751,7 @@ function ajax_member_commissions()
 		$output[$count]['customer_id'] 			= $commission['customer_id'];
 
 		// commission amount
-		$output[$count]['amount'] 				= '£'.number_format($commission['amount'], 2);
+		$output[$count]['amount'] 				= '£'.number_format($commission['commission'], 2);
 
 		// order_id
 		$output[$count]['order_id'] 			= '<a href="https://ublo.club/billing/admin/orders.php?action=view&id='.$commission['int_order_id'].'" target="_blank" title="View Order">'.$commission['int_order_id'].'</a>';
