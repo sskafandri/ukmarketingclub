@@ -373,6 +373,7 @@ if($task == 'get_orders'){
 		console_output("Order ID: ".$order['id']);
 
 		// check if existing or new order
+		console_output("- SQL: SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' LIMIT 1");
 		$query      			= $conn->query("SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' LIMIT 1");
     	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
     	if(isset($existing_order['id'])){
