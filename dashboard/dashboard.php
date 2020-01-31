@@ -704,17 +704,6 @@ desired effect
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<?php if(get('c') == 'marketing_tools'){ ?>
-		                    	<li class="active">
-		                    <?php }else{ ?>
-		                    	<li>
-		                    <?php } ?>
-		                    	<a href="dashboard.php?c=marketing_tools">
-		                        	<i class="fa fa-circle"></i> 
-		                        	<span>Marketing Tools</span>
-		                        </a>
-		                    </li>
-
 							<?php if(get('c') == 'my_commissions'){ ?>
 		                    	<li class="active">
 		                    <?php }else{ ?>
@@ -756,6 +745,17 @@ desired effect
 		                    	<a href="dashboard.php?c=table_downline">
 		                        	<i class="fa fa-circle"></i> 
 		                        	<span>Table Genealogy</span>
+		                        </a>
+		                    </li>
+
+		                    <?php if(get('c') == 'marketing_tools'){ ?>
+		                    	<li class="active">
+		                    <?php }else{ ?>
+		                    	<li>
+		                    <?php } ?>
+		                    	<a href="dashboard.php?c=marketing_tools">
+		                        	<i class="fa fa-circle"></i> 
+		                        	<span>Marketing Tools</span>
 		                        </a>
 		                    </li>
 
