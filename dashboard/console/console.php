@@ -639,7 +639,7 @@ if($task == 'get_orders'){
 	    	}
     	}
 
-    	console_output();
+    	console_output("");
 	}
 
 	// clean up random bugs
