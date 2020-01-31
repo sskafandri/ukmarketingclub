@@ -413,11 +413,11 @@ if($task == 'get_orders'){
 
         // calculate commissions - first_order == yes gets a 20% additional rreward
         if($first_order == 'yes'){
-			$commission 			= number_format( ($commission_amount / 100 * 25), 2 );
-			$commission_upline 		= number_format( ($commission_amount / 100 * 5), 2 );
+			$commission 			= numberFormatPrecision( ($commission_amount / 100 * 25), 2 );
+			$commission_upline 		= numberFormatPrecision( ($commission_amount / 100 * 5), 2 );
 		}else{
-			$commission 			= number_format( ($commission_amount / 100 * 5), 2 );
-			$commission_upline 		= number_format( ($commission_amount / 100 * 5), 2 );
+			$commission 			= numberFormatPrecision( ($commission_amount / 100 * 5), 2 );
+			$commission_upline 		= numberFormatPrecision( ($commission_amount / 100 * 5), 2 );
 		}
 
 		console_output("- Base Commission Amount: ".$commission_amount);
@@ -425,7 +425,7 @@ if($task == 'get_orders'){
 		console_output("- Upline Commission Amount: ".$commission_upline);
 
 		// make it human readable
-		$commission = number_format($commission, 2, '.', '');
+		$commission = numberFormatPrecision( $commission, 2 );
 
     	if(!isset($existing_order['id'])){
     		// new order, process it
