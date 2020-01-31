@@ -373,7 +373,6 @@ if($task == 'get_orders'){
 		console_output("Order ID: ".$order['id']);
 
 		// check if existing or new order
-		console_output("- SQL: SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' LIMIT 1");
 		$query      			= $conn->query("SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' ");
     	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
 
@@ -422,6 +421,7 @@ if($task == 'get_orders'){
 		}
 
 		console_output("- Base Commission Amount: ".$commission_amount);
+		console_output("- Level 1 Commission Amount: ".$commission);
 		console_output("- Upline Commission Amount: ".$commission_upline);
 
 		// make it human readable
