@@ -380,7 +380,7 @@ if($task == 'get_orders'){
 		$upline     = $query->fetch(PDO::FETCH_ASSOC);
 
 		// is this the first order from this customer
-		$query      			= $conn->query("SELECT `id`,`paymentstatus` FROM `orders` WHERE `user_id` = '".$order['userid']."' ");
+		$query      			= $conn->query("SELECT `id`,`paymentstatus` FROM `orders` WHERE `user_id` = '".$order['userid']."' LIMIT 1");
 		$existing_customer     	= $query->fetch(PDO::FETCH_ASSOC);
 		if(isset($existing_customer['id'])){
 			$first_order = 'no';
