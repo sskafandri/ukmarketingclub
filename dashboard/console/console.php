@@ -370,6 +370,8 @@ if($task == 'get_orders'){
 	$orders = array_reverse($results['orders']['order']);
 	
 	foreach($orders as $order){
+		console_output("Order ID: ".$order['id']);
+
 		// check if existing or new order
 		$query      			= $conn->query("SELECT `id`,`user_id`,`upline_id`,`paymentstatus` FROM `orders` WHERE `order_id` = '".$order['id']."' LIMIT 1");
     	$existing_order       	= $query->fetch(PDO::FETCH_ASSOC);
@@ -636,6 +638,8 @@ if($task == 'get_orders'){
 	    		console_output("-> Order ID: ".$existing_order['id']." has not been paid yet");
 	    	}
     	}
+
+    	console_output();
 	}
 
 	// clean up random bugs
