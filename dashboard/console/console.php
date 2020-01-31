@@ -437,7 +437,7 @@ if($task == 'get_orders'){
     	if(!isset($existing_order['id'])){
     		// new order, process it
     		//console_output("ID: ".$order['id']." | ".$order['ordernum'].' '.$order['name']);
-    		console_output("- Creating New Order"):
+    		console_output("- Creating New Order");
 
     		// add the order to orders
     		$insert = $conn->exec("INSERT INTO `orders` 
@@ -457,7 +457,7 @@ if($task == 'get_orders'){
 		    )");
     	}else{
     		console_output("- Calulating Commissions");
-    		
+
     		if( $order['paymentstatus'] == 'Paid' && $existing_order['paymentstatus'] != 'Paid' ) {
 
     		}
