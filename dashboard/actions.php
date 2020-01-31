@@ -4732,6 +4732,7 @@ function ajax_member_commissions()
 		$pending_commissions_period				= 2592000;
 		$output[$count]['release_date'] 		= date("Y-m-d", $commission['added'] + $pending_commissions_period);
 
+
 		// status
 		if($commission['status'] == 'approved'){
 			$output[$count]['status'] 					= '<span class="label label-warning full-width" style="width: 100%;">Approved</span>';
