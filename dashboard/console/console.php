@@ -456,7 +456,8 @@ if($task == 'get_orders'){
 		        '".$commission."'
 		    )");
     	}else{
-    		console_output("- Calulating Commissions"):
+    		console_output("- Calulating Commissions");
+    		
     		if( $order['paymentstatus'] == 'Paid' && $existing_order['paymentstatus'] != 'Paid' ) {
 
     		}
