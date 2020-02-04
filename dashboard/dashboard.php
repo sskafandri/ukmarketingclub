@@ -91,27 +91,6 @@ $account_details = account_details($_SESSION['account']['id']);
     <!-- bootstrap datepicker -->
   	<link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
-    <?php if(!isset($_GET['c']) || $_GET['c'] == 'home' || $_GET['c'] == 'staging' || $_GET['c'] == 'server') { ?>
-    	<!-- jvectormap -->
-  		<link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
-
-  		<!-- highcharts -->
-  		<script src="https://code.highcharts.com/stock/highstock.js"></script>
-	    <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
-	    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
-		<script src="https://code.highcharts.com/maps/modules/data.js"></script>
-		<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-		<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
-		<script src="https://code.highcharts.com/modules/sankey.js"></script>
-		<script src="https://code.highcharts.com/modules/exporting.js"></script>
-		<script src="https://code.highcharts.com/modules/export-data.js"></script>
-
-		<script src="https://www.highcharts.com/media/com_demo/js/highslide-full.min.js"></script>
-		<script src="https://www.highcharts.com/media/com_demo/js/highslide.config.js" charset="utf-8"></script>
-		<link rel="stylesheet" type="text/css" href="https://www.highcharts.com/media/com_demo/css/highslide.css" />
-	<?php } ?>
-
 	<!-- bootstrap wysihtml5 - text editor -->
   	<link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
@@ -3931,50 +3910,6 @@ desired effect
     <script src="dist/js/app.min.js"></script>
 
     <script>
-    	function share_on_facebook(){
-			var el = document.getElementById('share_facebook_iframe');
-			el.src = 'https://www.facebook.com/sharer.php?u=https://www.domain.ro/url.html';
-		}
-
-		$(document).ready(function() {
-			var width  = 575,
-			height = 400,
-			left   = ($(window).width()  - width)  / 2,
-			top    = ($(window).height() - height) / 2,
-			// url    = location.href,
-			url_retail   	= 'https://ublo.club/<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
-			url_mlm   		= 'https://ukmarketingclub.com/b2b/<?php echo $account_details['affiliate_username']; ?>&quote=<?php echo md5(time()); ?>',
-			opts   			= 'status=1' +
-			',width='  + width  +
-			',height=' + height +
-			',top='    + top    +
-			',left='   + left;
-
-			$("#btn_shareFB_retail").click(function() {
-				window.open('https://www.facebook.com/sharer/sharer.php?u='+url_retail, 
-				'facebook-share-dialog', 
-				opts); 
-			});
-			$("#btn_shareTWI_retail").click(function() {
-				window.open('https://twitter.com/share?url'+url_retail+'&text=Share%20with%20twitter%20is%20so%20easy', 
-				'twitter-sahre-dialog', 
-				opts); 
-			});
-
-			$("#btn_shareFB_mlm").click(function() {
-				window.open('https://www.facebook.com/sharer/sharer.php?u='+url_mlm, 
-				'facebook-share-dialog', 
-				opts); 
-			});
-			$("#btn_shareTWI_mlm").click(function() {
-				window.open('https://twitter.com/share?url'+url_mlm+'&text=Share%20with%20twitter%20is%20so%20easy', 
-				'twitter-sahre-dialog', 
-				opts); 
-			});
-		});
-	</script>
-
-    <script>
     	function openURLInPopup(url, width, height, name) {
 		    if (typeof(width) == "undefined") {
 		        width = 800;
@@ -3986,43 +3921,11 @@ desired effect
 		    popup(url, name || 'window' + Math.floor(Math.random() * 10000 + 1), width, height, 'menubar=0,location=0,toolbar=0,status=0,scrollbars=1');
 		}
 
-    	function easter_egg(){
-    		alert('All data has been transmitted to law agencies around the world and your CMS data has now been purged.')
-    		window.location.href('index2.php');
-    		window.open('https://www.codexworld.com', '_blank');
-    	}
-
-    	// reset web_player source when modal is closed
-    	$("#web_player").on("hidden.bs.modal", function () {
-		    var el = document.getElementById('web_player_iframe');
-			el.src = ''; 
-		});
-
-		// reset customer line source when modal is closed
-    	$("#customer_line").on("hidden.bs.modal", function () {
-		    var el = document.getElementById('customer_line_iframe');
-			el.src = ''; 
-		});
-
 		$(document).on("click", ".open-AddBookDialog", function () {
 			var myBookId = $(this).data('id');
 			$(".modal-body #bookId").val( myBookId );
 			$('#addBookDialog').modal('show');
 		});
-
-		// set the web player iframe src for new player
-		function new_web_player_iframe_source(stream_id){
-			var el = document.getElementById('web_player_iframe');
-			el.src = 'cms_web_player.php?stream_id='+stream_id;
-			// alert('Stream ID: '+stream_id);
-		}
-
-		// set the customer line iframe src for new customer
-		function get_customer_line(customer_id){
-			console.log("Customer ID: " + customer_id);
-			var el = document.getElementById('customer_line_iframe');
-			el.src = 'cms_customer_line.php?customer_id='+customer_id;
-		}
 
     	function multi_options(){
 			$('#multi_options_show').removeClass("hidden");
@@ -4079,11 +3982,6 @@ desired effect
 			    });
 			});
 		}
-
-		<?php if($globals['servers']['total'] == 0) { ?>
-			$('#menu_servers').css('background','#1d8348 ')
-			blink('#menu_servers');
-		<?php } ?>
 	</script>
    	
    	<?php if(!empty($_SESSION['alert']['status'])){ ?>
