@@ -493,7 +493,7 @@ if($task == 'get_orders'){
 			        '".$commission."',
 			        '".$existing_order['id']."',
 			        '".$qualified."',
-			        '".$core_commissions_amount."'
+			        '".$commission_amount."'
 			    )");
 
 
@@ -519,7 +519,7 @@ if($task == 'get_orders'){
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
 			        	'".$qualified."',
-			        	'".$core_commissions_amount."'
+			        	'".$commission_amount."'
 				    )");
 		    	}
 
@@ -545,7 +545,7 @@ if($task == 'get_orders'){
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
 			        	'".$qualified."',
-			        	'".$core_commissions_amount."'
+			        	'".$commission_amount."'
 				    )");
 		    	}
 
@@ -571,7 +571,7 @@ if($task == 'get_orders'){
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
 			        	'".$qualified."',
-			        	'".$core_commissions_amount."'
+			        	'".$commission_amount."'
 				    )");
 		    	}
 
@@ -597,7 +597,7 @@ if($task == 'get_orders'){
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
 			        	'".$qualified."',
-			        	'".$core_commissions_amount."'
+			        	'".$commission_amount."'
 				    )");
 		    	}
 
@@ -623,7 +623,7 @@ if($task == 'get_orders'){
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
 			        	'".$qualified."',
-			        	'".$core_commissions_amount."'
+			        	'".$commission_amount."'
 				    )");
 		    	}
 
@@ -649,7 +649,7 @@ if($task == 'get_orders'){
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
 			        	'".$qualified."',
-			        	'".$core_commissions_amount."'
+			        	'".$commission_amount."'
 				    )");
 		    	}
 	    	}else{
