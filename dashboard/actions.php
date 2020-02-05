@@ -2359,7 +2359,7 @@ function customer_add()
 
 	$password 			= md5(md5(rand(00000,99999)));
 
-	$expire_date 		= date("Y-m-d", time() + 2629746);
+	$expire_date 		= date("d M Y", time() + 2629746);
 
 	$insert = $conn->exec("INSERT INTO `customers` 
         (`user_id`,`updated`,`first_name`,`last_name`,`email`,`username`,`password`,`expire_date`)
@@ -4633,7 +4633,7 @@ function ajax_members()
 			}
 
 			// member join date
-			$output[$count]['join_date']					= date("Y-m-d", $customer['added']);
+			$output[$count]['join_date']					= date("d M Y", $customer['added']);
 
 			// build the actions menu options
 			$output[$count]['actions'] 						= '
@@ -4728,9 +4728,9 @@ function ajax_member_commissions()
 		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$commission['id'].'" name="commission_ids[]" value="'.$commission['id'].'" onclick="multi_options();"></center>';
 
 		$output[$count]['added'] 				= $commission['added'];
-		$output[$count]['order_date'] 			= date("Y-m-d", $commission['added']);
+		$output[$count]['order_date'] 			= date("d M Y", $commission['added']);
 		$pending_commissions_period				= 2592000;
-		$output[$count]['release_date'] 		= date("Y-m-d", $commission['added'] + $pending_commissions_period);
+		$output[$count]['release_date'] 		= date("d M Y", $commission['added'] + $pending_commissions_period);
 
 		// status
 		if($commission['status'] == 'approved'){
@@ -4972,7 +4972,7 @@ function ajax_downline()
 						}
 					}
 
-					$output[$count]['join_date']					= date("Y-m-d", $customer['added']);
+					$output[$count]['join_date']					= date("d M Y", $customer['added']);
 
 					$output[$count]['actions'] 						= '<!-- <a title="View / Edit" class="btn btn-info btn-flat btn-xs" href="dashboard.php?c=customer&customer_id='.$customer['id'].'"><i class="fa fa-eye"></i></a><a title="Delete" class="btn btn-danger btn-flat btn-xs" onclick="return confirm(\'This cannot be undone. The entire downline will be moved up one level. Are you sure?\')" href="actions.php?a=customer_delete&customer_id='.$customer['id'].'"><i class="fa fa-times"></i></a> -->';
 
@@ -5160,7 +5160,7 @@ function backup_now()
 {
 	global $conn, $global_settings;
 
-	$date = date("Y-m-d_h:i", time());
+	$date = date("d M Y_h:i", time());
 	
 	exec("mkdir -p /opt/slipstream/backups/");
 	exec("sudo chmod 777 /opt/slipstream/backups/");
@@ -5615,9 +5615,9 @@ function ajax_commissions()
 		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$commission['id'].'" name="commission_ids[]" value="'.$commission['id'].'" onclick="multi_options();"></center>';
 
 		$output[$count]['added'] 				= $commission['added'];
-		$output[$count]['order_date'] 			= date("Y-m-d", $commission['added']);
+		$output[$count]['order_date'] 			= date("d M Y", $commission['added']);
 		$pending_commissions_period				= 2592000;
-		$output[$count]['release_date'] 		= date("Y-m-d", $commission['added'] + $pending_commissions_period);
+		$output[$count]['release_date'] 		= date("d M Y", $commission['added'] + $pending_commissions_period);
 
 		// status
 		if($commission['status'] == 'approved') {
@@ -5879,9 +5879,9 @@ function ajax_all_commissions()
 		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$commission['id'].'" name="commission_ids[]" value="'.$commission['id'].'" onclick="multi_options();"></center>';
 
 		$output[$count]['added'] 				= $commission['added'];
-		$output[$count]['order_date'] 			= date("Y-m-d", $commission['added']);
+		$output[$count]['order_date'] 			= date("d M Y", $commission['added']);
 		$pending_commissions_period				= 2592000;
-		$output[$count]['release_date'] 		= date("Y-m-d", $commission['added'] + $pending_commissions_period);
+		$output[$count]['release_date'] 		= date("d M Y", $commission['added'] + $pending_commissions_period);
 
 		// status
 		if($commission['status'] == 'approved') {
@@ -6002,7 +6002,7 @@ function ajax_withdrawal_requests()
 		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$withdrawal_request['id'].'" name="withdrawal_requests_ids[]" value="'.$withdrawal_request['id'].'" onclick="multi_options();"></center>';
 
 		$output[$count]['added'] 				= $withdrawal_request['added'];
-		$output[$count]['request_date'] 		= date("Y-m-d", $withdrawal_request['added']);
+		$output[$count]['request_date'] 		= date("d M Y", $withdrawal_request['added']);
 
 		// status
 		if($withdrawal_request['status'] == 'approved') {
@@ -6126,10 +6126,10 @@ function ajax_withdrawals()
 		$output[$count]['checkbox']				= '<center><input type="checkbox" class="chk" id="checkbox_'.$withdrawal_request['id'].'" name="withdrawal_requests_ids[]" value="'.$withdrawal_request['id'].'" onclick="multi_options();"></center>';
 
 		$output[$count]['added'] 				= $withdrawal_request['added'];
-		$output[$count]['request_date'] 		= date("Y-m-d", $withdrawal_request['added']);
+		$output[$count]['request_date'] 		= date("d M Y", $withdrawal_request['added']);
 
 		if(!is_null($withdrawal_request['paid_date'])){
-			$output[$count]['paid_date'] 			= date("Y-m-d", $withdrawal_request['paid_date']);
+			$output[$count]['paid_date'] 			= date("d M Y", $withdrawal_request['paid_date']);
 		}else{
 			$output[$count]['paid_date'] 			= '';
 		}
@@ -6250,7 +6250,7 @@ function withdrawal_request_cancel()
 	$id 				= get('id');
 
 	$delete = $conn->query("UPDATE `withdrawal_requests` SET `status` = 'cancelled' WHERE `id` = '".$id."' AND `user_id` = '".$member_id."' ");
-	$delete = $conn->query("UPDATE `withdrawal_requests` SET `comment` = 'Request cancelled on ".date("Y-m-d", time())." by member' WHERE `id` = '".$id."' AND `user_id` = '".$member_id."' ");
+	$delete = $conn->query("UPDATE `withdrawal_requests` SET `comment` = 'Request cancelled on ".date("d M Y", time())." by member' WHERE `id` = '".$id."' AND `user_id` = '".$member_id."' ");
 
     status_message('success',"Your withdrawal request has been cancelled and the funds transferred back to your available balance.");
 	go($_SERVER['HTTP_REFERER']);
