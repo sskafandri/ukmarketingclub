@@ -5,5 +5,5 @@ session_start();
 $_SESSION['affiliate_username'] 		= $_GET['username'];
 
 header("HTTP/1.1 301 Moved Permanently");
-header("Location: https://ukmarketingclub.com/",true,301);
+header("Location: https://ukmarketingclub.com/", true, 301);
 ?>
