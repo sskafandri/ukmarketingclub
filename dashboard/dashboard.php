@@ -15,6 +15,17 @@ include('inc/db.php');
 include('inc/global_vars.php');
 include('inc/functions.php');
 
+// geoIP lock
+// get user IP address
+$ip 				= $_SERVER['REMOTE_ADDR'];
+// using the API to get information about this IP
+$details 			= json_decode( file_get_contents( "http://www.geoplugin.net/json.gp?ip=$ip" ), true );
+
+// block if user is not in the UK
+if( $details['geoplugin_countryCode'] != "GB" ) {
+	die( "This website is only accessible to customers inside the UK." );   
+}
+
 // start timer for page loaded var
 $time = microtime();
 $time = explode(' ', $time);
