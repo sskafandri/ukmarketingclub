@@ -419,15 +419,15 @@ if($task == 'get_orders'){
         	$commission_amount = $core_commissions_amount;
         }
 
-        console_output("- Order Amount: ".$order['amount']);
+        console_output( "- Order Amount: ".$order['amount'] );
 
         // calculate commissions - first_order == yes gets a 20% additional rreward
         if($first_order == 'yes'){
-			$commission 			= number_format( ($commission_amount / 100 * 25), 2 );
-			$commission_upline 		= number_format( ($commission_amount / 100 * 5), 2 );
+			$commission 			= number_format( ( $commission_amount / 100 * 25 ), 2 );
+			$commission_upline 		= number_format( ( $commission_amount / 100 * 5 ), 2 );
 		}else{
-			$commission 			= number_format( ($commission_amount / 100 * 5), 2 );
-			$commission_upline 		= number_format( ($commission_amount / 100 * 5), 2 );
+			$commission 			= number_format( ( $commission_amount / 100 * 5 ), 2 );
+			$commission_upline 		= number_format( ( $commission_amount / 100 * 5 ), 2 );
 		}
 
 		console_output("- Base Commission Amount: ".$commission_amount);
@@ -485,14 +485,15 @@ if($task == 'get_orders'){
 
 		    	// insert record
 	    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+			        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`,`order_total`)
 			        VALUE
 			        ('".time()."',
 			        '".$upline_1['id']."',
 			        '".$order['userid']."',
 			        '".$commission."',
 			        '".$existing_order['id']."',
-			        '".$qualified."'
+			        '".$qualified."',
+			        '".$order['amount']."'
 			    )");
 
 
@@ -510,14 +511,15 @@ if($task == 'get_orders'){
 
 			    	// insert record
 		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`,`order_total`)
 				        VALUE
 				        ('".time()."',
 				        '".$upline_2['id']."',
 				        '".$order['userid']."',
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
-			        	'".$qualified."'
+			        	'".$qualified."',
+			        	'".$order['amount']."'
 				    )");
 		    	}
 
@@ -535,14 +537,15 @@ if($task == 'get_orders'){
 
 			    	// insert record
 		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`,`order_total`)
 				        VALUE
 				        ('".time()."',
 				        '".$upline_3['id']."',
 				        '".$order['userid']."',
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
-			        	'".$qualified."'
+			        	'".$qualified."',
+			        	'".$order['amount']."'
 				    )");
 		    	}
 
@@ -560,14 +563,15 @@ if($task == 'get_orders'){
 
 			    	// insert record
 		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`,`order_total`)
 				        VALUE
 				        ('".time()."',
 				        '".$upline_4['id']."',
 				        '".$order['userid']."',
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
-			        	'".$qualified."'
+			        	'".$qualified."',
+			        	'".$order['amount']."'
 				    )");
 		    	}
 
@@ -585,14 +589,15 @@ if($task == 'get_orders'){
 
 			    	// insert record
 		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`,`order_total`)
 				        VALUE
 				        ('".time()."',
 				        '".$upline_5['id']."',
 				        '".$order['userid']."',
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
-			        	'".$qualified."'
+			        	'".$qualified."',
+			        	'".$order['amount']."'
 				    )");
 		    	}
 
@@ -610,14 +615,15 @@ if($task == 'get_orders'){
 
 			    	// insert record
 		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`,`order_total`)
 				        VALUE
 				        ('".time()."',
 				        '".$upline_6['id']."',
 				        '".$order['userid']."',
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
-			        	'".$qualified."'
+			        	'".$qualified."',
+			        	'".$order['amount']."'
 				    )");
 		    	}
 
@@ -635,14 +641,15 @@ if($task == 'get_orders'){
 
 			    	// insert record
 		    		$insert = $conn->exec("INSERT IGNORE INTO `commissions` 
-				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`)
+				        (`added`,`user_id`,`customer_id`,`amount`,`int_order_id`,`qualified`,`order_total`)
 				        VALUE
 				        ('".time()."',
 				        '".$upline_7['id']."',
 				        '".$order['userid']."',
 				        '".$commission_upline."',
 				        '".$existing_order['id']."',
-			        	'".$qualified."'
+			        	'".$qualified."',
+			        	'".$order['amount']."'
 				    )");
 		    	}
 	    	}else{
