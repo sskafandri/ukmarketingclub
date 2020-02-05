@@ -403,22 +403,20 @@ if($task == 'get_orders'){
         }
 
         // search for and remove shipping from commissions
-		$core_commissions_amount = 0.00;
+		$core_commissions_amount = $order['amount'];
 		foreach($order['lineitems']['lineitem'] as $line_item){
             $line_item['order_details']     = whmcs_order_to_product($line_item['relid']);
 
-            debug($line_item['order_details']);
-
-            if($line_item['order_details']['product_id'] == 2){
-            	$remove_business_builder_pack = true;
+            if($line_item['order_details']['product_id'] == 54 || $line_item['order_details']['product_id'] == 55 || $line_item['order_details']['product_id'] == 56 || $line_item['order_details']['product_id'] == 57){
+            	$core_commissions_amount = ( $core_commissions_amount - $line_item['order_details']['firstpaymentamount'] );
             }
         }
 
         // remove commissions for business builder pack - its the law
         if($remove_business_builder_pack == true){
-        	$commission_amount = $order['amount'] - 40.00;
+        	$commission_amount = $core_commissions_amount - 40.00;
         }else{
-        	$commission_amount = $order['amount'];
+        	$commission_amount = $core_commissions_amount;
         }
 
         console_output("- Order Amount: ".$order['amount']);
