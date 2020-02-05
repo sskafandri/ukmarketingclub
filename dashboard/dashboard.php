@@ -4694,6 +4694,7 @@ desired effect
 			        '<tr>'+
 			            '<td width="150px" valign="top" class="hidden-xs">Additional Details</td>'+
 			            '<td valign="top" align="left">'+
+			            	'<strong>Order Total:</strong> £'+d.order_total+' <br>'+
 			            	'<strong>Commission ID:</strong> '+d.id+' <br>'+
 			            	'<strong>Sale Type::</strong> '+d.customer.type+' <br>'+
 			            	'<strong>Name:</strong> '+d.customer.full_name+' (Level: '+d.customer.level+')<br>'+
