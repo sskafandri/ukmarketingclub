@@ -306,27 +306,31 @@ if($task == 'sync_databases'){
 
 		// cycle products for qualifying product
 		foreach($results['products']['product'] as $product){
-			// find the right product
-			if($product['pid'] == 1){
-				console_output("- -> Qualifying Product Found.");
-				console_output("- -> Status: ".$product['status']);
-				console_output("- -> Renew Date: ".$product['nextduedate']);
+			if( $user['id'] != 100 ) {
+				// find the right product
+				if($product['pid'] == 1){
+					console_output("- -> Qualifying Product Found.");
+					console_output("- -> Status: ".$product['status']);
+					console_output("- -> Renew Date: ".$product['nextduedate']);
 
-				// calculate days remaining
-				$now 			= time();
-				$your_date 		= strtotime($product['nextduedate']);
-				$datediff 		= $your_date - $now;
-				$remaining_days = round($datediff / (60 * 60 * 24));
+					// calculate days remaining
+					$now 			= time();
+					$your_date 		= strtotime($product['nextduedate']);
+					$datediff 		= $your_date - $now;
+					$remaining_days = round($datediff / (60 * 60 * 24));
 
-				console_output("- -> Remaining Days: ".$remaining_days." days");
+					console_output("- -> Remaining Days: ".$remaining_days." days");
 
-				$update = $conn->exec("UPDATE `users` SET `expire_date` = '".$product['nextduedate']."' WHERE `id` = '".$user['id']."' ");
-				$update = $conn->exec("UPDATE `users` SET `promoter_qualified` = 'yes' WHERE `id` = '".$user['id']."' ");
+					$update = $conn->exec("UPDATE `users` SET `expire_date` = '".$product['nextduedate']."' WHERE `id` = '".$user['id']."' ");
+					$update = $conn->exec("UPDATE `users` SET `promoter_qualified` = 'yes' WHERE `id` = '".$user['id']."' ");
 
-				break;
+					break;
+				}
 			}
 		}
 	}
+
+	$update = $conn->exec("UPDATE `users` SET `promoter_qualified` = 'yes' WHERE `id` = '100' ");
 
 	console_output("Finished.");
 }
